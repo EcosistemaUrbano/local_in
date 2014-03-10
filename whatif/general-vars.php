@@ -34,10 +34,10 @@ $zoomindividual = 16;
 
 // bg and colors vistas
 $color_c = "color-c";
-$bg_c = "bg-c";
+$bg_c = "bg-n";
 // bg and colors form
 $color_p = "color-p";
-$bg_p = "bg-p";
+$bg_p = "bg-n";
 
 // bg and colors positive
 $color_pl = "color-p";
