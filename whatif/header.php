@@ -746,7 +746,7 @@ if ( have_posts() ) :
 var marker".$post_id." = new GMarker(point".$post_id.", ".$categoryID.");
 GEvent.addListener(marker".$post_id.", \"click\", function() {
 
-var myHtml".$post_id." = \"<div class='mapmsg' ><img alt='' src='$template_url/images/default.png' style='display:block;float:left;'/></div><p style='text-align: left; padding-left:90px; font-size:12px;'>" . __('Enviado por:','whatif') . " <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>\";
+var myHtml".$post_id." = \"<div class='mapmsg' ><img alt='' src='$template_url/images/default.png' style='display:block;float:left;'/></div><p style='width:500px;text-align: left; padding-left:90px; font-size:12px;'>" . __('Enviado por:','whatif') . " <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>\";
 map2.openInfoWindowHtml(point".$post_id.", myHtml".$post_id."); });
 map2.addOverlay(marker".$post_id.");
         
@@ -916,6 +916,7 @@ map2.setUIToDefault();
 display:block;
 float:left;'
 }
+.tagsmap{position:relative;top:-5px;left:-10px;}
 </style> 
 
 </head>
