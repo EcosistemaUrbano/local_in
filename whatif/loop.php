@@ -2,6 +2,11 @@
 
   $buscauthor = $_GET['buscauthor'];
 
+ if($buscauthor!='')
+{
+$linkconautor='?buscauthor='.$buscauthor;
+}
+
 $alltax = $_GET['alltax']; // to know if positivo or negativo list
 if ( is_author() ) {
 //query_posts("author=$cur_aut->ID&showposts=3&posts_per_page=3&paged=$paged");
@@ -399,7 +404,7 @@ endwhile;
 <div class="navigation">
 <!--<div class="alignleft"><?php previous_posts_link(__('Entradas anteriores','whatif'),'') ?></div>
 <div class="alignright"><?php next_posts_link(__('Entradas posteriores','whatif'),'') ?></div>-->
-<div class="alignright"><a id="navigationa" href="?paginacion=<?php echo $pagina ?>"></a></div>
+<div class="alignright"><a id="navigationa" href="?paginacion=<?php echo $pagina ?><?php echo $linkconautor; ?>"></a></div>
 
 </div>
 
@@ -409,7 +414,7 @@ endwhile;
 <div class="navigation">
 <!--<div class="alignleft"><?php previous_posts_link(__('Entradas anteriores','whatif'),'') ?></div>
 <div class="alignright"><?php next_posts_link(__('Entradas posteriores','whatif'),'') ?></div>-->
-<div class="alignright"><a id="navigationa" href="?paginacion=<?php echo $pagina ?>"></a></div>
+<div class="alignright"><a id="navigationa" href="?paginacion=<?php echo $pagina ?><?php echo $linkconautor; ?>"></a></div>
 
 </div>
 
@@ -427,7 +432,7 @@ $paginaanterior = $pagina-2;
 
 <div class="navigationLeft">
 
-<div class="alignleft"><a id="navigationlefta" href="?paginacion=<?php echo $paginaanterior ?>"></a></div>
+<div class="alignleft"><a id="navigationlefta" href="?paginacion=<?php echo $paginaanterior ?><?php echo $linkconautor; ?>"></a></div>
 
 </div>
  
