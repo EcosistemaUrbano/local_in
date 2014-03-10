@@ -1,0 +1,6 @@
+﻿.loadCSS1_Print {
+	visibility: hidden;
+}
+.unloadCSS1_Print {
+	visibility: visible;
+}

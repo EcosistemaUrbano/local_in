@@ -1,0 +1,319 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: whatif 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-17 17:14+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Jorge Toledo - Ecosistema Urbano <jtg@ecosistemaurbano.com >\n"
+"Language-Team: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../filters.php:13
+#: ../filters-img.php:9
+msgid "Restablecer"
+msgstr "Reset"
+
+#: ../filters.php:20
+#: ../filters-img.php:16
+msgid "Mensajes positivos"
+msgstr "References"
+
+#: ../filters.php:24
+#: ../filters-img.php:20
+msgid "Mensajes negativos"
+msgstr "Proposals"
+
+#: ../msgmap.php:15
+#: ../header.php:628
+msgid "Positivo"
+msgstr "Reference"
+
+#: ../msgmap.php:16
+#: ../header.php:629
+msgid "Negativo"
+msgstr "Proposal"
+
+#: ../msgmap.php:17
+#: ../header.php:630
+msgid "Arquitectura urbanismo"
+msgstr "Architecture and urbanism"
+
+#: ../msgmap.php:18
+#: ../header.php:631
+msgid "Comunidad ciudadana"
+msgstr "Citizens community"
+
+#: ../msgmap.php:19
+#: ../header.php:632
+msgid "Espacio público medioambiente"
+msgstr "Public space and environment"
+
+#: ../msgmap.php:20
+#: ../header.php:633
+msgid "Movilidad"
+msgstr "Mobility"
+
+#: ../msgmap.php:21
+#: ../header.php:634
+msgid "Otros"
+msgstr "Others"
+
+#: ../msgmap.php:33
+#: ../msgmap.php:34
+msgid "Localizaciones"
+msgstr "Locations"
+
+#: ../header.php:15
+msgid "Herramienta de participación urbana"
+msgstr "Urban participatory tools"
+
+#: ../header.php:750
+msgid "Enviado por:"
+msgstr "Sent by:"
+
+#: ../archive.php:7
+msgid "Archivos"
+msgstr "Files"
+
+#: ../archive.php:20
+msgid "Publicado a las"
+msgstr "Published at"
+
+#: ../footer.php:15
+#: ../index.php:11
+msgid "Inicio"
+msgstr "Home"
+
+#: ../footer.php:25
+msgid "Mis mensajes"
+msgstr "My messages"
+
+#: ../footer.php:26
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: ../footer.php:27
+msgid "Abandonar sesión"
+msgstr "Log out"
+
+#: ../footer.php:29
+msgid "Iniciar sesión"
+msgstr "Log in"
+
+#: ../index.php:7
+msgid "Participa"
+msgstr "participate"
+
+#: ../index.php:15
+msgid "Consulta los resultados"
+msgstr "view entries"
+
+#: ../formulario-enviado-gracias.php:189
+msgid "Su mensaje se publicó correctamente"
+msgstr "Your message has been correctly published"
+
+#: ../formulario-enviado-gracias.php:193
+msgid "Su mensaje no pudo ser publicado por algún error entre su conexión y el servidor, o bien ya existe un mensaje igual al que está intentando publicar. Por favor vuelva al formulario para reenviar su mensaje."
+msgstr "Your message couldn't be published due to an error when trying to connect to the server, or the message you're trying to publish already exists. Please go back to the form and try to resend it."
+
+#: ../formulario.php:19
+msgid "Describe tu idea"
+msgstr "Describe your finding or document"
+
+#: ../formulario.php:28
+msgid "Describe tu problema"
+msgstr "Describe your idea or proposal"
+
+#: ../formulario.php:53
+msgid "Describe tu idea (140 caracteres como máximo)"
+msgstr "Write your text (maximum of 140 characters)"
+
+#: ../formulario.php:59
+msgid "Elige una categoría"
+msgstr "Choose a category"
+
+#: ../formulario.php:95
+msgid "Elige palabras clave"
+msgstr "Choose some keywords"
+
+#: ../formulario.php:96
+msgid "Hasta un máximo de 5"
+msgstr "Up to 5 keywords"
+
+#: ../formulario.php:113
+msgid "También puedes añadir tus propias palabras clave separadas por comas."
+msgstr "You an also add your own keywords, comma separated."
+
+#: ../formulario.php:122
+msgid "Elige una localización"
+msgstr "Choose a location"
+
+#: ../formulario.php:146
+msgid "Vista mapa"
+msgstr "Map view"
+
+#: ../formulario.php:148
+msgid "Vista satélite"
+msgstr "Satellite view"
+
+#: ../formulario.php:149
+msgid "Vista híbrida"
+msgstr "Hybrid view"
+
+#: ../formulario.php:241
+msgid "Añade una foto o un vídeo"
+msgstr "Add a photo or a video"
+
+#: ../formulario.php:254
+msgid "Su imagen ha sido cargada"
+msgstr "Your image has been uploaded"
+
+#: ../formulario.php:265
+msgid "Añadir un vídeo"
+msgstr "Add a video"
+
+#: ../formulario.php:281
+msgid "Si quieres modificar algo puedes volver hacia atrás pulsando sobre las fechas."
+msgstr "If you want to modify something, you can go back using the black arrows."
+
+#: ../formulario.php:282
+msgid "Para publicar pulsa a continuación:"
+msgstr "To publish the message, click on the following button:"
+
+#: ../formulario.php:286
+msgid "Publicar mensaje"
+msgstr "Publish message"
+
+#: ../formulario.php:302
+msgid "Para publicar un mensaje debes iniciar sesión."
+msgstr "You have to log in to publish a message."
+
+#: ../formulario.php:314
+msgid "usuario o contraseña incorrectos"
+msgstr "Incorrect username or password."
+
+#: ../formulario.php:318
+msgid "usuario"
+msgstr "username"
+
+#: ../formulario.php:322
+#: ../formulario.php:348
+msgid "contraseña"
+msgstr "password"
+
+#: ../formulario.php:326
+msgid "Recordarme"
+msgstr "Remember me"
+
+#: ../formulario.php:336
+msgid "Si aún no estás registrado:"
+msgstr "If you're not registered yet:"
+
+#: ../formulario.php:339
+msgid "el nombre ya existe"
+msgstr "that username already exists"
+
+#: ../formulario.php:340
+msgid "nombre de usuario"
+msgstr "username"
+
+#: ../formulario.php:341
+msgid "sin espacios"
+msgstr "no spaces"
+
+#: ../formulario.php:343
+msgid "correo asociado a otro usuario"
+msgstr "this email is already in use by other user"
+
+#: ../formulario.php:351
+msgid "parece que te has equivocado al teclear..."
+msgstr "looks like you made a mistake while typing"
+
+#: ../formulario.php:352
+msgid "confirma tu contraseña"
+msgstr "confirm your password"
+
+#: ../formulario.php:356
+msgid "Registrarse"
+msgstr "Register"
+
+#: ../author.php:18
+msgid "Datos:"
+msgstr "Data: "
+
+#: ../author.php:26
+msgid "Mensajes enviado por"
+msgstr "Message sent by"
+
+#: ../author.php:50
+msgid "Palabras clave"
+msgstr "Keywords"
+
+#: ../author.php:54
+msgid "Imágenes"
+msgstr "Images"
+
+#: ../loop.single.php:37
+msgid "Comentario"
+msgstr "Comment"
+
+#: ../loop.single.php:38
+msgid "Permalink"
+msgstr "Permalink"
+
+#: ../loop.single.php:43
+msgid "Ver Video"
+msgstr "Watch video"
+
+#: ../loop.single.php:89
+msgid "Editar"
+msgstr "Edit"
+
+#: ../loop.single.php:141
+msgid "Sin imagen"
+msgstr "No image"
+
+#: ../loop.single.php:205
+msgid "what if...? cities"
+msgstr "what if...? cities"
+
+#: ../explica.php:16
+msgid "Atrás"
+msgstr "Previous"
+
+#: ../explica.php:38
+msgid "Adelante"
+msgstr "Next"
+
+#: ../loopTerm.php:55
+#: ../loop.php:29
+msgid "Paso anterior"
+msgstr "Previous step"
+
+#: ../loopTerm.php:329
+#: ../loop.php:434
+msgid "Paso siguiente"
+msgstr "Next step"
+
+#: ../login-form.php:62
+msgid "correo electrónico"
+msgstr "e-mail address"
+
+#: ../loop.php:389
+#: ../loop.php:399
+msgid "Entradas anteriores"
+msgstr "Previous entries"
+
+#: ../loop.php:390
+#: ../loop.php:400
+msgid "Entradas posteriores"
+msgstr "Next entries"
+
