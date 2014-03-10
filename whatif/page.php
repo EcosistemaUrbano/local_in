@@ -2,7 +2,7 @@
 
 <div class="tit-peq-page"><h2><?php the_title(); ?></h2></div>
 
-<div class="unique">
+<div class="unique-pages">
 	<div class="unique-text bg-n">
 	
 

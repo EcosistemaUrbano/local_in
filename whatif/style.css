@@ -500,6 +500,13 @@ color: #0cf;
 	position: relative;
 	height:460px;
 }
+.unique-pages {
+	width: 800px;
+	margin: 0 auto;
+	position: relative;
+	height: 400px;
+	margin-top: -57px;
+}
 .unique-text2 {
 	width: 370px;
 	height: 320px;
@@ -1215,3 +1222,5 @@ margin: 0 !important;
 position:relative;
 left:-6px;
 }
+
+
