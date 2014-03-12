@@ -2,7 +2,7 @@ whatif-w
 ========
 Version 2.1.4 Unreleased
 
-Whatif, the Wordpress theme that turns your WordPress into a participatory mapping tool.
+Whatif, the theme that turns your WordPress into a participatory mapping tool.
 
 For more information, please visit the official website: http://whatif.es
 
