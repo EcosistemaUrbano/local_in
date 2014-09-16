@@ -8,7 +8,7 @@ get_header();
 include "general-vars.php";
 
 
-$positivonegativo = $_GET["valor"];
+if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field( $_GET["valor"] ); } else { $positivonegativo = ""; }
 
 if ( $positivonegativo == 'positivo' || $positivonegativo == '' ) {
     
@@ -66,7 +66,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 			$categDesc = category_description($categ->term_id);
 			if ( function_exists('get_cat_icon') ) {
 				$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=false");
-			}
+			} else { $categImg = ""; }
 			
 			$idhidden = "hidden".$categ->slug;
 			

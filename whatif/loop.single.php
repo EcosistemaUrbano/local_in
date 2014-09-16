@@ -7,7 +7,8 @@ $id = get_the_ID();
 $nombre =get_permalink($id);
 
 
-
+	$count_a = -1;
+	$count = 0;
 
 	$count_a++;
 	$count++;
@@ -18,7 +19,7 @@ if ( $count_a == 0 || $count_a % 3 == 0 ) {
   
 
 //if ( $count_a == 0 || $count_a == 3 || $count_a == 6) {
-	$mess_out .= "<div class='unique lista deslizaMess'>";
+	$mess_out = "<div class='unique lista deslizaMess'>";
 //	$test = $count % 3;
 //	$mess_out .= $test;
 }
@@ -52,37 +53,38 @@ $post_ID = get_the_ID();
 	 //  Sistema de votaciones
 	 
 	 
-global $wpdb;
-	$post_ID = get_the_ID();
-	$ip = $_SERVER['REMOTE_ADDR'];
-	
-    $liked = get_post_meta($post_ID, '_liked', true) != '' ? get_post_meta($post_ID, '_liked', true) : '0';
-	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
-		
-    if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
-    	if (get_option('ilt_textOrImage') == 'image') {
-    		$counter = '<a onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
-    	}
-    	else {
-    		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
-    	}
-    }
-    else {
-    	$counter = $liked;
-    }
-    
-    $iLikeThis = '<div id="iLikeThis-'.$post_ID.'" class="iLikeThis">';
-    	$iLikeThis .= '<span class="counter">'.$counter.'</span>';
-    $iLikeThis .= '</div>';
-    
-    if ($arg == 'put') {
-	    return $iLikeThis;
-    }
-    else {
-    	//echo $iLikeThis;
-    	
-    	$votacion=$iLikeThis;
-	 }
+//global $wpdb;
+//	$post_ID = get_the_ID();
+//	$ip = $_SERVER['REMOTE_ADDR'];
+//	
+//    $liked = get_post_meta($post_ID, '_liked', true) != '' ? get_post_meta($post_ID, '_liked', true) : '0';
+//	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
+//		
+//    if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
+//    	if (get_option('ilt_textOrImage') == 'image') {
+//    		$counter = '<a onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
+//    	}
+//    	else {
+//    		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
+//    	}
+//    }
+//    else {
+//    	$counter = $liked;
+//    }
+//    
+//    $iLikeThis = '<div id="iLikeThis-'.$post_ID.'" class="iLikeThis">';
+//    	$iLikeThis .= '<span class="counter">'.$counter.'</span>';
+//    $iLikeThis .= '</div>';
+//    
+//    if ($arg == 'put') {
+//	    return $iLikeThis;
+//    }
+//    else {
+//    	//echo $iLikeThis;
+//    	
+//    	$votacion=$iLikeThis;
+//	 }
+$votacion = "";
   // Fin sistema de votacion	 
 	 
 	
@@ -97,12 +99,12 @@ global $wpdb;
 		//$categDesc = category_description($categ->term_id);
 		if ( function_exists('get_cat_icon') ) {
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true&fit_width=20&fit_height=20");
-		}
+		} else { $categImg = ""; }
 		$mess_cats .= "
 			<li id='$categ->slug' class='mess-cat'>
 			$categImg
 			<div class='mess-cat-tit'>
-			<a href='$home/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categ->name</a>
+			<a href='$home/vistas/mensajes?filtro=$categoryID'>$categ->name</a>
 			</div>
 			</li>
 		";

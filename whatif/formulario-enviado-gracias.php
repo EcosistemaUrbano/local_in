@@ -12,7 +12,7 @@ include "general-vars.php";
 
 //Recojo datos
 $variableUsuario = $user_ID;
-$valorcategory = $_POST['valorcategory'];
+$valorcategory = sanitize_text_field($_POST['valorcategory']);
 $categorias = $valorcategory.",";
 
 //Ahora convierto categorias en un array.
@@ -27,7 +27,7 @@ $elementoscat =explode(",", $categorias);
   
   $catfinal =explode(",", $cat2); //Creo un array para pasarlo así directamente a la funcion wp
  
-$contenido=$_POST['contenido'];
+$contenido= sanitize_text_field($_POST['contenido']);
 $contenido = ereg_replace('"','', $contenido);
 
 $titulo =  substr($contenido,0,20); // Pongo como titulo los 20 primeros caracteres del contenido
@@ -81,7 +81,7 @@ $tagsfinal =explode(",", $tags2); //Creo un array para pasarlo así directamente
 
 $coordenadas=$_POST['ll'];
 
-$video=$_POST['urlvideo'];
+$video= sanitize_text_field($_POST['urlvideo']);
 
 $existemensaje="no";
 

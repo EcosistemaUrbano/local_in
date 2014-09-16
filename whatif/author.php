@@ -19,7 +19,7 @@ else { $cur_aut = get_userdata(intval($author)); }
 				<li><a href='$cur_aut->user_url'>Web personal</a></li>
 			</ul>
 		";
-	}
+	} else { $aut_datos = ""; }
 // this page title
 	$tit_out = "
 		<div class='tit-peq'>

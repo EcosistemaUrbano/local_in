@@ -29,7 +29,7 @@
 		$slug= "$categ->slug";
 		if ( function_exists('get_cat_icon') ) {
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true");
-		}
+		} else { $categImg = ""; }
 		
 		$identificador = $categ->slug;
 		$identificador = str_replace("-","",$identificador);

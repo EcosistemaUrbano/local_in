@@ -75,7 +75,8 @@ function actualizaInfo(maximoCaracteres) {
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>	
 
 
-<?php $positivonegativo = $_GET['valor'];
+<?php
+if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET['valor']); } else { $positivonegativo = ""; }
 if ( is_page("formulario") && $positivonegativo == 'positivo' ) { ?>
 <script src="<?php bloginfo('template_url'); echo "/js/deslizanteForm.js"; ?>" type="text/javascript"></script>
 <script type="text/javascript">
@@ -254,18 +255,17 @@ $(document).ready(function(){
 	
 <?php } ?>
 
-<?php// $xajax->printJavascript("/xajax/"); //linea que ejecuta el ajax ?>  	
+<?php // $xajax->printJavascript("/xajax/"); //linea que ejecuta el ajax ?>  	
 
 
 <?php  if ( is_page('msgmap') ) { ?>
 
 <?php
-
-$coor=$_GET['coor'];
-$cat=$_GET['cat'];
-$pos=$_GET['pos'];
-$ID=$_GET['ID'];
-$id=$_GET['id'];
+if ( array_key_exists('coor', $_GET) ) { $coor= sanitize_text_field($_GET['coor']); } else { $coor = ""; }
+if ( array_key_exists('cat', $_GET) ) { $cat= sanitize_text_field($_GET['cat']); } else { $cat = ""; }
+if ( array_key_exists('pos', $_GET) ) { $pos= sanitize_text_field($_GET['pos']); } else { $pos = ""; }
+if ( array_key_exists('ID', $_GET) ) { $ID= sanitize_text_field($_GET['ID']); } else { $ID = ""; }
+if ( array_key_exists('id', $_GET) ) { $id= sanitize_text_field($_GET['id']); } else { $id = ""; }
 
 
 	// the image
@@ -306,6 +306,7 @@ $post_ID = get_the_ID();
 	$mess_perma = get_permalink(); // permanent link
 	$mess_edit_link = get_edit_post_link(); // access to edit panel for this post
 	$mess_author = get_the_author();
+	$mess_categoria = "";
 	$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
     $video = get_post_meta($post->ID, "video", $single = true);
     $comentario = "Comentario ".$post_ID;
@@ -357,7 +358,7 @@ if ($pos=="negativo")
 
 $perma = "otro";
 
- 	$lascoordenadas .="
+ 	$lascoordenadas ="
         
         
         
@@ -618,21 +619,19 @@ margin-bottom:-53px;
 </style>
 
 <?php
-
-$filtro=$_GET['filtro'];
-$pn=$_GET['pn'];
-$pn2="";
-$pn2=$_GET['pn2'];
-
+if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
+if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
+if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
 
 if($pn=="positivo"){$textoposinega= " - " . __('Positivo','whatif');}
-if($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
+elseif($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
+else { $textoposinega = ""; }
 if($filtro=="2"){$textoextra=" - " . __('Arquitectura urbanismo','whatif');}
-if($filtro=="3"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
-if($filtro=="4"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
-if($filtro=="5"){$textoextra=" - " . __('Movilidad','whatif');}
-if($filtro=="6"){$textoextra=" - " . __('Otros','whatif');}
-
+elseif($filtro=="3"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
+elseif($filtro=="4"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
+elseif($filtro=="5"){$textoextra=" - " . __('Movilidad','whatif');}
+elseif($filtro=="6"){$textoextra=" - " . __('Otros','whatif');}
+else { $textoextra = ""; }
 
 $plvaria = "pl-mini.png";
 $mnvaria = "mn-mini.png";
@@ -736,12 +735,11 @@ if ( have_posts() ) :
 		$mess_tags .= "</ul>";
 	 	$mess_content = trim( preg_replace( '/\s+/', ' ', $mess_content ) );
 	 	$mess_content = str_replace('"',"'",$mess_content);
+		$mess_categoria = "";
 	    
        
        
-       	$lascoordenadas .="
-        
-        
+       	$lascoordenadas = "
         var point".$post_id." = new GLatLng(".$coord.");
 var marker".$post_id." = new GMarker(point".$post_id.", ".$categoryID.");
 GEvent.addListener(marker".$post_id.", \"click\", function() {
@@ -749,14 +747,9 @@ GEvent.addListener(marker".$post_id.", \"click\", function() {
 var myHtml".$post_id." = \"<div class='mapmsg' ><img alt='' src='$template_url/images/default.png' style='display:block;float:left;'/></div><p style='width:500px;text-align: left; padding-left:90px; font-size:12px;'>" . __('Enviado por:','whatif') . " <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>\";
 map2.openInfoWindowHtml(point".$post_id.", myHtml".$post_id."); });
 map2.addOverlay(marker".$post_id.");
-        
-        
-        
         ";
         
       
-//echo $lascoordenadas."<br /><br /><br /><br />";       
-       
        endwhile;
 else:
 endif;
@@ -948,15 +941,11 @@ left:-15px;
 }
 </style>
 
-<?php $positivonegativo = $_GET["valor"]; 
-
+<?php
+if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET["valor"]); } else { $positivonegativo = ""; }
 
 if ($positivonegativo == "positivo") {$posneg = $bg_pl;}
-
 elseif ($positivonegativo == "negativo") {$posneg = $bg_mn;}
-
-
-
 ?>
 
 <script type="text/javascript">

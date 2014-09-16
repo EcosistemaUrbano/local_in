@@ -1,13 +1,14 @@
 <?php
 
-  $buscauthor = $_GET['buscauthor'];
+if ( array_key_exists('buscauthor', $_GET) ) { $buscauthor = sanitize_text_field( $_GET['buscauthor'] ); }
+else { $buscauthor = ""; }
 
  if($buscauthor!='')
 {
 $linkconautor='?buscauthor='.$buscauthor;
 }
 
-$alltax = $_GET['alltax']; // to know if positivo or negativo list
+if ( array_key_exists('alltax', $_GET) ) { $alltax = sanitize_text_field( $_GET['alltax'] ); } else { $alltax = ""; } // to know if positivo or negativo list
 if ( is_author() ) {
 //query_posts("author=$cur_aut->ID&showposts=3&posts_per_page=3&paged=$paged");
 }
@@ -20,7 +21,7 @@ elseif ( $alltax != '' ) {
 //	echo "bingo";
 }
 else {
-	$categ = $_GET['categ'];
+	if ( array_key_exists('categ', $_GET) ) { $categ = sanitize_text_field( $_GET['categ'] ); } else { $categ = ""; }
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	if ( $categ == '' ) { query_posts("posts_per_page=18&paged=$paged"); }
 	else { query_posts("posts_per_page=18&paged=$paged&category_name=$categ"); }
@@ -39,22 +40,22 @@ $count_a = -1;
 $count = 0;
 
 
-$tagpn="";
-$tagpn=$_GET['tagpn'];
-$tag2=$_GET['tag2'];
+if ( array_key_exists('tagpn', $_GET) ) { $tagpn = sanitize_text_field( $_GET['tagpn'] ); } else { $tagpn = ""; }
+if ( array_key_exists('tag2', $_GET) ) { $tag2 = sanitize_text_field( $_GET['tag2'] ); } else { $tag2 = ""; }
 
-$filtro=$_GET['filtro'];
-$pn=$_GET['pn'];
-$pn2="";
-$pn2=$_GET['pn2'];
+if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
+if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
+if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
 
 if($pn=="positivo"){$textoposinega= " - " . __('Positivo','whatif');}
-if($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
+elseif($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
+else { $textoposinega = ""; }
 if($filtro=="2"){$textoextra=" - " . __('Arquitectura urbanismo','whatif');}
-if($filtro=="3"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
-if($filtro=="4"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
-if($filtro=="5"){$textoextra=" - " . __('Movilidad','whatif');}
-if($filtro=="6"){$textoextra=" - " . __('Otros','whatif');}
+elseif($filtro=="3"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
+elseif($filtro=="4"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
+elseif($filtro=="5"){$textoextra=" - " . __('Movilidad','whatif');}
+elseif($filtro=="6"){$textoextra=" - " . __('Otros','whatif');}
+else { $textoextra = ""; }
 if($textoextra==""){$textoextra=" - ".$tag2;}
 
 
@@ -149,9 +150,9 @@ else
  
 // echo "Esta es la paginacion: ".$page;
 
-
-  $paginaorigen=$_GET['paginacion'];
-  $pagina=$_GET['paginacion'] + 1;
+if ( array_key_exists('paginacion', $_GET) ) { $paginaorigen= sanitize_text_field( $_GET['paginacion'] ); }
+else { $paginaorigen = 0; }
+  $pagina= $paginaorigen + 1;
   
  // if ($paginaorigen=="") {$paginaorigen="1";}
   if ($pagina==1) {$pagina="2";}
@@ -221,37 +222,39 @@ $post_ID = get_the_ID();
 	 //  Sistema de votaciones
 	 
 	 
-global $wpdb;
-	$post_ID = get_the_ID();
-	$ip = $_SERVER['REMOTE_ADDR'];
-	
-    $liked = get_post_meta($post_ID, '_liked', true) != '' ? get_post_meta($post_ID, '_liked', true) : '0';
-	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
-		
-    if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
-    	if (get_option('ilt_textOrImage') == 'image') {
-    		$counter = '<a title=\'votar\' onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
-    	}
-    	else {
-    		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
-    	}
-    }
-    else {
-    	$counter = $liked;
-    }
-    
-    $iLikeThis = '<div id="iLikeThis-'.$post_ID.'" class="iLikeThis">';
-    	$iLikeThis .= '<span class="counter">'.$counter.'</span>';
-    $iLikeThis .= '</div>';
-    
-    if ($arg == 'put') {
-	    return $iLikeThis;
-    }
-    else {
-    	//echo $iLikeThis;
-    	
-    	$votacion=$iLikeThis;
-	 }
+//global $wpdb;
+//	$post_ID = get_the_ID();
+//	$ip = $_SERVER['REMOTE_ADDR'];
+//	
+//    $liked = get_post_meta($post_ID, '_liked', true) != '' ? get_post_meta($post_ID, '_liked', true) : '0';
+//	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
+//		
+//    if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
+//    	if (get_option('ilt_textOrImage') == 'image') {
+//    		$counter = '<a title=\'votar\' onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
+//    	}
+//    	else {
+//    		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
+//    	}
+//    }
+//    else {
+//    	$counter = $liked;
+//    }
+//    
+//    $iLikeThis = '<div id="iLikeThis-'.$post_ID.'" class="iLikeThis">';
+//    	$iLikeThis .= '<span class="counter">'.$counter.'</span>';
+//    $iLikeThis .= '</div>';
+//    
+//    if ($arg == 'put') {
+//	    return $iLikeThis;
+//    }
+//    else {
+//    	//echo $iLikeThis;
+//    	
+//    	$votacion=$iLikeThis;
+//	 }
+
+	$votacion = "";
   // Fin sistema de votacion	 
 	 
 	
@@ -266,7 +269,7 @@ global $wpdb;
 		//$categDesc = category_description($categ->term_id);
 		if ( function_exists('get_cat_icon') ) {
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true&fit_width=20&fit_height=20");
-		}
+		} else { $categImg = ""; }
 		$mess_cats .= "
 			<li id='$categ->slug' class='mess-cat'>
 			<a href='$home/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categImg</a>

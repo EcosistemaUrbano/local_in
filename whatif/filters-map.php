@@ -1,9 +1,7 @@
 <?php
-
-$filtro=$_GET['filtro'];
-$pn=$_GET['pn'];
-$pn2="";
-$pn2=$_GET['pn2'];
+if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
+if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
+if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
 
 $plvaria = "pl-mini.png";
 $mnvaria = "mn-mini.png";
@@ -71,7 +69,7 @@ else { $valor_query .= ",$term->slug"; }
 		$slug= "$categ->slug";
 		if ( function_exists('get_cat_icon') ) {
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true");
-		}
+		} else { $categImg = ""; }
 		
 		$identificador = $categ->slug;
 		$identificador = str_replace("-","",$identificador);		
@@ -89,8 +87,6 @@ else { $valor_query .= ",$term->slug"; }
 
 	echo $filter_out;
 	
-	
-	$filtro=$_GET['filtro'];
 	
 			if ($filtro =="2")
 {

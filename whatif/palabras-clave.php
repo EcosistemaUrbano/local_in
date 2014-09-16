@@ -42,6 +42,7 @@ foreach ( $taxs as $tax ) {
 	);
 	$terms = wp_tag_cloud( $args );
 
+	if ( is_array($terms) ) {
 	$cloud_out .= "
 	<ul class='$cloud_class cloud'>
 	";
@@ -59,6 +60,7 @@ foreach ( $taxs as $tax ) {
 	}
 //	$cloud_out .= print_r($terms);
 	$cloud_out .= "</ul>";
+	} // end if $terms is array
 }
 	$cloud_out .= "</div>";
 

@@ -61,7 +61,7 @@ elseif ( is_page() && $post->post_parent == $vistas_id ) { // vistas
 		'container' => '',
 		'menu_class' => 'epi-menu',
 	);
-}
+} else { $menu = ""; }
 
 if ( $menu != '' ) {
 //		$menu_out = "<ul class='epi-menu'>";
