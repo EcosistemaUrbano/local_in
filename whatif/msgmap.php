@@ -2,24 +2,21 @@
 /*
 Template Name: msgmap
 */
-
 get_header();
-include "general-vars.php";
 
-
-$filtro=$_GET['filtro'];
-$pn=$_GET['pn'];
-$pn2="";
-$pn2=$_GET['pn2'];
-
+if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
+if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
+if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
 
 if($pn=="positivo"){$textoposinega= " - " . __('Positivo','whatif');}
-if($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
+elseif($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
+else { $textoposinega = ""; }
 if($filtro=="7"){$textoextra=" - " . __('Arquitectura urbanismo','whatif');}
-if($filtro=="4"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
-if($filtro=="5"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
-if($filtro=="8"){$textoextra=" - " . __('Movilidad','whatif');}
-if($filtro=="9"){$textoextra=" - " . __('Otros','whatif');}
+elseif($filtro=="4"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
+elseif($filtro=="5"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
+elseif($filtro=="8"){$textoextra=" - " . __('Movilidad','whatif');}
+elseif($filtro=="9"){$textoextra=" - " . __('Otros','whatif');}
+else { $textoextra = ""; }
 
 
 // this page title
@@ -31,7 +28,7 @@ if ( have_posts() ) :
 	
 	$tit_out = "
 	<div class='tit-peq'>
-		<img src='$template_url/images/vista-localiza-mini.png' alt='" . __('Localizaciones','whatif') . "' />
+		<img src='" .WHATIF_BLOGTHEME. "/images/vista-localiza-mini.png' alt='" . __('Localizaciones','whatif') . "' />
 		<h2>" . __('Localización','whatif') . "</h2>
 	</div>
 	";
@@ -54,12 +51,5 @@ wp_reset_query();
 	include "filters-map.php";
 
 
-
-
-
-
 get_footer();
-
-
-
 ?>

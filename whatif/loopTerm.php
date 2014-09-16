@@ -29,7 +29,7 @@ top:140px;
 
 
 
-$alltax = $_GET['alltax']; // to know if positivo or negativo list
+if ( array_key_exists('alltax', $_GET) ) { $alltax = sanitize_text_field($_GET['alltax']); } else { $alltax = ""; } // to know if positivo or negativo list
 if ( is_author() ) {
 //query_posts("author=$cur_aut->ID&showposts=3&posts_per_page=3&paged=$paged");
 }
@@ -42,7 +42,7 @@ elseif ( $alltax != '' ) {
 //	echo "bingo";
 }
 else {
-	$categ = $_GET['categ'];
+	if ( array_key_exists('categ', $_GET) ) { $categ = sanitize_text_field($_GET['categ']); } else { $categ = ""; }
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	if ( $categ == '' ) { query_posts("posts_per_page=18&paged=$paged"); }
 	else { query_posts("posts_per_page=18&paged=$paged&category_name=$categ"); }
@@ -59,15 +59,12 @@ $mess_out = "
 $count_a = -1;
 $count = 0;
 
+if ( array_key_exists('tagpn', $_GET) ) { $tagpn = sanitize_text_field( $_GET['tagpn'] ); } else { $tagpn = ""; }
+if ( array_key_exists('tag2', $_GET) ) { $tag2 = sanitize_text_field( $_GET['tag2'] ); } else { $tag2 = ""; }
 
-$tagpn="";
-$tagpn=$_GET['tagpn'];
-$tag2=$_GET['tag2'];
-
-$filtro=$_GET['filtro'];
-$pn=$_GET['pn'];
-$pn2="";
-$pn2=$_GET['pn2'];
+if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
+if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
+if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
 
 $plvaria = "pl-mini.png";
 $mnvaria = "mn-mini.png";
@@ -154,7 +151,7 @@ if ( $count_a == 0 || $count_a % 3 == 0 ) {
 $post_ID = get_the_ID();
 
 	$mess_author = get_the_author(); // the author
-	$mess_author_link = "$home/author/$mess_author"; // the author page link
+	$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
 	$mess_date = get_the_time('j\.n\.Y'); // the date
 	$mess_content = get_the_content(); // the message
 	$mess_perma = get_permalink(); // permanent link
@@ -180,37 +177,38 @@ $post_ID = get_the_ID();
 	 //  Sistema de votaciones
 	 
 	 
-global $wpdb;
-	$post_ID = get_the_ID();
-	$ip = $_SERVER['REMOTE_ADDR'];
-	
-    $liked = get_post_meta($post_ID, '_liked', true) != '' ? get_post_meta($post_ID, '_liked', true) : '0';
-	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
-		
-    if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
-    	if (get_option('ilt_textOrImage') == 'image') {
-    		$counter = '<a title=\'votar\' onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
-    	}
-    	else {
-    		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
-    	}
-    }
-    else {
-    	$counter = $liked;
-    }
-    
-    $iLikeThis = '<div id="iLikeThis-'.$post_ID.'" class="iLikeThis">';
-    	$iLikeThis .= '<span class="counter">'.$counter.'</span>';
-    $iLikeThis .= '</div>';
-    
-    if ($arg == 'put') {
-	    return $iLikeThis;
-    }
-    else {
-    	//echo $iLikeThis;
-    	
-    	$votacion=$iLikeThis;
-	 }
+//global $wpdb;
+//	$post_ID = get_the_ID();
+//	$ip = $_SERVER['REMOTE_ADDR'];
+//	
+//    $liked = get_post_meta($post_ID, '_liked', true) != '' ? get_post_meta($post_ID, '_liked', true) : '0';
+//	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
+//		
+//    if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
+//    	if (get_option('ilt_textOrImage') == 'image') {
+//    		$counter = '<a title=\'votar\' onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
+//    	}
+//    	else {
+//    		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
+//    	}
+//    }
+//    else {
+//    	$counter = $liked;
+//    }
+//    
+//    $iLikeThis = '<div id="iLikeThis-'.$post_ID.'" class="iLikeThis">';
+//    	$iLikeThis .= '<span class="counter">'.$counter.'</span>';
+//    $iLikeThis .= '</div>';
+//    
+//    if ($arg == 'put') {
+//	    return $iLikeThis;
+//    }
+//    else {
+//    	//echo $iLikeThis;
+//    	
+//    	$votacion=$iLikeThis;
+//	 }
+	$votacion = "";
   // Fin sistema de votacion	 
 	 
 	
@@ -225,12 +223,12 @@ global $wpdb;
 		//$categDesc = category_description($categ->term_id);
 		if ( function_exists('get_cat_icon') ) {
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true&fit_width=20&fit_height=20");
-		}
+		} else { $categImg = ""; }
 		$mess_cats .= "
 			<li id='$categ->slug' class='mess-cat'>
 			$categImg
 			<div class='mess-cat-tit'>
-			<a href='$home/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categ->name</a>
+			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categ->name</a>
 			</div>
 			</li>
 		";
@@ -247,7 +245,7 @@ global $wpdb;
 		foreach ( $attachments as $attachment ) {
 			//$img =  apply_filters( 'the_title' , $attachment->post_title );
 			//$img_link =  $attachment->guid;
-	    $img_link=  wp_get_attachment_url( $post_ID );
+	    $img_link=  wp_get_attachment_url( $attachment->ID );
 	    
 		    $imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail');	
 			//$img_thumb = wp_get_attachment_image($attachment->ID, 'thumbnail');
@@ -263,7 +261,7 @@ global $wpdb;
 
 		}
 	} else {
-		$img_url = "$template_url/images/default.png";
+		$img_url = WHATIF_BLOGTHEME."/images/default.png";
 		$mess_img = "
 		<div class='mess-img'>
 			<img src='$img_url' alt='". __('Sin imagen','whatif') . "' />
@@ -277,12 +275,12 @@ global $wpdb;
 		$mess_tags = "<ul class='mess-tags'>";
 	foreach ( $terms_pl as $term_pl ) {
 		$term_link_pl = get_term_link("$term_pl->slug", 'positivo');
-		$mess_tags .= "<li class='bg-p'><a  href='$home/vistas/mensajes?tagpn=positivo&tag2=$term_pl->name'>$term_pl->name</a></li>"; 
+		$mess_tags .= "<li class='bg-p'><a  href='" .WHATIF_BLOGURL. "/vistas/mensajes?tagpn=positivo&tag2=$term_pl->name'>$term_pl->name</a></li>"; 
 		                                
 	}
 	foreach ( $terms_mn as $term_mn ) {
 		$term_link_mn = get_term_link("$term_mn->slug", 'negativo');
-		$mess_tags .= "<li class='bg-c'><a  href='$home/vistas/mensajes?tagpn=negativo&tag2=$term_mn->name'>$term_mn->name</a></li>";
+		$mess_tags .= "<li class='bg-c'><a  href='" .WHATIF_BLOGURL. "/vistas/mensajes?tagpn=negativo&tag2=$term_mn->name'>$term_mn->name</a></li>";
 	}
 		$mess_tags .= "</ul>";
 
@@ -290,7 +288,7 @@ if ( is_author() ) { // if author page
 $mess_out .= "
 	<div class='mess'>
 	    $mess_img
-		<div class='mess-aut'><div style='float:left'><a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='$home/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra</div>$votacion <div class='socialmedia'> <a target='_blank' name='fb_share' title='facebook' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='$template_url/images/ficon.png' /></a></script><a target='_blank' title='twitter' href='http://twitter.com/home/?status=Estoy leyendo: $mess_content ... En www.whatifcities.com/$citymin/$tituloenviarurl' ><img src='$template_url/images/ticon.png' /></a><a title='tuenti' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='$template_url/images/tuentiicon.png' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='$mess_perma'>$comentario</a>  $mess_edit</div></div><div class='clearer'></div>
+		<div class='mess-aut'><div style='float:left'><a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='" .WHATIF_BLOGURL. "/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra</div>$votacion <div class='socialmedia'> <a target='_blank' name='fb_share' title='facebook' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a></script><a target='_blank' title='twitter' href='http://twitter.com/home/?status=Estoy leyendo: $mess_content ... En www.whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a><a title='tuenti' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='$mess_perma'>$comentario</a>  $mess_edit</div></div><div class='clearer'></div>
 		
 		<div class='mess-text'>$mess_content</div>
 		$mess_cats
@@ -304,7 +302,7 @@ $mess_out .= "
 $mess_out .= "
 	<div class='mess'>
 	    $mess_img
-		<div class='mess-aut'><div style='float:left'><a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='$home/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra</div>$votacion <div class='socialmedia'> <a target='_blank' name='fb_share' title='facebook' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='$template_url/images/ficon.png' /></a><a target='_blank' title='twitter' href='http://twitter.com/home/?status=Estoy leyendo: $mess_content ... En www.whatifcities.com/$citymin/$tituloenviarurl' ><img src='$template_url/images/ticon.png' /></a><a title='tuenti' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='$template_url/images/tuentiicon.png' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='$mess_perma'>$comentario</a>  $mess_edit</div></div><div class='clearer'></div>
+		<div class='mess-aut'><div style='float:left'><a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='" .WHATIF_BLOGURL. "/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra</div>$votacion <div class='socialmedia'> <a target='_blank' name='fb_share' title='facebook' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a><a target='_blank' title='twitter' href='http://twitter.com/home/?status=Estoy leyendo: $mess_content ... En www.whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a><a title='tuenti' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='$mess_perma'>$comentario</a>  $mess_edit</div></div><div class='clearer'></div>
 		
 		<div class='mess-text'>$mess_content</div>
 		$mess_cats

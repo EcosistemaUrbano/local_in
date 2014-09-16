@@ -4,9 +4,7 @@ Template Name: Logout
 */
 get_header();
 
-include "general-vars.php";
-
-	$ref = $_GET['ref'];
+if ( array_key_exists('ref', $_GET) ) { $perma = sanitize_text_field($_GET['ref']); } else { $perma = ""; }
 
 wp_logout();
 

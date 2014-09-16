@@ -4,11 +4,10 @@ Template Name: Presentación
 */
 
 get_header();
-include "general-vars.php";
 
-$atras = $home;
-if ( is_page("presentacion-consulta") ) { $alante = $home.'/vistas'; $bg = $bg_c; }
-elseif ( is_page("presentacion-participa") ) { $alante = $home.'/entrada-formulario'; $bg = $bg_p; }
+$atras = WHATIF_BLOGURL;
+if ( is_page("presentacion-consulta") ) { $alante = WHATIF_BLOGURL.'/vistas'; $bg = WHATIF_STYLE_VIEW_BG; }
+elseif ( is_page("presentacion-participa") ) { $alante = WHATIF_BLOGURL.'/entrada-formulario'; $bg = WHATIF_STYLE_FORM_BG; }
 
 $presenta_out_1 = "
 

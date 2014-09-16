@@ -5,7 +5,7 @@
 	
 	$tit_out = "
 	<div class='tit-peq'>
-		<img src='$template_url/images/$pag_img' title='$tags_tit'  alt='$tags_tit' />
+		<img src='" .WHATIF_BLOGTHEME. "/images/$pag_img' title='$tags_tit'  alt='$tags_tit' />
 		<h2>$tags_tit</h2>
 	</div>
 	";

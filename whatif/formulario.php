@@ -5,30 +5,27 @@ Template Name: Formulario
 
 get_header();
 
-include "general-vars.php";
-
-
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field( $_GET["valor"] ); } else { $positivonegativo = ""; }
 
 if ( $positivonegativo == 'positivo' || $positivonegativo == '' ) {
     
-	$bg = $bg_pl;
-	$color = $color_pl;
-	$clasecolor='"'.$color_pl.'"';
-	$chover = $chover_pl;
+	$bg = WHATIF_STYLE_POSITIVE_BG;
+	$color = WHATIF_STYLE_POSITIVE_COLOR;
+	$clasecolor='"'.WHATIF_STYLE_POSITIVE_COLOR.'"';
+	$chover = WHATIF_STYLE_POSITIVE_HOVER;
 	$tit_1 = __('Describe tu idea','whatif');
 	$media_img_bg = "media-img-pl";
 	$media_vid_bg = "media-vid-pl";
 }
 elseif ( $positivonegativo == 'negativo' ) {
-	$bg = $bg_mn;
-	$color = $color_mn;
-	$clasecolor='"'.$color_mn.'"';
-	$chover = $chover_mn;
+	$bg = WHATIF_STYLE_NEGATIVE_BG;
+	$color = WHATIF_STYLE_NEGATIVE_COLOR;
+	$clasecolor='"'.WHATIF_STYLE_NEGATIVE_COLOR.'"';
+	$chover = WHATIF_STYLE_NEGATIVE_HOVER;
 	$tit_1 = __('Describe tu problema','whatif');
 	$media_img_bg = "media-img-mn";
 	$media_vid_bg = "media-vid-mn";
-	$clasetags = $color_mn;
+	$clasetags = WHATIF_STYLE_NEGATIVE_COLOR;
 }
 ?>
 
@@ -43,7 +40,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 
 
 
-<form id="participaform" name="participaform" method="post" action="<?php echo "$home/formulario-enviado" ?>" enctype="multipart/form-data">
+<form id="participaform" name="participaform" method="post" action="<?php echo WHATIF_BLOGURL."/formulario-enviado" ?>" enctype="multipart/form-data">
        
 	<fieldset id="paso-1" class="deslizaForm">
 		<div class="tit">
@@ -123,7 +120,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 		</div>
 
 		<div id="map" style="width: 750px; height: 320px"></div>
-		<input onfocus="if(this.value == '<?php echo $examplelocation; ?>') {this.value = '';}" onblur="if(this.value == '') {this.value = '<?php echo $examplelocation; ?>';}" class="caja-negra caja-map" type="text" size="60" id="addressTEXT" value="<?php echo $examplelocation; ?>" />
+		<input onfocus="if(this.value == '<?php echo WHATIF_LOCATION_ADDRESS; ?>') {this.value = '';}" onblur="if(this.value == '') {this.value = '<?php echo WHATIF_LOCATION_ADDRESS; ?>';}" class="caja-negra caja-map" type="text" size="60" id="addressTEXT" value="<?php echo WHATIF_LOCATION_ADDRESS; ?>" />
 		<input class="boton-negro" type="button" value="Posicionar" onclick="showAddress()"/>
 		
   </p>
@@ -242,7 +239,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 		</div>
 		<div class="media-selector">
 			<?php
-			$perma = $home;
+			$perma = WHATIF_BLOGURL;
 			// message uploader: text, category, tags, image
 			$img_ins_out = "
 			<div id='subirimagen' class='media-up $media_img_bg'>
@@ -302,12 +299,12 @@ elseif ( $positivonegativo == 'negativo' ) {
 		<p style="font-size:28px;line-height:35px;"><?php _e('Para publicar un mensaje debes iniciar sesión.','whatif'); ?></p>
 
 	<?php // login form
-	$fail = $_GET['fail'];
-	$logerror = $_GET['login'];
+	if ( array_key_exists('fail', $_GET) ) { $fail = $_GET['fail']; } else { $fail = ""; }
+	if ( array_key_exists('login', $_GET) ) { $logerror = $_GET['login']; } else { $logerror = ""; }
 	$perma = get_permalink();
 	$login_out ="
 	<div class='user-form' id='login-form'>
-	<form action='".$home."/login' method='post'>
+	<form action='".WHATIF_BLOGURL."/login' method='post'>
 	";
 	if ( $logerror != '' ) :
 	$login_out .= "
@@ -334,7 +331,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 	$reg_out ="
 	<div class='user-form' id='reg-form'>
 		<h3>" . __('Si aún no estás registrado:','whatif') . "</h3>
-	<form action='".$home."/registro' method='post'>
+	<form action='".WHATIF_BLOGURL."/registro' method='post'>
 	";
 	if ( $fail == 'name' ) { $reg_out .="<input class='login-caja error' type='text' name='nombre' value='" . __('el nombre ya existe','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('el nombre ya existe','whatif') . "';}\" onfocus=\"if(this.value == '" . __('el nombre ya existe','whatif') . "') {this.value = '';}\" />"; }
 	else { $reg_out .="<input class='login-caja ".$color."' type='text' name='nombre' value='" . __('nombre de usuario','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('nombre de usuario','whatif') . "';}\" onfocus=\"if(this.value == '" . __('nombre de usuario','whatif') . "') {this.value = '';}\" />"; }

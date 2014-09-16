@@ -5,7 +5,6 @@ Template Name: Formulario de login y registro
 
 get_header();
 
-include "general-vars.php";
 	$tags_tit = get_the_title();
 	$bg = "bgB";
 	$color = "colorB";
@@ -21,12 +20,12 @@ include "general-vars.php";
 		<p><?php _e('Iniciar sesión','whatif'); ?></p>
 
 	<?php // login form
-	$fail = $_GET['fail'];
-	$logerror = $_GET['login'];
-	$perma = $_GET['ref'];
+	if ( array_key_exists('fail', $_GET) ) { $fail = sanitize_text_field($_GET['fail']); } else { $fail = ""; }
+	if ( array_key_exists('login', $_GET) ) { $logerror = sanitize_text_field($_GET['login']); } else { $logerror = ""; }
+	if ( array_key_exists('ref', $_GET) ) { $perma = sanitize_text_field($_GET['ref']); } else { $perma = ""; }
 	$login_out ="
 	<div class='user-form' id='login-form'>
-	<form action='".$home."/login' method='post'>
+	<form action='".WHATIF_BLOGURL."/login' method='post'>
 	";
 	if ( $logerror != '' ) :
 	$login_out .= "
@@ -52,7 +51,7 @@ include "general-vars.php";
 	$reg_out ="
 	<div class='user-form' id='reg-form'>
 		<h3>" . __('Si aún no estás registrado:','whatif') . "</h3>
-	<form action='".$home."/registro' method='post'>
+	<form action='".WHATIF_BLOGURL."/registro' method='post'>
 	";
 	if ( $fail == 'name' ) { $reg_out .="<input class='login-caja error' type='text' name='nombre' value='" . __('el nombre ya existe','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('el nombre ya existe','whatif') . "';}\" onfocus=\"if(this.value == '" . __('el nombre ya existe','whatif') . "') {this.value = '';}\" />"; }
 	else { $reg_out .="<input class='login-caja ".$color."' type='text' name='nombre' value='nombre de usuario' onblur=\"if(this.value == '') {this.value = 'nombre de usuario';}\" onfocus=\"if(this.value == 'nombre de usuario') {this.value = '';}\" />"; }

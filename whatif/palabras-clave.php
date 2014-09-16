@@ -5,8 +5,6 @@ Template Name: Tags
 
 get_header();
 
-include "general-vars.php";
-
 // this page title
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
@@ -25,8 +23,8 @@ wp_reset_query();
 
 $taxs = array('positivo','negativo');
 foreach ( $taxs as $tax ) {
-	if ( $tax == 'positivo' ) { $bg = $bg_pl; $color = $color_pl; $chover = $chover_pl; $cloud_class = "cloudl"; }
-	elseif ( $tax == 'negativo' ) { $bg = $bg_mn; $color = $color_mn; $chover = $chover_mn; $cloud_class = "cloudr"; }
+	if ( $tax == 'positivo' ) { $bg = WHATIF_STYLE_POSITIVE_BG; $color = WHATIF_STYLE_POSITIVE_COLOR; $chover = WHATIF_STYLE_POSITIVE_HOVER; $cloud_class = "cloudl"; }
+	elseif ( $tax == 'negativo' ) { $bg = WHATIF_STYLE_NEGATIVE_BG; $color = WHATIF_STYLE_NEGATIVE_COLOR; $chover = WHATIF_STYLE_NEGATIVE_HOVER; $cloud_class = "cloudr"; }
 	$args = array(
 		'smallest' => '1.5',
 		'largest' => '4',

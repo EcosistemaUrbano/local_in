@@ -4,7 +4,6 @@
  */
 
 get_header();
-include "general-vars.php";
 
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
@@ -36,7 +35,7 @@ if ( have_posts() ) :
 	if ( post_custom("Page Icon") ) { $pag_child_img = get_post_meta($post->ID, "Page Icon", $single = true); }
 	$elige_out .= "
 	<div class='vista-img'>
-		<a href='$pag_child_link'><img src='$template_url/images/$pag_child_img' alt='$pag_child_tit' /></a>
+		<a href='$pag_child_link'><img src='" .WHATIF_BLOGTHEME. "/images/$pag_child_img' alt='$pag_child_tit' /></a>
 		<div class='vista-tit'>$pag_child_tit</div>
 	</div>
 	";

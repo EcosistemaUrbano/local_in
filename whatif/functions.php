@@ -3,6 +3,57 @@
 add_action( 'after_setup_theme', 'whatif_theme_setup' );
 function whatif_theme_setup() {
 
+	// Theme globals vars
+	require_once("general-vars.php");
+	if (!defined('WHATIF_BLOGURL'))
+	    define('WHATIF_BLOGURL', get_option('home'));
+	if (!defined('WHATIF_BLOGTHEME'))
+	    define('WHATIF_BLOGTHEME', get_bloginfo('template_url'));
+
+	if (!defined('WHATIF_SEO_BLOGNAME'))
+	    define('WHATIF_SEO_BLOGNAME', $city);
+	if (!defined('WHATIF_DOMAIN'))
+	    define('WHATIF_DOMAIN', $wic);
+	if (!defined('WHATIF_INSTALL_FOLDER'))
+	    define('WHATIF_INSTALL_FOLDER', $citymin);
+
+	if (!defined('WHATIF_LOCATION_ADDRESS'))
+	    define('WHATIF_LOCATION_ADDRESS', $examplelocation);
+	if (!defined('WHATIF_GOOGLE_KEY'))
+	    define('WHATIF_GOOGLE_KEY', $apigooglemaps);
+	if (!defined('WHATIF_MAP_COORDS'))
+	    define('WHATIF_MAP_COORDS', $coordenadasmapa);
+	if (!defined('WHATIF_MAP_ZOOM_FORM'))
+	    define('WHATIF_MAP_ZOOM_FORM', $zoomformulario);
+	if (!defined('WHATIF_MAP_ZOOM'))
+	    define('WHATIF_MAP_ZOOM', $zoomtodas);
+	if (!defined('WHATIF_MAP_ZOOM_SINGLE'))
+	    define('WHATIF_MAP_ZOOM_SINGLE', $zoomindividual);
+
+	if (!defined('WHATIF_STYLE_VIEW_COLOR'))
+	    define('WHATIF_STYLE_VIEW_COLOR', $color_c);
+	if (!defined('WHATIF_STYLE_VIEW_BG'))
+	    define('WHATIF_STYLE_VIEW_BG', $bg_c);
+
+	if (!defined('WHATIF_STYLE_FORM_COLOR'))
+	    define('WHATIF_STYLE_FORM_COLOR', $color_p);
+	if (!defined('WHATIF_STYLE_FORM_BG'))
+	    define('WHATIF_STYLE_FORM_BG', $bg_p);
+
+	if (!defined('WHATIF_STYLE_POSITIVE_COLOR'))
+	    define('WHATIF_STYLE_POSITIVE_COLOR', $color_pl);
+	if (!defined('WHATIF_STYLE_POSITIVE_BG'))
+	    define('WHATIF_STYLE_POSITIVE_BG', $bg_pl);
+	if (!defined('WHATIF_STYLE_POSITIVE_HOVER'))
+	    define('WHATIF_STYLE_POSITIVE_HOVER', $chover_pl);
+
+	if (!defined('WHATIF_STYLE_NEGATIVE_COLOR'))
+	    define('WHATIF_STYLE_NEGATIVE_COLOR', $color_mn);
+	if (!defined('WHATIF_STYLE_NEGATIVE_BG'))
+	    define('WHATIF_STYLE_NEGATIVE_BG', $bg_mn);
+	if (!defined('WHATIF_STYLE_NEGATIVE_HOVER'))
+	    define('WHATIF_STYLE_NEGATIVE_HOVER', $chover_mn);
+
 	// don't show admin bar
 	add_filter( 'show_admin_bar', '__return_false' );
 

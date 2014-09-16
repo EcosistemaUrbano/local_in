@@ -2,8 +2,6 @@
 
 get_header();
 
-include "general-vars.php";
-
 // avatar and other info about the author
 if(isset($_GET['author_name'])) { $cur_aut = get_userdatabylogin(get_the_author_login()); }
 else { $cur_aut = get_userdata(intval($author)); }
@@ -23,7 +21,7 @@ else { $cur_aut = get_userdata(intval($author)); }
 // this page title
 	$tit_out = "
 		<div class='tit-peq'>
-			<img alt='User avatar' src='$template_url/images/miavatar.png' />
+			<img alt='User avatar' src='" .WHATIF_BLOGTHEME. "/images/miavatar.png' />
 			<h2>" . __('Mensajes enviado por','whatif') . " <span style='font-size:22px; font-weight:bold;'>$cur_aut->user_login</span></h2>
 			$aut_datos	
 		</div>
@@ -44,15 +42,15 @@ echo $tit_out; //display header
 <div class="vista-selector-mini">
 	
 	<div class="vista-img-mini">
-		<a href="http://<?php echo $wic ?>/<?php echo $citymin ?>/vistas/localizaciones/"><img alt="<?php _e('Localizaciones','whatif'); ?>" src="<?php echo $template_url ?>/images/vista-localiza-mini.png"></a>
+		<a href="http://<?php echo WHATIF_DOMAIN ?>/<?php echo WHATIF_INSTALL_FOLDER ?>/vistas/localizaciones/"><img alt="<?php _e('Localizaciones','whatif'); ?>" src="<?php echo WHATIF_BLOGTHEME ?>/images/vista-localiza-mini.png"></a>
 	</div>
 	
 	<div class="vista-img-mini">
-		<a href="http://<?php echo $wic ?>/<?php echo $citymin ?>/vistas/palabras-clave/"><img alt="<?php _e('Palabras clave','whatif'); ?>" src="<?php echo $template_url ?>/images/vista-tags-mini.png"></a>
+		<a href="http://<?php echo WHATIF_DOMAIN ?>/<?php echo WHATIF_INSTALL_FOLDER ?>/vistas/palabras-clave/"><img alt="<?php _e('Palabras clave','whatif'); ?>" src="<?php echo WHATIF_BLOGTHEME ?>/images/vista-tags-mini.png"></a>
 	</div>
 	
 	<div class="vista-img-mini">
-		<a href="http://<?php echo $wic ?>/<?php echo $citymin ?>/vistas/imagenes/"><img alt="<?php _e('Imágenes','whatif'); ?>" src="<?php echo $template_url ?>/images/vista-images-mini.png"></a>
+		<a href="http://<?php echo WHATIF_DOMAIN ?>/<?php echo WHATIF_INSTALL_FOLDER ?>/vistas/imagenes/"><img alt="<?php _e('Imágenes','whatif'); ?>" src="<?php echo WHATIF_BLOGTHEME ?>/images/vista-images-mini.png"></a>
 	</div>
 </div><!-- end .vista-selector-mini -->
 	

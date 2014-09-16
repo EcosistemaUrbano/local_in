@@ -4,15 +4,13 @@ Template Name: Login
 */
 get_header();
 
-include "general-vars.php";
-
-	$ref = $_POST['ref'];
-	$valor = $_POST['valor'];
+if ( array_key_exists('ref', $_POST) ) { $ref = sanitize_text_field($_POST['ref']); } else { $ref = ""; }
+if ( array_key_exists('valor', $_POST) ) { $valor = sanitize_text_field($_POST['valor']); } else { $valor = ""; }
 
 $creds = array();
-$creds['user_login'] = $_POST['nombre'];
-$creds['user_password'] = $_POST['pass'];
-$creds['remember'] = $_POST['remember'];
+$creds['user_login'] = sanitize_text_field($_POST['nombre']);
+$creds['user_password'] = sanitize_text_field($_POST['pass']);
+$creds['remember'] = sanitize_text_field($_POST['remember']);
 $user = wp_signon( $creds, false );
 
 if ( is_wp_error($user) ) {
@@ -26,7 +24,7 @@ if ( is_wp_error($user) ) {
 	}
 	if ($valor=="")
 	{
-	$ref = "http://whatifcities.com/".$citymin."/formulario/?valor=positivo";
+	$ref = "http://whatifcities.com/".WHATIF_INSTALL_FOLDER."/formulario/?valor=positivo";
 	wp_redirect($ref);
 	exit;	
 	

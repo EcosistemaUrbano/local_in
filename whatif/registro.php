@@ -4,16 +4,14 @@ Template Name: Registro de usuario
 */
 get_header();
 
-include "general-vars.php";
+$nombre = sanitize_text_field($_POST['nombre']);
+$mail = sanitize_text_field($_POST['mail']);
+$pass = sanitize_text_field($_POST['pass']);
+$pass2 = sanitize_text_field($_POST['pass2']);
+$ref = sanitize_text_field($_POST['ref']);
 
-	$nombre = $_POST['nombre'];
-	$mail = $_POST['mail'];
-	$pass = $_POST['pass'];
-	$pass2 = $_POST['pass2'];
-	$ref = $_POST['ref'];
-
-	require_once(ABSPATH . WPINC . '/registration.php');
-	$user_id = username_exists( $nombre ); // nos aseguramos que el user no existe
+require_once(ABSPATH . WPINC . '/registration.php');
+$user_id = username_exists( $nombre ); // nos aseguramos que el user no existe
 
 if ( $user_id ) {
 	$ref .= "?fail=name";

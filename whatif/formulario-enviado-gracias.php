@@ -6,10 +6,6 @@ Template Name: Formulario-enviado-gracias
 
 get_header();
 
-include "general-vars.php";
-
-
-
 //Recojo datos
 $variableUsuario = $user_ID;
 $valorcategory = sanitize_text_field($_POST['valorcategory']);
@@ -219,7 +215,7 @@ $resultado = "Este es el cotenido:".$contenido."<br /><br />
       <?php //$titulo = the_title(); ?>
 
 <?php
-$url = $home."/".$titulo;
+$url = WHATIF_BLOGURL."/".$titulo;
 
 //get_footer(); ?> 
 

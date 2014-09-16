@@ -6,15 +6,12 @@
 
 
 
-<?php include "general-vars.php";
-
-
-
+<?php
 	// left links
 	$lf_out = "<ul class='epi-lf'>";
-	$lf_out .= "<li><a href='$home'><img src='$template_url/images/epi-home.png' alt='" . __('Inicio','whatif') . "' /></a><br /><div>" . __('Inicio','whatif') . "</div></li>";
+	$lf_out .= "<li><a href='" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-home.png' alt='" . __('Inicio','whatif') . "' /></a><br /><div>" . __('Inicio','whatif') . "</div></li>";
 	if ( is_home() ) { // home
-	$lf_out .= "<li><a href='http://whatif.es' target='_blank'><img src='$template_url/images/logowhatif.png' height='42px' alt='whatif.es'/></a><div>whatif.es</div><br></li>";
+	$lf_out .= "<li><a href='http://whatif.es' target='_blank'><img src='" .WHATIF_BLOGTHEME. "/images/logowhatif.png' height='42px' alt='whatif.es'/></a><div>whatif.es</div><br></li>";
 	}
 	$lf_out .= "</ul>";
 	// right links
@@ -22,11 +19,11 @@
 	if ( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();
 		$user_name = $current_user->user_login;
-		$rt_out .= "<li><a href='$home/author/$user_name?buscauthor=$user_name'><img src='$template_url/images/epi-user.png' alt='" . __('Mis mensajes','whatif') . "' /></a><br /><div>" . __('Mis mensajes','whatif') . "</div></li>";
-		$rt_out .= "<li><a href='$home/wp-admin/profile.php'><img src='$template_url/images/epi-perfil.png' alt='" . __('Mi perfil','whatif') . "' /></a><br /><div>" . __('Mi perfil','whatif') . "</div></li>";
-		$rt_out .= "<li><a href='$home/logout?ref= $home '><img src='$template_url/images/epi-logout.png' alt='" . __('Abandonar sesión','whatif') . "' /></a><br /><div>" . __('Abandonar sesión','whatif') . "</div></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/author/$user_name?buscauthor=$user_name'><img src='" .WHATIF_BLOGTHEME. "/images/epi-user.png' alt='" . __('Mis mensajes','whatif') . "' /></a><br /><div>" . __('Mis mensajes','whatif') . "</div></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/wp-admin/profile.php'><img src='" .WHATIF_BLOGTHEME. "/images/epi-perfil.png' alt='" . __('Mi perfil','whatif') . "' /></a><br /><div>" . __('Mi perfil','whatif') . "</div></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/logout?ref=" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-logout.png' alt='" . __('Abandonar sesión','whatif') . "' /></a><br /><div>" . __('Abandonar sesión','whatif') . "</div></li>";
 	} else {
-		$rt_out .= "<li><a href='$home/wp-login.php?redirect_to=$home'><img src='$template_url/images/epi-login.png' alt='" . __('Iniciar sesión','whatif') . "' /></a><br /><div>" . __('Iniciar sesión','whatif') . "</div></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/wp-login.php?redirect_to=" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-login.png' alt='" . __('Iniciar sesión','whatif') . "' /></a><br /><div>" . __('Iniciar sesión','whatif') . "</div></li>";
 	}
 		$rt_out .= "</ul>";
 

@@ -59,8 +59,6 @@ function actualizaInfo(maximoCaracteres) {
 
 </script>
 
-<?php include "general-vars.php"; ?>
-
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
 <?php if ( is_page("mensajes") || is_page("imagenes") || is_author() || is_single() || is_page("msgmap")) { ?>
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo("template_directory"); echo "/css/jquery.lightbox-0.5.css" ?>" media="screen" />
@@ -83,15 +81,15 @@ if ( is_page("formulario") && $positivonegativo == 'positivo' ) { ?>
 <?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
 $(document).ready(function(){
 	$('#<?php echo "$categ->slug" ?>').bind('click', function(){
-	 if ( $(this).hasClass('<?php echo "$color_pl" ?>') ) {
+	 if ( $(this).hasClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>') ) {
 		$(this).children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/$categ->slug.png"; ?>');
 
-		$(this).removeClass('<?php echo "$color_pl" ?>');
+		$(this).removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
 		$("#valorcategory").val('');
 	
 	 } else {
 		$(this).children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/a-$categ->slug.png"; ?>');
-		$(this).addClass('<?php echo "$color_pl" ?>');
+		$(this).addClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
 		$("#valorcategory").val('<?php echo $categ->cat_ID ?>');
 		
 	}
@@ -104,10 +102,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_pl" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_pl" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_pl" ?>');
-		$("#otros").removeClass('<?php echo "$color_pl" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
 		}
 		if (currentId == 'comunidad-ciudadana')
 		{
@@ -115,10 +113,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_pl" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_pl" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_pl" ?>');
-		$("#otros").removeClass('<?php echo "$color_pl" ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
 		}
 		if (currentId == 'espacio-publico-medioambiente')
 		{
@@ -126,10 +124,10 @@ $(document).ready(function(){
 		$("#arquitectura-urbanismo").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/arquitectura-urbanismo.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_pl" ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_pl" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_pl" ?>');
-		$("#otros").removeClass('<?php echo "$color_pl" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
 		}
 		if (currentId == 'movilidad')
 		{
@@ -137,10 +135,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#arquitectura-urbanismo").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/arquitectura-urbanismo.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_pl" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_pl" ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_pl" ?>');
-		$("#otros").removeClass('<?php echo "$color_pl" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
 		}
 		if (currentId == 'otros')
 		{
@@ -148,10 +146,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#arquitectura-urbanismo").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/arquitectura-urbanismo.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_pl" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_pl" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_pl" ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_pl" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>');
 		}		
 		
 	   
@@ -168,13 +166,13 @@ $(document).ready(function(){
 <?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
 $(document).ready(function(){
 	$('#<?php echo "$categ->slug" ?>').bind('click', function(){
-	 if ( $(this).hasClass('<?php echo "$color_mn" ?>') ) {
+	 if ( $(this).hasClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>') ) {
 		$(this).children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/$categ->slug.png"; ?>');
-		$(this).removeClass('<?php echo "$color_mn" ?>');
+		$(this).removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
 		$("#valorcategory").val('');
 	 } else {
 		$(this).children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/r-$categ->slug.png"; ?>');
-		$(this).addClass('<?php echo "$color_mn" ?>');
+		$(this).addClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
 		$("#valorcategory").val('<?php echo $categ->cat_ID ?>');
 	}
 			var currentId = $(this).attr('id');
@@ -185,10 +183,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_mn" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_mn" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_mn" ?>');
-		$("#otros").removeClass('<?php echo "$color_mn" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
 		}
 		if (currentId == 'comunidad-ciudadana')
 		{
@@ -196,10 +194,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_mn" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_mn" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_mn" ?>');
-		$("#otros").removeClass('<?php echo "$color_mn" ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
 		}
 		if (currentId == 'espacio-publico-medioambiente')
 		{
@@ -207,10 +205,10 @@ $(document).ready(function(){
 		$("#arquitectura-urbanismo").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/arquitectura-urbanismo.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_mn" ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_mn" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_mn" ?>');
-		$("#otros").removeClass('<?php echo "$color_mn" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
 		}
 		if (currentId == 'movilidad')
 		{
@@ -218,10 +216,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#arquitectura-urbanismo").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/arquitectura-urbanismo.png"; ?>');
 		$("#otros").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/otros.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_mn" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_mn" ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_mn" ?>');
-		$("#otros").removeClass('<?php echo "$color_mn" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#otros").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
 		}
 		if (currentId == 'otros')
 		{
@@ -229,10 +227,10 @@ $(document).ready(function(){
 		$("#espacio-publico-medioambiente").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/espacio-publico-medioambiente.png"; ?>');
 		$("#movilidad").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/movilidad.png"; ?>');
 		$("#arquitectura-urbanismo").children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/arquitectura-urbanismo.png"; ?>');
-		$("#comunidad-ciudadana").removeClass('<?php echo "$color_mn" ?>');
-		$("#espacio-publico-medioambiente").removeClass('<?php echo "$color_mn" ?>');
-		$("#movilidad").removeClass('<?php echo "$color_mn" ?>');
-		$("#arquitectura-urbanismo").removeClass('<?php echo "$color_mn" ?>');
+		$("#comunidad-ciudadana").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#espacio-publico-medioambiente").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#movilidad").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
+		$("#arquitectura-urbanismo").removeClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>');
 		}		
 	});
 });
@@ -300,7 +298,7 @@ if ( have_posts() ) :
 $post_ID = get_the_ID();
 
 	//$mess_author = get_the_author(); // the author
-	$mess_author_link = "$home/author/$mess_author"; // the author page link
+	$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
 	$mess_date = get_the_time('j\.n\.Y'); // the date
 	$mess_content = get_the_content(); // the message
 	$mess_perma = get_permalink(); // permanent link
@@ -377,7 +375,7 @@ map2.addOverlay(marker".$perma.");
 ?> 
 
 
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=<?php echo $apigooglemaps ?>" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=<?php echo WHATIF_GOOGLE_KEY ?>" type="text/javascript"></script>
 
 
 
@@ -389,10 +387,10 @@ map2.addOverlay(marker".$perma.");
       
    
     var miicono = new GIcon(G_DEFAULT_ICON);
-    miicono.image = "<?php echo $template_url ?>/images/<?php echo $img; ?>";
+    miicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/<?php echo $img; ?>";
     var tamanoIconomiicono = new GSize(40,40);
     miicono.iconSize = tamanoIconomiicono; 
-    miicono.shadow = "<?php echo $template_url ?>/images/<?php echo $img; ?>";
+    miicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/<?php echo $img; ?>";
     var tamanoSombramiicono = new GSize( 40,40);
     miicono.shadowSize = tamanoSombramiicono; 
     miicono.iconAnchor = new GPoint(20, 20);    
@@ -400,7 +398,7 @@ map2.addOverlay(marker".$perma.");
        
        
        var map2 = new GMap2(document.getElementById("map"));
-map2.setCenter(new GLatLng(<?php echo $coor; ?>), <?php echo $zoomindividual; ?>);
+map2.setCenter(new GLatLng(<?php echo $coor; ?>), <?php echo WHATIF_MAP_ZOOM_SINGLE; ?>);
 
 map2.setUIToDefault();
 
@@ -690,7 +688,7 @@ if ( have_posts() ) :
        
        
        	$mess_author = get_the_author(); // the author
-    	$mess_author_link = "$home/author/$mess_author"; // the author page link
+    	$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
 	    $mess_date = get_the_time('j\.n\.Y'); // the date
 	    $mess_content = get_the_content(); // the message
 	    $mess_perma = get_permalink(); // permanent link
@@ -744,7 +742,7 @@ if ( have_posts() ) :
 var marker".$post_id." = new GMarker(point".$post_id.", ".$categoryID.");
 GEvent.addListener(marker".$post_id.", \"click\", function() {
 
-var myHtml".$post_id." = \"<div class='mapmsg' ><img alt='' src='$template_url/images/default.png' style='display:block;float:left;'/></div><p style='width:500px;text-align: left; padding-left:90px; font-size:12px;'>" . __('Enviado por:','whatif') . " <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>\";
+var myHtml".$post_id." = \"<div class='mapmsg' ><img alt='' src='" .WHATIF_BLOGTHEME. "/images/default.png' style='display:block;float:left;'/></div><p style='width:500px;text-align: left; padding-left:90px; font-size:12px;'>" . __('Enviado por:','whatif') . " <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>\";
 map2.openInfoWindowHtml(point".$post_id.", myHtml".$post_id."); });
 map2.addOverlay(marker".$post_id.");
         ";
@@ -763,7 +761,7 @@ wp_reset_query();
 
 
 <script type="text/javascript"
-      src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo $city; ?>&gl=es&sensor=true&key=<?php echo $apigooglemaps ?>"></script>
+      src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
 
 
    <script type="text/javascript">
@@ -776,10 +774,10 @@ wp_reset_query();
 
     
     var movilidadicono = new GIcon( G_DEFAULT_ICON);
-    movilidadicono.image = "<?php echo $template_url ?>/images/a2-movilidad.png";
+    movilidadicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-movilidad.png";
     var tamanoIconomovilidad = new GSize(40,40);
     movilidadicono.iconSize = tamanoIconomovilidad; 
-    movilidadicono.shadow = "<?php echo $template_url ?>/images/a2-movilidad.png";
+    movilidadicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-movilidad.png";
     var tamanoSombramovilidad = new GSize( 40,40);
     movilidadicono.shadowSize = tamanoSombramovilidad; 
     movilidadicono.iconAnchor = new GPoint(20,20);
@@ -787,90 +785,90 @@ wp_reset_query();
 
 
     var comunidadicono = new GIcon(G_DEFAULT_ICON);
-    comunidadicono.image = "<?php echo $template_url ?>/images/a2-comunidad-ciudadana.png";
+    comunidadicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-comunidad-ciudadana.png";
     var tamanoIconocomunidad = new GSize(40,40);
     comunidadicono.iconSize = tamanoIconocomunidad; 
-    comunidadicono.shadow = "<?php echo $template_url ?>/images/a2-comunidad-ciudadana.png";
+    comunidadicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-comunidad-ciudadana.png";
     var tamanoSombracomunidad = new GSize( 40,40);
     comunidadicono.shadowSize = tamanoSombracomunidad; 
     comunidadicono.iconAnchor = new GPoint(20,20);
     comunidadicono.imageMap = [0,0, 39,0, 39,39, 0,39];
     
     var publicoicono = new GIcon(G_DEFAULT_ICON);
-    publicoicono.image = "<?php echo $template_url ?>/images/a2-espacio-publico-medioambiente.png";
+    publicoicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-espacio-publico-medioambiente.png";
     var tamanoIconopublico = new GSize(40,40);
     publicoicono.iconSize = tamanoIconopublico; 
-    publicoicono.shadow = "<?php echo $template_url ?>/images/a2-espacio-publico-medioambiente.png";
+    publicoicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-espacio-publico-medioambiente.png";
     var tamanoSombrapublico = new GSize( 40,40);
     publicoicono.shadowSize = tamanoSombrapublico; 
     publicoicono.iconAnchor = new GPoint(20,20);
     publicoicono.imageMap = [0,0, 39,0, 39,39, 0,39];
     
     var arquitecturaicono = new GIcon(G_DEFAULT_ICON);
-    arquitecturaicono.image = "<?php echo $template_url ?>/images/a2-arquitectura-urbanismo.png";
+    arquitecturaicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-arquitectura-urbanismo.png";
     var tamanoIconoarquitectura = new GSize(40,40);
     arquitecturaicono.iconSize = tamanoIconoarquitectura; 
-    arquitecturaicono.shadow = "<?php echo $template_url ?>/images/a2-arquitectura-urbanismo.png";
+    arquitecturaicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-arquitectura-urbanismo.png";
     var tamanoSombraarquitectura = new GSize( 40,40);
     arquitecturaicono.shadowSize = tamanoSombraarquitectura; 
     arquitecturaicono.iconAnchor = new GPoint(20,20);
     arquitecturaicono.imageMap = [0,0, 39,0, 39,39, 0,39];
     
     var otrosicono = new GIcon(G_DEFAULT_ICON);
-    otrosicono.image = "<?php echo $template_url ?>/images/a2-otros.png";
+    otrosicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-otros.png";
     var tamanoIconootros = new GSize(40,40);
     otrosicono.iconSize = tamanoIconootros; 
-    otrosicono.shadow = "<?php echo $template_url ?>/images/a2-otros.png";
+    otrosicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-otros.png";
     var tamanoSombraotros = new GSize( 40,40);
     otrosicono.shadowSize = tamanoSombraotros; 
     otrosicono.iconAnchor = new GPoint(20,20);  
     otrosicono.imageMap = [0,0, 39,0, 39,39, 0,39];
   
     var movilidadiconor = new GIcon( G_DEFAULT_ICON);
-    movilidadiconor.image = "<?php echo $template_url ?>/images/r2-movilidad.png";
+    movilidadiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-movilidad.png";
     var tamanoIconomovilidadr = new GSize(40,40);
     movilidadiconor.iconSize = tamanoIconomovilidadr; 
-    movilidadiconor.shadow = "<?php echo $template_url ?>/images/r2-movilidad.png";
+    movilidadiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-movilidad.png";
     var tamanoSombramovilidadr = new GSize( 40,40);
     movilidadiconor.shadowSize = tamanoSombramovilidadr; 
     movilidadiconor.iconAnchor = new GPoint(20,20);
     movilidadiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
 
     var comunidadiconor = new GIcon(G_DEFAULT_ICON);
-    comunidadiconor.image = "<?php echo $template_url ?>/images/r2-comunidad-ciudadana.png";
+    comunidadiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-comunidad-ciudadana.png";
     var tamanoIconocomunidadr = new GSize(40,40);
     comunidadiconor.iconSize = tamanoIconocomunidadr; 
-    comunidadiconor.shadow = "<?php echo $template_url ?>/images/r2-comunidad-ciudadana.png";
+    comunidadiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-comunidad-ciudadana.png";
     var tamanoSombracomunidadr = new GSize( 40,40);
     comunidadiconor.shadowSize = tamanoSombracomunidadr; 
     comunidadiconor.iconAnchor = new GPoint(20,20);
     comunidadiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
     
     var publicoiconor = new GIcon(G_DEFAULT_ICON);
-    publicoiconor.image = "<?php echo $template_url ?>/images/r2-espacio-publico-medioambiente.png";
+    publicoiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-espacio-publico-medioambiente.png";
     var tamanoIconopublicor = new GSize(40,40);
     publicoiconor.iconSize = tamanoIconopublicor; 
-    publicoiconor.shadow = "<?php echo $template_url ?>/images/r2-espacio-publico-medioambiente.png";
+    publicoiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-espacio-publico-medioambiente.png";
     var tamanoSombrapublicor = new GSize( 40,40);
     publicoiconor.shadowSize = tamanoSombrapublicor; 
     publicoiconor.iconAnchor = new GPoint(20,20);
     publicoiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
     
     var arquitecturaiconor = new GIcon(G_DEFAULT_ICON);
-    arquitecturaiconor.image = "<?php echo $template_url ?>/images/r2-arquitectura-urbanismo.png";
+    arquitecturaiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-arquitectura-urbanismo.png";
     var tamanoIconoarquitecturar = new GSize(40,40);
     arquitecturaiconor.iconSize = tamanoIconoarquitecturar; 
-    arquitecturaiconor.shadow = "<?php echo $template_url ?>/images/r2-arquitectura-urbanismo.png";
+    arquitecturaiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-arquitectura-urbanismo.png";
     var tamanoSombraarquitecturar = new GSize( 40,40);
     arquitecturaiconor.shadowSize = tamanoSombraarquitecturar; 
     arquitecturaiconor.iconAnchor = new GPoint(20,20);
     arquitecturaiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
     
     var otrosiconor = new GIcon(G_DEFAULT_ICON);
-    otrosiconor.image = "<?php echo $template_url ?>/images/r2-otros.png";
+    otrosiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-otros.png";
     var tamanoIconootrosr = new GSize(40,40);
     otrosiconor.iconSize = tamanoIconootrosr; 
-    otrosiconor.shadow = "<?php echo $template_url ?>/images/r2-otros.png";
+    otrosiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-otros.png";
     var tamanoSombraotrosr = new GSize( 40,40);
     otrosiconor.shadowSize = tamanoSombraotrosr; 
     otrosiconor.iconAnchor = new GPoint(20,20); 
@@ -881,7 +879,7 @@ wp_reset_query();
      
        
        var map2 = new GMap2(document.getElementById("map"));
-map2.setCenter(new GLatLng(<?php echo $coordenadasmapa ?>), <?php echo $zoomtodas ?>);
+map2.setCenter(new GLatLng(<?php echo WHATIF_MAP_COORDS ?>), <?php echo WHATIF_MAP_ZOOM ?>);
 map2.setUIToDefault();
 
 // Aqui las coordenadas
@@ -944,8 +942,8 @@ left:-15px;
 <?php
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET["valor"]); } else { $positivonegativo = ""; }
 
-if ($positivonegativo == "positivo") {$posneg = $bg_pl;}
-elseif ($positivonegativo == "negativo") {$posneg = $bg_mn;}
+if ($positivonegativo == "positivo") {$posneg = WHATIF_STYLE_POSITIVE_BG;}
+elseif ($positivonegativo == "negativo") {$posneg = WHATIF_STYLE_NEGATIVE_BG;}
 ?>
 
 <script type="text/javascript">
@@ -1056,7 +1054,7 @@ function llenarinput(escondido)
 
 
 <script type="text/javascript"
-      src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo $city; ?>&gl=es&sensor=true&key=<?php echo $apigooglemaps ?>"></script>
+      src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
 
 <script type="text/javascript">
 
@@ -1256,7 +1254,7 @@ function updateCode() {
 function load() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
-    map.setCenter(new GLatLng(<?php echo $coordenadasmapa; ?>), 13);
+    map.setCenter(new GLatLng(<?php echo WHATIF_MAP_COORDS; ?>), 13);
 
     
    // map._restricter = new TRestricter(map);
@@ -1329,7 +1327,7 @@ function showAddress() {
           alert(address + " not found");
         } else {
           map.clearOverlays();
-          map.setCenter(point, <?php echo $zoomformulario ?>);
+          map.setCenter(point, <?php echo WHATIF_MAP_ZOOM_FORM ?>);
           document.participaform.ll.value = point.lat() + "," + point.lng();
           
           marker = new GMarker(point, {draggable:false});
@@ -1361,7 +1359,7 @@ function showAddress() {
       });
       return marker;
     }
-    var aranguren = new GLatLng(<?php echo $coordenadasmapa; ?>);
+    var aranguren = new GLatLng(<?php echo WHATIF_MAP_COORDS; ?>);
     var tag = '<b>Mensaje</b>';
     var marker = createMarker(aranguren, "", tag);
     map.addOverlay(marker);
@@ -1483,7 +1481,7 @@ function pulsar(e) {
 //if ( is_user_logged_in() ) {
 //	$log_out = "
 //	<div id='logout-form'>
-//	<form action='$home/logout' method='post'>
+//	<form action='" .WHATIF_BLOGURL. "/logout' method='post'>
 //		<input type='hidden' name='ref' value='".$perma."' />
 //		<input class='logout-boton' type='submit' value='Abandonar sesión' name='logout' />
 //	</form>
@@ -1492,7 +1490,7 @@ function pulsar(e) {
 ////} else {
 ////	$log_out ="
 ////	<div id='login-form'>
-////	<form action='$home/login' method='post'>
+////	<form action='" .WHATIF_BLOGURL. "/login' method='post'>
 ////		<input class='login-caja' type='text' name='nombre' value='usuario' onblur=\"if(this.value == '') {this.value = 'usuario';}\" onfocus=\"if(this.value == 'usuario') {this.value = '';}\" />
 ////		<input class='login-caja' type='password' name='pass' value='contrase&ntilde;a' onblur=\"if(this.value == '') {this.value = 'contrase&ntilde;a';}\" onfocus=\"if(this.value == 'contrase&ntilde;a') {this.value = '';}\" />
 ////		<input class='login-check' type='checkbox' name='remember' value='true' />

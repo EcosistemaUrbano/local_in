@@ -2,9 +2,7 @@
 
 get_header();
 
-include "general-vars.php";
-
-$filtro=$_GET['filtro'];
+if ( array_key_exists('filtro', $_GET) ) { $filtro= sanitize_text_field($_GET['filtro']); } else { $filtro = ""; }
 
 // this page title
 if ( have_posts() ) :
