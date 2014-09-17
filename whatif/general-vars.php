@@ -16,6 +16,9 @@ $citymin="instalation";
 // Calle que aparecerá por defecto como ejemplo en la página de geolocalización
 $examplelocation ="Estanislao Figueras, 6, Madrid";
 
+// Country. This will be use to perform geo-searches
+$location_country = "España";
+
 // Put here the Google Maps API key, specific for your domain
 $apigooglemaps ="ABQIAAAAr7Wf1Er982GxOn546lMrQBQ4Fi0gp6JNXlaQxfT8Sk5oY4k-bBTwrX_Xlbv8NWHVg3XxAySgcxwEww";
 

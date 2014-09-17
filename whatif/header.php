@@ -1260,7 +1260,7 @@ function load() {
 
 function showAddress() {
   var address = document.getElementById("addressTEXT").value;
-  address = address + " España";
+  address = address + " <?php echo WHATIF_LOCATION_COUNTRY ?>";
   if (geocoder) {
     geocoder.getLatLng(
       address,

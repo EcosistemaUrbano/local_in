@@ -19,6 +19,8 @@ function whatif_theme_setup() {
 
 	if (!defined('WHATIF_LOCATION_ADDRESS'))
 	    define('WHATIF_LOCATION_ADDRESS', $examplelocation);
+	if (!defined('WHATIF_LOCATION_COUNTRY'))
+	    define('WHATIF_LOCATION_COUNTRY', $location_country);
 	if (!defined('WHATIF_GOOGLE_KEY'))
 	    define('WHATIF_GOOGLE_KEY', $apigooglemaps);
 	if (!defined('WHATIF_MAP_COORDS'))
