@@ -121,7 +121,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 
 		<div id="map" style="width: 750px; height: 320px"></div>
 		<input onfocus="if(this.value == '<?php echo WHATIF_LOCATION_ADDRESS; ?>') {this.value = '';}" onblur="if(this.value == '') {this.value = '<?php echo WHATIF_LOCATION_ADDRESS; ?>';}" class="caja-negra caja-map" type="text" size="60" id="addressTEXT" value="<?php echo WHATIF_LOCATION_ADDRESS; ?>" />
-		<input class="boton-negro" type="button" value="Posicionar" onclick="showAddress()"/>
+		<input class="boton-negro" type="button" value="<?php _e('Posicionar','whatif'); ?>" onclick="showAddress()"/>
 		
   </p>
 
