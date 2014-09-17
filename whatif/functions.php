@@ -147,6 +147,11 @@ function whatif_load_scripts() {
 			'0.1',
 			FALSE
 		);
+		wp_localize_script( 'whatif-form-limit', 'whatifL10n', array(
+			'infoMax'  => __( 'No characters left.', 'whatif' ),
+			'infoOne'  => __( '1 character left.', 'whatif' ),
+			'infoPlus'  => __( 'characters left.', 'whatif' ),
+		) );
 		wp_enqueue_script(
 			'whatif-form-desliza',
 			get_template_directory_uri() . '/js/whatif.form.desliza.js',

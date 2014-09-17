@@ -25,10 +25,11 @@ function actualizaInfo(maximoCaracteres) {
   var elemento = document.getElementById("cajadescripcion");
   var info = document.getElementById("info");
 
-  if(elemento.value.length >= maximoCaracteres ) {
-    info.innerHTML = "Maximo "+maximoCaracteres+" caracteres";
-  }
-  else {
-    info.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
-  }
+	if(elemento.value.length >= maximoCaracteres )
+		info.innerHTML = whatifL10n.infoMax;
+	else if(maximoCaracteres-elemento.value.length == 1 )
+		info.innerHTML = whatifL10n.infoOne;
+	else
+		info.innerHTML = (maximoCaracteres-elemento.value.length)+" "+whatifL10n.infoPlus;
+	
 }
