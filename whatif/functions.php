@@ -69,6 +69,9 @@ function whatif_theme_setup() {
 	// Custom menus: register theme locations
 	add_action( 'init', 'whatif_register_menus' );
 
+	/* Load JavaScript files on the 'wp_enqueue_scripts' action hook. */
+	add_action( 'wp_enqueue_scripts', 'whatif_load_scripts' );
+
 	// load language files
 	load_theme_textdomain('whatif', get_template_directory() . '/languages');
 
@@ -124,5 +127,70 @@ function whatif_register_menus() {
 	);
 	}
 } // END Custom menus
+
+// load js scripts to avoid conflicts
+function whatif_load_scripts() {
+
+	wp_enqueue_script(
+		'whatif-disable-input-enter',
+		get_template_directory_uri() . '/js/whatif.disable.input.enter.js',
+		FALSE,
+		'0.1',
+		FALSE
+	);
+	wp_enqueue_script('jquery');
+	if ( is_page_template("formulario.php") ) {
+		wp_enqueue_script(
+			'whatif-form-limit',
+			get_template_directory_uri() . '/js/whatif.character.limit.js',
+			FALSE,
+			'0.1',
+			FALSE
+		);
+		wp_enqueue_script(
+			'whatif-form-desliza',
+			get_template_directory_uri() . '/js/whatif.form.desliza.js',
+			array('jquery'),
+			'0.1',
+			FALSE
+		);
+		wp_enqueue_script(
+			'whatif-form-validator',
+			get_template_directory_uri() . '/js/whatif.form.validator.js',
+			array('jquery'),
+			'0.1',
+			FALSE
+		);
+
+	} // end if formulario page template
+
+	if ( is_author() || is_page_template("lista.php") || is_page_template("img.php") ) {
+		wp_enqueue_script(
+			'whatif-form-loop',
+			get_template_directory_uri() . '/js/whatif.form.loop.js',
+			array('jquery'),
+			'0.1',
+			FALSE
+		);
+	}
+	if ( is_author() || is_page_template("lista.php") || is_page_template("img.php") || is_single() || is_page_template("msgmap.php") ) {
+		wp_enqueue_script(
+			'lightbox',
+			get_template_directory_uri() . '/js/jquery.lightbox-0.5.js',
+			array('jquery'),
+			'0.5',
+			FALSE
+		);
+		wp_enqueue_script(
+			'lightbox-options',
+			get_template_directory_uri() . '/js/whatif.lightbox.options.js',
+			array('jquery'),
+			'0.5',
+			FALSE
+		);
+
+	}
+} // end load js scripts to avoid conflicts
+
 
 ?>

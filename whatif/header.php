@@ -20,45 +20,6 @@
 
 <link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css">
 
-
-<script type="text/javascript">
-function limita(elEvento, maximoCaracteres) {
-  var elemento = document.getElementById("cajadescripcion");
-
-  // Obtener la tecla pulsada 
-  var evento = elEvento || window.event;
-  var codigoCaracter = evento.charCode || evento.keyCode;
-  // Permitir utilizar las teclas con flecha horizontal
-  if(codigoCaracter == 37 || codigoCaracter == 39) {
-    return true;
-  }
-
-  // Permitir borrar con la tecla Backspace y con la tecla Supr.
-  if(codigoCaracter == 8 || codigoCaracter == 46) {
-    return true;
-  }
-  else if(elemento.value.length >= maximoCaracteres ) {
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-
-function actualizaInfo(maximoCaracteres) {
-  var elemento = document.getElementById("cajadescripcion");
-  var info = document.getElementById("info");
-
-  if(elemento.value.length >= maximoCaracteres ) {
-    info.innerHTML = "Maximo "+maximoCaracteres+" caracteres";
-  }
-  else {
-    info.innerHTML = "Puedes escribir hasta "+(maximoCaracteres-elemento.value.length)+" caracteres adicionales";
-  }
-}
-
-</script>
-
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
 <?php if ( is_page("mensajes") || is_page("imagenes") || is_author() || is_single() || is_page("msgmap")) { ?>
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo("template_directory"); echo "/css/jquery.lightbox-0.5.css" ?>" media="screen" />
@@ -69,17 +30,14 @@ function actualizaInfo(maximoCaracteres) {
 
 <?php wp_head(); ?>
 
-<script src="<?php bloginfo('template_url'); echo "/js/jquery.js"; ?>" type="text/javascript"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>	
 
 
 <?php
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET['valor']); } else { $positivonegativo = ""; }
 if ( is_page("formulario") && $positivonegativo == 'positivo' ) { ?>
-<script src="<?php bloginfo('template_url'); echo "/js/deslizanteForm.js"; ?>" type="text/javascript"></script>
 <script type="text/javascript">
 <?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
-$(document).ready(function(){
+jQuery(document).ready(function($){
 	$('#<?php echo "$categ->slug" ?>').bind('click', function(){
 	 if ( $(this).hasClass('<?php echo WHATIF_STYLE_POSITIVE_COLOR ?>') ) {
 		$(this).children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/$categ->slug.png"; ?>');
@@ -161,10 +119,9 @@ $(document).ready(function(){
 </script>
 
 <?php } elseif ( is_page("formulario") && $positivonegativo == 'negativo' ) { ?>
-<script src="<?php bloginfo('template_url'); echo "/js/deslizanteForm.js"; ?>" type="text/javascript"></script>
 <script type="text/javascript">
 <?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
-$(document).ready(function(){
+jQuery(document).ready(function($){
 	$('#<?php echo "$categ->slug" ?>').bind('click', function(){
 	 if ( $(this).hasClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>') ) {
 		$(this).children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/$categ->slug.png"; ?>');
@@ -236,23 +193,8 @@ $(document).ready(function(){
 });
 <?php } ?>
 </script>
-<?php } elseif ( is_author() || is_page("mensajes") || is_page("imagenes") ) { ?>
-<script src="<?php bloginfo('template_url'); echo "/js/deslizanteMess.js"; ?>" type="text/javascript"></script>
 <?php } ?>
-<?php if ( is_page("mensajes") || is_page("imagenes") || is_author() || is_single() || is_page("msgmap") ) { ?>
-	<script type="text/javascript" src="<?php bloginfo("template_directory"); echo "/js/jquery.lightbox-0.5.js" ?>"></script>
-	<script type="text/javascript">
-		$(function() {
-		//$('a[@rel*=lightbox]').lightBox(); // Select all links that contains lightbox rel
-		$('.mosac-img a').lightBox();
-		$('.mess-img a').lightBox();
-		});
-	</script>
 	
-
-	
-<?php } ?>
-
 <?php // $xajax->printJavascript("/xajax/"); //linea que ejecuta el ajax ?>  	
 
 
@@ -1380,78 +1322,6 @@ function showAddress() {
 
  //]]>
 </script>
-
-<!-- script para deshabilitar enter en input-->
-<script>
-function pulsar(e) {
-	tecla=(document.all) ? e.keyCode : e.which;
-  if(tecla==13) return false;
-}
-</script>
-
-
-
-<!-- Validador form jquery -->
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript">
-
-        (function($){
-          $.fn.validator = function(opts){
-            $(this).find('.notFilled').live('keyup', function(){
-              if($(this).val()!="" || $(this).val()!="Describe tu idea (140 caracteres como máximo)"){
-                  $(this).removeClass('notFilled');
-              }
-            });
-            return $(this).submit(function(evt){
-              $(this).find('.required').each(function(){
-                if ($(this).attr('value') == ''|| $(this).val()=="Describe tu idea (140 caracteres como máximo)"){
-                
-                // var valor = $("#escondido").attr('value'); 
-
-                      
-                      var opcion = $(this).attr("id");
-                      
-                      if (opcion == "cajaterm") opcion = "Palabras clave";
-                      if (opcion == "valorcategory") opcion = "Categoria";
-                      if (opcion == "cajadescripcion") opcion = "Descripcion";
-                      
-
-
-                  alert("Falta por rellenar el campo: "+opcion+".\n\nPor favor vuelva hacia atras para completarlo. \n\nGracias."); 
-
-                  
-                  
-                  $(this).addClass('notFilled');
-                  
-                  evt.preventDefault();
-                }
-                
-   
-                
-               
-              });
-                  
-              
-              $(this).find('.notFilled').first().focus();
-              
-  
-              
-            });
-
-          };
-
-           
-          
-        })(jQuery);
-
-        jQuery(document).ready(function(){
-          jQuery('form').validator();
-     
-        });
-    </script>
-
-
 
 
 </head>

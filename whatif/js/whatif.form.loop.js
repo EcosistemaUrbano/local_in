@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jQuery(document).ready(function($){
   var currentPosition = 0;
   var slideWidth = 900;
   var slides = $('.deslizaMess');

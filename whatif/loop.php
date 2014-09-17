@@ -3,10 +3,8 @@
 if ( array_key_exists('buscauthor', $_GET) ) { $buscauthor = sanitize_text_field( $_GET['buscauthor'] ); }
 else { $buscauthor = ""; }
 
- if($buscauthor!='')
-{
-$linkconautor='?buscauthor='.$buscauthor;
-}
+if($buscauthor!='') { $linkconautor='?buscauthor='.$buscauthor; }
+else { $linkconautor = ""; }
 
 if ( array_key_exists('alltax', $_GET) ) { $alltax = sanitize_text_field( $_GET['alltax'] ); } else { $alltax = ""; } // to know if positivo or negativo list
 if ( is_author() ) {
@@ -95,16 +93,14 @@ $valor_query = "";
 $valor_terms = get_terms($valor);
 $count2 = 0;
 foreach ( $valor_terms as $term ) {
-$count2++;
-if ( $count2 == 1) { $valor_query .= "$term->slug"; }
-else { $valor_query .= ",$term->slug"; }
+	$count2++;
+	if ( $count2 == 1) { $valor_query .= "$term->slug"; }
+	else { $valor_query .= ",$term->slug"; }
 }
 
 
 
-if ($tagpn!="")
-
-{
+if ($tagpn!="") {
    $valor = $tagpn;
    $valor_query = $tag2;
    
@@ -119,29 +115,17 @@ if ($tagpn!="")
  
 
 
- if ( array_key_exists('paginacion', $_GET) ) { $paginaorigen= sanitize_text_field( $_GET['paginacion'] ); }
-else { $paginaorigen = 0; }
-  $pagina= $paginaorigen + 1;
+	if ( array_key_exists('paginacion', $_GET) ) { $paginaorigen= sanitize_text_field( $_GET['paginacion'] ); }
+	else { $paginaorigen = 0; }
+	$pagina= $paginaorigen + 1;
 
   //if ($paginaorigen=="") {$paginaorigen="1";}
   
-  if ($pagina==1) {$pagina="2";}
-  
-  
-  
-
-  
-  
-  
+  if ($pagina==1) {$pagina="2";}  
    
    query_posts( "posts_per_page=6&paged=$paginaorigen&$valor=$valor_query&cat=$filtro&orderBy=meta_value_num&order=DESC" );
 
-}
-
-else
-
-
-{
+} else {
 
 
 
