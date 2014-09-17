@@ -1078,11 +1078,13 @@ height:80px !important;
     width: 800px;
 }
 .filter-cats li {
-	display: inline;
+	display: inline-block;
 	margin: 0 10px;
+	vertical-align: middle;
 }
-.filter-tit {
-	display: inline;
+.filter-cats div {
+	display: inline-block;
+	vertical-align: middle;
 	
 }
 /* authot page */
