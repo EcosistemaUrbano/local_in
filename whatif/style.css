@@ -274,17 +274,12 @@ top:-20px;
 	padding-top: 3em;
 }
 #reg-form {
-    background-color: #FF0000;
     height: 262px;
     margin-left: 388px;
     padding-left: 11px;
     padding-top: 69px;
     position: relative;
     top: -104px;
-}
-#reg-form input
-{
-color:#FF0000;
 }
 .user-form h3 {
 	font-size: 1.5em;
@@ -420,13 +415,6 @@ top:-100px;
 .term-selector li .color-p
 {
 color: #0cf;
-}
-.bgB {
-	background-color: #000;
-}
-.colorB
-{
- color:#000;
 }
 .color-p {
 	color: #0cf;

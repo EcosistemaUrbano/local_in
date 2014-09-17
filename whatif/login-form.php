@@ -6,8 +6,8 @@ Template Name: Formulario de login y registro
 get_header();
 
 	$tags_tit = get_the_title();
-	$bg = "bgB";
-	$color = "colorB";
+	$bg = "bg-n";
+	$color = "color-n";
 	$tit_out = "
 	<div class='tit-peq'>
 		<h2>$tags_tit</h2>

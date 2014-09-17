@@ -10,7 +10,7 @@ $pass = sanitize_text_field($_POST['pass']);
 $pass2 = sanitize_text_field($_POST['pass2']);
 $ref = sanitize_text_field($_POST['ref']);
 
-require_once(ABSPATH . WPINC . '/registration.php');
+//require_once(ABSPATH . WPINC . '/registration.php');
 $user_id = username_exists( $nombre ); // nos aseguramos que el user no existe
 
 if ( $user_id ) {
@@ -95,7 +95,7 @@ if ( $user_id ) {
 		$user_id = wp_create_user( $nombre, $pass, $mail );
 
 $reg_out = __('Tu usuario ha sido creado correctamente.','whatif');
-$reg_out .= "$user_id";
+//$reg_out .= "$user_id";
 }
 
 echo $reg_out;
