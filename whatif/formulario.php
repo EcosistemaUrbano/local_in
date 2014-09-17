@@ -223,16 +223,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 
 	</fieldset>
 	
-	<script type="text/javascript">
 	
-	function elupload()
-	{
-	document.getElementById("subirvideo").className="nodisplay";
-	document.getElementById("imagensubida").className="sidisplay";
-	}
-	
-	</script>
-
 	<fieldset id="paso-5" class="deslizaForm">
 		<div class="tit">
 			<h2><?php _e('Añade una foto o un vídeo','whatif'); ?></h2>
@@ -248,7 +239,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 				<input onclick='javascript:elupload();' class='media' type='file' name='blas' />
 				
 				</div>
-				<div id='imagensubida' class='' style='display:none'>" . __('Su imagen ha sido cargada','whatif') . "</div>
+				<div id='imagensubida'class='media-feedback' style='display:none'>" . __('Su imagen ha sido cargada','whatif') . "</div>
 				
 				<input type='hidden' name='ref' value='$perma' />
 			</div>
@@ -258,7 +249,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 //			echo $upload_dir;
 			$vid_ins_out = "
 			<div id='subirvideo' class='media-up $media_vid_bg'>
-				<input onclick='javascript:document.getElementById(\"subirimagen\").className=\"nodisplay\";' class='caja-negra media' type='text' name='urlvideo' value='http://'  />
+				<input class='caja-negra media' type='text' name='urlvideo' value='http://'  />
 				<label>" . __('Añadir un vídeo','whatif') . "</label>
 			</div>
 			";

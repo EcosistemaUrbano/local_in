@@ -198,16 +198,6 @@ display:none;
     border: 2px solid #f00;
     background: #f99;
   }
- .sidisplay
- {
-    display: block !important;
-    font-size: 12px;
-    font-weight: bold;
-    left: 309px;
-    position: relative;
-    top: 56px;
-  
- }
 
 
 /* header: login/logout form */
@@ -912,6 +902,15 @@ input.boton-negro {
 	top: 32px;
 	left: 600px;
 }
+.media-feedback {
+    font-size: 1.8em;
+    font-weight: bold;
+    position: absolute;
+    top: 41px;
+    left: 118px;
+	color: #fff;
+}
+
 
 /* Tags template */
 .cloudl {
