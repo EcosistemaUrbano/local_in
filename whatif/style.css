@@ -1104,7 +1104,7 @@ top:-475px;
 }
 #finalform
 {
-    background-color: #00CCFF;
+    background-color: #000;
     color: #FFFFFF;
     font-size: 27px;
     height: 139px;
@@ -1116,7 +1116,7 @@ top:-475px;
 }
 #publicar
 {
-    background-color: #00CCFF;
+    background-color: #000;
     border: medium none;
     color: #FFFFFF;
     cursor: pointer;
