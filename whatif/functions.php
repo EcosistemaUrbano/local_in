@@ -149,18 +149,22 @@ function whatif_load_scripts() {
 			'0.1',
 			FALSE
 		);
-		wp_enqueue_script(
-			'whatif-form-uploader',
-			get_template_directory_uri() . '/js/whatif.form.uploader.js',
-			FALSE,
-			'0.1',
-			FALSE
-		);
-		wp_localize_script( 'whatif-form-limit', 'whatifL10n', array(
+		wp_localize_script( 'whatif-form-limit', 'formLimitL10n', array(
 			'infoMax'  => __( 'Ningún caracter libre.', 'whatif' ),
 			'infoOne'  => __( '1 caracter libre.', 'whatif' ),
 			'infoPlus'  => __( 'caracteres libres.', 'whatif' ),
 		) );
+		wp_enqueue_script(
+			'whatif-form-uploader',
+			get_template_directory_uri() . '/js/whatif.form.uploader.js',
+			array('jquery'),
+			'0.1',
+			FALSE
+		);
+		wp_localize_script( 'whatif-form-uploader', 'formUploaderL10n', array(
+			'mediaFeedback'  => __( 'Elige una imagen.', 'whatif' ),
+		) );
+
 		wp_enqueue_script(
 			'whatif-form-desliza',
 			get_template_directory_uri() . '/js/whatif.form.desliza.js',

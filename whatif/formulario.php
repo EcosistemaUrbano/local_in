@@ -236,10 +236,9 @@ elseif ( $positivonegativo == 'negativo' ) {
 			<div id='subirimagen' class='media-up $media_img_bg'>
     				<input type='hidden' name='MAX_FILE_SIZE' value='3000000' />
 				<div id='upload'>
-				<input onclick='javascript:elupload();' class='media' type='file' name='blas' />
-				
-				</div>
-				<div id='imagensubida'class='media-feedback' style='display:none'>" . __('Su imagen ha sido cargada','whatif') . "</div>
+					<span class='media-feedback'>".__('Elige una imagen','whatif')."</span>
+				</div><span id='media-boton' class='media-icon'>+</span>
+				<input id='blas' class='media' type='file' name='blas' />
 				
 				<input type='hidden' name='ref' value='$perma' />
 			</div>

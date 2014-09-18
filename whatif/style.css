@@ -844,21 +844,23 @@ input.boton-negro {
 	color: #000;
 }
 #upload {
-	overflow:hidden;
+/*	overflow:hidden;*/
 /*	clip: rect(0px, 300px, 25px, 0px );*/
 	background-color: #000;
-	position: absolute;
+/*	position: absolute;
 	top: 32px;
-	left: 113px;
-	width: 456px;
+	left: 113px;*/
+/*	width: 456px;*/
+	width: 425px;
 	height: 25px;
 	padding: 3px 6px;
-	cursor: text;
-	background-image:url(images/puntitos.jpg);
+/*	background-image:url(images/puntitos.jpg);
 	background-repeat:no-repeat;
-	background-position:right;
+	background-position:right;*/
+	float: left;
+	margin-right: 5px;
 }
-#upload input {
+/*#upload input {
 
 	filter: Alpha(Opacity=0);
 	-moz-opacity: 0;
@@ -870,7 +872,7 @@ input.boton-negro {
     width: 100px;	
 	
 	
-}
+}*/
 .media-selector {
 	width: 776px;
 	height: 320px;
@@ -900,17 +902,22 @@ input.boton-negro {
 	font-weight: bold;
 	padding: 0;
 	color: #000;
-	position: absolute;
+/*	position: absolute;
 	top: 32px;
-	left: 600px;
+	left: 600px;*/
 }
-.media-feedback {
-    font-size: 1.8em;
-    font-weight: bold;
-    position: absolute;
-    top: 41px;
-    left: 118px;
+.media-feedback,
+.media-icon {
+	font-size: 1.8em;
+	line-height: 25px;
+	font-weight: bold;
 	color: #fff;
+	display: inline-block;
+}
+.media-icon {
+	background-color: #000;
+	padding: 3px 6px;
+	cursor: pointer;
 }
 
 

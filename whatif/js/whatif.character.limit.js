@@ -26,10 +26,10 @@ function actualizaInfo(maximoCaracteres) {
   var info = document.getElementById("info");
 
 	if(elemento.value.length >= maximoCaracteres )
-		info.innerHTML = whatifL10n.infoMax;
+		info.innerHTML = formLimitL10n.infoMax;
 	else if(maximoCaracteres-elemento.value.length == 1 )
-		info.innerHTML = whatifL10n.infoOne;
+		info.innerHTML = formLimitL10n.infoOne;
 	else
-		info.innerHTML = (maximoCaracteres-elemento.value.length)+" "+whatifL10n.infoPlus;
+		info.innerHTML = (maximoCaracteres-elemento.value.length)+" "+formLimitL10n.infoPlus;
 	
 }
