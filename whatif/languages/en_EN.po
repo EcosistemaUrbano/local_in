@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: whatif 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 17:15+0100\n"
+"POT-Creation-Date: 2014-09-18 09:38+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: skotperez <skotperez@voragine.net>\n"
 "Language-Team: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
@@ -193,84 +193,84 @@ msgstr "Satellite view"
 msgid "Vista híbrida"
 msgstr "Hybrid view"
 
-#: ../formulario.php:238
+#: ../formulario.php:229
 msgid "Añade una foto o un vídeo"
 msgstr "Add a photo or a video"
 
-#: ../formulario.php:251
+#: ../formulario.php:242
 msgid "Su imagen ha sido cargada"
 msgstr "Your image has been uploaded"
 
-#: ../formulario.php:262
+#: ../formulario.php:253
 msgid "Añadir un vídeo"
 msgstr "Add a video"
 
-#: ../formulario.php:278
+#: ../formulario.php:269
 msgid "Si quieres modificar algo puedes volver hacia atrás pulsando sobre las fechas."
 msgstr "If you want to modify something, you can go back using the black arrows."
 
-#: ../formulario.php:279
+#: ../formulario.php:270
 msgid "Para publicar pulsa a continuación:"
 msgstr "To publish the message, click on the following button:"
 
-#: ../formulario.php:283
+#: ../formulario.php:274
 msgid "Publicar mensaje"
 msgstr "Publish message"
 
-#: ../formulario.php:299
+#: ../formulario.php:293
 msgid "Para publicar un mensaje debes iniciar sesión."
 msgstr "You have to log in to publish a message."
 
-#: ../formulario.php:311
+#: ../formulario.php:305
 msgid "usuario o contraseña incorrectos"
 msgstr "Incorrect username or password."
 
-#: ../formulario.php:315
+#: ../formulario.php:309
 msgid "usuario"
 msgstr "username"
 
-#: ../formulario.php:319
-#: ../formulario.php:345
+#: ../formulario.php:313
+#: ../formulario.php:339
 msgid "contraseña"
 msgstr "password"
 
-#: ../formulario.php:323
+#: ../formulario.php:317
 msgid "Recordarme"
 msgstr "Remember me"
 
-#: ../formulario.php:333
+#: ../formulario.php:327
 msgid "Si aún no estás registrado:"
 msgstr "If you're not registered yet:"
 
-#: ../formulario.php:336
+#: ../formulario.php:330
 msgid "el nombre ya existe"
 msgstr "that username already exists"
 
-#: ../formulario.php:337
+#: ../formulario.php:331
 msgid "nombre de usuario"
 msgstr "username"
 
-#: ../formulario.php:338
+#: ../formulario.php:332
 msgid "sin espacios"
 msgstr "no spaces"
 
-#: ../formulario.php:340
+#: ../formulario.php:334
 msgid "correo asociado a otro usuario"
 msgstr "this email is already in use by other user"
 
-#: ../formulario.php:341
+#: ../formulario.php:335
 msgid "correo electrónico"
 msgstr "e-mail address"
 
-#: ../formulario.php:348
+#: ../formulario.php:342
 msgid "parece que te has equivocado al teclear..."
 msgstr "looks like you made a mistake while typing"
 
-#: ../formulario.php:349
+#: ../formulario.php:343
 msgid "confirma tu contraseña"
 msgstr "confirm your password"
 
-#: ../formulario.php:353
+#: ../formulario.php:347
 msgid "Registrarse"
 msgstr "Register"
 
@@ -311,17 +311,17 @@ msgstr "No image"
 msgid "what if...? cities"
 msgstr "what if...? cities"
 
-#: ../functions.php:151
-msgid "No characters left."
-msgstr "Ningún caracter restante."
+#: ../functions.php:160
+msgid "Ningún caracter libre."
+msgstr "No characters left."
 
-#: ../functions.php:152
-msgid "1 character left."
-msgstr "1 caracter restante."
+#: ../functions.php:161
+msgid "1 caracter libre."
+msgstr "1 character left."
 
-#: ../functions.php:153
-msgid "characters left."
-msgstr "caracteres libres."
+#: ../functions.php:162
+msgid "caracteres libres."
+msgstr "characters left."
 
 #: ../registro.php:97
 #, fuzzy

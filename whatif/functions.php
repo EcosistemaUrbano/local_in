@@ -157,9 +157,9 @@ function whatif_load_scripts() {
 			FALSE
 		);
 		wp_localize_script( 'whatif-form-limit', 'whatifL10n', array(
-			'infoMax'  => __( 'No characters left.', 'whatif' ),
-			'infoOne'  => __( '1 character left.', 'whatif' ),
-			'infoPlus'  => __( 'characters left.', 'whatif' ),
+			'infoMax'  => __( 'Ningún caracter libre.', 'whatif' ),
+			'infoOne'  => __( '1 caracter libre.', 'whatif' ),
+			'infoPlus'  => __( 'caracteres libres.', 'whatif' ),
 		) );
 		wp_enqueue_script(
 			'whatif-form-desliza',

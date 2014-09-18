@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: whatif 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-17 17:14+0100\n"
+"POT-Creation-Date: 2014-09-18 09:39+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: skotperez <voraginebramante@gmail.com>\n"
+"Last-Translator: skotperez <skotperez@voragine.net>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -32,52 +32,64 @@ msgstr ""
 msgid "Mensajes negativos"
 msgstr ""
 
-#: ../msgmap.php:15
-#: ../header.php:628
+#: ../msgmap.php:11
+#: ../header.php:566
 msgid "Positivo"
 msgstr ""
 
-#: ../msgmap.php:16
-#: ../header.php:629
+#: ../msgmap.php:12
+#: ../header.php:567
 msgid "Negativo"
 msgstr ""
 
-#: ../msgmap.php:17
-#: ../header.php:630
+#: ../msgmap.php:14
+#: ../header.php:569
 msgid "Arquitectura urbanismo"
 msgstr ""
 
-#: ../msgmap.php:18
-#: ../header.php:631
+#: ../msgmap.php:15
+#: ../header.php:570
 msgid "Comunidad ciudadana"
 msgstr ""
 
-#: ../msgmap.php:19
-#: ../header.php:632
+#: ../msgmap.php:16
+#: ../header.php:571
 msgid "Espacio público medioambiente"
 msgstr ""
 
-#: ../msgmap.php:20
-#: ../header.php:633
+#: ../msgmap.php:17
+#: ../header.php:572
 msgid "Movilidad"
 msgstr ""
 
-#: ../msgmap.php:21
-#: ../header.php:634
+#: ../msgmap.php:18
+#: ../header.php:573
 msgid "Otros"
 msgstr ""
 
-#: ../msgmap.php:33
-#: ../msgmap.php:34
+#: ../msgmap.php:31
+#: ../single.php:20
 msgid "Localizaciones"
+msgstr ""
+
+#: ../msgmap.php:32
+msgid "Localización"
 msgstr ""
 
 #: ../header.php:15
 msgid "Herramienta de participación urbana"
 msgstr ""
 
-#: ../header.php:750
+#: ../header.php:687
 msgid "Enviado por:"
+msgstr ""
+
+#: ../single.php:24
+msgid "Palabras clave"
+msgstr ""
+
+#: ../single.php:28
+msgid "Imágenes"
 msgstr ""
 
 #: ../archive.php:7
@@ -88,233 +100,253 @@ msgstr ""
 msgid "Publicado a las"
 msgstr ""
 
-#: ../footer.php:15
-#: ../index.php:11
+#: ../footer.php:12
+#: ../index.php:10
 msgid "Inicio"
 msgstr ""
 
-#: ../footer.php:25
+#: ../footer.php:22
 msgid "Mis mensajes"
 msgstr ""
 
-#: ../footer.php:26
+#: ../footer.php:23
 msgid "Mi perfil"
 msgstr ""
 
-#: ../footer.php:27
+#: ../footer.php:24
 msgid "Abandonar sesión"
 msgstr ""
 
-#: ../footer.php:29
+#: ../footer.php:26
 msgid "Iniciar sesión"
 msgstr ""
 
-#: ../index.php:7
+#: ../index.php:6
 msgid "Participa"
 msgstr ""
 
-#: ../index.php:15
+#: ../index.php:14
 msgid "Consulta los resultados"
 msgstr ""
 
-#: ../formulario-enviado-gracias.php:189
+#: ../vistas-tit-terms.php:8
+#: ../vistas-tit-terms.php:9
+msgid "Mensajes"
+msgstr ""
+
+#: ../formulario-enviado-gracias.php:185
 msgid "Su mensaje se publicó correctamente"
 msgstr ""
 
-#: ../formulario-enviado-gracias.php:193
+#: ../formulario-enviado-gracias.php:189
 msgid "Su mensaje no pudo ser publicado por algún error entre su conexión y el servidor, o bien ya existe un mensaje igual al que está intentando publicar. Por favor vuelva al formulario para reenviar su mensaje."
 msgstr ""
 
-#: ../formulario.php:19
+#: ../formulario.php:16
 msgid "Describe tu idea"
 msgstr ""
 
-#: ../formulario.php:28
+#: ../formulario.php:25
 msgid "Describe tu problema"
 msgstr ""
 
-#: ../formulario.php:53
+#: ../formulario.php:50
 msgid "Describe tu idea (140 caracteres como máximo)"
 msgstr ""
 
-#: ../formulario.php:59
+#: ../formulario.php:56
 msgid "Elige una categoría"
 msgstr ""
 
-#: ../formulario.php:95
+#: ../formulario.php:92
 msgid "Elige palabras clave"
 msgstr ""
 
-#: ../formulario.php:96
+#: ../formulario.php:93
 msgid "Hasta un máximo de 5"
 msgstr ""
 
-#: ../formulario.php:113
+#: ../formulario.php:110
 msgid "También puedes añadir tus propias palabras clave separadas por comas."
 msgstr ""
 
-#: ../formulario.php:122
+#: ../formulario.php:119
 msgid "Elige una localización"
 msgstr ""
 
-#: ../formulario.php:146
+#: ../formulario.php:124
+msgid "Posicionar"
+msgstr ""
+
+#: ../formulario.php:143
 msgid "Vista mapa"
 msgstr ""
 
-#: ../formulario.php:148
+#: ../formulario.php:145
 msgid "Vista satélite"
 msgstr ""
 
-#: ../formulario.php:149
+#: ../formulario.php:146
 msgid "Vista híbrida"
 msgstr ""
 
-#: ../formulario.php:241
+#: ../formulario.php:229
 msgid "Añade una foto o un vídeo"
 msgstr ""
 
-#: ../formulario.php:254
+#: ../formulario.php:242
 msgid "Su imagen ha sido cargada"
 msgstr ""
 
-#: ../formulario.php:265
+#: ../formulario.php:253
 msgid "Añadir un vídeo"
 msgstr ""
 
-#: ../formulario.php:281
+#: ../formulario.php:269
 msgid "Si quieres modificar algo puedes volver hacia atrás pulsando sobre las fechas."
 msgstr ""
 
-#: ../formulario.php:282
+#: ../formulario.php:270
 msgid "Para publicar pulsa a continuación:"
 msgstr ""
 
-#: ../formulario.php:286
+#: ../formulario.php:274
 msgid "Publicar mensaje"
 msgstr ""
 
-#: ../formulario.php:302
+#: ../formulario.php:293
 msgid "Para publicar un mensaje debes iniciar sesión."
 msgstr ""
 
-#: ../formulario.php:314
+#: ../formulario.php:305
 msgid "usuario o contraseña incorrectos"
 msgstr ""
 
-#: ../formulario.php:318
+#: ../formulario.php:309
 msgid "usuario"
 msgstr ""
 
-#: ../formulario.php:322
-#: ../formulario.php:348
+#: ../formulario.php:313
+#: ../formulario.php:339
 msgid "contraseña"
 msgstr ""
 
-#: ../formulario.php:326
+#: ../formulario.php:317
 msgid "Recordarme"
 msgstr ""
 
-#: ../formulario.php:336
+#: ../formulario.php:327
 msgid "Si aún no estás registrado:"
 msgstr ""
 
-#: ../formulario.php:339
+#: ../formulario.php:330
 msgid "el nombre ya existe"
 msgstr ""
 
-#: ../formulario.php:340
+#: ../formulario.php:331
 msgid "nombre de usuario"
 msgstr ""
 
-#: ../formulario.php:341
+#: ../formulario.php:332
 msgid "sin espacios"
 msgstr ""
 
-#: ../formulario.php:343
+#: ../formulario.php:334
 msgid "correo asociado a otro usuario"
 msgstr ""
 
-#: ../formulario.php:351
+#: ../formulario.php:335
+msgid "correo electrónico"
+msgstr ""
+
+#: ../formulario.php:342
 msgid "parece que te has equivocado al teclear..."
 msgstr ""
 
-#: ../formulario.php:352
+#: ../formulario.php:343
 msgid "confirma tu contraseña"
 msgstr ""
 
-#: ../formulario.php:356
+#: ../formulario.php:347
 msgid "Registrarse"
 msgstr ""
 
-#: ../author.php:18
+#: ../author.php:16
 msgid "Datos:"
 msgstr ""
 
-#: ../author.php:26
+#: ../author.php:25
 msgid "Mensajes enviado por"
 msgstr ""
 
-#: ../author.php:50
-msgid "Palabras clave"
-msgstr ""
-
-#: ../author.php:54
-msgid "Imágenes"
-msgstr ""
-
-#: ../loop.single.php:37
+#: ../loop.single.php:38
+#: ../loopTerm.php:162
 msgid "Comentario"
 msgstr ""
 
-#: ../loop.single.php:38
+#: ../loop.single.php:39
+#: ../loopTerm.php:163
 msgid "Permalink"
 msgstr ""
 
-#: ../loop.single.php:43
+#: ../loop.single.php:44
+#: ../loopTerm.php:168
 msgid "Ver Video"
 msgstr ""
 
-#: ../loop.single.php:89
+#: ../loop.single.php:91
+#: ../loopTerm.php:215
 msgid "Editar"
 msgstr ""
 
-#: ../loop.single.php:141
+#: ../loop.single.php:143
+#: ../loopTerm.php:267
 msgid "Sin imagen"
 msgstr ""
 
-#: ../loop.single.php:205
+#: ../loop.single.php:207
 msgid "what if...? cities"
 msgstr ""
 
-#: ../explica.php:16
+#: ../functions.php:160
+msgid "Ningún caracter libre."
+msgstr ""
+
+#: ../functions.php:161
+msgid "1 caracter libre."
+msgstr ""
+
+#: ../functions.php:162
+msgid "caracteres libres."
+msgstr ""
+
+#: ../registro.php:97
+msgid "Tu usuario ha sido creado correctamente."
+msgstr ""
+
+#: ../explica.php:15
 msgid "Atrás"
 msgstr ""
 
-#: ../explica.php:38
+#: ../explica.php:37
 msgid "Adelante"
 msgstr ""
 
 #: ../loopTerm.php:55
-#: ../loop.php:29
 msgid "Paso anterior"
 msgstr ""
 
-#: ../loopTerm.php:329
-#: ../loop.php:434
+#: ../loopTerm.php:327
 msgid "Paso siguiente"
 msgstr ""
 
-#: ../login-form.php:62
-msgid "correo electrónico"
-msgstr ""
-
-#: ../loop.php:389
-#: ../loop.php:399
+#: ../loop.php:391
+#: ../loop.php:401
 msgid "Entradas anteriores"
 msgstr ""
 
-#: ../loop.php:390
-#: ../loop.php:400
+#: ../loop.php:392
+#: ../loop.php:402
 msgid "Entradas posteriores"
 msgstr ""
 
