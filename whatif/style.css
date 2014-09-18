@@ -308,12 +308,14 @@ top:-20px;
 	font-size: 1.5em;
 	font-weight: bold;
 	background-color: #fff;
+	color: #000;
 	height: 31px;
 	float: right;
 	margin-right: 66px;
 }
 .login-boton:hover {
 	background-color: #acf;
+	cursor: pointer;
 }
 .user-form form span {
 	float: right;
