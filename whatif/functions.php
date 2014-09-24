@@ -16,9 +16,15 @@ function whatif_theme_setup() {
 	    define('WHATIF_DOMAIN', $wic);
 	if (!defined('WHATIF_INSTALL_FOLDER'))
 	    define('WHATIF_INSTALL_FOLDER', $citymin);
+	if (!defined('WHATIF_ORGANIZATION'))
+	    define('WHATIF_ORGANIZATION', $organization);
+	if (!defined('WHATIF_KEYWORDS'))
+	    define('WHATIF_KEYWORDS', $keywords);
 
 	if (!defined('WHATIF_LOCATION_ADDRESS'))
 	    define('WHATIF_LOCATION_ADDRESS', $examplelocation);
+	if (!defined('WHATIF_LOCATION_CITY'))
+	    define('WHATIF_LOCATION_CITY', $location_city);
 	if (!defined('WHATIF_LOCATION_COUNTRY'))
 	    define('WHATIF_LOCATION_COUNTRY', $location_country);
 	if (!defined('WHATIF_GOOGLE_KEY'))
@@ -192,6 +198,7 @@ function whatif_load_scripts() {
 		);
 	}
 	if ( is_author() || is_page_template("lista.php") || is_page_template("img.php") || is_single() || is_page_template("msgmap.php") ) {
+		wp_enqueue_style( 'lightbox-css', get_template_directory_uri() . '/css/jquery.lightbox-0.5.css' );
 		wp_enqueue_script(
 			'lightbox',
 			get_template_directory_uri() . '/js/jquery.lightbox-0.5.js',

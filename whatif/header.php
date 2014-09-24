@@ -11,28 +11,19 @@
 
 <title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
 
-<meta content="Ecosistema Urbano" name="author" />
+<meta content="<?php echo WHATIF_ORGANIZATION ?>" name="author" />
 <meta content="<?php _e('Herramienta de participación urbana','whatif'); ?>" name="description" />
-<meta content="urbanismo, ecosistema urbano" name="keywords" />
-<meta content="Ecosistema Urbano" name="organization" />
-<meta content="Madrid, España" name="Locality" />
-<meta http-equiv="content-language" content="es" />
-
-<link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css">
+<meta content="<?php echo WHATIF_KEYWORDS ?>" name="keywords" />
+<meta content="<?php echo WHATIF_ORGANIZATION ?>" name="organization" />
+<meta content="<?php echo WHATIF_LOCATION_CITY. ", " .WHATIF_LOCATION_COUNTRY; ?>" name="Locality" />
 
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
-<?php if ( is_page("mensajes") || is_page("imagenes") || is_author() || is_single() || is_page("msgmap")) { ?>
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo("template_directory"); echo "/css/jquery.lightbox-0.5.css" ?>" media="screen" />
-<?php } ?>
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed suscription" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed suscription" href="<?php bloginfo('atom_url'); ?>" /> 
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-<?php wp_head(); ?>
+<?php wp_head();
 
-
-
-<?php
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET['valor']); } else { $positivonegativo = ""; }
 if ( is_page("formulario") && $positivonegativo == 'positivo' ) { ?>
 <script type="text/javascript">

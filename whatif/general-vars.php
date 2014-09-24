@@ -10,13 +10,18 @@ $wic = "yourdomain.com";
 // Put here your installation folder, small caps, as in 'tudominio.com/instalation'
 $citymin="instalation";
 
+// Organization behind the project
+$organization = "Ecosistema Urbano";
+// Site tags
+$keywords = "urbanismo, participación ciudadana, arquitectura social";
 
 // MAPS
 
 // Calle que aparecerá por defecto como ejemplo en la página de geolocalización
 $examplelocation ="Estanislao Figueras, 6, Madrid";
 
-// Country. This will be use to perform geo-searches
+// City and Country. This will be use to perform geo-searches
+$location_city = "Madrid";
 $location_country = "España";
 
 // Put here the Google Maps API key, specific for your domain
