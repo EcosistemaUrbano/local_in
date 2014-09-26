@@ -220,36 +220,33 @@ display:none;
 	cursor: pointer;
 	background-color: #000;
 }
-.navigation, .navigationLeft
+/*.navigation, .navigationLeft
 {
 position:relative;
 top:-20px;
+}*/
+.navigation {
+	height: 480px;
+	width: 50px;
 }
-.navigation a
-{
-    background: url("images/arrow_right.png") no-repeat scroll center center #FFFFFF;
-        display: block;
-    height: 80px;
-    width: 50px;
-    position:relative;
-    left:6px;
-    top:200px;
-    color:#000000;
-   
-    
+.navigation a {
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+	width: 50px;
+/*	position:relative;
+	left:6px;
+	top:200px;*/
+	color:#000000;
+	text-indent: -9999px;
 }    
-
-.navigationLeft a
-{
+.navigation-right a {
+	background: url("images/arrow_right.png") no-repeat scroll center center #FFFFFF;
+}
+.navigation-left a {
     background: url("images/arrow_left.png") no-repeat scroll center center #FFFFFF;
-        display: block;
-    height: 80px;
-    width: 50px;
-    position:relative;
-    left:-6px;
-    top:200px;
-    color:#000000; 
 }   
+
 #lightbox-image-details-caption
 {
  display:none !important;
@@ -562,6 +559,22 @@ cursor:pointer !important;
 	height: 480px;
 	position: relative;
 	clear: both;
+}
+#dosificador {
+	margin: 0 auto;
+/*	margin-bottom:-130px;*/
+	width: 960px;
+	height: 480px;
+	position: relative;
+	clear: both;
+}
+#dosificador #deslizante {
+	margin: 0 30px;
+	float: left;
+	width: 800px;
+	height: 545px;
+	/*overflow: hidden; not allow scrollbar */
+	/*position: relative;*/
 }
 
 #dosificadorForm #deslizanteForm {

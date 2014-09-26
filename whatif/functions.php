@@ -83,6 +83,9 @@ function whatif_theme_setup() {
 	// load language files
 	load_theme_textdomain('whatif', get_template_directory() . '/languages');
 
+	// custom loops for each template
+	add_filter( 'pre_get_posts', 'whatif_custom_args_for_loops' );
+
 } // END theme setup function
 
 // Set up media options
@@ -217,5 +220,11 @@ function whatif_load_scripts() {
 	}
 } // end load js scripts to avoid conflicts
 
+// custom args for loops
+function whatif_custom_args_for_loops( $query ) {
+	if ( !is_admin() && is_author() && $query->is_main_query() ) {
+		$query->set( 'posts_per_page','3');
+	}
 
+} // END custom args for loops
 ?>
