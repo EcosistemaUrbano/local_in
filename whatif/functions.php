@@ -118,15 +118,6 @@ function get_page_id($page_name){
 	return $page_name;
 }
 
-// Custom dashboard logo
-function whatif_custom_logo() {
-	echo '
-	<style type="text/css">
-	#header-logo { background-image: url('.get_bloginfo('template_directory').'/images/dashboard-logo.png) !important; }
-	</style>
-	';
-}
-
 // Custom menus: register theme locations
 function whatif_register_menus() {
 	if ( function_exists( 'register_nav_menus' ) ) {
