@@ -3,9 +3,6 @@
   
 
 <div id="epi">
-
-
-
 <?php
 	// left links
 	$lf_out = "<ul class='epi-lf'>";
@@ -78,8 +75,6 @@ if ( $menu != '' ) {
 //		$menu_out .= "</ul>";
 //	echo $menu_out;
 }
-
-
 ?>
 
 </div>

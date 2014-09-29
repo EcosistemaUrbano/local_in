@@ -364,7 +364,7 @@ float:left;'
 </style>    
 
 </head>
-<body onload="load()" onunload="GUnload()">
+<body <?php body_class(); ?> onload="load()" onunload="GUnload()">
 
 
 
@@ -412,38 +412,6 @@ top:60px;
 
 
 <?php }  
-
- elseif ( is_single() ) { ?>
-
-<style type="text/css">
-#epi
-{
- top:89px;
-}
-
-</style>
-
-
-</head>
-
-
-<?php }
-
- elseif ( is_author() ) { ?>
-
-<style type="text/css">
-#epi
-{
- top:70px;
-}
-
-</style>
-
-
-</head>
-
-
-<?php } 
 
   elseif ( is_page('presentacion-consulta') || is_page('presentacion-participa')) { ?>
 
@@ -844,7 +812,7 @@ float:left;'
 </style> 
 
 </head>
-<body onload="load()" onunload="GUnload()">
+<body <?php body_class(); ?> onload="load()" onunload="GUnload()">
 
 
 <?php } 
@@ -1316,7 +1284,7 @@ function showAddress() {
 
 
 </head>
-<body onload="load()" onkeypress="return pulsar(event)" >
+<body <?php body_class(); ?> onload="load()" onkeypress="return pulsar(event)" >
 
 <?php } else { // if not map ?>
 
@@ -1325,6 +1293,7 @@ function showAddress() {
 
 
 </head>
+<body <?php body_class(); ?>>
 
 
 <?php } ?>

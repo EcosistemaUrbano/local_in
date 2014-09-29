@@ -162,6 +162,9 @@ body {
 	position:relative;
 	top:60px;
 }
+.single #epi {
+	top: 0;
+}
 .epi-lf {
 	position: absolute;
 	left: 0;
@@ -1042,13 +1045,15 @@ input.boton-negro {
 	right: 0;
 	bottom: 0;
 }
-.mess-tags li {
+.mess-tags li,
+.messSingle-tags li {
 	display: inline;
 	margin-left: 10px;
 	padding: 3px 5px;
 	padding-top:5px;
 }
-.mess-tags li a {
+.mess-tags li a,
+.messSingle-tags li a {
 	color: #fff;
 	font-size: 1.2em;
 	line-height: 1.7em;
@@ -1144,21 +1149,46 @@ top:-475px;
     top: -6px;
     float:left;
 }
-#titlesingle
-{
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 180px;
-    margin-top: 61px;
-}
 .messSingle {
     height: 180px;
-    margin-bottom: 100px;
     position: relative;
     width: 800px;
-    left:50px;
-    }
-    
+}
+.messSingle-text,
+.messSingle a {
+	font-weight: bold;
+}
+.messSingle-img {
+	float: left;
+	height: 80px;
+}
+.messSingle-aut,
+.messSingle-text {
+	margin-left: 100px;
+}
+.messSingle-aut {
+	font-size: 1.2em;
+	line-height: 1em;
+	padding: 8px 0;
+}
+.messSingle-meta,
+.messSingle-extra,
+.messSingle-social,
+.messSingle-cats {
+	display: inline-block;
+	vertical-align: middle;
+}
+.messSingle-text {
+	font-size: 2em;
+	line-height: 1.3em;
+}
+.messSingle-context {
+	clear: both;
+}
+.messSingle-tags {
+	float: right;
+}
+
 #lightbox-nav-btnNext, #lightbox-nav-btnPrev, #lightbox-image-details-currentNumber
 {
  display:none !important;

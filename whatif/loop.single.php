@@ -1,30 +1,8 @@
 <?php
-$id = get_the_ID();
-
-
-//$imagen = get_post_meta($post->ID, "imagen", $single = true);
-
-$nombre =get_permalink($id);
-
-
-	$count_a = -1;
-	$count = 0;
-
-	$count_a++;
-	$count++;
-//	$abrir = $abrir + $inc;
-//	$cerrar = $cerrar + $inc;
-if ( $count_a == 0 || $count_a % 3 == 0 ) {
-
-  
-
-//if ( $count_a == 0 || $count_a == 3 || $count_a == 6) {
-	$mess_out = "<div class='unique lista deslizaMess'>";
-//	$test = $count % 3;
-//	$mess_out .= $test;
-}
+$mess_out = "<div class='unique lista'>";
 
 $post_ID = get_the_ID();
+$nombre =get_permalink();
 
 	$mess_author = get_the_author(); // the author
 	$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
@@ -35,7 +13,6 @@ $post_ID = get_the_ID();
 	$coor = get_post_meta($post->ID, "coordenadas", true);
 	$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
     $video = get_post_meta($post->ID, "video", $single = true);
-    $comentario = __('Comentario','whatif') . $post_ID;
     $comentario = __('Permalink','whatif');
     
      $tituloenviar =  substr($mess_content,0,20);
@@ -47,9 +24,6 @@ $post_ID = get_the_ID();
 	        $videomuestra="";
 	  };
    
-
-	
-	
 	 //  Sistema de votaciones
 	 
 	 
@@ -92,7 +66,7 @@ $votacion = "";
 	else { $mess_edit = ""; }
 
 	// the categories
-	$mess_cats = "<ul class='mess-cats'>";
+	$mess_cats = "<ul class='messSingle-cats'>";
 	foreach ( get_the_category() as $categ ) {
 		$categoryID = $categ->term_id;
 		$categLink = get_category_link($categ->term_id);
@@ -126,12 +100,8 @@ $votacion = "";
 		    $imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail');	
 			//$img_thumb = wp_get_attachment_image($attachment->ID, 'thumbnail');
 		$mess_img = "
-		<div class='mess-img'>
-		
+		<div class='messSingle-img'>
 		$imagenLink
-			
-			
-			
 		</div>
 		";
 
@@ -139,7 +109,7 @@ $votacion = "";
 	} else {
 		$img_url = WHATIF_BLOGTHEME."/images/default.png";
 		$mess_img = "
-		<div class='mess-img'>
+		<div class='messSingle-img'>
 			<img src='$img_url' alt='". __('Sin imagen','whatif') . "' />
 		</div>
 		";
@@ -148,7 +118,7 @@ $votacion = "";
 	// the tags
 	$terms_pl = wp_get_post_terms( $post->ID, 'positivo' );
 	$terms_mn = wp_get_post_terms( $post->ID, 'negativo' );
-		$mess_tags = "<ul class='mess-tags'>";
+		$mess_tags = "<ul class='messSingle-tags'>";
 	foreach ( $terms_pl as $term_pl ) {
 		$term_link_pl = get_term_link("$term_pl->slug", 'positivo');
 		$mess_tags .= "<li class='bg-p'><a  href='" .WHATIF_BLOGURL. "/vistas/mensajes?tagpn=positivo&tag2=$term_pl->name'>$term_pl->name</a></li>"; 
@@ -160,116 +130,39 @@ $votacion = "";
 	}
 		$mess_tags .= "</ul>";
 
-if ( is_author() ) { // if author page
 $mess_out .= "
 	<div class='messSingle'>
-	$mess_img
-		<div class='mess-aut'><div style='float:left'><a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='" .WHATIF_BLOGURL. "/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra</div>$votacion <div class='socialmedia'> <a target='_blank' name='fb_share' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a><a target='_blank' href='http://twitter.com/?status=Estoy leyendo: $mess_content <a href=\"http://whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl\">$tituloenviar</a>' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a><a target='_blank' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='$mess_perma'>$comentario</a>  $mess_edit</div></div><div class='clearer'></div>
-		
-		<div class='mess-text'>$mess_content</div>
-		$mess_cats
-		$mess_tags
-	    
-	</div>
-	<div class='clearer'></div>
-";
-
-} else {
-$mess_out .= "
-	<div class='messSingle'>
-	$mess_img
-		<div class='mess-aut'><div style='float:left'><a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='" .WHATIF_BLOGURL. "/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra</div>$votacion <div class='socialmedia'> <a target='_blank' name='fb_share' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a><a target='_blank' href='http://twitter.com//?status=Estoy leyendo: $mess_content <a href=\"http://whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl\">$tituloenviar</a>' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a><a target='_blank' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='$mess_perma'>$comentario</a>  $mess_edit</div></div><div class='clearer'></div>
-		
-		<div class='mess-text'>$mess_content</div>
-		$mess_cats
-		$mess_tags
-
-	</div>
-	<div class='clearer'></div>
-";
-}
-
-if ( $count % 3 == 0 ) {
-	$mess_out .= "</div><!-- end class unique -->";
-}
-
-
-
-
-if ( $count % 3 != 0 ) {
-$mess_out .= "</div><!-- end class unique -->";
-}
-
-$mess_out .= "</div></div></div><!-- end ids dosificadores -->";
-
-?>
-
-  <div id="titlesingle"><?php _e('what if...? cities','whatif'); echo " | ". WHATIF_SEO_BLOGNAME; ?> </div>
-
-
-<?php
-
-
-echo $mess_out;
-
-
-
-
-?>
-
-<div id="post-<?php the_ID(); ?>" >
-
-
-
-
-
-
-
-
-<?php
-/*
-
-	<div class="msg-img" style="background: url('http://whatifcities.com/imagen/<?php echo "$imagen"; ?>') center center no-repeat;">
-		<h3><?php the_title(); ?></h3>
-		<a style ="width:460px;height:460px;display:block;" href="http://whatifcities.com/imagen/<?php echo "$imagen"; ?>" title="Ver imagen original" target="_blank"></a>  
-                
-                <div id="divCompartir">
-                
-                
-                <a style="display:block; margin-bottom:10px;" name="fb_share" type="button" href="http://www.facebook.com/sharer.php">Compartir</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-                
-                
-                
-                                       <a target="_blank" style="display:block; margin-bottom:10px;"
-                    href="http://www.tuenti.com/share?url=<?php echo $nombre; ?>"
-                    
-
-                    
-                 
-                    <img src="http://ayudawordpress.com/wp-content/plugins/compartir-en-tuenti/imagenes/claro_castellano.png" />
-                      </a>
-                      
-                      
-                      <a style="display:block; position:relative; left:10px;" href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="es"></a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-                      
-                   </div>   
-                      
-	</div><!-- end class msg-img -->
-
-
-
-		<div class="msg-desc">
-			<?php the_content(); ?>
-
+		$mess_img
+		<div class='messSingle-aut'>
+			<div class='messSingle-meta'>
+				<a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='" .WHATIF_BLOGURL. "/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra
+			</div>
+			$votacion
+			<div class='messSingle-social'>
+				<a target='_blank' name='fb_share' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a>
+				<a target='_blank' href='http://twitter.com//?status=Estoy leyendo: $mess_content <a href=\"http://whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl\">$tituloenviar</a>' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a>
+				<a target='_blank' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a>
+			</div>
+			<div class='messSingle-extra'>
+				<a href='$mess_perma'>$comentario</a>
+				$mess_edit
+			</div>
 		</div>
-		
-		*/
+		<div class='messSingle-text'>$mess_content</div>
+		<div class='messSingle-context'>
+		$mess_cats
+		$mess_tags
+		</div>
+	</div>
+";
 
-  ?>              
+$mess_out .= "</div><!-- end class unique -->";
 
-		
+?>
+
+  <div class="tit-peq"><h2><?php _e('what if...? cities','whatif'); echo " | ". WHATIF_SEO_BLOGNAME; ?></h2></div>
 
 
-	</div> 
-                
-
+<?php
+echo $mess_out;
+?>
