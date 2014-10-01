@@ -11,6 +11,12 @@ if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2']
 
 $plvaria = "pl-mini.png"; $mnvaria = "mn-mini.png";
 
+if ($pn == "positivo" AND $pn2=="positivo") { $plvaria="pl-big.png"; }
+if ($pn == "negativo" AND $pn2=="negativo") { $mnvaria="mn-big.png"; }
+
+if ($pn == "positivo" AND $pn2!="positivo") { $pn2="positivo"; $plvaria="pl-big.png"; }
+if ($pn == "negativo" AND $pn2!="negativo" ) { $pn2="negativo"; $mnvaria = "mn-big.png"; }
+
 //$count_posts = wp_count_posts();
 //$published_posts = $count_posts->publish;
 

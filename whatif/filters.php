@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 	// the categories filter
 	$perma = get_permalink();
 	$filter_out = "<ul class='filter-cats'>";
@@ -33,8 +29,7 @@
 		$slug= "$categ->slug";
 		if ( function_exists('get_cat_icon') ) {
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true");
-		}
-		
+		} else { $categImg = ""; }
 		
 		$identificador = $categ->slug;
 		$identificador = str_replace("-","",$identificador);
@@ -48,8 +43,6 @@
 			<div class='filter-tit'><a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categ->category_count</a></div>
 			</li>
 		";
-		
-
 		
 	}
 	$filter_out .= "</ul><!-- end class mess-cats -->";
