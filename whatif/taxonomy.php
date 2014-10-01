@@ -7,7 +7,7 @@ if ( array_key_exists('filtro', $_GET) ) { $filtro= sanitize_text_field($_GET['f
 // this page title
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
-	include "vistas-tit-terms.php";
+	include "vistas-tit.php";
 	endwhile;
 else:
 endif;
