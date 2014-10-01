@@ -88,31 +88,19 @@ $votacion = "";
 	// the image
 	$args = array( 'post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $post->ID ); 
 	$attachments = get_posts($args);
-//	if ( has_post_thumbnail() ) {
 	if ( $attachments ) {
-//		$img = get_the_post_thumbnail($post->ID, 'thumbnail');
-
 		foreach ( $attachments as $attachment ) {
-			//$img =  apply_filters( 'the_title' , $attachment->post_title );
-			//$img_link =  $attachment->guid;
-	    $img_link=  wp_get_attachment_url( $post_ID );
-	    
-		    $imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail');	
-			//$img_thumb = wp_get_attachment_image($attachment->ID, 'thumbnail');
-		$mess_img = "
-		<div class='messSingle-img'>
-		$imagenLink
-		</div>
-		";
+			//$imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail', true);	
+			$image_link = get_attachment_link($attachment->ID). "?ref=message";
+			$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
+			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
+			$mess_img = "<div class='messSingle-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 
+			//$mess_img = "<div class='messSingle-img'>" .$imagenLink. "</div>";
 		}
 	} else {
 		$img_url = WHATIF_BLOGTHEME."/images/default.png";
-		$mess_img = "
-		<div class='messSingle-img'>
-			<img src='$img_url' alt='". __('Sin imagen','whatif') . "' />
-		</div>
-		";
+		$mess_img = "<div class='messSingle-img'><img src='$img_url' alt='". __('Sin imagen','whatif') . "' /></div>";
 	}
 
 	// the tags
@@ -160,7 +148,7 @@ $mess_out .= "</div><!-- end class unique -->";
 
 ?>
 
-  <div class="tit-peq"><h2><?php _e('what if...? cities','whatif'); echo " | ". WHATIF_SEO_BLOGNAME; ?></h2></div>
+  <div class="tit-peq"><h2><?php _e('what if...? cities','whatif'); echo " | ". get_the_title(); ?></h2></div>
 
 
 <?php

@@ -66,59 +66,16 @@ while ( have_posts() ) : the_post();
 	// the image
 	$args = array( 'post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $post->ID ); 
 	$attachments = get_posts($args);
-	//if ( has_post_thumbnail() ) {
 	if ( $attachments ) {
-		//$img = get_the_post_thumbnail($post->ID, 'thumbnail');
-
 		foreach ( $attachments as $attachment ) {
-			//$img =  apply_filters( 'the_title' , $attachment->post_title );
-			$img_link =  $attachment->guid;
-			//$img_url = the_attachment_link( $attachment->ID , false );
-			$img_thumb = wp_get_attachment_image($attachment->ID, 'thumbnail');
-			
-	         $img_link=  wp_get_attachment_url( $attachment->ID );
-	    
-		    $imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail');			
-			//<a href='$img_link'>$img_thumb</a>
-		
-		$mess_out .= "
-		<div class='mosac-img'>
-			$imagenLink
-		</div>
-		
-
-		
-		
-		";
-
+			//$imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail',true);
+			$image_link = get_attachment_link($attachment->ID). "?ref=mosaic";
+			$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
+			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
+			$mess_out .= "<div class='mosac-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 		}
 	}
 	
-	/*elseif (!$attachments) {
-	
-	$video = get_post_meta($post->ID, "video", $single = true);
-	
-   
-      $imagenmin = miniatura_web($video, "thumbalizr", "1");
-   
-      echo '<img src="'.$imagen.'"><br>';
-
-	
-	
-	
-	
-	 if ($video !="")
-	 {
-	
-		$mess_out .= "
-		<div class='mosac-img'>
-			<a href='$video'><img src='$imagenmin' /></a>
-		</div>
-		";
-		}
-
-	}*/
-
 endwhile;
 
 $mess_out .= "</div><!-- end class unique mosac -->";

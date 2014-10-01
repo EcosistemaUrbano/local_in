@@ -71,9 +71,6 @@ function whatif_theme_setup() {
 	// Set up media options: sizes, featured images...
 	add_action( 'init', 'whatif_media_options' );
 
-	// Custom dashboard logo
-	add_action('admin_head', 'whatif_custom_logo');
-
 	// Custom menus: register theme locations
 	add_action( 'init', 'whatif_register_menus' );
 
@@ -92,6 +89,15 @@ function whatif_theme_setup() {
 function whatif_media_options() {
 	/* Add theme support for post thumbnails (featured images). */
 	add_theme_support( 'post-thumbnails', array( 'post','page') );
+	/* set up image sizes*/
+	update_option('thumbnail_size_w', 80);
+	update_option('thumbnail_size_h', 80);
+	update_option('thumbnail_crop', 1);
+	update_option('medium_size_w', 480);
+	update_option('medium_size_h', 480);
+	update_option('large_size_w', 800);
+	update_option('large_size_h', 800);
+
 } // END Set up media options
 
 // Create custom Taxonomies
@@ -190,24 +196,6 @@ function whatif_load_scripts() {
 			'0.1',
 			FALSE
 		);
-	}
-	if ( is_author() || is_page_template("lista.php") || is_page_template("img.php") || is_single() || is_page_template("msgmap.php") ) {
-		wp_enqueue_style( 'lightbox-css', get_template_directory_uri() . '/css/jquery.lightbox-0.5.css' );
-		wp_enqueue_script(
-			'lightbox',
-			get_template_directory_uri() . '/js/jquery.lightbox-0.5.js',
-			array('jquery'),
-			'0.5',
-			FALSE
-		);
-		wp_enqueue_script(
-			'lightbox-options',
-			get_template_directory_uri() . '/js/whatif.lightbox.options.js',
-			array('jquery'),
-			'0.5',
-			FALSE
-		);
-
 	}
 } // end load js scripts to avoid conflicts
 

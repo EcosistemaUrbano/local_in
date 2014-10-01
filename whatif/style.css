@@ -988,6 +988,10 @@ input.boton-negro {
 .lista {
 	height: 480px;
 }
+.attachment .lista {
+	text-align: center;
+}
+
 .mess {
     height: 120px;
     position: relative;
