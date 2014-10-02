@@ -4,36 +4,36 @@ Template Name: Login
 */
 get_header();
 
-if ( array_key_exists('ref', $_POST) ) { $ref = sanitize_text_field($_POST['ref']); } else { $ref = ""; }
+if ( array_key_exists('ref', $_POST) ) { $ref = sanitize_text_field($_POST['ref']); } else { $ref = WHATIF_BLOGURL; }
 if ( array_key_exists('valor', $_POST) ) { $valor = sanitize_text_field($_POST['valor']); } else { $valor = ""; }
 
 $creds = array();
-$creds['user_login'] = sanitize_text_field($_POST['nombre']);
-$creds['user_password'] = sanitize_text_field($_POST['pass']);
-$creds['remember'] = sanitize_text_field($_POST['remember']);
+if ( array_key_exists('nombre', $_POST) ) { $creds['user_login'] = sanitize_text_field($_POST['nombre']); }
+if ( array_key_exists('pass', $_POST) ) { $creds['user_password'] = sanitize_text_field($_POST['pass']); }
+if ( array_key_exists('remember', $_POST) ) { $creds['remember'] = sanitize_text_field($_POST['remember']); }
 $user = wp_signon( $creds, false );
 
 if ( is_wp_error($user) ) {
 
-   if ($valor !="")
-   {
-//	$error_string = $user->get_error_message();
-	$ref .= "?login=error&valor=$valor";
-	wp_redirect($ref);
-	exit;
-	}
-	if ($valor=="")
-	{
-	$ref = WHATIF_BLOGURL;
-	wp_redirect($ref);
-	exit;
-	
-	}
+	$ref = WHATIF_BLOGURL. "/user-sesion";
+//	if ($valor !="") {
+	//	$error_string = $user->get_error_message();
+//		$ref .= "?login=error&valor=$valor";
+		$ref .= "?login=error";
+		wp_redirect($ref);
+		exit;
+//	}
+//	if ($valor=="") {
+//		wp_redirect($ref);
+//		exit;
+//	}
+
 } else {
-	$ref .= "?valor=$valor";
+//	$ref .= "?valor=$valor";
 	wp_redirect($ref);
 	exit;
 }
+
 //   echo $user->get_error_message();
 
 

@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 /*
 Template Name: Formulario
 */
@@ -284,77 +284,14 @@ elseif ( $positivonegativo == 'negativo' ) {
 </div><!-- end id dosificadorForm -->
 
 <?php } else { // if user not login
-	$login_bg = "bg-n";
-	$login_color = "color-n";
+//	$login_bg = "bg-n";
+//	$login_color = "color-n";
+	$ref = get_permalink(). "?valor=" .$positivonegativo;
+	$redirect = WHATIF_BLOGURL. "/user-sesion?ref=" .esc_url($ref);
+	wp_redirect($redirect);
+	exit;
 ?>
-	<div class="unique">
-		<div class="unique-text2 <?php echo $login_bg ?>">
-		<p style="font-size:28px;line-height:35px;"><?php _e('Para publicar un mensaje debes iniciar sesión.','whatif'); ?></p>
-
-	<?php // login form
-	if ( array_key_exists('fail', $_GET) ) { $fail = $_GET['fail']; } else { $fail = ""; }
-	if ( array_key_exists('login', $_GET) ) { $logerror = $_GET['login']; } else { $logerror = ""; }
-	$perma = get_permalink();
-	$login_out ="
-	<div class='user-form' id='login-form'>
-	<form action='".WHATIF_BLOGURL."/login' method='post'>
-	";
-	if ( $logerror != '' ) :
-	$login_out .= "
-		<input class='login-caja error' type='text' name='nombre' value='" . __('usuario o contraseña incorrectos','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('usuario o contraseña incorrectos','whatif') . "';}\" onfocus=\"if(this.value == '" . __('usuario o contraseña incorrectos','whatif') . "') {this.value = '';}\" />
-	";
-	else :
-	$login_out .= "
-		<input style='position:relative; top:-33px;' class='login-caja ".$login_color."' type='text' name='nombre' value='" . __('usuario','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('usuario','whatif') . "';}\" onfocus=\"if(this.value == '" . __('usuario','whatif') . "') {this.value = '';}\" />
-	";
-	endif;
-	$login_out .= "
-		<input style='position:relative; top:-33px;' class='login-caja ".$login_color."' type='password' name='pass' value='" . __('contraseña','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('contraseña','whatif') . "';}\" onfocus=\"if(this.value == '" . __('contraseña','whatif') . "') {this.value = '';}\" />
-		<input type='hidden' name='ref' value='".$perma."' />
-		<input type='hidden' name='valor' value='".$positivonegativo."' />
-		<input style='position:relative; top:-33px;' class='login-boton ".$login_color."' type='submit' value='" . __('Iniciar sesión','whatif') . "' name='login' />
-		<fieldset style='position:relative; top:-33px;' class='login-check'><label>" . __('Recordarme','whatif') . "</label>
-			<input type='checkbox' name='remember' value='true' />
-		</fieldset>
-
-	</form>
-	</div>
-	";
-
-	$reg_out ="
-	<div class='user-form " .$login_bg. "' id='reg-form'>
-		<h3>" . __('Si aún no estás registrado:','whatif') . "</h3>
-	<form action='".WHATIF_BLOGURL."/registro' method='post'>
-	";
-	if ( $fail == 'name' ) { $reg_out .="<input class='login-caja error' type='text' name='nombre' value='" . __('el nombre ya existe','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('el nombre ya existe','whatif') . "';}\" onfocus=\"if(this.value == '" . __('el nombre ya existe','whatif') . "') {this.value = '';}\" />"; }
-	else { $reg_out .="<input class='login-caja ".$login_color."' type='text' name='nombre' value='" . __('nombre de usuario','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('nombre de usuario','whatif') . "';}\" onfocus=\"if(this.value == '" . __('nombre de usuario','whatif') . "') {this.value = '';}\" />"; }
-	$reg_out .= "<span>" . __('sin espacios','whatif') . "</span>";
-
-	if ( $fail == 'mail' ) { $reg_out .="<input class='login-caja error' type='text' name='mail' value='" . __('correo asociado a otro usuario','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('correo asociado a otro usuario','whatif') . "';}\" onfocus=\"if(this.value == '" . __('correo asociado a otro usuario','whatif') . "') {this.value = '';}\" />"; }
-	else { $reg_out .= "<input class='login-caja ".$login_color."' type='text' name='mail' value='" . __('correo electrónico','whatif') . "' onblur=\"if(this.value == '') {this.value = '" . __('correo electrónico','whatif') . "';}\" onfocus=\"if(this.value == '" . __('correo electrónico','whatif') . "') {this.value = '';}\" />"; }
-
-	$reg_out .= "
-		<input class='login-caja ".$login_color."' type='password' name='pass' value='' />
-		<span>" . __('contraseña','whatif') . "</span>
-		<input class='login-caja ".$login_color."' type='password' name='pass2' value='' />
-	";
-	if ( $fail == 'pass' ) { $reg_out .= "<span class='error'>" . __('parece que te has equivocado al teclear...','whatif') . "</span>"; }
-	else { $reg_out .= "<span>" . __('confirma tu contraseña','whatif') . "</span>"; }
-
-	$reg_out .=  "
-		<input type='hidden' name='ref' value='".$perma."' />
-		<input class='login-boton ".$login_color."' type='submit' value='" . __('Registrarse','whatif') . "' name='registro' />
-	</form>
-	</div>
-	";
-	echo $login_out;
-	echo $reg_out;
-
-		?>
-
-		</div>
-	</div>
-<?php } ?>
+<?php } // end if user is logged in ?>
 
 
-<?php get_footer(); ?>
+<?php get_footer(); ob_end_flush(); ?>
