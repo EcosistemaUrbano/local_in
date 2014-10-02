@@ -4,7 +4,7 @@ Template Name: Login
 */
 get_header();
 
-if ( array_key_exists('ref', $_POST) ) { $ref = sanitize_text_field($_POST['ref']); } else { $ref = WHATIF_BLOGURL; }
+if ( array_key_exists('ref', $_POST) && sanitize_text_field($_POST['ref']) != '' ) { $ref = sanitize_text_field($_POST['ref']); } else { $ref = WHATIF_BLOGURL; }
 if ( array_key_exists('valor', $_POST) ) { $valor = sanitize_text_field($_POST['valor']); } else { $valor = ""; }
 
 $creds = array();
