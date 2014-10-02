@@ -24,9 +24,9 @@ if ( is_wp_error($user) ) {
 	}
 	if ($valor=="")
 	{
-	$ref = "http://whatifcities.com/".WHATIF_INSTALL_FOLDER."/formulario/?valor=positivo";
+	$ref = WHATIF_BLOGURL;
 	wp_redirect($ref);
-	exit;	
+	exit;
 	
 	}
 } else {

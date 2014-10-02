@@ -5,25 +5,24 @@ Template Name: Formulario de login y registro
 
 get_header();
 
-	$tags_tit = get_the_title();
-	$bg = "bg-n";
-	$color = "color-n";
-	$tit_out = "
-	<div class='tit-peq'>
-		<h2>$tags_tit</h2>
-	</div>
-	";
-	echo $tit_out;
+$tags_tit = get_the_title();
+$bg = "bg-n";
+$color = "color-n";
 ?>
 	<div class="unique">
 		<div class="unique-text <?php echo $bg ?>">
-		<p><?php _e('Iniciar sesión','whatif'); ?></p>
+		<h1><?php echo $tags_tit ?></h1>
 
-	<?php // login form
+<?php if ( is_user_logged_in() ) { ?>
+
+		<p><?php _e('Ya has iniciado sesión. Vuelve a la portada para publicar un mensaje o consultar los ya publicados.','whatif'); ?></p>
+
+<?php } else {
+	// login form
 	if ( array_key_exists('fail', $_GET) ) { $fail = sanitize_text_field($_GET['fail']); } else { $fail = ""; }
 	if ( array_key_exists('login', $_GET) ) { $logerror = sanitize_text_field($_GET['login']); } else { $logerror = ""; }
 	if ( array_key_exists('ref', $_GET) ) { $perma = sanitize_text_field($_GET['ref']); } else { $perma = ""; }
-	$login_out ="
+	$login_out = "
 	<div class='user-form' id='login-form'>
 	<form action='".WHATIF_BLOGURL."/login' method='post'>
 	";
@@ -48,7 +47,7 @@ get_header();
 	</div>
 	";
 
-	$reg_out ="
+	$reg_out = "
 	<div class='user-form' id='reg-form'>
 		<h3>" . __('Si aún no estás registrado:','whatif') . "</h3>
 	<form action='".WHATIF_BLOGURL."/registro' method='post'>
@@ -77,7 +76,7 @@ get_header();
 	echo $login_out;
 	echo $reg_out;
 
-		?>
+} // end if user is logged in ?>
 
 		</div>
 	</div>

@@ -266,10 +266,6 @@ top:-20px;
 #reg-form {
     height: 262px;
     margin-left: 388px;
-    padding-left: 11px;
-    padding-top: 69px;
-    position: relative;
-    top: -104px;
 }
 .user-form h3 {
 	font-size: 1.5em;
@@ -494,10 +490,14 @@ color: #0cf;
 	margin-top: 160px;
 }
 .unique-text {
-	width: 770px;
+	width: 776px;
 	height: 320px;
 	padding: 6px 12px;
 	margin-top: 160px;
+}
+.unique-text h1 {
+	overflow: hidden;
+	height: 0;
 }
 .unique-text p {
 	color: #fff;
