@@ -22,6 +22,7 @@ $color = "color-n";
 	if ( array_key_exists('fail', $_GET) ) { $fail = sanitize_text_field($_GET['fail']); } else { $fail = ""; }
 	if ( array_key_exists('login', $_GET) ) { $logerror = sanitize_text_field($_GET['login']); } else { $logerror = ""; }
 	if ( array_key_exists('ref', $_GET) ) { $perma = sanitize_text_field($_GET['ref']); } else { $perma = ""; }
+	
 	$login_out = "
 	<div class='user-form' id='login-form'>
 	<form action='".WHATIF_BLOGURL."/login' method='post'>
@@ -73,6 +74,13 @@ $color = "color-n";
 	</form>
 	</div>
 	";
+
+	if ( array_key_exists('signup', $_GET) && sanitize_text_field($_GET['signup']) == 'success' ) {
+		echo "<p>" .__('Ya estás registrado. Ahora puedes iniciar sesión con tu nombre de usuario y contraseña.','whatif'). "</p>";
+		$reg_out = "";
+	}
+
+
 	echo $login_out;
 	echo $reg_out;
 
