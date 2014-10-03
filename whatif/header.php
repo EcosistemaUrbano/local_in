@@ -25,7 +25,7 @@
 <?php wp_head();
 
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET['valor']); } else { $positivonegativo = ""; }
-if ( is_page("formulario") && $positivonegativo == 'positivo' ) { ?>
+if ( is_page_template("formulario.php") && $positivonegativo == 'positivo' ) { ?>
 <script type="text/javascript">
 <?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
 jQuery(document).ready(function($){
@@ -109,10 +109,10 @@ jQuery(document).ready(function($){
 <?php } ?>
 </script>
 
-<?php } elseif ( is_page("formulario") && $positivonegativo == 'negativo' ) { ?>
+<?php } elseif ( is_page_template("formulario.php") && $positivonegativo == 'negativo' ) { ?>
 <script type="text/javascript">
-<?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
-jQuery(document).ready(function($){
+	<?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
+	jQuery(document).ready(function($){
 	$('#<?php echo "$categ->slug" ?>').bind('click', function(){
 	 if ( $(this).hasClass('<?php echo WHATIF_STYLE_NEGATIVE_COLOR ?>') ) {
 		$(this).children('img').attr('src','<?php bloginfo('template_directory'); echo "/images/$categ->slug.png"; ?>');
@@ -182,139 +182,94 @@ jQuery(document).ready(function($){
 		}		
 	});
 });
-<?php } ?>
-</script>
-<?php } ?>
+	<?php } ?>
+	</script>
+<?php } // end if formulario ?>
 	
-<?php // $xajax->printJavascript("/xajax/"); //linea que ejecuta el ajax ?>  	
+<?php // if map for single
+if ( is_page('msgmap') ) {
 
-
-<?php  if ( is_page('msgmap') ) { ?>
-
-<?php
-if ( array_key_exists('coor', $_GET) ) { $coor= sanitize_text_field($_GET['coor']); } else { $coor = ""; }
-if ( array_key_exists('cat', $_GET) ) { $cat= sanitize_text_field($_GET['cat']); } else { $cat = ""; }
-if ( array_key_exists('pos', $_GET) ) { $pos= sanitize_text_field($_GET['pos']); } else { $pos = ""; }
-if ( array_key_exists('ID', $_GET) ) { $ID= sanitize_text_field($_GET['ID']); } else { $ID = ""; }
-if ( array_key_exists('id', $_GET) ) { $id= sanitize_text_field($_GET['id']); } else { $id = ""; }
-
+	if ( array_key_exists('coor', $_GET) ) { $coor= sanitize_text_field($_GET['coor']); } else { $coor = ""; }
+	if ( array_key_exists('cat', $_GET) ) { $cat= sanitize_text_field($_GET['cat']); } else { $cat = ""; }
+	if ( array_key_exists('pos', $_GET) ) { $pos= sanitize_text_field($_GET['pos']); } else { $pos = ""; }
+	if ( array_key_exists('ID', $_GET) ) { $ID= sanitize_text_field($_GET['ID']); } else { $ID = ""; }
+	if ( array_key_exists('id', $_GET) ) { $id= sanitize_text_field($_GET['id']); } else { $id = ""; }
 
 	// the image
 	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $ID ); 
 	$attachments = get_posts($args);
 
 	if ( $attachments ) {
-
-
 		foreach ( $attachments as $attachment ) {
-
-	    $img_link=  wp_get_attachment_url( $ID );
-	    
+			$img_link=  wp_get_attachment_url( $ID );
 		    $imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail');	
+		  $imagenLink = str_replace("\"","'",$imagenLink);
+		}
+	}
+	query_posts( "p=$id" );
 
-  $imagenLink = str_replace("\"","'",$imagenLink);
+	if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-
-
-}
-
-}
-
-query_posts( 'p=$id' );
-
-
-
-if ( have_posts() ) :
-       while ( have_posts() ) : the_post();
-
-
-$post_ID = get_the_ID();
-
-	//$mess_author = get_the_author(); // the author
-	$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
-	$mess_date = get_the_time('j\.n\.Y'); // the date
-	$mess_content = get_the_content(); // the message
-	$mess_perma = get_permalink(); // permanent link
-	$mess_edit_link = get_edit_post_link(); // access to edit panel for this post
-	$mess_author = get_the_author();
-	$mess_categoria = "";
-	$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
-    $video = get_post_meta($post->ID, "video", $single = true);
-    $comentario = "Comentario ".$post_ID;
-    $comentario = "Permalink";
-    
-    
-	    	// the tags
-	$terms_pl = wp_get_post_terms( $post->ID, 'positivo' );
-	$terms_mn = wp_get_post_terms( $post->ID, 'negativo' );
+		$post_ID = get_the_ID();
+		//$mess_author = get_the_author(); // the author
+		$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
+		$mess_date = get_the_time('j\.n\.Y'); // the date
+		$mess_content = get_the_content(); // the message
+		$mess_perma = get_permalink(); // permanent link
+		$mess_edit_link = get_edit_post_link(); // access to edit panel for this post
+		$mess_author = get_the_author();
+		$mess_categoria = "";
+		$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
+		$video = get_post_meta($post->ID, "video", $single = true);
+		$comentario = "Comentario ".$post_ID;
+		$comentario = "Permalink";
+		// the tags
+		$terms_pl = wp_get_post_terms( $post->ID, 'positivo' );
+		$terms_mn = wp_get_post_terms( $post->ID, 'negativo' );
 		$mess_tags = "<ul class='mess-tags'>";
-	foreach ( $terms_pl as $term_pl ) {
-		$term_link_pl = get_term_link("$term_pl->slug", 'positivo');
-		$mess_tags .= "<li class='bg-p'><a href='$term_link_pl'>$term_pl->name</a></li>";
-	}
-	foreach ( $terms_mn as $term_mn ) {
-		$term_link_mn = get_term_link("$term_mn->slug", 'negativo');
-		$mess_tags .= "<li class='bg-c'><a href='$term_link_mn'>$term_mn->name</a></li>";
-	}
+		foreach ( $terms_pl as $term_pl ) {
+			$term_link_pl = get_term_link("$term_pl->slug", 'positivo');
+			$mess_tags .= "<li class='bg-p'><a href='$term_link_pl'>$term_pl->name</a></li>";
+		}
+		foreach ( $terms_mn as $term_mn ) {
+			$term_link_mn = get_term_link("$term_mn->slug", 'negativo');
+			$mess_tags .= "<li class='bg-c'><a href='$term_link_mn'>$term_mn->name</a></li>";
+		}
 		$mess_tags .= "</ul>";    
-    
 
+	endwhile; endif;
+	wp_reset_query();
 
-       endwhile;
-else:
-endif;
-wp_reset_query();
+	$img=""; 
 
-
-$img=""; 
-
-
-if ($pos =="positivo")
-{
+	if ($pos =="positivo") {
   if ($cat=="2") {$img="a2-arquitectura-urbanismo.png";}
   if ($cat=="3") {$img="a2-comunidad-ciudadana.png";}
   if ($cat=="4") {$img="a2-espacio-publico-medioambiente.png";}
   if ($cat=="5") {$img="a2-movilidad.png";}
   if ($cat=="6") {$img="a2-otros.png";}
-
-}
-if ($pos=="negativo")
-{
+	}
+	if ($pos=="negativo") {
   if ($cat=="2") {$img="r2-arquitectura-urbanismo.png";}
   if ($cat=="3") {$img="r2-comunidad-ciudadana.png";}
   if ($cat=="4") {$img="r2-espacio-publico-medioambiente.png";}
   if ($cat=="5") {$img="r2-movilidad.png";}
   if ($cat=="6") {$img="r2-otros.png";}
-}
+	}
 
-$perma = "otro";
-
- 	$lascoordenadas ="
-        
-        
-        
-        var point".$perma." = new GLatLng(".$coor.");
+	$perma = "otro";
+ 	$lascoordenadas = "
+var point".$perma." = new GLatLng(".$coor.");
 var marker".$perma." = new GMarker(point".$perma.",miicono);
 GEvent.addListener(marker".$perma.", \"click\", function() {
 var myHtml".$perma." = \"<div class='mapmsg' >".$imagenLink."</div> <p style='text-align: left; padding-left:90px; font-size:12px;'>Enviado por: <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>    \";
 map2.openInfoWindowHtml(point".$perma.", myHtml".$perma."); });
 map2.addOverlay(marker".$perma.");
-        
-        
- ";
-        
-      
- 
+	";
 ?> 
-
-
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=<?php echo WHATIF_GOOGLE_KEY ?>" type="text/javascript"></script>
-
-
-
-   <script type="text/javascript">
+<script type="text/javascript">
     //<![CDATA[
-
     function load() {
       if (GBrowserIsCompatible()) {
       
@@ -359,7 +314,7 @@ map2.setUIToDefault();
 .mapmsg a img
 {
 display:block;
-float:left;'
+float:left;
 }
 </style>    
 
@@ -370,9 +325,8 @@ float:left;'
 
 <!--<div id="map" align="center" style="width: 940px; height: 460px"></div> -->
 
-<?php } 
-
-  elseif ( is_page('vistas') ) { ?>
+<?php } // end map for single
+elseif ( is_page_template('entrada-vistas.php') ) { ?>
 
 <style type="text/css">
 #epi
@@ -393,7 +347,7 @@ height:1px !important;
 <?php } 
 
 
-  elseif ( is_page('mensajes') ) { ?>
+  elseif ( is_page_template('lista.php') ) { ?>
 
 <style type="text/css">
 #epi
@@ -408,7 +362,7 @@ height:1px !important;
 
 <?php }  
 
-  elseif ( is_page('presentacion-consulta') || is_page('presentacion-participa')) { ?>
+  elseif ( is_page_template('explica.php') ) { ?>
 
 <style type="text/css">
 #central
@@ -430,7 +384,7 @@ top:20px;
 
 <?php }  
 
-  elseif ( is_page('entrada-formulario') ) { ?>
+  elseif ( is_page_template('entrada-formulario.php') ) { ?>
 
 <style type="text/css">
 #central
@@ -445,7 +399,7 @@ top:20px;
 
 <?php }  
 
-  elseif ( is_page('imagenes') ) { ?>
+  elseif ( is_page_template('img.php') ) { ?>
 
 <style type="text/css">
 
@@ -461,7 +415,7 @@ top:20px;
 
 <?php }  
 
-  elseif ( is_page('palabras-clave') ) { ?>
+  elseif ( is_page_template('palabras-clave.php') ) { ?>
 
 <style type="text/css">
 #central
@@ -494,7 +448,7 @@ left:0;
 
 
 
-  elseif ( is_page('localizaciones') ) { ?>
+  elseif ( is_page_template('map.php') ) { ?>
 
 
 <style type="text/css">
@@ -569,21 +523,14 @@ query_posts( "meta_key=coordenadas&posts_per_page=-1&$valor=$valor_query&cat=$fi
 if ( have_posts() ) :
        while ( have_posts() ) : the_post();
        $post_id = get_the_ID();
-       
-       
-       
        $coord = get_post_meta($post->ID, "coordenadas", $single = true);
-       
-       
+	    $coor = get_post_meta($post->ID, "coordenadas", true);
        	$mess_author = get_the_author(); // the author
     	$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
 	    $mess_date = get_the_time('j\.n\.Y'); // the date
 	    $mess_content = get_the_content(); // the message
 	    $mess_perma = get_permalink(); // permanent link
 	    $mess_edit_link = get_edit_post_link(); // access to edit panel for this post
-	
-	    $coor = get_post_meta($post->ID, "coordenadas", true);
-	    
 	    $positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
 	    
 	    	foreach ( get_the_category() as $categ ) {
@@ -640,27 +587,15 @@ map2.addOverlay(marker".$post_id.");
 else:
 endif;
 wp_reset_query();
-
-
-
 ?> 
-
-
-
-
-<script type="text/javascript"
-      src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
-
-
-   <script type="text/javascript">
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
+<script type="text/javascript">
     //<![CDATA[
 
     function load() {
       if (GBrowserIsCompatible()) {
 
     //iconos para las marcas
-
-    
     var movilidadicono = new GIcon( G_DEFAULT_ICON);
     movilidadicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-movilidad.png";
     var tamanoIconomovilidad = new GSize(40,40);
@@ -670,7 +605,6 @@ wp_reset_query();
     movilidadicono.shadowSize = tamanoSombramovilidad; 
     movilidadicono.iconAnchor = new GPoint(20,20);
     movilidadicono.imageMap = [0,0, 39,0, 39,39, 0,39];
-
 
     var comunidadicono = new GIcon(G_DEFAULT_ICON);
     comunidadicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-comunidad-ciudadana.png";
@@ -762,10 +696,6 @@ wp_reset_query();
     otrosiconor.iconAnchor = new GPoint(20,20); 
     otrosiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
     
-    
-       
-     
-       
        var map2 = new GMap2(document.getElementById("map"));
 map2.setCenter(new GLatLng(<?php echo WHATIF_MAP_COORDS ?>), <?php echo WHATIF_MAP_ZOOM ?>);
 map2.setUIToDefault();
@@ -793,7 +723,7 @@ map2.setUIToDefault();
 .mapmsg a img
 {
 display:block;
-float:left;'
+float:left;
 }
 .tagsmap{position:relative;top:-5px;left:-10px;}
 </style> 
@@ -808,7 +738,7 @@ float:left;'
 
 
 
- elseif ( is_page('formulario') ) { ?>
+ elseif ( is_page_template('formulario.php') ) { ?>
  
  <style type="text/css">
 #epi
@@ -1288,36 +1218,3 @@ function showAddress() {
 <div id="super">
 
 <div id="central">
-
-<div id="pre">
-
-<?php
-//	$fail = $_GET['fail'];
-//	$perma = get_permalink();
-//	if ( is_page_template("formulario.php") ) { $positivonegativo = $_GET["valor"]; $perma .= "?valor=$positivonegativo"; }
-//if ( is_user_logged_in() ) {
-//	$log_out = "
-//	<div id='logout-form'>
-//	<form action='" .WHATIF_BLOGURL. "/logout' method='post'>
-//		<input type='hidden' name='ref' value='".$perma."' />
-//		<input class='logout-boton' type='submit' value='Abandonar sesión' name='logout' />
-//	</form>
-//	</div>
-//	";
-////} else {
-////	$log_out ="
-////	<div id='login-form'>
-////	<form action='" .WHATIF_BLOGURL. "/login' method='post'>
-////		<input class='login-caja' type='text' name='nombre' value='usuario' onblur=\"if(this.value == '') {this.value = 'usuario';}\" onfocus=\"if(this.value == 'usuario') {this.value = '';}\" />
-////		<input class='login-caja' type='password' name='pass' value='contrase&ntilde;a' onblur=\"if(this.value == '') {this.value = 'contrase&ntilde;a';}\" onfocus=\"if(this.value == 'contrase&ntilde;a') {this.value = '';}\" />
-////		<input class='login-check' type='checkbox' name='remember' value='true' />
-////		<input type='hidden' name='ref' value='".$perma."' />
-////		<input class='login-boton' type='submit' value='Iniciar sesión' name='login' />
-////	</form>
-////	</div>
-////	";
-//}
-//	echo $log_out;
-	?>
-</div><!-- end id pre -->
-<hr />
