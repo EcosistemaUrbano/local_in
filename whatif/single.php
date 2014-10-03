@@ -33,7 +33,7 @@
 	$parent_tit = get_the_title($post->post_parent);
 	$tit = sprintf(__('Imagen del mensaje %s','whatif'), $parent_tit);
 	$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
-	$imageurl = wp_get_attachment_image_src( $post->ID, 'large');
+	$imageurl = wp_get_attachment_image_src( $post->ID, 'medium');
 	$imageurlfull = wp_get_attachment_image_src( $post->ID, 'full');
 	echo "
   	<div class='tit-peq'>

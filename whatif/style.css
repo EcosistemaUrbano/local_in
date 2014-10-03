@@ -162,9 +162,6 @@ body {
 	position:relative;
 	top:60px;
 }
-.single #epi {
-	top: 0;
-}
 .epi-lf {
 	position: absolute;
 	left: 0;
