@@ -83,6 +83,19 @@ function whatif_theme_setup() {
 	// custom loops for each template
 	add_filter( 'pre_get_posts', 'whatif_custom_args_for_loops' );
 
+	// Save category extra field callback function
+	add_action( 'edited_category', 'whatif_save_category_extra_field', 10, 2 );  
+	add_action( 'create_category', 'whatif_save_category_extra_field', 10, 2 );
+	// Add extra field to edit category form
+	add_action( 'category_edit_form_fields', 'whatif_edit_category_extra_field', 10, 2 );
+	// Add extra field to add category form
+	add_action( 'category_add_form_fields', 'whatif_new_category_extra_field', 10, 2 );
+
+	// add image column to admin categories list
+	add_filter("manage_edit-category_columns", 'whatif_category_columns');
+	// populate image column in admin categories list
+	add_filter("manage_category_custom_column", 'whatif_fill_category_columns', 10, 3);
+
 } // END theme setup function
 
 // Set up media options
@@ -206,4 +219,70 @@ function whatif_custom_args_for_loops( $query ) {
 	}
 
 } // END custom args for loops
+
+// Add extra field to add category form
+function whatif_new_category_extra_field() {
+	// this will add the custom meta field to the add new term page
+	?>
+	<div class="form-field">
+		<label for="term_meta[image]"><?php _e( 'Imagen de la categoría', 'whatif' ); ?></label>
+		<input type="text" name="term_meta[image]" id="term_meta[image]" value="">
+		<p class="description"><?php _e( 'Escribe la URL completa de la imagen.','whatif' ); ?></p>
+	</div>
+<?php
+}
+
+// Add extra field to edit category form
+function whatif_edit_category_extra_field($term) {
+ 
+	// put the term ID into a variable
+	$t_id = $term->term_id;
+ 
+	// retrieve the existing value(s) for this meta field. This returns an array
+	$term_meta = get_option( "taxonomy_$t_id" ); ?>
+	<tr class="form-field">
+	<th scope="row" valign="top"><label for="term_meta[image]"><?php _e( 'Imagen de la categoría', 'whatif' ); ?></label></th>
+		<td>
+			<input type="text" name="term_meta[image]" id="term_meta[image]" value="<?php echo esc_attr( $term_meta['image'] ) ? esc_attr( $term_meta['image'] ) : ''; ?>">
+			<p class="description"><?php _e( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ); ?></p>
+		</td>
+	</tr>
+<?php
+}
+
+// Save category extra field callback function
+function whatif_save_category_extra_field( $term_id ) {
+	if ( isset( $_POST['term_meta'] ) ) {
+		$t_id = $term_id;
+		$term_meta = get_option( "taxonomy_$t_id" );
+		$cat_keys = array_keys( $_POST['term_meta'] );
+		foreach ( $cat_keys as $key ) {
+			if ( isset ( $_POST['term_meta'][$key] ) ) {
+				$term_meta[$key] = $_POST['term_meta'][$key];
+			}
+		}
+		// Save the option array
+		update_option( "taxonomy_$t_id", $term_meta );
+	}
+}  
+
+// add image column to admin categories list
+function whatif_category_columns($columns) {
+	$columns['image'] = __('Imagen');
+	return $columns;
+}
+ 
+// populate image column in admin categories list
+function whatif_fill_category_columns($out, $column_name, $cat_id) {
+	$cat = get_term($cat_id, 'category');
+	if ($column_name == 'image' ) {
+		// get image from options table
+		$cat_meta = get_option("taxonomy_$cat_id");
+		$cat_img = $cat_meta['image'];
+		if ( $cat_img != '' ) { $out .= "<img src='" .$cat_img. "' height='48' />"; }
+		else { $out .= __('Edita para asignar una imagen','whatif'); }
+ 
+    	}
+	return $out;   
+}
 ?>
