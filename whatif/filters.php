@@ -1,46 +1,46 @@
 <?php
 	// the categories filter
 	$perma = get_permalink();
+	if ( $pn == 'positivo' ) { $pl_class = " class='active'"; $mn_class = ""; }
+	elseif ( $pn == 'negativo' ) { $mn_class = " class='active'"; $pl_class = ""; }
+	else { $pl_class = $mn_class = ""; }
 	$filter_out = "<ul class='filter-cats'>";
-		$filter_out .= "
-		
-			<li id='tax-reset' class='filter-cat'>
-			
-			<a title='" . __('Restablecer','whatif') . "' href='" .WHATIF_BLOGURL. "/vistas/mensajes'><img src='" .WHATIF_BLOGTHEME. "/images/reset.png' style='width:30px;' alt='" . __('Restablecer','whatif') . "' /></a>
+	$filter_out .= "
+		<li id='tax-reset' class='filter-cat'>
+			<a title='" . __('Restablecer','whatif') . "' href='" .$perma. "'><img src='" .WHATIF_BLOGTHEME. "/images/reset.png' style='width:30px;' alt='" . __('Restablecer','whatif') . "' /></a>
 			<div class='filter-tit'><a href=''></a></div>
-			</li>
+		</li>
 			
-			
-			<li id='tax-positivo' class='filter-cat'>
-			
-			<a title='" . __('Mensajes positivos','whatif') . "' href='" .WHATIF_BLOGURL. "/vistas/mensajes?pn=positivo&pn2=$pn2'><img src='" .WHATIF_BLOGTHEME. "/images/$plvaria' alt='" . __('Mensajes positivos','whatif') . "' /></a>
-			<div class='filter-tit'><a href=''></a></div>
-			</li>
-			<li id='tax-negativo' class='filter-cat'>
-			<a title='" . __('Mensajes negativos','whatif') . "' href='" .WHATIF_BLOGURL. "/vistas/mensajes?pn=negativo&pn2=$pn2'><img src='" .WHATIF_BLOGTHEME. "/images/$mnvaria' alt='" . __('Mensajes negativos','whatif') . "' /></a>
-			<div class='filter-tit'><a href=''></a></div>
-			</li>
-
-		";
-	foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) {
-		$categoryID = $categ->term_id;
-		$categLink = get_category_link($categ->term_id);
-		$permalink = "$perma?categ=$categ->slug";
-		$slug= "$categ->slug";
+		<li id='tax-positivo' class='filter-cat'>
+			<a" .$pl_class. " title='" . __('Mensajes positivos','whatif') . "' href='" .$perma. "?pn=positivo'><img src='" .WHATIF_BLOGTHEME. "/images/pl-mini.png' alt='" . __('Mensajes positivos','whatif') . "' /></a>
+		</li>
+		<li id='tax-negativo' class='filter-cat'>
+			<a" .$mn_class. " title='" . __('Mensajes negativos','whatif') . "' href='" .$perma. "?pn=negativo'><img src='" .WHATIF_BLOGTHEME. "/images/mn-mini.png' alt='" . __('Mensajes negativos','whatif') . "' /></a>
+		</li>
+	";
+	foreach ( get_categories() as $categ ) {
+		$cat_id = $categ->term_id;
+		if ( $cat_id == $filtro ) { $filter_class = " class='active'"; }
+		else { $filter_class = ""; }
+		$cat_perma = get_category_link($categ->term_id);
+		$cat_meta = get_option( "taxonomy_$cat_id" );
+		$cat_img = $cat_meta['image'];
 		if ( function_exists('get_cat_icon') ) {
-			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true");
-		} else { $categImg = ""; }
+		// compatibility with old versions of whatif
+			$categImg = get_cat_icon("cat=$cat_id&echo=false&link=false&small=true");
+		} elseif ( $cat_img != '' ) {
+			$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
+		} else { $categImg = $categ->name; }
 		
 		$identificador = $categ->slug;
 		$identificador = str_replace("-","",$identificador);
 		
-		
 		$filter_out .= "
 			<li id='$categ->slug' class='filter-cat'>
-			<div id='big$identificador' style='background-image:url(../../images/bigborder-$categ->slug); display:inline;'>
-			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categImg</a>
+			<div>
+			<a" .$filter_class. " href='" .$perma. "?filtro=$cat_id&pn=$pn2'>$categImg</a>
 			</div>
-			<div class='filter-tit'><a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categ->category_count</a></div>
+			<div class='filter-tit'>$categ->category_count</div>
 			</li>
 		";
 		
@@ -49,76 +49,4 @@
 
 	echo $filter_out;
 	
-			if ($filtro =="2")
-{
- ?>
- <script type="text/javascript">
- function cambiaImagen() {
-  //document.getElementById("bigarquitecturaurbanismo").style.background='url(../imagenes/bigcircle.png)';
- // document.getElementById["bigarquitecturaurbanismo"].img.src = "../imagenes/bigcircle.png"; 
-  document.getElementById('bigarquitecturaurbanismo').getElementsByTagName('img')[0].src= "<?php echo WHATIF_BLOGTHEME ?>/images/bigarquitectura.png";
-   document.getElementById('bigarquitecturaurbanismo').getElementsByTagName('img')[0].width="40";
-   document.getElementById('bigarquitecturaurbanismo').getElementsByTagName('img')[0].height="40";
-  }
-  cambiaImagen();
- </script>
- <?php
-}
-			if ($filtro =="3")
-{
- ?>
- <script type="text/javascript">
- function cambiaImagen() {
-  
-  document.getElementById('bigcomunidadciudadana').getElementsByTagName('img')[0].src= "<?php echo WHATIF_BLOGTHEME ?>/images/bigcomunidad.png";
-   document.getElementById('bigcomunidadciudadana').getElementsByTagName('img')[0].width="40";
-   document.getElementById('bigcomunidadciudadana').getElementsByTagName('img')[0].height="40";  
-  }
-  cambiaImagen();
- </script>
- <?php
-}
-			if ($filtro =="4")
-{
- ?>
- <script type="text/javascript">
- function cambiaImagen() {
- 
-  document.getElementById('bigespaciopublicomedioambiente').getElementsByTagName('img')[0].src= "<?php echo WHATIF_BLOGTHEME ?>/images/bigespaciopublico.png";
-   document.getElementById('bigespaciopublicomedioambiente').getElementsByTagName('img')[0].width="40";
-   document.getElementById('bigespaciopublicomedioambiente').getElementsByTagName('img')[0].height="40";  
-  
-  }
-  cambiaImagen();
- </script>
- <?php
-}
-			if ($filtro =="5")
-{
- ?>
- <script type="text/javascript">
- function cambiaImagen() {
-
-   document.getElementById('bigmovilidad').getElementsByTagName('img')[0].src= "<?php echo WHATIF_BLOGTHEME ?>/images/bigmovilidad.png";
-    document.getElementById('bigmovilidad').getElementsByTagName('img')[0].width="40";
-   document.getElementById('bigmovilidad').getElementsByTagName('img')[0].height="40";  
-  }
-  cambiaImagen();
- </script>
- <?php
-}
-			if ($filtro =="6")
-{
- ?>
- <script type="text/javascript">
- function cambiaImagen() {
-  
-  document.getElementById('bigotros').getElementsByTagName('img')[0].src= "<?php echo WHATIF_BLOGTHEME ?>/images/bigotros.png";
-   document.getElementById('bigotros').getElementsByTagName('img')[0].width="40";
-   document.getElementById('bigotros').getElementsByTagName('img')[0].height="40";  
-  }
-  cambiaImagen();
- </script>
- <?php
-}
 ?>

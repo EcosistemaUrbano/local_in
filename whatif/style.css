@@ -573,7 +573,7 @@ cursor:pointer !important;
 	margin: 0 30px;
 	float: left;
 	width: 800px;
-	height: 545px;
+	height: 480px;
 	/*overflow: hidden; not allow scrollbar */
 	/*position: relative;*/
 }
@@ -588,7 +588,7 @@ cursor:pointer !important;
 #dosificadorMess #deslizanteMess {
 	margin: 0 auto;
 	width: 800px;
-	height: 545px;
+	height: 480px;
 	/*overflow: hidden; not allow scrollbar */
 	/*position: relative;*/
 }
@@ -1086,11 +1086,11 @@ height:80px !important;
 /* vistas filters */
 .filter-cats {
     clear: both;
-    left: -75px;
-    margin: 20px auto;
-    position: relative;
-    text-align: center;
+/*    left: -75px;
     top: 63px;
+    position: relative;*/
+    margin: 0 auto 20px;
+    text-align: center;
     width: 800px;
 }
 .filter-cats li {
@@ -1101,8 +1101,14 @@ height:80px !important;
 .filter-cats div {
 	display: inline-block;
 	vertical-align: middle;
-	
 }
+.filter-cats img {
+	width: 32px;
+}
+.filter-cats .active img {
+	width: 48px !important;
+}
+
 /* authot page */
 .aut-meta {
 	font-size: 1.1em;

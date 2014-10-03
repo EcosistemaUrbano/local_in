@@ -23,6 +23,6 @@ wp_reset_query();
 	include "loop-img.php";
 
 	// categories filters
-	include "filters-img.php";
+	include "filters.php";
 
 get_footer(); ?>

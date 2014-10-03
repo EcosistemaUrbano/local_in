@@ -400,11 +400,6 @@ height:1px !important;
 {
  top:-3px;
 }
-.filter-cats
-{
-top:60px;
-}
-
 </style>
 
 
@@ -458,10 +453,6 @@ top:20px;
 {
  top:0;
 }
-.mosac
-{
-margin-bottom:-53px;
-}
 </style>
 
 
@@ -510,10 +501,6 @@ left:0;
 #epi
 {
  top:0;
-}
-.mosac
-{
-margin-bottom:-53px;
 }
 </style>
 
