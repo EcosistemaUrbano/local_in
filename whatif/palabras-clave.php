@@ -19,7 +19,7 @@ wp_reset_query();
 
 	echo $tit_out; //display header
 
-	$cloud_out = "<div class='unique'>";
+	$cloud_out = "<div class='unique-pages-tit'>";
 
 $taxs = array('positivo','negativo');
 foreach ( $taxs as $tax ) {

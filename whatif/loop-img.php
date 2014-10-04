@@ -5,7 +5,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 query_posts("showposts=36&posts_per_page=36&paged=$paged");
 if ( have_posts() ) :
 
-$mess_out = "<div class='unique mosac'>";
+$mess_out = "<div class='unique-pages-tit mosac'>";
 
 
 if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }

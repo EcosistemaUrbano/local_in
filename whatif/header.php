@@ -109,7 +109,8 @@ jQuery(document).ready(function($){
 <?php } ?>
 </script>
 
-<?php } elseif ( is_page_template("formulario.php") && $positivonegativo == 'negativo' ) { ?>
+<?php } // end if formulario.php and positivo
+elseif ( is_page_template("formulario.php") && $positivonegativo == 'negativo' ) { ?>
 <script type="text/javascript">
 	<?php foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) { ?>
 	jQuery(document).ready(function($){
@@ -184,11 +185,10 @@ jQuery(document).ready(function($){
 });
 	<?php } ?>
 	</script>
-<?php } // end if formulario ?>
+<?php } // end if formulario.php and negativo
 	
-<?php // if map for single
+// if map for single
 if ( is_page('msgmap') ) {
-
 	if ( array_key_exists('coor', $_GET) ) { $coor= sanitize_text_field($_GET['coor']); } else { $coor = ""; }
 	if ( array_key_exists('cat', $_GET) ) { $cat= sanitize_text_field($_GET['cat']); } else { $cat = ""; }
 	if ( array_key_exists('pos', $_GET) ) { $pos= sanitize_text_field($_GET['pos']); } else { $pos = ""; }
@@ -196,12 +196,12 @@ if ( is_page('msgmap') ) {
 	if ( array_key_exists('id', $_GET) ) { $id= sanitize_text_field($_GET['id']); } else { $id = ""; }
 
 	// the image
-	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $ID ); 
+	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $id ); 
 	$attachments = get_posts($args);
 
 	if ( $attachments ) {
 		foreach ( $attachments as $attachment ) {
-			$img_link=  wp_get_attachment_url( $ID );
+//			$img_link=  wp_get_attachment_url( $ID );
 		    $imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail');	
 		  $imagenLink = str_replace("\"","'",$imagenLink);
 		}
@@ -211,7 +211,7 @@ if ( is_page('msgmap') ) {
 	if ( have_posts() ) : while ( have_posts() ) : the_post();
 
 		$post_ID = get_the_ID();
-		//$mess_author = get_the_author(); // the author
+		$mess_author = get_the_author(); // the author
 		$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
 		$mess_date = get_the_time('j\.n\.Y'); // the date
 		$mess_content = get_the_content(); // the message
@@ -240,7 +240,7 @@ if ( is_page('msgmap') ) {
 	endwhile; endif;
 	wp_reset_query();
 
-	$img=""; 
+	$img="a2-arquitectura-urbanismo.png"; 
 
 	if ($pos =="positivo") {
   if ($cat=="2") {$img="a2-arquitectura-urbanismo.png";}
@@ -323,39 +323,15 @@ float:left;
 
 
 
-<!--<div id="map" align="center" style="width: 940px; height: 460px"></div> -->
-
 <?php } // end map for single
 elseif ( is_page_template('entrada-vistas.php') ) { ?>
 
-<style type="text/css">
-#epi
-{
- top:160px;
-}
-.tit
-{
-height:1px !important;
-}
-
-</style>
-
-
 </head>
-
 
 <?php } 
 
 
   elseif ( is_page_template('lista.php') ) { ?>
-
-<style type="text/css">
-#epi
-{
- top:-3px;
-}
-</style>
-
 
 </head>
 
@@ -363,20 +339,6 @@ height:1px !important;
 <?php }  
 
   elseif ( is_page_template('explica.php') ) { ?>
-
-<style type="text/css">
-#central
-{
- margin-bottom:-60px;
-}
-.unique
-{
-top:20px;
-}
-#controll, #controlr {
-    top: 140px;
-}
-</style>
 
 
 </head>
@@ -386,29 +348,12 @@ top:20px;
 
   elseif ( is_page_template('entrada-formulario.php') ) { ?>
 
-<style type="text/css">
-#central
-{
- margin-bottom:-100px;
-}
-</style>
-
-
 </head>
 
 
 <?php }  
 
   elseif ( is_page_template('img.php') ) { ?>
-
-<style type="text/css">
-
-#epi
-{
- top:0;
-}
-</style>
-
 
 </head>
 
@@ -417,14 +362,6 @@ top:20px;
 
   elseif ( is_page_template('palabras-clave.php') ) { ?>
 
-<style type="text/css">
-#central
-{
- margin-bottom:-20px;
-}
-</style>
-
-
 </head>
 
 
@@ -432,17 +369,7 @@ top:20px;
 
  elseif ( is_home() ) { ?>
 
-<style type="text/css">
-
-.epi-menu
-{
-left:0;
-}
-</style>
-
-
 </head>
-
 
 <?php }  
 
@@ -450,13 +377,6 @@ left:0;
 
   elseif ( is_page_template('map.php') ) { ?>
 
-
-<style type="text/css">
-#epi
-{
- top:0;
-}
-</style>
 
 <?php
 if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
@@ -738,26 +658,8 @@ float:left;
 
 
 
- elseif ( is_page_template('formulario.php') ) { ?>
+ elseif ( is_page_template('formulario.php') ) {
  
- <style type="text/css">
-#epi
-{
- top:270px;
-}
-
-#dosificadorForm #deslizanteForm 
-{
-left:-23px;
-position:relative;
-}
-.cat-selector 
-{
-left:-15px;
-}
-</style>
-
-<?php
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET["valor"]); } else { $positivonegativo = ""; }
 
 if ($positivonegativo == "positivo") {$posneg = WHATIF_STYLE_POSITIVE_BG;}

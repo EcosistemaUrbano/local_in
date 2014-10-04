@@ -6,9 +6,9 @@
 <?php
 	// left links
 	$lf_out = "<ul class='epi-lf'>";
-	$lf_out .= "<li><a href='" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-home.png' alt='" . __('Inicio','whatif') . "' /></a><br /><div>" . __('Inicio','whatif') . "</div></li>";
+	$lf_out .= "<li><a href='" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-home.png' alt='" . __('Inicio','whatif') . "' />" . __('Inicio','whatif') . "</a></li>";
 	if ( is_home() ) { // home
-	$lf_out .= "<li><a href='http://whatif.es' target='_blank'><img src='" .WHATIF_BLOGTHEME. "/images/logowhatif.png' height='42px' alt='whatif.es'/></a><div>whatif.es</div><br></li>";
+	$lf_out .= "<li><a href='http://whatif.es' target='_blank'><img src='" .WHATIF_BLOGTHEME. "/images/logowhatif.png' height='42px' alt='whatif.es'/>whatif.es</a></li>";
 	}
 	$lf_out .= "</ul>";
 	// right links
@@ -16,12 +16,12 @@
 	if ( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();
 		$user_name = $current_user->user_login;
-		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/author/$user_name'><img src='" .WHATIF_BLOGTHEME. "/images/epi-user.png' alt='" . __('Mis mensajes','whatif') . "' /></a><br /><div>" . __('Mis mensajes','whatif') . "</div></li>";
-		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/wp-admin/profile.php'><img src='" .WHATIF_BLOGTHEME. "/images/epi-perfil.png' alt='" . __('Mi perfil','whatif') . "' /></a><br /><div>" . __('Mi perfil','whatif') . "</div></li>";
-		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/logout?ref=" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-logout.png' alt='" . __('Abandonar sesión','whatif') . "' /></a><br /><div>" . __('Abandonar sesión','whatif') . "</div></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/author/$user_name'><img src='" .WHATIF_BLOGTHEME. "/images/epi-user.png' alt='" . __('Mis mensajes','whatif') . "' />" . __('Mis mensajes','whatif') . "</a></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/wp-admin/profile.php'><img src='" .WHATIF_BLOGTHEME. "/images/epi-perfil.png' alt='" . __('Mi perfil','whatif') . "' />" . __('Mi perfil','whatif') . "</a></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/logout?ref=" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-logout.png' alt='" . __('Abandonar sesión','whatif') . "' />" . __('Abandonar sesión','whatif') . "</a></li>";
 	} else {
 		//$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/wp-login.php?redirect_to=" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-login.png' alt='" . __('Iniciar sesión','whatif') . "' /></a><br /><div>" . __('Iniciar sesión','whatif') . "</div></li>";
-		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/user-sesion'><img src='" .WHATIF_BLOGTHEME. "/images/epi-login.png' alt='" . __('Iniciar sesión','whatif') . "' /></a><br /><div>" . __('Iniciar sesión','whatif') . "</div></li>";
+		$rt_out .= "<li><a href='" .WHATIF_BLOGURL. "/user-sesion'><img src='" .WHATIF_BLOGTHEME. "/images/epi-login.png' alt='" . __('Iniciar sesión','whatif') . "' />" . __('Iniciar sesión','whatif') . "</a></li>";
 	}
 		$rt_out .= "</ul>";
 
@@ -30,15 +30,6 @@
 
 
 $vistas_id = get_page_id("vistas");
-//$vistas_childs = get_pages("child_of=$vistas_id&parent=$vistas_id");
-//$count = 0;
-//$pag_ids = array();
-//foreach ( $vistas_childs as $pag ) {
-//	$count++;
-//	if ( $count == 1 ) { $pag_ids = "$pag->ID"; }
-//	else { $pag_ids .= ",$pag->ID"; }
-//	$pag_ids .= "$pag->ID";
-//}
 if ( is_home() ) { // home
 	$menu = "f-home";
 	$arrgs = array(
@@ -58,28 +49,11 @@ elseif ( is_page() && $post->post_parent == $vistas_id ) { // vistas
 	);
 } else { $menu = ""; }
 
-if ( $menu != '' ) {
-//		$menu_out = "<ul class='epi-menu'>";
-//	$items = wp_get_nav_menu_items($menu);
-?>
-	<div class="epi-menu">
+if ( $menu != '' ) { ?>
 		<?php wp_nav_menu( $arrgs ); ?>
-	</div>
-
-<?php
-//	echo $items;
-//	foreach ( $items as $item ) {
-//		$item_link = get_page_link($item->object_id);
-//		$menu_out .= "<li><a href='$item_link'>$item->slug</a></li>";
-//
-//	}
-//		$menu_out .= "</ul>";
-//	echo $menu_out;
-}
-?>
+<?php } ?>
 
 </div>
-
 </div><!-- end id super -->
 
 <?php wp_footer(); ?>

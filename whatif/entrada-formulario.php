@@ -9,8 +9,8 @@ get_header();
 query_posts("post_type=page&post_parent=$post->ID&orderby=menu_order&order=ASC");
 if ( have_posts() ) :
 	$elige_out = "
-	<div id='centro'>
-	<div class='unique' style='height: 420px;'>
+		<div id='paso16' class='paso'>1/6</div>
+	<div class='unique-pages' style='margin-top: 60px;'>
 	";
 
 	while ( have_posts() ) : the_post();
@@ -31,8 +31,6 @@ if ( have_posts() ) :
 	endwhile;
 
 	$elige_out .= "
-		<div style=' left: -23px;       position: relative;    top: -441px;' class='pasoE'>1/6</div>
-	</div>
 	</div>
 	";
 

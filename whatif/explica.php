@@ -11,7 +11,7 @@ elseif ( is_page("presentacion-participa") ) { $alante = WHATIF_BLOGURL.'/entrad
 
 $presenta_out_1 = "
 
-	<div class='control' id='controll'>
+	<div class='navigation navigation-page navigation-left alignleft'>
 		<a href='$atras'>" . __('Atrás','whatif') . "</a>
 	</div>
 
@@ -33,7 +33,7 @@ $presenta_out_2 = "
 	</div>
 	</div>
 
-	<div class='control' id='controlr'>
+	<div class='navigation navigation-page navigation-right alignright'>
 		<a href='$alante'>" . __('Adelante','whatif') . "</a>
 	</div>
 ";

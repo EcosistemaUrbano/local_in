@@ -154,41 +154,47 @@ body {
 	margin-bottom:60px;
 }
 
-
+/* footer */
 #epi {
 	position: relative;
 	width: 960px;
 	margin: 0 auto;
-	position:relative;
-	top:60px;
+	clear: both;
+	padding-top: 60px;
+	line-height: 1.2em;
+}
+
+.epi-menu {
+    clear: both;
+    margin: 0 auto;
+}
+.epi-menu li {
+	display: inline-block;
+	margin-right: 10px;
 }
 .epi-lf {
-	position: absolute;
-	left: 0;
-	text-align: center;
+	float: left;
+	width: 40%;
 }
 .epi-rt {
-	position: absolute;
-	right: 0;
-	text-align: center;
+	width: 60%;
+	margin-left: 40%;
+	text-align: right;
 }
-.epi-lf li {
-	float: left;
-	margin: 0 10px;
-	width: 64px;
-
-}
+.epi-lf li,
 .epi-rt li {
-	float: right;
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
 	margin: 0 10px;
 	width: 64px;
 }
-.epi-lf div,
-.epi-rt div {
-	margin-top: 3px;
+#epi img {
 	display: block;
-	text-align: center;
+	margin: 0 auto;
 }
+
+
 
 .nodisplay
 {
@@ -220,14 +226,13 @@ display:none;
 	cursor: pointer;
 	background-color: #000;
 }
-/*.navigation, .navigationLeft
-{
-position:relative;
-top:-20px;
-}*/
+
 .navigation {
 	height: 480px;
 	width: 50px;
+}
+.navigation-page {
+	margin-top: 80px;
 }
 #dosificadorForm .navigation {
 	margin-top: 90px;
@@ -322,53 +327,21 @@ top:-20px;
     background-color: #FFFF33;
     color: #6F6F6F;
 }
-/* footer */
-.epi-menu {
-    clear: both;
-    margin: 0 auto;
-    position: relative;
-    text-align: center;
-    top: -20px;
-    width: 960px;
-    left:-46px;
-	
-}
-.epi-menu li {
-	display: inline;
-	margin-right: 10px;
-}
-.epi-menu li a {
-	font-weight: bold;
-	color: #000;
-}
-.epi-menu li a:hover {
-	font-weight: bold;
-	color: grey;
-}
-.epi-menu li a:visited {
-	font-weight: bold;
-	color: #000;
-}
-#contieneajax
-{
-position:relative;
-top:-100px;
-}
 
 /* page titles */
 .tit {
-	width: 800px;
 	height: 100px;
 	padding-top: 60px;
 	text-align: center;
 }
+.deslizaForm .tit {
+	width: 800px;
+}
 .tit h2 {
     font-size: 4em;
     font-weight: bold;
-    left: -45px;
     line-height: 1em;
     margin-bottom: 10px;
-    position: relative;
 }
 .tit-peq {
 	height: 100px;
@@ -470,17 +443,21 @@ color: #0cf;
 /* presentación template styles */
 .unique {
 	width: 800px;
-	margin: 0 auto;
-	position: relative;
-	height:460px;
+	margin: 160px 30px 0;
+	height: 400px;
+	float: left;
 }
 .unique-pages {
 	width: 800px;
-	margin: 0 auto;
-	position: relative;
+	margin: 160px auto 0;
 	height: 400px;
-	margin-top: -57px;
 }
+.unique-pages-tit {
+	width: 800px;
+	margin: 0 auto;
+	height: 400px;
+}
+
 .unique-text2 {
 	width: 370px;
 	height: 320px;
@@ -491,7 +468,6 @@ color: #0cf;
 	width: 776px;
 	height: 320px;
 	padding: 6px 12px;
-	margin-top: 160px;
 }
 .unique-text h1 {
 	overflow: hidden;
@@ -679,19 +655,18 @@ input.boton-negro {
 	float: left;
 	padding-top: 60px;
 }
-.pasoE {
-    font-size: 3em;
-    font-weight: bold;
-    line-height: 1.3em;
-    position: relative;
-  left:-70px;
-   top: -425px;
+#paso16 {
+	float: none;
+	margin-left: 80px;
 }
 .cat-selector,
 .vista-selector {
     float: left;
     width: 800px;
     position:relative;
+}
+.vista-selector {
+	padding-top: 100px;
 }
 .term-selector
 {
@@ -998,10 +973,7 @@ height:80px !important;
 /* vistas filters */
 .filter-cats {
     clear: both;
-/*    left: -75px;
-    top: 63px;
-    position: relative;*/
-    margin: 0 auto 20px;
+    margin: 0 auto;
     text-align: center;
     width: 800px;
 }

@@ -9,7 +9,7 @@ $tags_tit = get_the_title();
 $bg = "bg-n";
 $color = "color-n";
 ?>
-	<div class="unique">
+	<div class="unique-pages">
 		<div class="unique-text <?php echo $bg ?>">
 		<h1><?php echo $tags_tit ?></h1>
 

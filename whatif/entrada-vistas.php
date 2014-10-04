@@ -11,10 +11,11 @@ if ( have_posts() ) :
 	$vistas_tit = get_the_title();
 	$vistas_id = $post->ID;
 	$elige_out = "
-	<div  class='unique'>
-	<div class='tit'>
-		<h2>$vistas_tit</h2>
-	</div>
+		<div class='tit'>
+			<h2>$vistas_tit</h2>
+		</div>
+		<div class='unique-pages-tit'>
+
 	";
 
 	endwhile;

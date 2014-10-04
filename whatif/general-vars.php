@@ -28,18 +28,17 @@ $location_country = "España";
 $apigooglemaps ="ABQIAAAAr7Wf1Er982GxOn546lMrQBQ4Fi0gp6JNXlaQxfT8Sk5oY4k-bBTwrX_Xlbv8NWHVg3XxAySgcxwEww";
 
 // Customize the default location of the map. You can obtain the coordinates of any place by right-clicking in Google Maps and selecting 'Drop Lat/Lng marker here'
-$coordenadasmapa ="-0.183881,-78.484409";
+$coordenadasmapa ="40.4378271,-3.6795367";
 
 // Zoom levels for the map in the entry form
-$zoomformulario = 16;
+$zoomformulario = 12;
 // Zoom levels for the map in the results view
-$zoomtodas = 15;
+$zoomtodas = 12;
 // Zoom levels for the map of a single entry
-$zoomindividual = 16;
+$zoomindividual = 12;
 
 
 // STYLE VARS
-
 // bg and colors vistas
 $color_c = "color-c";
 $bg_c = "bg-n";
@@ -58,9 +57,6 @@ $bg_mn = "bg-c";
 
 
 // OTHERS
-
 $home = get_option('home');
 $template_url = get_bloginfo('template_url');
-
-
 ?>
