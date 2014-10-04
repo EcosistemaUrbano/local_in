@@ -21,9 +21,8 @@ jQuery(document).ready(function($){
 
   // Insert left and right arrow controls in the DOM
   $('#dosificadorForm')
-    .prepend('<div class="controlForm" id="leftControl" href="javascript:previous();" title="Paso anterior">&laquo;</div>')
-    .append('<div class="controlForm" id="rightControl" href="javascript:next();" title="Paso siguiente">&raquo;</div>')
-    //.append('<span class="control" id="rightControl">Move right</span>');
+    .prepend('<div class="navigation navigation-left alignleft"><a id="leftControl" class="controlForm" href="javascript:previous();" title="Paso anterior">&laquo;</a></div>')
+    .append('<div class="navigation navigation-right alignright"><a id="rightControl" class="controlForm" href="javascript:next();" title="Paso siguiente">&raquo;</a></div>')
 
   // Hide left arrow control on first load
   manageControls(currentPosition);

@@ -35,34 +35,36 @@ elseif ( $positivonegativo == 'negativo' ) {
 <div id="dosificadorForm">
 <div id="deslizanteForm">
 
-
-
-
-
-
 <form id="participaform" name="participaform" method="post" action="<?php echo WHATIF_BLOGURL."/formulario-enviado" ?>" enctype="multipart/form-data">
        
 	<fieldset id="paso-1" class="deslizaForm">
+		<div id="paso26" class="paso">2/6</div>
 		<div class="tit">
 			<h2><?php echo $tit_1 ?></h2>
 		</div>
 		<span id="info" class=<?php echo $clasecolor ?>></span>
 		<textarea onkeypress="return limita(event, 140);" onkeyup="actualizaInfo(140)" name="contenido" cols="45" rows="2" class="required caja <?php echo $bg ?> textBox" class="required" id="cajadescripcion" onblur="if(this.value == '') {this.value = '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>';}" onfocus="if(this.value == '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>') {this.value = '';}"><?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?></textarea>
-		<div id="paso26" class="paso">2/6</div>
 	</fieldset>
 
 	<fieldset id="paso-2" class="deslizaForm">
+		<div id="paso36" class="paso">3/6</div>
 		<div class="tit">
 			<h2><?php _e('Elige una categoría','whatif'); ?></h2>
 		</div>
 		<?php // categories list with icon
 		$cat_sel = "<div class='cat-selector' name='categoria' >";
-		foreach ( get_categories("exclude=1&hide_empty=0") as $categ ) {
+		foreach ( get_categories("hide_empty=0") as $categ ) {
 			$categoryID = $categ->term_id;
-			$categLink = get_category_link($categ->term_id);
-			$categDesc = category_description($categ->term_id);
+			//if ( $categoryID == $filtro ) { $filter_class = " class='active'"; }
+			//else { $filter_class = ""; }
+			$cat_meta = get_option( "taxonomy_$categoryID" );
+			$cat_img = $cat_meta['image'];
+			//$categLink = get_category_link($categ->term_id);
+			//$categDesc = category_description($categ->term_id);
 			if ( function_exists('get_cat_icon') ) {
 				$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=false");
+			} elseif ( $cat_img != '' ) {
+				$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
 			} else { $categImg = ""; }
 			
 			$idhidden = "hidden".$categ->slug;
@@ -77,7 +79,6 @@ elseif ( $positivonegativo == 'negativo' ) {
 		$cat_sel .= "</div><!-- end class cat-selector -->";
 		
 		?>
-		<div id="paso36" class="paso">3/6</div>
 		
 		<?php echo $cat_sel; ?>
 		
@@ -87,10 +88,10 @@ elseif ( $positivonegativo == 'negativo' ) {
 
 	<fieldset id="paso-3" class="deslizaForm">
 	 
-		<div class="tit">
 		<div id="paso46" class="paso">4/6</div>
-			<h2 style="position:relative;top:-41px;"><?php _e('Elige palabras clave','whatif'); ?></h2>
-			<span style="position:relative;top:-41px;left:-49px;" class="subtit"><?php _e('Hasta un máximo de 5','whatif'); ?></span>
+		<div class="tit">
+			<h2><?php _e('Elige palabras clave','whatif'); ?></h2>
+			<span class="subtit"><?php _e('Hasta un máximo de 5','whatif'); ?></span>
 		</div>
 		<?php
 		$terms = $positivonegativo;
@@ -115,15 +116,15 @@ elseif ( $positivonegativo == 'negativo' ) {
 	</fieldset>
 
 	<fieldset id="paso-4" class="deslizaForm">
+		<div id="paso56" class="paso">5/6</div>
 		<div class="tit">
 			<h2><?php _e('Elige una localización','whatif'); ?></h2>
 		</div>
 
-		<div id="map" style="width: 750px; height: 320px"></div>
+		<div id="map" style="width: 800px; height: 320px"></div>
 		<input onfocus="if(this.value == '<?php echo WHATIF_LOCATION_ADDRESS; ?>') {this.value = '';}" onblur="if(this.value == '') {this.value = '<?php echo WHATIF_LOCATION_ADDRESS; ?>';}" class="caja-negra caja-map" type="text" size="60" id="addressTEXT" value="<?php echo WHATIF_LOCATION_ADDRESS; ?>" />
 		<input class="boton-negro" type="button" value="<?php _e('Posicionar','whatif'); ?>" onclick="showAddress()"/>
 		
-  </p>
 
 <br clear="all" />
 
@@ -219,12 +220,12 @@ elseif ( $positivonegativo == 'negativo' ) {
 
 
 
-		<div id="paso56" class="paso">5/6</div>
 
 	</fieldset>
 	
 	
 	<fieldset id="paso-5" class="deslizaForm">
+		<div id="paso66" class="paso">6/6</div>
 		<div class="tit">
 			<h2><?php _e('Añade una foto o un vídeo','whatif'); ?></h2>
 		</div>
@@ -256,7 +257,6 @@ elseif ( $positivonegativo == 'negativo' ) {
 			echo $vid_ins_out;
 			?>		
 			
-		<div id="paso66" class="paso">6/6</div>
 	</fieldset>
 
 	<fieldset id="paso-6" class="deslizaForm">

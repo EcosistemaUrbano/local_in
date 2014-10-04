@@ -229,6 +229,9 @@ top:-20px;
 	height: 480px;
 	width: 50px;
 }
+#dosificadorForm .navigation {
+	margin-top: 90px;
+}
 .navigation a {
 	display: inline-block;
 	vertical-align: middle;
@@ -547,7 +550,7 @@ cursor:pointer !important;
 #dosificadorForm {
 	margin: 0 auto;
 	width: 960px;
-	height: 350px;
+	height: 520px;
 	position: relative;
 }
 #dosificadorMess {
@@ -576,11 +579,12 @@ cursor:pointer !important;
 }
 
 #dosificadorForm #deslizanteForm {
-	margin: 0 auto;
+	margin: 0 30px;
 	width: 800px;
 	height: 520px;
 	/*overflow: hidden; not allow scrollbar */
 	/*position: relative;*/
+	float: left;
 }
 #dosificadorMess #deslizanteMess {
 	margin: 0 auto;
@@ -596,84 +600,10 @@ cursor:pointer !important;
 	/*width: 800px;*/
 	height: 520px;
 	/*float: left;*/
-	position:relative;
-	left:50px;
 }
 .deslizaMess {
 	float: left;
 }
-
-#deslizanteForm
-{
-position:relative;
-left:-50px;
-}
-
-/* jquery navigation */
-.controlForm,
-.controlMess,
-.control {
-	width: 38px;
-	height: 78px;
-	cursor: pointer;
-	text-indent: -9999px
-}
-#leftControl,
-#leftControlMess,
-#controll {
-	position: absolute;
-	
-	background: #fff url(images/arrow_left.png) no-repeat center center;
-	z-index:0;
-}
-#leftControl,
-#rightControl {
-	top: 275px;
-}
-#leftControlMess,
-#rightControlMess {
-	top: 201px;
-
-}
-#controll,
-#controlr {
-	/*top: 281px;*/
-	top: 124px;
-}
-#rightControl,
-#rightControlMess,
-#controlr {
-	position: absolute;
-	right: 0;
-	background: #fff url(images/arrow_right.png) no-repeat center center;
-}
-.control a {
-	display: block;
-	height: 78px;
-}
-/*.dosificaForm-nav span,
-.dosificaMess-nav span {
-	font-weight: bold;
-	cursor: pointer;
-}*/
-/*.dosificaForm-nav span:hover {
-	border: 1px solid #000;
-	background-color: #000;
-	color: #fff;
-	text-decoration: none;
-}
-.dosificaForm-nav a.active_page {
-        padding: 2px 4px 2px 4px;
-        margin: 2px;
-        font-weight: bold;
-        color: #2f2f2f;
-	border: none;
-}
-.dosificaForm-nav a.active_page:hover {
-	background: none;
-}*/
-
-
 
 /* participa form */
 #participa-form fieldset {
@@ -701,16 +631,11 @@ div.nologin p {
     color: #00CCFF;
     display: block;
     font-size: 15px;
-    left: -42px;
-    margin-top: -15px;
-    position: relative;
-    top: -5px;
+	height: 1em;
 }
 textarea.caja,
 div.nologin {
     height: 320px;
-    left: -43px;
-    position: relative;
 }
 input.caja {
 	height: 50px;
@@ -731,7 +656,7 @@ input.caja-term {
 	width: 788px;
 }
 input.caja-map {
-	width: 585px;
+	width: 645px;
 }
 input.media {
 	width: 460px;
@@ -741,20 +666,18 @@ input.boton-negro {
     background-color: #000000;
     border: medium none;
     color: #FFFFFF;
-  
     font-size: 1.8em;
     font-weight: bold;
     height: 30px;
     margin-top: 10px;
-    width: 147px;
+    width: 138px;
 }
 .paso {
     font-size: 3em;
     font-weight: bold;
     line-height: 1.3em;
-    position: relative;
-  left:-50px;
-   top: -425px;
+	float: left;
+	padding-top: 60px;
 }
 .pasoE {
     font-size: 3em;
@@ -765,26 +688,18 @@ input.boton-negro {
    top: -425px;
 }
 .cat-selector,
-
 .vista-selector {
     float: left;
-    width: 780px;
+    width: 800px;
     position:relative;
-    top:230px;
 }
 .term-selector
 {
     float: left;
-    width: 780px;
+    width: 800px;
 
 }
 
-.cat-selector
-{
-    position: relative;
-    top: 65px;
-  
-}
 .vista-selector-mini {
 	position: absolute;
 	top: 0;
@@ -1119,10 +1034,6 @@ height:80px !important;
 {
 display:none;
 }
-#paso56
-{
-top:-475px;
-}
 #finalform
 {
     background-color: #000;
@@ -1131,9 +1042,8 @@ top:-475px;
     height: 139px;
     line-height: 37px;
     padding: 10px;
-    position: relative;
-    top: 150px;
-    width: 750px;
+    margin-top: 160px;
+    width: 780px;
 }
 #publicar
 {
@@ -1143,9 +1053,12 @@ top:-475px;
     cursor: pointer;
     font-size: 60px;
     height: 200px;
-    position: relative;
-    top: 155px;
     width: 800px;
+	margin-top: 10px;
+	font-family: Helvetica,Arial,sans-serif;
+}
+#publicar:hover {
+	opacity: 0.8;
 }
 .socialmedia
 {
@@ -1198,19 +1111,6 @@ top:-475px;
 {
  display:none !important;
 }    
-#paso36
-{
-top:-100px;
-}
-#paso26
-{
-top: -429px
-}
- #paso46
-{
-top:0;
-left:-429px;
-}
 .FBConnectButton, .FBConnectButton_RTL, .FBConnectButton, .FBConnectButton_Text, .FBConnectButton_RTL .FBConnectButton_Text .FBConnectButton .FBConnectButton_Text, .FBConnectButton_RTL .FBConnectButton_Text 
 {
 background:none !important;
