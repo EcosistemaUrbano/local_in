@@ -214,7 +214,8 @@ function whatif_load_scripts() {
 
 // custom args for loops
 function whatif_custom_args_for_loops( $query ) {
-	if ( !is_admin() && is_author() && $query->is_main_query() ) {
+	if ( !is_admin() && is_author() && $query->is_main_query() ||
+	!is_admin() && is_tax() && $query->is_main_query() ) {
 		$query->set( 'posts_per_page','3');
 	}
 
