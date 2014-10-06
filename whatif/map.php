@@ -19,7 +19,13 @@ wp_reset_query();
 	echo $tit_out; //display header
 
 	// list of messages
-	include "loop-map.php";
+	$mess_out = "
+	<div class='unique-pages-tit map'>
+		<div id='map' align='center' style='width: 800px; height: 470px'></div> 
+	</div><!-- end class unique mosac -->
+	";
+
+	echo $mess_out;
 
 	// categories filters
 	include "filters-map.php";

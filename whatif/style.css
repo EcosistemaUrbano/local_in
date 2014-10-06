@@ -983,6 +983,10 @@ height:80px !important;
 	float: left;
 	margin: 0 5px 10px;
 }
+/* Map template */
+.map {
+	height: 480px;
+}
 
 /* vistas filters */
 .filter-cats {
