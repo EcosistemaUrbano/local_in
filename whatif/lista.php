@@ -6,32 +6,13 @@ Template Name: Lista
 get_header();
 
 // GET vars
-//if ( array_key_exists('alltax', $_GET) ) { $alltax = sanitize_text_field( $_GET['alltax'] ); } else { $alltax = ""; } // to know if positivo or negativo list
 if ( array_key_exists('tagpn', $_GET) ) { $tagpn = sanitize_text_field( $_GET['tagpn'] ); } else { $tagpn = ""; }
 if ( array_key_exists('tag2', $_GET) ) { $tag2 = sanitize_text_field( $_GET['tag2'] ); } else { $tag2 = ""; }
 
 if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
 if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
-if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
-
-if($pn=="positivo"){$textoposinega= " - " . __('Positivo','whatif');}
-elseif($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
-else { $textoposinega = ""; }
-if($filtro=="2"){$textoextra=" - " . __('Arquitectura urbanismo','whatif');}
-elseif($filtro=="3"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
-elseif($filtro=="4"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
-elseif($filtro=="5"){$textoextra=" - " . __('Movilidad','whatif');}
-elseif($filtro=="6"){$textoextra=" - " . __('Otros','whatif');}
-else { $textoextra = ""; }
-if($textoextra==""){$textoextra=" - ".$tag2;}
 
 $plvaria = "pl-mini.png"; $mnvaria = "mn-mini.png";
-
-if ($pn == "positivo" AND $pn2=="positivo") { $plvaria="pl-big.png"; }
-if ($pn == "negativo" AND $pn2=="negativo") { $mnvaria="mn-big.png"; }
-
-if ($pn == "positivo" AND $pn2!="positivo") { $pn2="positivo"; $plvaria="pl-big.png"; }
-if ($pn == "negativo" AND $pn2!="negativo" ) { $pn2="negativo"; $mnvaria = "mn-big.png"; }
 
 $valor=$pn;
 $valor_query = "";
@@ -42,7 +23,6 @@ foreach ( $valor_terms as $term ) {
 	if ( $count2 == 1) { $valor_query .= "$term->slug"; }
 	else { $valor_query .= ",$term->slug"; }
 }
-
 
 // this page title
 if ( have_posts() ) :
@@ -61,24 +41,6 @@ echo $tit_out; //display header ?>
 <div id="dosificador">
 <?php // list of messages
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-//if ( $alltax != '' ) {
-//	$alltags = get_terms($alltax);
-//	$tax_terms = "";
-//	foreach ( $alltags as $alltag ) { $tax_terms .= "$alltag->slug,"; }
-//	//query_posts("$alltax=$tax_terms&post_per_page=18&orderby=date&order=DESC");
-//	query_posts("$alltax=$tax_terms&posts_per_page=3&orderby=date&order=DESC");
-//	
-//} else {
-//	if ( array_key_exists('categ', $_GET) ) { $categ = sanitize_text_field( $_GET['categ'] ); } else { $categ = ""; }
-//	if ( $categ == '' ) {
-//		//query_posts("posts_per_page=18&paged=$paged");
-//		query_posts("posts_per_page=3&paged=$paged");
-//	}
-//	else {
-//		//query_posts("posts_per_page=18&paged=$paged&category_name=$categ");
-//		query_posts("posts_per_page=3&paged=$paged&category_name=$categ");
-//	}
-//}
 
 if ($tagpn!="") {
    $valor = $tagpn;
@@ -100,12 +62,9 @@ if ( have_posts() ) : ?>
 	<div id='deslizante'>
 
 	<?php while ( have_posts() ) : the_post();
-// include "loop.php";
 	$post_ID = get_the_ID();
 	$mess_author = get_the_author(); // the author
-	//$mess_author_link = WHATIF_BLOGURL."/author/$mess_author?buscauthor=$mess_author"; // the author page link
 	$mess_author_link = get_author_posts_url( get_the_author_meta( 'ID' ) );
-	//$mess_author_link = "$home/vistas/mensajes?buscauthor=$mess_author";
 
 	$mess_date = get_the_time('j\.n\.Y'); // the date
 	$mess_content = get_the_content(); // the message
@@ -114,7 +73,6 @@ if ( have_posts() ) : ?>
 	$coor = get_post_meta($post->ID, "coordenadas", true);
 	$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
     $video = get_post_meta($post->ID, "video", $single = true);
-    $comentario = __('Comentario','whatif') .$post_ID;
     $comentario = __('Permalink','whatif');
     $tituloenviar =  substr($mess_content,0,20); 
     $tituloenviarurl = str_replace(" ","-",$tituloenviar);
@@ -168,15 +126,14 @@ if ( have_posts() ) : ?>
 	foreach ( get_the_category() as $categ ) {
 		$categoryID = $categ->term_id;
 		$categLink = get_category_link($categ->term_id);
-		//$categDesc = category_description($categ->term_id);
 		if ( function_exists('get_cat_icon') ) {
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true&fit_width=20&fit_height=20");
 		} else { $categImg = ""; }
 		$mess_cats .= "
 			<li id='$categ->slug' class='mess-cat'>
-			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categImg</a>
+			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn'>$categImg</a>
 			<div class='mess-cat-tit'>
-			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categ->name</a>
+			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn'>$categ->name</a>
 			</div>
 			</li>
 		";
@@ -188,11 +145,9 @@ if ( have_posts() ) : ?>
 	$attachments = get_posts($args);
 	if ( $attachments ) {
 		foreach ( $attachments as $attachment ) {
-			//$imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail',true);
 			$image_link = get_attachment_link($attachment->ID). "?ref=list";
 			$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
 			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
-			//$mess_img = "<div class='mess-img'>$imagenLink</div>";
 			$mess_img = "<div class='mess-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 
 		}
