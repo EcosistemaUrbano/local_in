@@ -975,12 +975,13 @@ height:80px !important;
 
 /* Images template */
 .mosac {
-	clear: both;
-	height: 480px;
+	height: 450px;
+	width: 810px;
+	margin: 0 25px;
 }
 .mosac-img {
 	float: left;
-	margin: 0 10px 10px 0;
+	margin: 0 5px 10px;
 }
 
 /* vistas filters */
