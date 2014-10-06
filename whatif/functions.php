@@ -198,6 +198,13 @@ function whatif_load_scripts() {
 			'0.1',
 			FALSE
 		);
+		wp_enqueue_script(
+			'whatif-form-selector',
+			get_template_directory_uri() . '/js/whatif.form.selector.js',
+			array('jquery'),
+			'0.1',
+			FALSE
+		);
 
 	} // end if formulario page template
 

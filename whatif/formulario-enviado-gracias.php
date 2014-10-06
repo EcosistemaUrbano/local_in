@@ -6,47 +6,43 @@ Template Name: Formulario-enviado-gracias
 
 get_header();
 
-//Recojo datos
+// author
 $variableUsuario = $user_ID;
-$valorcategory = sanitize_text_field($_POST['valorcategory']);
-$categorias = $valorcategory.",";
 
-//Ahora convierto categorias en un array.
-$elementoscat =explode(",", $categorias);
+// cateogries
+foreach ( $_POST['valorcategory'] as $cat_selected ) {
+	$cats[] = sanitize_text_field($cat_selected);
+}
 
- $varvar1 = $elementoscat[0]; // trozo1
- $varvar2 = $elementoscat[1]; // trozo2 
- 
-  if ($varvar1=="") { $catfinal = "Uncategorized"; }
-  if ($varvar1!="") { $cat2 .= $varvar1.","; }
-  if ($varvar2!="") { $cat2 .= $varvar2.","; }
-  
-  $catfinal =explode(",", $cat2); //Creo un array para pasarlo así directamente a la funcion wp
- 
+// content 
 $contenido= sanitize_text_field($_POST['contenido']);
-$contenido = ereg_replace('"','', $contenido);
+$contenido = str_replace('"','', $contenido);
 
-$titulo =  substr($contenido,0,20); // Pongo como titulo los 20 primeros caracteres del contenido
+// title
+//$titulo =  substr($contenido,0,20); // Pongo como titulo los 20 primeros caracteres del contenido
+$author_name = get_the_author_meta('user_login',$user_ID);
+$time = current_time('mysql');
+$titulo = sprintf(__('Mensaje enviado por %s1 el %s2','whatif'),$author_name,$time);
 
-$tituloexplode =explode(" ", $titulo);
-
- $variable1 = $tituloexplode[0]; // trozo1
- $variable2 = $tituloexplode[1]; // trozo2 
- $variable3 = $tituloexplode[2]; // trozo3
- $variable4 = $tituloexplode[3]; // trozo4 
- $variable5 = $tituloexplode[4]; // trozo5
- $variable6 = $tituloexplode[5]; // trozo5
- $variable7 = $tituloexplode[6]; // trozo5 
- 
-if ( strlen($variable1) < 4 ) { $variable1="";  }
-if ( strlen($variable2) < 4 ) { $variable2="";  }
-if ( strlen($variable3) < 4 ) { $variable3="";  }
-if ( strlen($variable4) < 4 ) { $variable4="";  }
-if ( strlen($variable5) < 4 ) { $variable5="";  }
-if ( strlen($variable6) < 4 ) { $variable6="";  }
-if ( strlen($variable7) < 4 ) { $variable7="";  }
-
-$titulo = $variable1." ".$variable2." ".$variable3." ".$variable4." ".$variable5." ".$variable6." ".$variable7;
+//$tituloexplode =explode(" ", $titulo);
+//
+// $variable1 = $tituloexplode[0]; // trozo1
+// $variable2 = $tituloexplode[1]; // trozo2 
+// $variable3 = $tituloexplode[2]; // trozo3
+// $variable4 = $tituloexplode[3]; // trozo4 
+// $variable5 = $tituloexplode[4]; // trozo5
+// $variable6 = $tituloexplode[5]; // trozo5
+// $variable7 = $tituloexplode[6]; // trozo5 
+// 
+//if ( strlen($variable1) < 4 ) { $variable1="";  }
+//if ( strlen($variable2) < 4 ) { $variable2="";  }
+//if ( strlen($variable3) < 4 ) { $variable3="";  }
+//if ( strlen($variable4) < 4 ) { $variable4="";  }
+//if ( strlen($variable5) < 4 ) { $variable5="";  }
+//if ( strlen($variable6) < 4 ) { $variable6="";  }
+//if ( strlen($variable7) < 4 ) { $variable7="";  }
+//
+//$titulo = $variable1." ".$variable2." ".$variable3." ".$variable4." ".$variable5." ".$variable6." ".$variable7;
  
 $positivonegativo=$_POST['positivonegativo']; // que sera bien "positivo" o "negativo"
 $tags=$_POST['cajaterm'];
@@ -94,7 +90,7 @@ endwhile;
 
 rewind_posts();
 
-if ($contenido !="" AND $catfinal !="" AND $tagsfinal !="" AND $existemensaje !="si")
+if ($contenido !="" AND $cats !="" AND $tagsfinal !="" AND $existemensaje !="si")
 {
 
 // Hago los inserts
@@ -105,8 +101,8 @@ $post_id = wp_insert_post(array(
 'post_author' => $variableUsuario, // el ID del autor, 1 para admin
 'post_title' => $titulo,
 'post_content' => $contenido, // el contenido
-'post_category' => $catfinal // matriz de los ID de las categorías a las que asociar la entrada
-)); // La funcion insert devuelve la id del post
+'post_category' => $cats // matriz de los ID de las categorías a las que asociar la entrada
+),true); // La funcion insert devuelve la id del post
 
 
 add_post_meta($post_id, _liked, '0'); // Introduzco un valor para el sistema de votaciones
@@ -188,16 +184,26 @@ $mensajesalida = __('Su mensaje se publicó correctamente','whatif');
 
 else { $mensajesalida = __('Su mensaje no pudo ser publicado por algún error entre su conexión y el servidor, o bien ya existe un mensaje igual al que está intentando publicar. Por favor vuelva al formulario para reenviar su mensaje.','whatif'); }
 
-$resultado = "Este es el cotenido:".$contenido."<br /><br />
-               La categoria: ".$catfinal[0]."<br /><br />
+echo "<p>Error: ".$post_id. "</p>";
+
+$resultado = "<p>Este es el cotenido:".$contenido."<br /><br />
+               Las categorias: ".$cats."<br /><br />
                Si es positivo o negativo: ".$positivonegativo."<br /><br />
                Los tags: ".$tagsfinal[0].",".$tagsfinal[1].",".$tagsfinal[2].",".$tagsfinal[3].",".$tagsfinal[4]."<br /><br />
                Las coordenadas: ".$coordenadas."<br /><br />
-               El video: ".$video
-               ;
+               El video: ".$video.
+               "</p>";
 
 // to test potencial errors
-// echo $resultado;
+echo $resultado;
+$count = 0;
+//foreach ( sanitize_text_field($_POST['valorcategory']) as $selected ) {
+//	$count++; echo "Contador: " .$count."<br />";
+//	echo $selected."<br /><br />";
+//}
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 ?>
    
   <p>
@@ -221,13 +227,16 @@ $url = WHATIF_BLOGURL."/".$titulo;
 
 <script type="text/javascript">
 
-var pagina="<?php the_permalink(); ?>"
-function redireccionar() 
-{
-location.href=pagina
-} 
-setTimeout ("redireccionar()", 10);
+//var pagina="<?php the_permalink(); ?>"
+//function redireccionar() 
+//{
+//location.href=pagina
+//} 
+//setTimeout ("redireccionar()", 10);
 
 </script>
 
  <?php endwhile;?>
+
+<?php get_footer(); ?> 
+

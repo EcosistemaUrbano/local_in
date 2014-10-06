@@ -75,7 +75,7 @@ $votacion = "";
 			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true&fit_width=20&fit_height=20");
 		} else { $categImg = ""; }
 		$mess_cats .= "
-			<li id='$categ->slug' class='mess-cat'>
+			<li id='$categ->slug' class='messSingle-cat'>
 			$categImg
 			<div class='mess-cat-tit'>
 			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID'>$categ->name</a>

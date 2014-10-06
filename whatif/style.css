@@ -166,7 +166,7 @@ body {
 
 .epi-menu {
     clear: both;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 .epi-menu li {
 	display: inline-block;
@@ -663,7 +663,6 @@ input.boton-negro {
 .vista-selector {
     float: left;
     width: 800px;
-    position:relative;
 }
 .vista-selector {
 	padding-top: 100px;
@@ -688,10 +687,24 @@ input.boton-negro {
 	float:none !important;
 }
 .cat-img {
-	float: left;
-	width: 20%;
+	vertical-align: top;
+	display: inline-block;
+	width: 19%;
 	text-align: center;
+	margin: 5px 0;
 }
+.cat-boton {
+	cursor: pointer;
+}
+.cat-boton img {
+	width: 74px;
+	padding: 13px;
+}
+.cat-selector .active img {
+	width: 100px;
+	padding: 0;
+}
+	
 .vista-img {
 	float: left;
 	width: 25%;
@@ -1067,6 +1080,10 @@ display:none;
 .messSingle-cats {
 	display: inline-block;
 	vertical-align: middle;
+}
+.messSingle-cat {
+	display: inline-block;
+	margin-right: 10px;
 }
 .messSingle-text {
 	font-size: 2em;

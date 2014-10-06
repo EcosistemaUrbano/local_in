@@ -6,9 +6,7 @@ Template Name: Formulario
 get_header();
 
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field( $_GET["valor"] ); } else { $positivonegativo = ""; }
-
 if ( $positivonegativo == 'positivo' || $positivonegativo == '' ) {
-    
 	$bg = WHATIF_STYLE_POSITIVE_BG;
 	$color = WHATIF_STYLE_POSITIVE_COLOR;
 	$clasecolor='"'.WHATIF_STYLE_POSITIVE_COLOR.'"';
@@ -16,8 +14,8 @@ if ( $positivonegativo == 'positivo' || $positivonegativo == '' ) {
 	$tit_1 = __('Describe tu idea','whatif');
 	$media_img_bg = "media-img-pl";
 	$media_vid_bg = "media-vid-pl";
-}
-elseif ( $positivonegativo == 'negativo' ) {
+
+} elseif ( $positivonegativo == 'negativo' ) {
 	$bg = WHATIF_STYLE_NEGATIVE_BG;
 	$color = WHATIF_STYLE_NEGATIVE_COLOR;
 	$clasecolor='"'.WHATIF_STYLE_NEGATIVE_COLOR.'"';
@@ -27,32 +25,31 @@ elseif ( $positivonegativo == 'negativo' ) {
 	$media_vid_bg = "media-vid-mn";
 	$clasetags = WHATIF_STYLE_NEGATIVE_COLOR;
 }
-?>
 
-<?php if ( is_user_logged_in() ) { ?>
+if ( is_user_logged_in() ) { ?>
 
+	<div id="dosificadorForm">
+	<div id="deslizanteForm">
 
-<div id="dosificadorForm">
-<div id="deslizanteForm">
+	<form id="participaform" name="participaform" method="post" action="<?php echo WHATIF_BLOGURL."/formulario-enviado" ?>" enctype="multipart/form-data">
+	       
+		<fieldset id="paso-1" class="deslizaForm">
+			<div id="paso26" class="paso">2/6</div>
+			<div class="tit">
+				<h2><?php echo $tit_1 ?></h2>
+			</div>
+			<span id="info" class=<?php echo $clasecolor ?>></span>
+			<textarea onkeypress="return limita(event, 140);" onkeyup="actualizaInfo(140)" name="contenido" cols="45" rows="2" class="required caja <?php echo $bg ?> textBox" class="required" id="cajadescripcion" onblur="if(this.value == '') {this.value = '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>';}" onfocus="if(this.value == '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>') {this.value = '';}"><?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?></textarea>
+		</fieldset>
 
-<form id="participaform" name="participaform" method="post" action="<?php echo WHATIF_BLOGURL."/formulario-enviado" ?>" enctype="multipart/form-data">
-       
-	<fieldset id="paso-1" class="deslizaForm">
-		<div id="paso26" class="paso">2/6</div>
-		<div class="tit">
-			<h2><?php echo $tit_1 ?></h2>
-		</div>
-		<span id="info" class=<?php echo $clasecolor ?>></span>
-		<textarea onkeypress="return limita(event, 140);" onkeyup="actualizaInfo(140)" name="contenido" cols="45" rows="2" class="required caja <?php echo $bg ?> textBox" class="required" id="cajadescripcion" onblur="if(this.value == '') {this.value = '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>';}" onfocus="if(this.value == '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>') {this.value = '';}"><?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?></textarea>
-	</fieldset>
-
-	<fieldset id="paso-2" class="deslizaForm">
-		<div id="paso36" class="paso">3/6</div>
-		<div class="tit">
-			<h2><?php _e('Elige una categoría','whatif'); ?></h2>
-		</div>
-		<?php // categories list with icon
-		$cat_sel = "<div class='cat-selector' name='categoria' >";
+		<fieldset id="paso-2" class="deslizaForm">
+			<div id="paso36" class="paso">3/6</div>
+			<div class="tit">
+				<h2><?php _e('Elige una categoría','whatif'); ?></h2>
+			</div>
+			<?php // categories list with icon
+			$cat_divs = "<div class='cat-selector' name='categoria'>";
+			$cat_select = "<select id='valorcategory' name='valorcategory[]' multiple>";
 		foreach ( get_categories("hide_empty=0") as $categ ) {
 			$categoryID = $categ->term_id;
 			//if ( $categoryID == $filtro ) { $filter_class = " class='active'"; }
@@ -69,20 +66,19 @@ elseif ( $positivonegativo == 'negativo' ) {
 			
 			$idhidden = "hidden".$categ->slug;
 			
-			$cat_sel .= "
-				<div id='$categ->slug' class='cat-img'  name='$categ->slug' value=''>
+			$cat_divs .= "
+			<div id='$categoryID' class='cat-boton cat-img'>
 				$categImg
 				<div class='cat-tit'>$categ->name</div>
-				</div>
+			</div>
 			";
+			$cat_select .= "<option value='$categoryID'>$categ->name</option>";
 		}
-		$cat_sel .= "</div><!-- end class cat-selector -->";
+		$cat_divs .= "</div><!-- end class cat-selector -->";
+		$cat_select .= "</select>";
 		
-		?>
+		echo $cat_divs . $cat_select; ?>
 		
-		<?php echo $cat_sel; ?>
-		
-		<input type="hidden" id="valorcategory" class="cat-img required" name="valorcategory" value="" />
 		
 	</fieldset>
 
@@ -214,15 +210,7 @@ elseif ( $positivonegativo == 'negativo' ) {
 </pre>
 </div>
 
-
-
-
-
-
-
-
 	</fieldset>
-	
 	
 	<fieldset id="paso-5" class="deslizaForm">
 		<div id="paso66" class="paso">6/6</div>
@@ -244,9 +232,6 @@ elseif ( $positivonegativo == 'negativo' ) {
 				<input type='hidden' name='ref' value='$perma' />
 			</div>
 			";
-//			$upload_dir_var = wp_upload_dir();
-//			$upload_dir = $upload_dir_var['baseurl'] . $upload_dir_var['subdir'];
-//			echo $upload_dir;
 			$vid_ins_out = "
 			<div id='subirvideo' class='media-up $media_vid_bg'>
 				<input class='caja-negra media' type='text' name='urlvideo' value='http://'  />
@@ -284,14 +269,11 @@ elseif ( $positivonegativo == 'negativo' ) {
 </div><!-- end id dosificadorForm -->
 
 <?php } else { // if user not login
-//	$login_bg = "bg-n";
-//	$login_color = "color-n";
 	$ref = get_permalink(). "?valor=" .$positivonegativo;
 	$redirect = WHATIF_BLOGURL. "/user-sesion?ref=" .esc_url($ref);
 	wp_redirect($redirect);
 	exit;
-?>
-<?php } // end if user is logged in ?>
+} // end if user is logged in ?>
 
 
 <?php get_footer(); ob_end_flush(); ?>
