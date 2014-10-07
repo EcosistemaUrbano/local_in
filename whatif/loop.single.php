@@ -1,5 +1,5 @@
 <?php
-$mess_out = "<div class='unique lista'>";
+$mess_out = "<div class='unique-pages-tit lista'>";
 
 $post_ID = get_the_ID();
 $nombre =get_permalink();

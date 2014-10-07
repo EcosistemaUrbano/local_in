@@ -952,7 +952,6 @@ input.boton-negro {
 	display: inline;
 	margin-left: 10px;
 	padding: 3px 5px;
-	padding-top:5px;
 }
 .mess-tags li a,
 .messSingle-tags li a {
@@ -960,6 +959,10 @@ input.boton-negro {
 	font-size: 1.2em;
 	line-height: 1.7em;
 	font-weight: bold;
+}
+.map .messSingle-tags li a {
+	font-size: 1em;
+	line-height: 1.7em;
 }
 .mess-img {
 	float: left;
@@ -1074,10 +1077,22 @@ display:none;
 .messSingle-text {
 	margin-left: 100px;
 }
+.map .messSingle-aut,
+.map .messSingle-context,
+.map .messSingle-text {
+	text-align: left;
+}
+.map .messSingle-context {
+	padding-top: 10px;
+}
 .messSingle-aut {
 	font-size: 1.2em;
 	line-height: 1em;
 	padding: 8px 0;
+}
+.map .messSingle-aut {
+	font-size: 1em;
+	padding: 0 0 8px;
 }
 .messSingle-meta,
 .messSingle-extra,
@@ -1093,6 +1108,10 @@ display:none;
 .messSingle-text {
 	font-size: 2em;
 	line-height: 1.3em;
+}
+.map .messSingle-text {
+	font-size: 1.7em;
+	line-height: 1.1em;
 }
 .messSingle-context {
 	clear: both;

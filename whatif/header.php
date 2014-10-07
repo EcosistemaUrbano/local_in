@@ -25,186 +25,140 @@
 <?php wp_head();
 
 // if map for single
-if ( is_page('msgmap') ) {
+if ( is_page_template('msgmap.php') ) {
 	if ( array_key_exists('coor', $_GET) ) { $coor= sanitize_text_field($_GET['coor']); } else { $coor = ""; }
-	if ( array_key_exists('cat', $_GET) ) { $cat= sanitize_text_field($_GET['cat']); } else { $cat = ""; }
+//	if ( array_key_exists('cat', $_GET) ) { $cat= sanitize_text_field($_GET['cat']); } else { $cat = ""; }
 	if ( array_key_exists('pos', $_GET) ) { $pos= sanitize_text_field($_GET['pos']); } else { $pos = ""; }
-	if ( array_key_exists('ID', $_GET) ) { $ID= sanitize_text_field($_GET['ID']); } else { $ID = ""; }
+//	if ( array_key_exists('ID', $_GET) ) { $ID= sanitize_text_field($_GET['ID']); } else { $ID = ""; }
 	if ( array_key_exists('id', $_GET) ) { $id= sanitize_text_field($_GET['id']); } else { $id = ""; }
 
 	// the image
 	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $id ); 
 	$attachments = get_posts($args);
-
 	if ( $attachments ) {
 		foreach ( $attachments as $attachment ) {
-//			$img_link=  wp_get_attachment_url( $ID );
-		    $imagenLink = wp_get_attachment_link($attachment->ID, 'thumbnail');	
-		  $imagenLink = str_replace("\"","'",$imagenLink);
+			$image_link = get_attachment_link($attachment->ID). "?ref=map";
+			$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
+			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
+			$mess_img = "<div class='messSingle-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 		}
 	}
-	query_posts( "p=$id" );
+	$args = array(
+		'p' => $id
+	);
+	$messages_in_map = get_posts($args);
+	foreach ( $messages_in_map as $message ) {
+		setup_postdata($message);
+		$post_ID = $message->ID;
+		$mess_author = get_the_author_meta( 'user_login', $message->post_author );
+		$mess_author_link = get_author_posts_url( $message->post_author );
+		$mess_date = get_the_date('j\.n\.Y',$post_ID);
+		$mess_content = get_the_content();
+		$mess_perma = get_permalink($post_ID);
+		$mess_edit_link = get_edit_post_link($post_ID);
+		$positivonegativo = get_post_meta($post_ID, "positivonegativo", true);
+		$video = get_post_meta($post_ID, "video", true);
+		$comentario = __('Permalink','whatif');
+		$videomuestra=" | <a target='_blank' href='$video'>". __('Ver Video','whatif') . "</a>";
+	  	if($video=="" OR $video=="http://"){
+	        	$videomuestra="";
+		};
+	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Editar','whatif') . "</a>"; }
+	else { $mess_edit = ""; }
 
-	if ( have_posts() ) : while ( have_posts() ) : the_post();
+		if ( $positivonegativo == 'positivo' ) { $bg_class = 'bg-p'; $map_icon = "icon-pos"; }
+		elseif ( $positivonegativo == 'negativo' ) { $bg_class = 'bg-c'; $map_icon = "icon-neg"; }
 
-		$post_ID = get_the_ID();
-		$mess_author = get_the_author(); // the author
-		$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
-		$mess_date = get_the_time('j\.n\.Y'); // the date
-		$mess_content = get_the_content(); // the message
-		$mess_perma = get_permalink(); // permanent link
-		$mess_edit_link = get_edit_post_link(); // access to edit panel for this post
-		$mess_author = get_the_author();
-		$mess_categoria = "";
-		$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
-		$video = get_post_meta($post->ID, "video", $single = true);
-		$comentario = "Comentario ".$post_ID;
-		$comentario = "Permalink";
-		// the tags
-		$terms_pl = wp_get_post_terms( $post->ID, 'positivo' );
-		$terms_mn = wp_get_post_terms( $post->ID, 'negativo' );
-		$mess_tags = "<ul class='mess-tags'>";
-		foreach ( $terms_pl as $term_pl ) {
-			$term_link_pl = get_term_link("$term_pl->slug", 'positivo');
-			$mess_tags .= "<li class='bg-p'><a href='$term_link_pl'>$term_pl->name</a></li>";
+	// the categories
+		$cats = wp_get_post_terms( $post_ID, 'category' );
+	$mess_cats = "<ul class='messSingle-cats'>";
+	$cat_count = 0;
+	foreach ( $cats as $categ ) {
+		$categoryID = $categ->term_id;
+		$categLink = get_term_link($categ);
+		$mess_cats .= "<li id='" .$categ->slug. "' class='messSingle-cat'><div class='mess-cat-tit'><a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=" .$categoryID. "'>" .$categ->name. "</a></div></li>";
+		if ( $cat_count == 0 ) {
+		// map marker
+			$cat_meta = get_option("taxonomy_$categoryID");
+			$map_marker_url = $cat_meta[$map_icon];
 		}
-		foreach ( $terms_mn as $term_mn ) {
-			$term_link_mn = get_term_link("$term_mn->slug", 'negativo');
-			$mess_tags .= "<li class='bg-c'><a href='$term_link_mn'>$term_mn->name</a></li>";
+		$cat_count++;
+	}
+	$mess_cats .= "</ul><!-- end class mess-cats -->";
+
+		// the tags
+		$terms = wp_get_post_terms( $post_ID, $positivonegativo );
+		$mess_tags = "<ul class='messSingle-tags'>";
+		foreach ( $terms as $term ) {
+			$term_link = get_term_link($term);
+			$mess_tags .= "<li class='" .$bg_class. "'><a href='" .$term_link. "'>" .$term->name. "</a></li>";
 		}
 		$mess_tags .= "</ul>";    
-
-	endwhile; endif;
-	wp_reset_query();
-
-	$img="a2-arquitectura-urbanismo.png"; 
-
-	if ($pos =="positivo") {
-  if ($cat=="2") {$img="a2-arquitectura-urbanismo.png";}
-  if ($cat=="3") {$img="a2-comunidad-ciudadana.png";}
-  if ($cat=="4") {$img="a2-espacio-publico-medioambiente.png";}
-  if ($cat=="5") {$img="a2-movilidad.png";}
-  if ($cat=="6") {$img="a2-otros.png";}
 	}
-	if ($pos=="negativo") {
-  if ($cat=="2") {$img="r2-arquitectura-urbanismo.png";}
-  if ($cat=="3") {$img="r2-comunidad-ciudadana.png";}
-  if ($cat=="4") {$img="r2-espacio-publico-medioambiente.png";}
-  if ($cat=="5") {$img="r2-movilidad.png";}
-  if ($cat=="6") {$img="r2-otros.png";}
-	}
+	wp_reset_postdata();
 
-	$perma = "otro";
  	$lascoordenadas = "
-var point".$perma." = new GLatLng(".$coor.");
-var marker".$perma." = new GMarker(point".$perma.",miicono);
-GEvent.addListener(marker".$perma.", \"click\", function() {
-var myHtml".$perma." = \"<div class='mapmsg' >".$imagenLink."</div> <p style='text-align: left; padding-left:90px; font-size:12px;'>Enviado por: <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>    \";
-map2.openInfoWindowHtml(point".$perma.", myHtml".$perma."); });
-map2.addOverlay(marker".$perma.");
+var point = new GLatLng(".$coor.");
+var marker = new GMarker(point,miicono);
+GEvent.addListener(marker, \"click\", function() {
+var myHtml = \"".$mess_img. "<div class='messSingle-aut'><div class='messSingle-meta'><a href='$mess_author_link'>$mess_author</a> | $mess_date | $videomuestra</div><div class='messSingle-extra'><a href='$mess_perma'>$comentario</a>$mess_edit</div></div><div class='messSingle-text'>$mess_content</div><div class='messSingle-context'>".$mess_cats.$mess_tags."</div></div>\";	
+map2.openInfoWindowHtml(point, myHtml); });
+map2.addOverlay(marker);
 	";
 ?> 
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=<?php echo WHATIF_GOOGLE_KEY ?>" type="text/javascript"></script>
 <script type="text/javascript">
-    //<![CDATA[
-    function load() {
-      if (GBrowserIsCompatible()) {
-      
-   
-    var miicono = new GIcon(G_DEFAULT_ICON);
-    miicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/<?php echo $img; ?>";
-    var tamanoIconomiicono = new GSize(40,40);
-    miicono.iconSize = tamanoIconomiicono; 
-    miicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/<?php echo $img; ?>";
-    var tamanoSombramiicono = new GSize( 40,40);
-    miicono.shadowSize = tamanoSombramiicono; 
-    miicono.iconAnchor = new GPoint(20, 20);    
+//<![CDATA[
+function load() {
+	if (GBrowserIsCompatible()) {
+		var miicono = new GIcon(G_DEFAULT_ICON);
+		miicono.image = "<?php echo $map_marker_url ?>";
+		var tamanoIconomiicono = new GSize(40,40);
+		miicono.iconSize = tamanoIconomiicono; 
+		miicono.shadow = "<?php echo $map_marker_url; ?>";
+		var tamanoSombramiicono = new GSize( 40,40);
+		miicono.shadowSize = tamanoSombramiicono; 
+		miicono.iconAnchor = new GPoint(20, 20);    
 
-       
-       
-       var map2 = new GMap2(document.getElementById("map"));
-map2.setCenter(new GLatLng(<?php echo $coor; ?>), <?php echo WHATIF_MAP_ZOOM_SINGLE; ?>);
+		var map2 = new GMap2(document.getElementById("map"));
+		map2.setCenter(new GLatLng(<?php echo $coor; ?>), <?php echo WHATIF_MAP_ZOOM_SINGLE; ?>);
 
-map2.setUIToDefault();
+		map2.setUIToDefault();
 
-
-
-<?php echo $lascoordenadas; ?>
-        
-      }
-    }
-
-    //]]>
-    </script>
-    
-<style type="text/css">
-.mess-tags li {    
-    float: right !important;
-    margin-bottom: 5px !important;
-    padding: 0 5px !important;
+		<?php echo $lascoordenadas; ?>
+	}
 }
-.mess-tags {
- 
-    position: relative !important;
-   
-}    
-.mapmsg a img
-{
-display:block;
-float:left;
-}
-</style>    
-
+//]]>
+</script>
 </head>
 <body <?php body_class(); ?> onload="load()" onunload="GUnload()">
 
-
-
 <?php } // end map for single
 elseif ( is_page_template('entrada-vistas.php') ) { ?>
-
 </head>
 
 <?php } 
-
-
-  elseif ( is_page_template('lista.php') ) { ?>
-
+elseif ( is_page_template('lista.php') ) { ?>
 </head>
-
 
 <?php }  
-
-  elseif ( is_page_template('explica.php') ) { ?>
-
-
+elseif ( is_page_template('explica.php') ) { ?>
 </head>
-
 
 <?php }  
-
-  elseif ( is_page_template('entrada-formulario.php') ) { ?>
-
+elseif ( is_page_template('entrada-formulario.php') ) { ?>
 </head>
-
 
 <?php }  
-
-  elseif ( is_page_template('img.php') ) { ?>
-
+elseif ( is_page_template('img.php') ) { ?>
 </head>
-
 
 <?php }  
-
-  elseif ( is_page_template('palabras-clave.php') ) { ?>
-
+elseif ( is_page_template('palabras-clave.php') ) { ?>
 </head>
-
 
 <?php } 
-
- elseif ( is_home() ) { ?>
+elseif ( is_home() ) { ?>
 
 </head>
 
