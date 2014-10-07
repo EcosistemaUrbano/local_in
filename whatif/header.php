@@ -27,9 +27,7 @@
 // if map for single
 if ( is_page_template('msgmap.php') ) {
 	if ( array_key_exists('coor', $_GET) ) { $coor= sanitize_text_field($_GET['coor']); } else { $coor = ""; }
-//	if ( array_key_exists('cat', $_GET) ) { $cat= sanitize_text_field($_GET['cat']); } else { $cat = ""; }
 	if ( array_key_exists('pos', $_GET) ) { $pos= sanitize_text_field($_GET['pos']); } else { $pos = ""; }
-//	if ( array_key_exists('ID', $_GET) ) { $ID= sanitize_text_field($_GET['ID']); } else { $ID = ""; }
 	if ( array_key_exists('id', $_GET) ) { $id= sanitize_text_field($_GET['id']); } else { $id = ""; }
 
 	// the image
@@ -138,276 +136,153 @@ elseif ( is_page_template('map.php') ) {
 
 if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
 if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
-if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
-
-if($pn=="positivo"){$textoposinega= " - " . __('Positivo','whatif');}
-elseif($pn=="negativo"){$textoposinega=" - " . __('Negativo','whatif');}
-else { $textoposinega = ""; }
-if($filtro=="2"){$textoextra=" - " . __('Arquitectura urbanismo','whatif');}
-elseif($filtro=="3"){$textoextra=" - " . __('Comunidad ciudadana','whatif');}
-elseif($filtro=="4"){$textoextra=" - " . __('Espacio público medioambiente','whatif');}
-elseif($filtro=="5"){$textoextra=" - " . __('Movilidad','whatif');}
-elseif($filtro=="6"){$textoextra=" - " . __('Otros','whatif');}
-else { $textoextra = ""; }
 
 $plvaria = "pl-mini.png";
 $mnvaria = "mn-mini.png";
 
-if ($pn == "positivo" AND $pn2=="positivo")
-{ $plvaria="pl-mini.png";
- 
-}
-if ($pn == "negativo" AND $pn2=="negativo")
-{ $mnvaria="mn-mini.png";
- 
-}
-
-
-if ($pn == "positivo" AND $pn2!="positivo")
-{
-$pn2="positivo";
-$plvaria="pl-big.png";
-}
-
-if ($pn == "negativo" AND $pn2!="negativo" )
-{
-$pn2="negativo"; 
-$mnvaria = "mn-big.png";
-}
-
-
-$valor=$pn;
+$valor = $pn;
 $valor_query = "";
 $valor_terms = get_terms($valor);
 $count2 = 0;
 foreach ( $valor_terms as $term ) {
-$count2++;
-if ( $count2 == 1) { $valor_query .= "$term->slug"; }
-else { $valor_query .= ",$term->slug"; }
+	$count2++;
+	if ( $count2 == 1) { $valor_query .= "$term->slug"; }
+	else { $valor_query .= ",$term->slug"; }
 }
 
+	$args = array(
+		'meta_key' => 'coordenadas',
+		'posts_per_page' => '-1',
+		$valor => $valor_query,
+		'cat' => $filtro
+	);
 
+	// BEGIN loop
+	$messages_in_map = get_posts($args);
+	if ( $messages_in_map >= 1 ) {
+	$lascoordenadas = "";
+	foreach ( $messages_in_map as $message ) {
+		setup_postdata($message);
+		$post_ID = $message->ID;
+	    $coor = get_post_meta($post_ID, "coordenadas", true);
+		$mess_author = get_the_author_meta( 'user_login', $message->post_author );
+		$mess_author_link = get_author_posts_url( $message->post_author );
+		$mess_date = get_the_date('j\.n\.Y',$post_ID);
+		$mess_content = get_the_content();
+		$mess_perma = get_permalink($post_ID);
+		$mess_edit_link = get_edit_post_link($post_ID);
+		$positivonegativo = get_post_meta($post_ID, "positivonegativo", true);
+		$video = get_post_meta($post_ID, "video", true);
+		$comentario = __('Permalink','whatif');
+		$videomuestra=" | <a target='_blank' href='$video'>". __('Ver Video','whatif') . "</a>";
+	  	if($video=="" OR $video=="http://"){
+	        	$videomuestra="";
+		};
+	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Editar','whatif') . "</a>"; }
+	else { $mess_edit = ""; }
 
+		if ( $positivonegativo == 'positivo' ) { $bg_class = 'bg-p'; $map_icon = "icon-pos"; $map_icon_slug = "pos"; }
+		elseif ( $positivonegativo == 'negativo' ) { $bg_class = 'bg-c'; $map_icon = "icon-neg"; $map_icon_slug = "neg"; }
 
-    //aadir una marca en Obanos con el icono amarillo
-   // var obanos = new GLatLng(42.67991150445874,-1.7859649658203125);
-   // var marker = new GMarker(obanos, iconoAmarillo);
-   // map.addOverlay(marker);
-
-query_posts( "meta_key=coordenadas&posts_per_page=-1&$valor=$valor_query&cat=$filtro" );
-
-
-if ( have_posts() ) :
-       while ( have_posts() ) : the_post();
-       $post_id = get_the_ID();
-       $coord = get_post_meta($post->ID, "coordenadas", $single = true);
-	    $coor = get_post_meta($post->ID, "coordenadas", true);
-       	$mess_author = get_the_author(); // the author
-    	$mess_author_link = WHATIF_BLOGURL."/author/$mess_author"; // the author page link
-	    $mess_date = get_the_time('j\.n\.Y'); // the date
-	    $mess_content = get_the_content(); // the message
-	    $mess_perma = get_permalink(); // permanent link
-	    $mess_edit_link = get_edit_post_link(); // access to edit panel for this post
-	    $positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
-	    
-	    	foreach ( get_the_category() as $categ ) {
+	// the categories
+	$cats = wp_get_post_terms( $post_ID, 'category' );
+	$mess_cats = "<ul class='messSingle-cats'>";
+	$cat_count = 0;
+	foreach ( $cats as $categ ) {
 		$categoryID = $categ->term_id;
-		
+		$categLink = get_term_link($categ);
+		$mess_cats .= "<li id='" .$categ->slug. "' class='messSingle-cat'><div class='mess-cat-tit'><a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=" .$categoryID. "'>" .$categ->name. "</a></div></li>";
+		if ( $cat_count == 0 ) {
+		// map marker
+			$cat_meta = get_option("taxonomy_$categoryID");
+			if ( is_array($cat_meta) ) {
+				if ( array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
+					$map_marker_url = $cat_meta[$map_icon];
+				} else { $map_marker_url = WHATIF_BLOGTHEME. "/images/default-map-" .$map_icon. ".png"; }
+			}
 		}
-
-	    if ($categoryID=="2" AND $positivonegativo=="positivo"){$categoryID="arquitecturaicono";}
-	    if ($categoryID=="3" AND $positivonegativo=="positivo"){$categoryID="comunidadicono";}
-	    if ($categoryID=="4" AND $positivonegativo=="positivo"){$categoryID="publicoicono";}
-	    if ($categoryID=="5" AND $positivonegativo=="positivo"){$categoryID="movilidadicono";}
-	    if ($categoryID=="6" AND $positivonegativo=="positivo"){$categoryID="otrosicono";}
-	    if ($categoryID=="1" AND $positivonegativo=="positivo"){$categoryID="otrosicono";}
-
-	    if ($categoryID=="2" AND $positivonegativo=="negativo"){$categoryID="arquitecturaiconor";}
-	    if ($categoryID=="3" AND $positivonegativo=="negativo"){$categoryID="comunidadiconor";}
-	    if ($categoryID=="4" AND $positivonegativo=="negativo"){$categoryID="publicoiconor";}
-	    if ($categoryID=="5" AND $positivonegativo=="negativo"){$categoryID="movilidadiconor";}
-	    if ($categoryID=="6" AND $positivonegativo=="negativo"){$categoryID="otrosiconor";}
-	    if ($categoryID=="1" AND $positivonegativo=="negativo"){$categoryID="otrosiconor";}	
-
-	    
-	    	// the tags
-	$terms_pl = wp_get_post_terms( $post->ID, 'positivo' );
-	$terms_mn = wp_get_post_terms( $post->ID, 'negativo' );
-		$mess_tags = "<ul class='mess-tags'>";
-	foreach ( $terms_pl as $term_pl ) {
-		$term_link_pl = get_term_link("$term_pl->slug", 'positivo');
-		$mess_tags .= "<li class='bg-p'><a href='$term_link_pl'>$term_pl->name</a></li>";
+		$cat_count++;
 	}
-	foreach ( $terms_mn as $term_mn ) {
-		$term_link_mn = get_term_link("$term_mn->slug", 'negativo');
-		$mess_tags .= "<li class='bg-c'><a href='$term_link_mn'>$term_mn->name</a></li>";
-	}
-		$mess_tags .= "</ul>";
-	 	$mess_content = trim( preg_replace( '/\s+/', ' ', $mess_content ) );
-	 	$mess_content = str_replace('"',"'",$mess_content);
-		$mess_categoria = "";
-	    
-       
-       
-       	$lascoordenadas = "
-        var point".$post_id." = new GLatLng(".$coord.");
-var marker".$post_id." = new GMarker(point".$post_id.", ".$categoryID.");
-GEvent.addListener(marker".$post_id.", \"click\", function() {
+	$mess_cats .= "</ul><!-- end class mess-cats -->";
 
-var myHtml".$post_id." = \"<div class='mapmsg' ><img alt='' src='" .WHATIF_BLOGTHEME. "/images/default.png' style='display:block;float:left;'/></div><p style='width:500px;text-align: left; padding-left:90px; font-size:12px;'>" . __('Enviado por:','whatif') . " <strong>".$mess_author."</strong><br /><br /><a href=".$mess_perma.">".$mess_content."</a><br /><br />".$mess_categoria."<br /><br /></p><div class='clearer'></div><div class='tagsmap'>".$mess_tags."</div>\";
-map2.openInfoWindowHtml(point".$post_id.", myHtml".$post_id."); });
-map2.addOverlay(marker".$post_id.");
+		// the tags
+		$terms = wp_get_post_terms( $post_ID, $positivonegativo );
+		$mess_tags = "<ul class='messSingle-tags'>";
+		foreach ( $terms as $term ) {
+			$term_link = get_term_link($term);
+			$mess_tags .= "<li class='" .$bg_class. "'><a href='" .$term_link. "'>" .$term->name. "</a></li>";
+		}
+		$mess_tags .= "</ul>";    
+
+	// the image
+	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $id ); 
+	$attachments = get_posts($args);
+	if ( $attachments ) {
+		foreach ( $attachments as $attachment ) {
+			$image_link = get_attachment_link($attachment->ID). "?ref=map";
+			$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
+			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
+			$mess_img = "<div class='messSingle-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
+		}
+	}
+
+ 	$lascoordenadas .= "
+var point".$post_ID." = new GLatLng(".$coor.");
+var marker".$post_ID." = new GMarker(point".$post_ID.", icon".$categoryID.$map_icon_slug.");
+GEvent.addListener(marker".$post_ID.", \"click\", function() {
+var myHtml".$post_ID." = \"".$mess_img."<div class='messSingle-aut'><div class='messSingle-meta'><a href='$mess_author_link'>$mess_author</a> | $mess_date | $videomuestra</div><div class='messSingle-extra'><a href='$mess_perma'>$comentario</a>$mess_edit</div></div><div class='messSingle-text'>$mess_content</div><div class='messSingle-context'>".$mess_cats.$mess_tags."</div></div>\";	
+map2.openInfoWindowHtml(point".$post_ID.", myHtml".$post_ID."); });
+map2.addOverlay(marker".$post_ID.");
         ";
-        
-      
-       endwhile;
-else:
-endif;
-wp_reset_query();
+       
+	}
+	wp_reset_postdata();
+	} // end there are messages
+	// END loop
+
+	// markers
+	$losmarkers = "var iconDefault = new GIcon(G_DEFAULT_ICON)";
+	$all_cats = get_terms( 'category',array('fields'=>'ids') );
+	foreach ( $all_cats as $cat ) {
+		$cat_meta = get_option("taxonomy_$cat");
+		foreach ( array('pos','neg') as $icon ) {
+			if ( is_array($cat_meta) ) {
+				if ( array_key_exists('icon-'.$icon,$cat_meta) && $cat_meta['icon-'.$icon] != '' ) {
+					$map_marker_{$icon} = $cat_meta['icon-'.$icon];
+				}
+			} else { $map_marker_{$icon} = WHATIF_BLOGTHEME. "/images/default-map-" .$icon. ".png"; }
+
+			$losmarkers .= "
+			var icon".$cat.$icon." = new GIcon(G_DEFAULT_ICON);
+			icon".$cat.$icon.".image = '".$map_marker_{$icon}."';
+			var tamanoicon".$cat.$icon." = new GSize(40,40);
+			icon".$cat.$icon.".iconSize = tamanoicon".$cat.$icon."; 
+			icon".$cat.$icon.".iconAnchor = new GPoint(20,20);
+			icon".$cat.$icon.".imageMap = [0,0, 39,0, 39,39, 0,39];
+			";
+		}
+	}
 ?> 
 <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
 <script type="text/javascript">
-    //<![CDATA[
-
-    function load() {
-      if (GBrowserIsCompatible()) {
-
-    //iconos para las marcas
-    var movilidadicono = new GIcon( G_DEFAULT_ICON);
-    movilidadicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-movilidad.png";
-    var tamanoIconomovilidad = new GSize(40,40);
-    movilidadicono.iconSize = tamanoIconomovilidad; 
-    movilidadicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-movilidad.png";
-    var tamanoSombramovilidad = new GSize( 40,40);
-    movilidadicono.shadowSize = tamanoSombramovilidad; 
-    movilidadicono.iconAnchor = new GPoint(20,20);
-    movilidadicono.imageMap = [0,0, 39,0, 39,39, 0,39];
-
-    var comunidadicono = new GIcon(G_DEFAULT_ICON);
-    comunidadicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-comunidad-ciudadana.png";
-    var tamanoIconocomunidad = new GSize(40,40);
-    comunidadicono.iconSize = tamanoIconocomunidad; 
-    comunidadicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-comunidad-ciudadana.png";
-    var tamanoSombracomunidad = new GSize( 40,40);
-    comunidadicono.shadowSize = tamanoSombracomunidad; 
-    comunidadicono.iconAnchor = new GPoint(20,20);
-    comunidadicono.imageMap = [0,0, 39,0, 39,39, 0,39];
+//<![CDATA[
+function load() {
+	if (GBrowserIsCompatible()) {
+		//iconos para las marcas
+		<?php echo $losmarkers; ?>
     
-    var publicoicono = new GIcon(G_DEFAULT_ICON);
-    publicoicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-espacio-publico-medioambiente.png";
-    var tamanoIconopublico = new GSize(40,40);
-    publicoicono.iconSize = tamanoIconopublico; 
-    publicoicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-espacio-publico-medioambiente.png";
-    var tamanoSombrapublico = new GSize( 40,40);
-    publicoicono.shadowSize = tamanoSombrapublico; 
-    publicoicono.iconAnchor = new GPoint(20,20);
-    publicoicono.imageMap = [0,0, 39,0, 39,39, 0,39];
-    
-    var arquitecturaicono = new GIcon(G_DEFAULT_ICON);
-    arquitecturaicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-arquitectura-urbanismo.png";
-    var tamanoIconoarquitectura = new GSize(40,40);
-    arquitecturaicono.iconSize = tamanoIconoarquitectura; 
-    arquitecturaicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-arquitectura-urbanismo.png";
-    var tamanoSombraarquitectura = new GSize( 40,40);
-    arquitecturaicono.shadowSize = tamanoSombraarquitectura; 
-    arquitecturaicono.iconAnchor = new GPoint(20,20);
-    arquitecturaicono.imageMap = [0,0, 39,0, 39,39, 0,39];
-    
-    var otrosicono = new GIcon(G_DEFAULT_ICON);
-    otrosicono.image = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-otros.png";
-    var tamanoIconootros = new GSize(40,40);
-    otrosicono.iconSize = tamanoIconootros; 
-    otrosicono.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/a2-otros.png";
-    var tamanoSombraotros = new GSize( 40,40);
-    otrosicono.shadowSize = tamanoSombraotros; 
-    otrosicono.iconAnchor = new GPoint(20,20);  
-    otrosicono.imageMap = [0,0, 39,0, 39,39, 0,39];
-  
-    var movilidadiconor = new GIcon( G_DEFAULT_ICON);
-    movilidadiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-movilidad.png";
-    var tamanoIconomovilidadr = new GSize(40,40);
-    movilidadiconor.iconSize = tamanoIconomovilidadr; 
-    movilidadiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-movilidad.png";
-    var tamanoSombramovilidadr = new GSize( 40,40);
-    movilidadiconor.shadowSize = tamanoSombramovilidadr; 
-    movilidadiconor.iconAnchor = new GPoint(20,20);
-    movilidadiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
+		var map2 = new GMap2(document.getElementById("map"));
+		map2.setCenter(new GLatLng(<?php echo WHATIF_MAP_COORDS ?>), <?php echo WHATIF_MAP_ZOOM ?>);
+		map2.setUIToDefault();
 
-    var comunidadiconor = new GIcon(G_DEFAULT_ICON);
-    comunidadiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-comunidad-ciudadana.png";
-    var tamanoIconocomunidadr = new GSize(40,40);
-    comunidadiconor.iconSize = tamanoIconocomunidadr; 
-    comunidadiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-comunidad-ciudadana.png";
-    var tamanoSombracomunidadr = new GSize( 40,40);
-    comunidadiconor.shadowSize = tamanoSombracomunidadr; 
-    comunidadiconor.iconAnchor = new GPoint(20,20);
-    comunidadiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
-    
-    var publicoiconor = new GIcon(G_DEFAULT_ICON);
-    publicoiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-espacio-publico-medioambiente.png";
-    var tamanoIconopublicor = new GSize(40,40);
-    publicoiconor.iconSize = tamanoIconopublicor; 
-    publicoiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-espacio-publico-medioambiente.png";
-    var tamanoSombrapublicor = new GSize( 40,40);
-    publicoiconor.shadowSize = tamanoSombrapublicor; 
-    publicoiconor.iconAnchor = new GPoint(20,20);
-    publicoiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
-    
-    var arquitecturaiconor = new GIcon(G_DEFAULT_ICON);
-    arquitecturaiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-arquitectura-urbanismo.png";
-    var tamanoIconoarquitecturar = new GSize(40,40);
-    arquitecturaiconor.iconSize = tamanoIconoarquitecturar; 
-    arquitecturaiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-arquitectura-urbanismo.png";
-    var tamanoSombraarquitecturar = new GSize( 40,40);
-    arquitecturaiconor.shadowSize = tamanoSombraarquitecturar; 
-    arquitecturaiconor.iconAnchor = new GPoint(20,20);
-    arquitecturaiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
-    
-    var otrosiconor = new GIcon(G_DEFAULT_ICON);
-    otrosiconor.image = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-otros.png";
-    var tamanoIconootrosr = new GSize(40,40);
-    otrosiconor.iconSize = tamanoIconootrosr; 
-    otrosiconor.shadow = "<?php echo WHATIF_BLOGTHEME ?>/images/r2-otros.png";
-    var tamanoSombraotrosr = new GSize( 40,40);
-    otrosiconor.shadowSize = tamanoSombraotrosr; 
-    otrosiconor.iconAnchor = new GPoint(20,20); 
-    otrosiconor.imageMap = [0,0, 39,0, 39,39, 0,39];
-    
-       var map2 = new GMap2(document.getElementById("map"));
-map2.setCenter(new GLatLng(<?php echo WHATIF_MAP_COORDS ?>), <?php echo WHATIF_MAP_ZOOM ?>);
-map2.setUIToDefault();
-
-// Aqui las coordenadas
-<?php echo $lascoordenadas; ?>
-        
-      }
-    }
-
-    //]]>
-    </script>
-
-<style type="text/css">
-.mess-tags li {    
-    float: right !important;
-    margin-bottom: 5px !important;
-    padding: 0 5px !important;
+		// Aqui las coordenadas
+		<?php echo $lascoordenadas; ?>        
+	}
 }
-.mess-tags {
- 
-    position: relative !important;
-
-}    
-.mapmsg a img
-{
-display:block;
-float:left;
-}
-.tagsmap{position:relative;top:-5px;left:-10px;}
-</style> 
-
+//]]>
+</script>
 </head>
 <body <?php body_class(); ?> onload="load()" onunload="GUnload()">
-
 
 <?php } 
 elseif ( is_page_template('formulario.php') ) {
