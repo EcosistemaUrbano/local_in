@@ -25,9 +25,13 @@ wp_reset_query();
 	</div><!-- end class unique mosac -->
 	";
 
+if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
+if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
+
+
 	echo $mess_out;
 
 	// categories filters
-	include "filters-map.php";
+	include "filters.php";
 
 get_footer(); ?>

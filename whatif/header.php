@@ -226,9 +226,11 @@ foreach ( $valor_terms as $term ) {
 		}
 	}
 
+	if ( $filtro != '' ) { $map_cat_slug = $filtro; }
+	else { $map_cat_slug = $categoryID; }
  	$lascoordenadas .= "
 var point".$post_ID." = new GLatLng(".$coor.");
-var marker".$post_ID." = new GMarker(point".$post_ID.", icon".$categoryID.$map_icon_slug.");
+var marker".$post_ID." = new GMarker(point".$post_ID.", icon".$map_cat_slug.$map_icon_slug.");
 GEvent.addListener(marker".$post_ID.", \"click\", function() {
 var myHtml".$post_ID." = \"".$mess_img."<div class='messSingle-aut'><div class='messSingle-meta'><a href='$mess_author_link'>$mess_author</a> | $mess_date | $videomuestra</div><div class='messSingle-extra'><a href='$mess_perma'>$comentario</a>$mess_edit</div></div><div class='messSingle-text'>$mess_content</div><div class='messSingle-context'>".$mess_cats.$mess_tags."</div></div>\";	
 map2.openInfoWindowHtml(point".$post_ID.", myHtml".$post_ID."); });
