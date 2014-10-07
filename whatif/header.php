@@ -133,43 +133,9 @@ function load() {
 </head>
 <body <?php body_class(); ?> onload="load()" onunload="GUnload()">
 
-<?php } // end map for single
-elseif ( is_page_template('entrada-vistas.php') ) { ?>
-</head>
+<?php } // Map view
+elseif ( is_page_template('map.php') ) {
 
-<?php } 
-elseif ( is_page_template('lista.php') ) { ?>
-</head>
-
-<?php }  
-elseif ( is_page_template('explica.php') ) { ?>
-</head>
-
-<?php }  
-elseif ( is_page_template('entrada-formulario.php') ) { ?>
-</head>
-
-<?php }  
-elseif ( is_page_template('img.php') ) { ?>
-</head>
-
-<?php }  
-elseif ( is_page_template('palabras-clave.php') ) { ?>
-</head>
-
-<?php } 
-elseif ( is_home() ) { ?>
-
-</head>
-
-<?php }  
-
-
-
-  elseif ( is_page_template('map.php') ) { ?>
-
-
-<?php
 if ( array_key_exists('filtro', $_GET) ) { $filtro = sanitize_text_field( $_GET['filtro'] ); } else { $filtro = ""; }
 if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
 if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
@@ -444,12 +410,7 @@ float:left;
 
 
 <?php } 
-
-
-
-
-
- elseif ( is_page_template('formulario.php') ) {
+elseif ( is_page_template('formulario.php') ) {
  
 if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field($_GET["valor"]); } else { $positivonegativo = ""; }
 
@@ -557,20 +518,11 @@ function llenarinput(escondido)
 	//var objeto = getElementById(escondido);
 	//objeto.value ='si';
 }
-
-
-
 </script>
 
-
-
-<script type="text/javascript"
-      src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
-
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
 <script type="text/javascript">
-
 //<![CDATA[
-
 var map;
 var mapKey;
 var marker;
@@ -891,16 +843,12 @@ function showAddress() {
 
  //]]>
 </script>
-
-
 </head>
 <body <?php body_class(); ?> onload="load()" onkeypress="return pulsar(event)" >
 
 <?php } else { // if not map and not formulario ?>
-
 </head>
 <body <?php body_class(); ?>>
-
 
 <?php } ?>
 
