@@ -228,37 +228,64 @@ function whatif_custom_args_for_loops( $query ) {
 
 } // END custom args for loops
 
-// Add extra field to add category form
+// new fileds for categories
+$category_new_fields = array(
+	array(
+		'slug' => 'image',
+		'field-tit' => __('Imagen de la categoría','whatif'),
+		'field-desc' => __( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ),
+		'col-tit' => __('Imagen','whatif'),
+	),
+	array(
+		'slug' => 'icon-pos',
+		'field-tit' => __('Icono positivo para mapa','whatif'),
+		'field-desc' => __( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ),
+		'col-tit' => __('Icono +','whatif'),
+	),
+	array(
+		'slug' => 'icon-neg',
+		'field-tit' => __('Icono negativo para mapa','whatif'),
+		'field-desc' => __( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ),
+		'col-tit' => __('Icono -','whatif'),
+	)
+);
+
+// Add extra fields to add category form
 function whatif_new_category_extra_field() {
+	global $category_new_fields;
 	// this will add the custom meta field to the add new term page
-	?>
-	<div class="form-field">
-		<label for="term_meta[image]"><?php _e( 'Imagen de la categoría', 'whatif' ); ?></label>
-		<input type="text" name="term_meta[image]" id="term_meta[image]" value="">
-		<p class="description"><?php _e( 'Escribe la URL completa de la imagen.','whatif' ); ?></p>
-	</div>
-<?php
+	foreach ( $category_new_fields as $field ) { ?>
+		<div class="form-field">
+			<label for="term_meta[<?php echo $field['slug'] ?>]"><?php echo $field['field-tit'] ?></label>
+			<input type="text" name="term_meta[<?php echo $field['slug'] ?>]" id="term_meta[<?php echo $field['slug'] ?>]" value="">
+			<p class="description"><?php echo $field['field-desc'] ?></p>
+		</div>
+<?php	}
 }
 
-// Add extra field to edit category form
+// Add extra fields to edit category form
 function whatif_edit_category_extra_field($term) {
+	global $category_new_fields;
  
 	// put the term ID into a variable
 	$t_id = $term->term_id;
- 
 	// retrieve the existing value(s) for this meta field. This returns an array
-	$term_meta = get_option( "taxonomy_$t_id" ); ?>
-	<tr class="form-field">
-	<th scope="row" valign="top"><label for="term_meta[image]"><?php _e( 'Imagen de la categoría', 'whatif' ); ?></label></th>
-		<td>
-			<input type="text" name="term_meta[image]" id="term_meta[image]" value="<?php echo esc_attr( $term_meta['image'] ) ? esc_attr( $term_meta['image'] ) : ''; ?>">
-			<p class="description"><?php _e( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ); ?></p>
-		</td>
-	</tr>
-<?php
+	$term_meta = get_option( "taxonomy_$t_id" );
+
+	foreach ( $category_new_fields as $field ) {
+		if ( array_key_exists($field['slug'], $term_meta) ) { $term_value = $term_meta[$field['slug']]; }
+		else { $term_value = ""; } ?>
+		<tr class="form-field">
+			<th scope="row" valign="top"><label for="term_meta[<?php echo $field['slug'] ?>]"><?php echo $field['field-tit'] ?></label></th>
+			<td>
+				<input type="text" name="term_meta[<?php echo $field['slug'] ?>]" id="term_meta[<?php echo $field['slug'] ?>]" value="<?php echo esc_attr( $term_value ) ? esc_attr( $term_value ) : ''; ?>">
+				<p class="description"><?php echo $field['field-desc'] ?></p>
+			</td>
+		</tr>
+<?php	}
 }
 
-// Save category extra field callback function
+// Save category extra fields callback function
 function whatif_save_category_extra_field( $term_id ) {
 	if ( isset( $_POST['term_meta'] ) ) {
 		$t_id = $term_id;
@@ -274,23 +301,31 @@ function whatif_save_category_extra_field( $term_id ) {
 	}
 }  
 
-// add image column to admin categories list
+// add extra columns to admin categories list
 function whatif_category_columns($columns) {
-	$columns['image'] = __('Imagen');
+	global $category_new_fields;
+	foreach ( $category_new_fields as $field ) {
+		$columns[$field['slug']] = $field['col-tit'];
+	}
 	return $columns;
 }
  
-// populate image column in admin categories list
+// populate extra columns in admin categories list
 function whatif_fill_category_columns($out, $column_name, $cat_id) {
+	global $category_new_fields;
 	$cat = get_term($cat_id, 'category');
-	if ($column_name == 'image' ) {
-		// get image from options table
-		$cat_meta = get_option("taxonomy_$cat_id");
-		$cat_img = $cat_meta['image'];
-		if ( $cat_img != '' ) { $out .= "<img src='" .$cat_img. "' height='48' />"; }
-		else { $out .= __('Edita para asignar una imagen','whatif'); }
- 
-    	}
-	return $out;   
+	foreach ( $category_new_fields as $field ) {
+		if ($column_name == $field['slug'] ) {
+			// get image from options table
+			$term_meta = get_option("taxonomy_$cat_id");
+			if ( is_array($term_meta) ) {
+				if ( array_key_exists($field['slug'],$term_meta) && $term_meta[$field['slug']] != '' ) {
+					$cat_img = $term_meta[$field['slug']];
+					$out .= "<img src='" .$cat_img. "' height='40' />";
+				}
+			}
+   		}
+   	}
+	return $out;
 }
 ?>
