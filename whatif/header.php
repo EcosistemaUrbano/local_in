@@ -78,7 +78,11 @@ if ( is_page_template('msgmap.php') ) {
 		if ( $cat_count == 0 ) {
 		// map marker
 			$cat_meta = get_option("taxonomy_$categoryID");
-			$map_marker_url = $cat_meta[$map_icon];
+			if ( is_array($cat_meta) ) {
+				if ( array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
+					$map_marker_url = $cat_meta[$map_icon];
+				}
+			} else { $map_marker_url = WHATIF_BLOGTHEME. "/images/default-map-" .$map_icon. ".png"; }
 		}
 		$cat_count++;
 	}
@@ -198,8 +202,8 @@ foreach ( $valor_terms as $term ) {
 			if ( is_array($cat_meta) ) {
 				if ( array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
 					$map_marker_url = $cat_meta[$map_icon];
-				} else { $map_marker_url = WHATIF_BLOGTHEME. "/images/default-map-" .$map_icon. ".png"; }
-			}
+				}
+			} else { $map_marker_url = WHATIF_BLOGTHEME. "/images/default-map-" .$map_icon. ".png"; }
 		}
 		$cat_count++;
 	}

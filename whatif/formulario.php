@@ -5,8 +5,8 @@ Template Name: Formulario
 
 get_header();
 
-if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field( $_GET["valor"] ); } else { $positivonegativo = ""; }
-if ( $positivonegativo == 'positivo' || $positivonegativo == '' ) {
+if ( array_key_exists('valor', $_GET) ) { $positivonegativo = sanitize_text_field( $_GET["valor"] ); } else { $positivonegativo = "positivo"; }
+if ( $positivonegativo == 'positivo' ) {
 	$bg = WHATIF_STYLE_POSITIVE_BG;
 	$color = WHATIF_STYLE_POSITIVE_COLOR;
 	$clasecolor='"'.WHATIF_STYLE_POSITIVE_COLOR.'"';
@@ -52,17 +52,14 @@ if ( is_user_logged_in() ) { ?>
 			$cat_select = "<select id='valorcategory' name='valorcategory[]' multiple>";
 		foreach ( get_categories("hide_empty=0") as $categ ) {
 			$categoryID = $categ->term_id;
-			//if ( $categoryID == $filtro ) { $filter_class = " class='active'"; }
-			//else { $filter_class = ""; }
 			$cat_meta = get_option( "taxonomy_$categoryID" );
 			$cat_img = $cat_meta['image'];
-			//$categLink = get_category_link($categ->term_id);
-			//$categDesc = category_description($categ->term_id);
-			if ( function_exists('get_cat_icon') ) {
-				$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=false");
-			} elseif ( $cat_img != '' ) {
-				$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
-			} else { $categImg = ""; }
+			if ( is_array($cat_meta) ) {
+				if ( array_key_exists('image',$cat_meta) && $cat_meta['image'] != '' ) {
+					$cat_img = $cat_meta['image'];
+				}
+			} else { $cat_img = WHATIF_BLOGTHEME. "/images/default-cat.png"; }
+			$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
 			
 			$idhidden = "hidden".$categ->slug;
 			

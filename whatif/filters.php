@@ -4,22 +4,22 @@
 		array(
 			'name' => 'positivo',
 			'title' => __('Mensajes positivos','whatif'),
-			'img' => 'pl-mini.png'
+			'img' => 'default-pos.png'
 		),
 		array(
 			'name' => 'negativo',
 			'title' => __('Mensajes negativos','whatif'),
-			'img' => 'mn-mini.png'
+			'img' => 'default-neg.png'
 		)
 	);
 
 	$perma = $perma_pn = $perma_filtro = get_permalink(). "?";
 
 	$filter_out = "<ul class='filter-cats'>";
+	$perma_reset = substr($perma, 0, -1);
 	$filter_out .= "
 		<li id='tax-reset' class='filter-cat'>
-			<a title='" . __('Restablecer','whatif') . "' href='" .$perma. "'><img src='" .WHATIF_BLOGTHEME. "/images/reset.png' style='width:30px;' alt='" . __('Restablecer','whatif') . "' /></a>
-			<div class='filter-tit'><a href=''></a></div>
+			<a title='" . __('Restablecer','whatif') . "' href='" .$perma_reset. "'><img src='" .WHATIF_BLOGTHEME. "/images/default-reset.png' alt='" . __('Restablecer','whatif') . "' /></a>
 		</li>
 	";
 
@@ -45,13 +45,12 @@
 
 		$cat_perma = get_category_link($categ->term_id);
 		$cat_meta = get_option( "taxonomy_$cat_id" );
-		$cat_img = $cat_meta['image'];
-		if ( function_exists('get_cat_icon') ) {
-		// compatibility with old versions of whatif
-			$categImg = get_cat_icon("cat=$cat_id&echo=false&link=false&small=true");
-		} elseif ( $cat_img != '' ) {
-			$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
-		} else { $categImg = $categ->name; }
+		if ( is_array($cat_meta) ) {
+			if ( array_key_exists('image',$cat_meta) && $cat_meta['image'] != '' ) {
+				$cat_img = $cat_meta['image'];
+			}
+		} else { $cat_img = WHATIF_BLOGTHEME. "/images/default-cat.png"; }
+		$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
 		
 		$filter_out .= "
 			<li id='$categ->slug' class='filter-cat'>
