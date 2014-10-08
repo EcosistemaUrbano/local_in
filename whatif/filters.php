@@ -55,7 +55,7 @@
 		$filter_out .= "
 			<li id='$categ->slug' class='filter-cat'>
 				<div>
-				<a" .$filter_class. " href='" .$perma_filtro. "'>$categImg</a>
+				<a" .$filter_class. " href='" .$perma_filtro. "' title='" .$categ->name. "'>$categImg</a>
 				</div>
 				<div class='filter-tit'>$categ->category_count</div>
 			</li>

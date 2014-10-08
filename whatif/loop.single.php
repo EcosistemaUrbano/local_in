@@ -70,13 +70,18 @@ $votacion = "";
 	foreach ( get_the_category() as $categ ) {
 		$categoryID = $categ->term_id;
 		$categLink = get_category_link($categ->term_id);
-		//$categDesc = category_description($categ->term_id);
-		if ( function_exists('get_cat_icon') ) {
-			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true&fit_width=20&fit_height=20");
-		} else { $categImg = ""; }
+
+		$cat_perma = get_category_link($categ->term_id);
+		$cat_meta = get_option( "taxonomy_$categoryID" );
+		if ( is_array($cat_meta) ) {
+			if ( array_key_exists('image',$cat_meta) && $cat_meta['image'] != '' ) {
+				$cat_img = $cat_meta['image'];
+			}
+		} else { $cat_img = WHATIF_BLOGTHEME. "/images/default-cat.png"; }
+		$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
 		$mess_cats .= "
 			<li id='$categ->slug' class='messSingle-cat'>
-			$categImg
+			<a class='messSingle-cat-img' href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID'>$categImg</a>
 			<div class='mess-cat-tit'>
 			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID'>$categ->name</a>
 			</div>

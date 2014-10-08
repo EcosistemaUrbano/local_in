@@ -902,7 +902,8 @@ input.boton-negro {
 }
 
 .mess {
-    height: 120px;
+    height: 150px;
+	padding: 5px 0;
     position: relative;
     width: 800px;
 }
@@ -1108,13 +1109,18 @@ display:none;
 .messSingle-meta,
 .messSingle-extra,
 .messSingle-social,
-.messSingle-cats {
+.messSingle-cats,
+.messSingle-cat-img,
+.messSingle-cat-tit {
 	display: inline-block;
 	vertical-align: middle;
 }
 .messSingle-cat {
 	display: inline-block;
 	margin-right: 10px;
+}
+.messSingle-cat img {
+	height: 24px;
 }
 .messSingle-text {
 	font-size: 2em;
@@ -1126,9 +1132,16 @@ display:none;
 }
 .messSingle-context {
 	clear: both;
+	padding-top: 8px;
+}
+.messSingle-cats {
+	width: 50%;
 }
 .messSingle-tags {
-	float: right;
+	display: inline-block;
+	text-align: right;
+	vertical-align: middle;
+	width: 49%;
 }
 
 #lightbox-nav-btnNext, #lightbox-nav-btnPrev, #lightbox-image-details-currentNumber
