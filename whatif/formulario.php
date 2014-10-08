@@ -26,12 +26,15 @@ if ( $positivonegativo == 'positivo' ) {
 	$clasetags = WHATIF_STYLE_NEGATIVE_COLOR;
 }
 
-if ( is_user_logged_in() ) { ?>
+if ( is_user_logged_in() ) {
+// if user is logged in
 
-	<div id="dosificadorForm">
-	<div id="deslizanteForm">
+	if ( !array_key_exists('positivonegativo',$_POST) ) {
+	// if form hasn't been sent, then display form ?>
 
-	<form id="participaform" name="participaform" method="post" action="<?php echo WHATIF_BLOGURL."/formulario-enviado" ?>" enctype="multipart/form-data">
+<div id="dosificadorForm">
+<div id="deslizanteForm">
+	<form id="participaform" name="participaform" method="post" action="<?php the_permalink(); ?>" enctype="multipart/form-data">
 	       
 		<fieldset id="paso-1" class="deslizaForm">
 			<div id="paso26" class="paso">2/6</div>
@@ -49,7 +52,7 @@ if ( is_user_logged_in() ) { ?>
 			</div>
 			<?php // categories list with icon
 			$cat_divs = "<div class='cat-selector' name='categoria'>";
-			$cat_select = "<select id='valorcategory' name='valorcategory[]' multiple>";
+			$cat_select = "<select class='required' id='valorcategory' name='valorcategory[]' multiple>";
 		foreach ( get_categories("hide_empty=0") as $categ ) {
 			$categoryID = $categ->term_id;
 			$cat_meta = get_option( "taxonomy_$categoryID" );
@@ -73,14 +76,10 @@ if ( is_user_logged_in() ) { ?>
 		}
 		$cat_divs .= "</div><!-- end class cat-selector -->";
 		$cat_select .= "</select>";
-		
 		echo $cat_divs . $cat_select; ?>
-		
-		
 	</fieldset>
 
 	<fieldset id="paso-3" class="deslizaForm">
-	 
 		<div id="paso46" class="paso">4/6</div>
 		<div class="tit">
 			<h2><?php _e('Elige palabras clave','whatif'); ?></h2>
@@ -88,24 +87,16 @@ if ( is_user_logged_in() ) { ?>
 		</div>
 		<?php
 		$terms = $positivonegativo;
-		
-			$term_sel = "<ul class='term-selector $terms'>";
-			foreach ( get_terms( "$terms", "number=20" , "hide_empty=0" ) as $term ) {
-			
-			   
-			
-				$term_sel .= "<li><a  onclick='llenarterm(\"{$term->name}\", document.getElementById(\"participaform\").cajaterm.value, $clasecolor, $term->term_id)' id='$term->term_id' class='term-tit $chover' value='{$term->name}' >{$term->name}</a></li>";
-
-			}
-			$term_sel .= "</ul>";
-			echo $term_sel;
+		$term_sel = "<ul class='term-selector $terms'>";
+		foreach ( get_terms( "$terms", "number=20" , "hide_empty=0" ) as $term ) {
+			$term_sel .= "<li><a  onclick='llenarterm(\"{$term->name}\", document.getElementById(\"participaform\").cajaterm.value, $clasecolor, $term->term_id)' id='$term->term_id' class='term-tit $chover' value='{$term->name}' >{$term->name}</a></li>";
+		}
+		$term_sel .= "</ul>";
+		echo $term_sel;
 		?>
-		
 		<span><?php _e('También puedes añadir tus propias palabras clave separadas por comas.','whatif'); ?></span>
 		<input type="text" value="" name="cajaterm" class="required caja-negra caja-term textBox vanadium-valid" id="cajaterm" />
-		
 		<div id="contEtiquetas" name="contEtiquetas"></div>
-		
 	</fieldset>
 
 	<fieldset id="paso-4" class="deslizaForm">
@@ -113,39 +104,24 @@ if ( is_user_logged_in() ) { ?>
 		<div class="tit">
 			<h2><?php _e('Elige una localización','whatif'); ?></h2>
 		</div>
-
 		<div id="map" style="width: 800px; height: 320px"></div>
 		<input onfocus="if(this.value == '<?php echo WHATIF_LOCATION_ADDRESS; ?>') {this.value = '';}" onblur="if(this.value == '') {this.value = '<?php echo WHATIF_LOCATION_ADDRESS; ?>';}" class="caja-negra caja-map" type="text" size="60" id="addressTEXT" value="<?php echo WHATIF_LOCATION_ADDRESS; ?>" />
 		<input class="boton-negro" type="button" value="<?php _e('Posicionar','whatif'); ?>" onclick="showAddress()"/>
-		
 
 <br clear="all" />
-
   <input style="display:none" type="text" size="50" id="infoWindowTEXT" value="" onkeyup="updateCode()" onkeypress="updateCode()" />
-
   <input style="display:none" type="checkbox" id="infoWindowCHECKBOX" CHECKED onclick="updateCode()" />
-
   <input style="display:none" type="checkbox" id="mapControlCHECKBOX" CHECKED onclick="updateCode()" />
-
   <input style="display:none" type="checkbox" id="mapTypeControlCHECKBOX" CHECKED onclick="updateCode()" />
-
   <input style="display:none" type="text" size="3" id="mapWidthTEXT" value="500" onkeyup="updateCode()" onkeypress="updateCode()" />
-
   <input style="display:none" type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateCode()" onkeypress="updateCode()" />
-
   <select style="display:none" id="mapTypeSELECT" onchange="updateCode()">
    <option value="G_NORMAL_MAP" SELECTED><?php _e('Vista mapa','whatif');?></option>
-
    <option value="G_SATELLITE_MAP"><?php _e('Vista satélite','whatif');?></option>
    <option value="G_HYBRID_MAP"><?php _e('Vista híbrida','whatif');?></option>
   </select>
 
-
-
 <br clear="all"/>
-
-
-
 <div style="display:none" id="generatedCodeDIV" style="display:block">
 <pre class="code" id="gHeadCode" style="width: 700px; overflow-x: scroll;">
 &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -206,7 +182,6 @@ if ( is_user_logged_in() ) { ?>
 
 </pre>
 </div>
-
 	</fieldset>
 	
 	<fieldset id="paso-5" class="deslizaForm">
@@ -238,34 +213,132 @@ if ( is_user_logged_in() ) { ?>
 			echo $img_ins_out;
 			echo $vid_ins_out;
 			?>		
-			
 	</fieldset>
 
 	<fieldset id="paso-6" class="deslizaForm">
 		<input type="hidden" name="positivonegativo" value="<?php echo $positivonegativo ?>"> 
 		<input type="hidden" name="ll" value="" size="40" />
 		<input type="hidden" name="zoom" value="" />
-		
 		<div id="finalform">
 			<p><?php _e('Si quieres modificar algo puedes volver hacia atrás pulsando sobre las fechas.','whatif'); ?></p>
 			<p><?php _e('Para publicar pulsa a continuación:','whatif'); ?></p>
 		</div>
-         
-         
-		<input id="publicar" type="submit" name="" value="<?php _e('Publicar mensaje','whatif'); ?>" />
+		<input id="publicar" type="submit" name="publicar" value="<?php _e('Publicar mensaje','whatif'); ?>" />
 		<input id="escondido" type="hidden" name="escondido" value="0" />
-
-
-
 	</fieldset>
 
 </form>
 
-
 </div><!-- end id deslizanteForm -->
 </div><!-- end id dosificadorForm -->
 
-<?php } else { // if user not login
+	<?php } else {
+	// if form has been sent, then do the inserts
+
+		// author
+		$variableUsuario = $user_ID;
+		// categories
+		foreach ( $_POST['valorcategory'] as $cat_selected ) {
+			$cats[] = sanitize_text_field($cat_selected);
+		}
+		// content 
+		$contenido= sanitize_text_field($_POST['contenido']);
+		$contenido = str_replace('"','', $contenido);
+		// title
+		$author_name = get_the_author_meta('user_login',$user_ID);
+		$time = current_time('mysql');
+		$titulo = sprintf(__('Mensaje enviado por %s1 el %s2','whatif'),$author_name,$time);
+
+		$positivonegativo = sanitize_text_field($_POST['positivonegativo']); // que sera bien "positivo" o "negativo"
+
+		$tags = sanitize_text_field($_POST['cajaterm']);
+		$tags = ereg_replace(" ","", $tags);
+		//Separo por comas o veo como vienen los tags para dividir en 5 variables que es el maximo permitido de tags
+		$elementos =explode(",", $tags);
+		 $var1 = $elementos[0]; // trozo1
+		 $var2 = $elementos[1]; // trozo2 
+		 $var3 = $elementos[2]; // trozo3
+		 $var4 = $elementos[3]; // trozo4 
+		 $var5 = $elementos[4]; // trozo5
+		  if ($var1=="") { $tagsfinal = "sin-tags"; }
+		  if ($var1!="") { $tags2 .= $var1.","; }
+		  if ($var2!="") { $tags2 .= $var2.","; }
+		  if ($var3!="") { $tags2 .= $var3.","; }
+		  if ($var4!="") { $tags2 .= $var4.","; }
+		  if ($var5!="") { $tags2 .= $var5; }
+		$tagsfinal =explode(",", $tags2); //Creo un array para pasarlo así directamente a la funcion wp
+
+		$coordenadas= sanitize_text_field($_POST['ll']);
+		$video= sanitize_text_field($_POST['urlvideo']);
+
+		if ( $contenido !="" AND $cats !="" AND $tagsfinal !="" ) {
+			$post_id = wp_insert_post(array(
+				'post_type' => 'post', // "page" para páginas, "libro" para el custom post type libro...
+				'post_status' => 'publish', // "draft" para borrador, "future" para programarlo...
+				'post_author' => $variableUsuario, // el ID del autor, 1 para admin
+				'post_title' => $titulo,
+				'post_content' => $contenido, // el contenido
+				'post_category' => $cats // matriz de los ID de las categorías a las que asociar la entrada
+			),true); // La funcion insert devuelve la id del post
+
+			add_post_meta($post_id, _liked, '0'); // Introduzco un valor para el sistema de votaciones
+
+			// asociamos a la entrada un campo personalizado para las coordenadas
+			add_post_meta($post_id, 'coordenadas', $coordenadas);
+			add_post_meta($post_id, 'video', $video);
+			// asociamos a la entrada un campo personalizado para ver si el comentario es positivo o negativo
+			add_post_meta($post_id, 'positivonegativo', $positivonegativo);
+			// asociamos la entrada a los términos que queramos de la taxonomía tags
+			wp_set_post_terms( $post_id, $tagsfinal,$positivonegativo,'True');
+			// image insert
+			$upload_dir_var = wp_upload_dir();
+			$upload_dir = $upload_dir_var['path']; // absolute path to uploads folder
+			$filename = basename($_FILES['blas']['name']); // to get file name from form
+			$filename = trim($filename); // removing spaces at the begining and end
+			$filename = ereg_replace(" ", "-", $filename); // removing spaces inside the name
+
+			$typefile = $_FILES['blas']['type']; // file type
+			$uploaddir = realpath($upload_dir);
+			$uploadfile = $uploaddir.'/'.$filename;
+
+			$slugname = preg_replace('/\.[^.]+$/', '', basename($uploadfile));
+			if ( file_exists($uploadfile) ) { // if file exists
+				$count = "a";
+				while ( file_exists($uploadfile) ) {
+					$count++;
+					if ( $typefile == 'image/jpeg' ) { $exten = 'jpg'; }
+					elseif ( $typefile == 'image/png' ) { $exten = 'png'; }
+					elseif ( $typefile == 'image/gif' ) { $exten = 'gif'; }
+					$uploadfile = $uploaddir.'/'.$slugname.'-'.$count.'.'.$exten;
+				}
+			} // end if file exist
+
+			if (move_uploaded_file($_FILES['blas']['tmp_name'], $uploadfile)) { // if the file is uploaded
+				$slugname = preg_replace('/\.[^.]+$/', '', basename($uploadfile)); // defining image slug again to make it matching with file name
+				$attachment = array(
+					'post_mime_type' => $typefile,
+					'post_title' => $slugname,
+					'post_content' => '',
+					'post_status' => 'inherit'
+				);
+				$attach_id = wp_insert_attachment( $attachment, $uploadfile, $post_id );
+				// you must first include the image.php file
+				// for the function wp_generate_attachment_metadata() to work
+				require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+				$attach_data = wp_generate_attachment_metadata( $attach_id, $uploadfile );
+				wp_update_attachment_metadata( $attach_id,  $attach_data );
+				$img_url = wp_get_attachment_url($attach_id);
+			}
+
+			// redirection
+			$redirect = get_permalink($post_id)."?ref=form";
+			wp_redirect($redirect);
+			exit;
+		} // end if all required fields are there
+
+	} // end if form has been sent
+
+} else { // if user not login
 	$ref = get_permalink(). "?valor=" .$positivonegativo;
 	$redirect = WHATIF_BLOGURL. "/user-sesion?ref=" .esc_url($ref);
 	wp_redirect($redirect);

@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php get_header();
+
+// the referrer:
+if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref']); } else { $ref = ""; } ?>
 
 <div id="mensaje" role="main">
 
@@ -25,9 +28,9 @@
 
 
 	<?php if ( is_attachment() ) {
-		if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref']); } else { $ref = ""; }
 		if ( $ref == 'mosaic' ) { $ref_text = " | " .__('Volver al mosaico','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		elseif ( $ref == 'list' ) { $ref_text = " | " .__('Volver a la lista','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
+		elseif ( $ref == 'map' ) { $ref_text = " | " .__('Volver al mapa','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		elseif ( $ref == 'user' ) { $ref_text = " | " .__('Volver a la página del usuario','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		else { $ref_out = ""; }
 	$parent_tit = get_the_title($post->post_parent);
@@ -49,6 +52,15 @@
 		<a href='" .$imageurlfull[0]. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a>
 	</div>
 	";
+	} elseif ( $ref == 'form' && is_user_logged_in() ) {
+		include('loop.single.php');
+		$author_name = get_the_author_meta('user_login',$user_ID);
+		echo "
+		<div class='form-published'>
+			" .sprintf(__('Éste es el mensaje que has publicado. Gracias por participar %s.','whatif'),$author_name). "
+		</div>
+		";
+
 	} else { include('loop.single.php'); } ?>
 
 <?php endwhile; // end of the loop. ?>

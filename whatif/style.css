@@ -833,7 +833,15 @@ input.boton-negro {
 	padding: 3px 6px;
 	cursor: pointer;
 }
-
+.form-published {
+	width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	border: 3px solid #000;
+}
 
 /* Tags template */
 .cloudl {
@@ -888,6 +896,9 @@ input.boton-negro {
 }
 .attachment .lista {
 	text-align: center;
+}
+.message {
+	height: auto;
 }
 
 .mess {
