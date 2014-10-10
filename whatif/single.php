@@ -1,7 +1,8 @@
 <?php get_header();
 
 // the referrer:
-if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref']); } else { $ref = ""; } ?>
+if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref']); } else { $ref = ""; }
+if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vista']); } else { $view = ""; } ?>
 
 <div id="mensaje" role="main">
 
@@ -27,7 +28,8 @@ if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref'])
 	</div>
 
 
-	<?php if ( is_attachment() ) {
+	<?php // if is image single page
+	if ( is_attachment() ) {
 		if ( $ref == 'mosaic' ) { $ref_text = " | " .__('Volver al mosaico','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		elseif ( $ref == 'list' ) { $ref_text = " | " .__('Volver a la lista','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		elseif ( $ref == 'map' ) { $ref_text = " | " .__('Volver al mapa','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
@@ -53,6 +55,13 @@ if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref'])
 	</div>
 	";
 	} elseif ( $ref == 'form' && is_user_logged_in() ) {
+		$tit = get_the_title();
+		echo "
+	  	<div class='tit-peq'>
+			<h2>" .$tit. "</h2>
+		</div>
+		";
+
 		include('loop.single.php');
 		$author_name = get_the_author_meta('user_login',$user_ID);
 		echo "
@@ -61,7 +70,35 @@ if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref'])
 		</div>
 		";
 
-	} else { include('loop.single.php'); } ?>
+	} elseif ( $view == 'map' ) {
+	// localize this single message in the map
+		$tit = get_the_title();
+
+		echo "
+	  	<div class='tit-peq'>
+			<h2>" .$tit. "</h2>
+			<div class='subtit'>
+				<a href='".get_permalink(). "' title='".__('Ver el mensaje','whatif'). " " .get_the_title()."'>
+				". __("Ver el mensaje","whatif"). "
+				</a>
+			</div>
+		</div>
+
+		<div class='unique-pages-tit map'>
+			<div id='map' align='center' style='width: 800px; height: 470px'></div> 
+		</div><!-- end class unique mosac -->
+		";
+
+	} else {
+		$tit = get_the_title();
+
+		echo "
+	  	<div class='tit-peq'>
+			<h2>" .$tit. "</h2>
+		</div>
+		";
+		include('loop.single.php');
+	} ?>
 
 <?php endwhile; // end of the loop. ?>
 

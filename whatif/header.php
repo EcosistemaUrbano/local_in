@@ -25,11 +25,9 @@
 <?php wp_head();
 
 // if map for single
-if ( is_page_template('msgmap.php') ) {
-	if ( array_key_exists('coor', $_GET) ) { $coor= sanitize_text_field($_GET['coor']); } else { $coor = ""; }
-	if ( array_key_exists('pos', $_GET) ) { $pos= sanitize_text_field($_GET['pos']); } else { $pos = ""; }
-	if ( array_key_exists('id', $_GET) ) { $id= sanitize_text_field($_GET['id']); } else { $id = ""; }
-
+if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vista']); } else { $view = ""; }
+if ( is_single() && $view = "map" ) {
+	$id = get_the_ID();
 	// the image
 	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $id ); 
 	$attachments = get_posts($args);
@@ -55,6 +53,7 @@ if ( is_page_template('msgmap.php') ) {
 		$mess_perma = get_permalink($post_ID);
 		$mess_edit_link = get_edit_post_link($post_ID);
 		$positivonegativo = get_post_meta($post_ID, "positivonegativo", true);
+		$coor = get_post_meta($post_ID, "coordenadas", true);
 		$video = get_post_meta($post_ID, "video", true);
 		$comentario = __('Permalink','whatif');
 		$videomuestra=" | <a target='_blank' href='$video'>". __('Ver Video','whatif') . "</a>";

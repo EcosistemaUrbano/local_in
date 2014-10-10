@@ -128,7 +128,7 @@ $mess_out .= "
 		$mess_img
 		<div class='messSingle-aut'>
 			<div class='messSingle-meta'>
-				<a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='" .WHATIF_BLOGURL. "/msgmap?coor=$coor&cat=$categoryID&pos=$positivonegativo&id=$post_ID'>Ver localización</a>  $videomuestra
+				<a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='$mess_perma?vista=map'>Ver localización</a>  $videomuestra
 			</div>
 			$votacion
 			<div class='messSingle-social'>
@@ -151,11 +151,5 @@ $mess_out .= "
 
 $mess_out .= "</div><!-- end class unique -->";
 
-?>
-
-  <div class="tit-peq"><h2><?php _e('what if...? cities','whatif'); echo " | ". get_the_title(); ?></h2></div>
-
-
-<?php
 echo $mess_out;
 ?>
