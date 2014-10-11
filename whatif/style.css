@@ -186,12 +186,44 @@ body {
 	text-align: center;
 	display: inline-block;
 	vertical-align: top;
-	margin: 0 10px;
 	width: 64px;
 }
-#epi img {
-	display: block;
-	margin: 0 auto;
+.epi-lf li {
+	margin-right: 10px;
+}
+.epi-rt li {
+	margin-left: 10px;
+}
+.epi-rt a,
+.epi-lf a {
+	width: 48px;
+	padding-top: 48px;
+	display: inline-block;
+}
+.epi-rt a:hover,
+.epi-lf a:hover,
+.vista-img-mini a:hover,
+.vista-img a:hover,
+.navigation a:hover,
+.tercio a:hover,
+.mitad-text a:hover,
+.cat-selector img:hover {
+	opacity: 0.8;
+}
+#epi-home a {
+	background: transparent url("images/footer-imgs.png") no-repeat -347px top;
+}
+#epi-user-mess a {
+	background: transparent url("images/footer-imgs.png") no-repeat -297px top;
+}
+#epi-user-perfil a {
+	background: transparent url("images/footer-imgs.png") no-repeat -148px top;
+}
+#epi-logout a {
+	background: transparent url("images/footer-imgs.png") no-repeat -247px top;
+}
+#epi-login a {
+	background: transparent url("images/footer-imgs.png") no-repeat -197px top;
 }
 
 
