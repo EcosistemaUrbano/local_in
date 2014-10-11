@@ -39,28 +39,28 @@ function whatif_theme_setup() {
 	    define('WHATIF_MAP_ZOOM_SINGLE', $zoomindividual);
 
 	if (!defined('WHATIF_STYLE_VIEW_COLOR'))
-	    define('WHATIF_STYLE_VIEW_COLOR', $color_c);
+	    define('WHATIF_STYLE_VIEW_COLOR', "color-c");
 	if (!defined('WHATIF_STYLE_VIEW_BG'))
-	    define('WHATIF_STYLE_VIEW_BG', $bg_c);
+	    define('WHATIF_STYLE_VIEW_BG', "bg-n");
 
 	if (!defined('WHATIF_STYLE_FORM_COLOR'))
-	    define('WHATIF_STYLE_FORM_COLOR', $color_p);
+	    define('WHATIF_STYLE_FORM_COLOR', "color-p");
 	if (!defined('WHATIF_STYLE_FORM_BG'))
-	    define('WHATIF_STYLE_FORM_BG', $bg_p);
+	    define('WHATIF_STYLE_FORM_BG', "bg-n");
 
 	if (!defined('WHATIF_STYLE_POSITIVE_COLOR'))
-	    define('WHATIF_STYLE_POSITIVE_COLOR', $color_pl);
+	    define('WHATIF_STYLE_POSITIVE_COLOR', "color-p");
 	if (!defined('WHATIF_STYLE_POSITIVE_BG'))
-	    define('WHATIF_STYLE_POSITIVE_BG', $bg_pl);
+	    define('WHATIF_STYLE_POSITIVE_BG', "bg-p");
 	if (!defined('WHATIF_STYLE_POSITIVE_HOVER'))
-	    define('WHATIF_STYLE_POSITIVE_HOVER', $chover_pl);
+	    define('WHATIF_STYLE_POSITIVE_HOVER', "chover-p");
 
 	if (!defined('WHATIF_STYLE_NEGATIVE_COLOR'))
-	    define('WHATIF_STYLE_NEGATIVE_COLOR', $color_mn);
+	    define('WHATIF_STYLE_NEGATIVE_COLOR', "color-c");
 	if (!defined('WHATIF_STYLE_NEGATIVE_BG'))
-	    define('WHATIF_STYLE_NEGATIVE_BG', $bg_mn);
+	    define('WHATIF_STYLE_NEGATIVE_BG', "bg-c");
 	if (!defined('WHATIF_STYLE_NEGATIVE_HOVER'))
-	    define('WHATIF_STYLE_NEGATIVE_HOVER', $chover_mn);
+	    define('WHATIF_STYLE_NEGATIVE_HOVER', "chover-c");
 
 	// don't show admin bar
 	add_filter( 'show_admin_bar', '__return_false' );

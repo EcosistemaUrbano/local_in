@@ -241,7 +241,6 @@ map2.addOverlay(marker".$post_ID.");
         ";
        
 	}
-	wp_reset_postdata();
 	} // end there are messages
 	// END loop
 
@@ -268,7 +267,7 @@ map2.addOverlay(marker".$post_ID.");
 		}
 	}
 ?> 
-<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;&v=2.75&geo?q=<?php echo WHATIF_SEO_BLOGNAME; ?>&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;&v=2.75&gl=es&sensor=true&key=<?php echo WHATIF_GOOGLE_KEY ?>"></script>
 <script type="text/javascript">
 //<![CDATA[
 function load() {

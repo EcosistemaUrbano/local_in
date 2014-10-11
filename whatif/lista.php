@@ -61,14 +61,14 @@ if ( have_posts() ) : ?>
 
 	$mess_date = get_the_time('j\.n\.Y'); // the date
 	$mess_content = get_the_content(); // the message
+	$mess_content_escurl = urlencode(get_the_content());
 	$mess_perma = get_permalink(); // permanent link
+	$mess_perma_escurl = esc_url(get_permalink());
 	$mess_edit_link = get_edit_post_link(); // access to edit panel for this post
 	$coor = get_post_meta($post->ID, "coordenadas", true);
 	$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
     $video = get_post_meta($post->ID, "video", $single = true);
     $comentario = __('Permalink','whatif');
-    $tituloenviar =  substr($mess_content,0,20); 
-    $tituloenviarurl = str_replace(" ","-",$tituloenviar);
 	 $videomuestra=" | <a target='_blank' href='$video'>". __('Ver Video','whatif') . "</a>";
 	 
 	  if($video=="" OR $video=="http://"){
@@ -198,9 +198,9 @@ if ( have_posts() ) : ?>
 			</div>
 			$votacion
 			<div class='messSingle-social'>
-				<a target='_blank' name='fb_share' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a>
-				<a target='_blank' href='http://twitter.com//?status=Estoy leyendo: $mess_content <a href=\"http://whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl\">$tituloenviar</a>' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a>
-				<a target='_blank' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a>
+				<a target='_blank' name='fb_share' type='button' href='http://facebook.com/sharer.php?u=".$mess_perma_escurl."'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a>
+				<a target='_blank' href='http://twitter.com/home?status=".$mess_content_escurl." ".$mess_perma_escurl."'><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a>
+				<a target='_blank' href='http://www.tuenti.com/share?url=".$mess_perma_escurl."' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a>
 			</div>
 			<div class='messSingle-extra'>
 				<a href='$mess_perma'>$comentario</a>
