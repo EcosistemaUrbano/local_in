@@ -1,19 +1,24 @@
 <?php get_header();
 
+$ref_url = "message";
 // the referrer:
 if ( array_key_exists('ref', $_GET) ) { $ref = sanitize_text_field($_GET['ref']); } else { $ref = ""; }
-if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vista']); } else { $view = ""; } ?>
+if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vista']); } else { $view = ""; }
+
+$mess_out = "";
+?>
 
 <div id="mensaje" role="main">
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post();
-
 	include "vistas-list.php";
-?>
+
+		$mess_ID = get_the_ID();
+		$user_ID = get_current_user_id();
+		$mess_author_ID = $post->post_author;
 
 
-
-	<?php // if is image single page
+	// if is image single page
 	if ( is_attachment() ) {
 		if ( $ref == 'mosaic' ) { $ref_text = " | " .__('Volver al mosaico','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		elseif ( $ref == 'list' ) { $ref_text = " | " .__('Volver a la lista','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
@@ -39,6 +44,7 @@ if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vis
 		<a href='" .$imageurlfull[0]. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a>
 	</div>
 	";
+
 	} elseif ( $ref == 'form' && is_user_logged_in() ) {
 		$tit = get_the_title();
 		echo "
@@ -47,7 +53,10 @@ if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vis
 		</div>
 		";
 
-		include('loop.single.php');
+		include('loop.php');
+		echo "<div class='unique-pages-tit message'>
+			" .$mess_out. "
+		</div>";
 		$author_name = get_the_author_meta('user_login',$user_ID);
 		echo "
 		<div class='form-published'>
@@ -82,7 +91,11 @@ if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vis
 			<h2>" .$tit. "</h2>
 		</div>
 		";
-		include('loop.single.php');
+
+		include('loop.php');
+		echo "<div class='unique-pages-tit message'>"
+			. $mess_out.
+		"</div>";
 	} ?>
 
 <?php endwhile; // end of the loop. ?>
