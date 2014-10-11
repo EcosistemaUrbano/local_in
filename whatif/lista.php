@@ -25,16 +25,12 @@ foreach ( $valor_terms as $term ) {
 // this page title
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
-	include "vistas-tit.php";
+		include "vistas-list.php";
 	endwhile;
 else:
 endif;
-wp_reset_query();
+wp_reset_query(); ?>
 
-// vistas list (subpages)
-include "vistas-list.php";
-
-echo $tit_out; //display header ?>
 
 <div id="dosificador">
 <?php // list of messages

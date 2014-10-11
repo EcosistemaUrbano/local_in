@@ -70,6 +70,7 @@ function whatif_theme_setup() {
 
 	// Set up media options: sizes, featured images...
 	add_action( 'init', 'whatif_media_options' );
+	add_filter( 'image_size_names_choose', 'whatif_custom_sizes' );
 
 	// Custom menus: register theme locations
 	add_action( 'init', 'whatif_register_menus' );
@@ -105,9 +106,13 @@ function whatif_theme_setup() {
 function whatif_media_options() {
 	/* Add theme support for post thumbnails (featured images). */
 	add_theme_support( 'post-thumbnails', array( 'post','page') );
+
+	// add extra sizes
+	add_image_size( 'icon', '48', '48', true );
+
 	/* set up image sizes*/
-	update_option('thumbnail_size_w', 80);
-	update_option('thumbnail_size_h', 80);
+	update_option('thumbnail_size_w', 100);
+	update_option('thumbnail_size_h', 100);
 	update_option('thumbnail_crop', 1);
 	update_option('medium_size_w', 480);
 	update_option('medium_size_h', 480);
@@ -115,6 +120,12 @@ function whatif_media_options() {
 	update_option('large_size_h', 800);
 
 } // END Set up media options
+
+function whatif_custom_sizes( $sizes ) {
+	return array_merge( $sizes, array(
+		'icon' => __('Icon'),
+	) );
+}
 
 // Create custom Taxonomies
 function whatif_build_taxonomies() {

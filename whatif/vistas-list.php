@@ -1,29 +1,74 @@
 <?php
 $vistas_id = get_page_id("vistas");
-query_posts("post_type=page&post_parent=$vistas_id&orderby=menu_order&order=ASC");
-if ( have_posts() ) :
+// vistas list (subpages)
+$args = array(
+	'post_type' => 'page',
+	'post_parent' => $vistas_id,
+	'order_by' => 'menu_order',
+	'order' => 'ASC'
+);
+$children = get_posts($args);
 
-	$tit_out .= "
-	<div class='vista-selector-mini'>
-	";
-	while ( have_posts() ) : the_post();
-
-	if ( $post->ID != $tags_id ) { // don't show current page
-	$pag_child_link = get_permalink();
-	$pag_child_tit = get_the_title();
-
-	if ( post_custom("Page Small Icon") ) { $pag_child_img = get_post_meta($post->ID, "Page Small Icon", $single = true); }
-	$tit_out .= "
-	<div class='vista-img-mini'>
-		<a href='$pag_child_link'><img src='" .WHATIF_BLOGTHEME. "/images/$pag_child_img' alt='$pag_child_tit' title='$pag_child_tit' /></a>
-	</div>
-	";
+$vistas_out = "<div class='vista-selector-mini'>";
+	
+foreach ( $children as $child ) {
+	$pag_child_link = get_permalink($child->ID);
+	$pag_child_tit = get_the_title($child->ID);
+	if ( has_post_thumbnail($child->ID) ) { $pag_child_img = get_the_post_thumbnail( $child->ID, "icon"); }
+	else { $pag_child_img = "<img src='" .WHATIF_BLOGTHEME. "/images/default-vista.png' alt='" .$pag_child_tit. "' />"; }
+	if ( $child->ID == $post->ID ) {
+		$vistas_out .= "
+		<div class='vista-img-mini'>
+			" .$pag_child_img. "
+			<img class='vista-active' src='" .WHATIF_BLOGTHEME. "/images/vista-active.png' alt='" .__('Active view','whatif'). "' />
+		</div>
+		";
+		$tit_out = "
+		<div class='tit-peq'>
+			$pag_child_img
+			<h2>$pag_child_tit</h2>
+		</div>
+		";
+	} else {
+		$vistas_out .= "
+		<div class='vista-img-mini'>
+			<a href='$pag_child_link'>$pag_child_img</a>
+		</div>
+		";
 	}
-	endwhile;
-	$tit_out .= "</div><!-- end class vista-selector-mini -->";
+}
 
-else:
-endif;
-wp_reset_query();
+$vistas_out .= "</div><!-- end class vista-selector-mini -->";
 
+if ( is_author() ) { // if author page
+	$cur_aut = get_userdata(intval($author));
+	$aut_web = $cur_aut->user_url;
+	if ( $aut_web != '' ) {
+		$aut_datos = "
+		<ul class='aut-meta'>
+			<li><strong>" . __('Website','whatif') . "</strong>: <a href='" .$cur_aut->user_url. "'>" .$cur_aut->user_url. "</a></li>
+		</ul>
+		";
+	} else { $aut_datos = ""; }
+	// this page title
+	$tit_out = "
+	<div class='tit-peq'>
+		<img alt='User avatar' src='" .WHATIF_BLOGTHEME. "/images/default-user.png' />
+		<h2>" . sprintf(__('Mensajes enviado por %s','whatif'),$cur_aut->user_login ). "</h2>
+			" .$aut_datos. "
+		</div>
+	";
+
+} elseif ( is_tax() )  { // if term page
+	$term =	$wp_query->queried_object->name;
+	$tit_out = "
+	<div class='tit-peq'>
+		<img alt='User avatar' src='" .WHATIF_BLOGTHEME. "/images/default-vista.png' />
+		<h2>" . sprintf(__('Mensajes con la etiqueta %s','whatif'),$term ). "</h2>
+		</div>
+	";
+}
+
+echo $tit_out;
+echo $vistas_out;
 ?>

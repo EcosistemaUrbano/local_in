@@ -87,8 +87,8 @@ a:visited {
 }
 
 a:hover {
-cursor:pointer !important;
-	color: grey;
+	cursor:pointer !important;
+	color: gray;
 }
 
 /* redefinitions, basic styles */
@@ -348,14 +348,17 @@ display:none;
 	margin-top: 20px;
 }
 .tit-peq img {
-	float: left;
+	display: inline-block;
+	vertical-align: middle;
 	margin-right: 5px;
+	height: 48px;
 }
 .tit-peq h2 {
 	font-size: 1.5em;
 	line-height: 2.5em;
 	font-weight: bold;
-	display: inline;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .subtit {
@@ -711,9 +714,14 @@ input.boton-negro {
 	text-align: center;
 }
 .vista-img-mini {
-	display: inline;
+	display: inline-block;
 	margin: 0 0 10px 10px;
-	text-align: right;
+	text-align: center;
+	vertical-align: top;
+	width: 48px;
+}
+.vista-img-mini .vista-active {
+	padding-top: 5px;
 }
 
 .cat-img img:hover {
@@ -976,17 +984,6 @@ input.boton-negro {
 	font-size: 1em;
 	line-height: 1.7em;
 }
-.mess-img {
-	float: left;
-	margin-bottom: 10px;
-	width:80px;
-	height:150px;
-}
-.attachment-thumbnail
-{
-width:80px !important;
-height:80px !important;
-}
 
 /* Images template */
 .mosac {
@@ -1012,7 +1009,7 @@ height:80px !important;
 }
 .filter-cats li {
 	display: inline-block;
-	margin: 0 10px;
+	margin: 0 5px;
 	vertical-align: middle;
 }
 .filter-cats div {
@@ -1021,9 +1018,15 @@ height:80px !important;
 }
 .filter-cats img {
 	width: 32px;
+	padding: 0 8px;
 }
-.filter-cats .active img {
-	width: 48px !important;
+.filter-cats .active img,
+.filter-cats img:hover {
+	width: 48px;
+	padding: 0;
+}
+.filter-cats .active img:hover {
+	opacity: 0.8;
 }
 
 /* authot page */
@@ -1065,29 +1068,21 @@ display:none;
 #publicar:hover {
 	opacity: 0.8;
 }
-.socialmedia
-{
-    left: 10px;
-    position: relative;
-    top: -6px;
-    float:left;
-}
 .messSingle {
     height: 180px;
     position: relative;
     width: 800px;
 }
-.messSingle-text,
-.messSingle a {
+.messSingle-text {
 	font-weight: bold;
 }
 .messSingle-img {
 	float: left;
-	height: 80px;
+	height: 100px;
 }
 .messSingle-aut,
 .messSingle-text {
-	margin-left: 100px;
+	margin-left: 110px;
 }
 .map .messSingle-aut,
 .map .messSingle-context,
@@ -1100,7 +1095,7 @@ display:none;
 .messSingle-aut {
 	font-size: 1.2em;
 	line-height: 1em;
-	padding: 8px 0;
+	padding: 0 0 8px;
 }
 .map .messSingle-aut {
 	font-size: 1em;
@@ -1143,30 +1138,7 @@ display:none;
 	vertical-align: middle;
 	width: 49%;
 }
-
-#lightbox-nav-btnNext, #lightbox-nav-btnPrev, #lightbox-image-details-currentNumber
-{
- display:none !important;
-}    
-.FBConnectButton, .FBConnectButton_RTL, .FBConnectButton, .FBConnectButton_Text, .FBConnectButton_RTL .FBConnectButton_Text .FBConnectButton .FBConnectButton_Text, .FBConnectButton_RTL .FBConnectButton_Text 
-{
-background:none !important;
-border:none !important;
-display:inline !important;
-}
-.FBConnectButton_Small .FBConnectButton_Text 
-{
-margin-left:0 !important;
-}
-.FBConnectButton_Small, .FBConnectButton_RTL_Small 
-{
-position:relative;
-left:5px;
-}
-#menu-f-vistas
-{
-top:100px;
-}
+ 
 .bg-n
 {
  background-color:#000;
@@ -1183,27 +1155,4 @@ top:100px;
     font-weight: bold;
     line-height: 2.5em;
 }    
-#titextra
-{
-    font-size: 15px;
-    left: 125px;
-    position: relative;
-    top: -86px;
-	width: 500px;
-}
-.tagsmap
-{
-    
-    position: relative;
-    top: 10px;
-}
-.FBConnectButton_Text
-{
-padding:0 !important;
-border:none !important;
-margin: 0 !important;
-position:relative;
-left:-6px;
-}
-
 
