@@ -7,9 +7,6 @@
 	// left links
 	$lf_out = "<ul class='epi-lf'>";
 	$lf_out .= "<li><a href='" .WHATIF_BLOGURL. "'><img src='" .WHATIF_BLOGTHEME. "/images/epi-home.png' alt='" . __('Inicio','whatif') . "' />" . __('Inicio','whatif') . "</a></li>";
-	if ( is_home() ) { // home
-	$lf_out .= "<li><a href='http://whatif.es' target='_blank'><img src='" .WHATIF_BLOGTHEME. "/images/logowhatif.png' height='42px' alt='whatif.es'/>whatif.es</a></li>";
-	}
 	$lf_out .= "</ul>";
 	// right links
 		$rt_out = "<ul class='epi-rt'>";

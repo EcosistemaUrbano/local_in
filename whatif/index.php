@@ -7,7 +7,7 @@ $home_out = "
 	</div>
 
 	<div class='tercioc'>
-		<img src='" .WHATIF_BLOGTHEME. "/images/home.png' alt='" . __('Inicio','whatif') . "' width='300px' />
+		<img src='" .WHATIF_BLOGTHEME. "/images/default-home.png' alt='" . __('Inicio','whatif') . "' width='300px' />
 	</div>
 
 	<div class='tercio tercior'>
