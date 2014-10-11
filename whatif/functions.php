@@ -10,12 +10,6 @@ function whatif_theme_setup() {
 	if (!defined('WHATIF_BLOGTHEME'))
 	    define('WHATIF_BLOGTHEME', get_bloginfo('template_url'));
 
-	if (!defined('WHATIF_SEO_BLOGNAME'))
-	    define('WHATIF_SEO_BLOGNAME', $city);
-	if (!defined('WHATIF_DOMAIN'))
-	    define('WHATIF_DOMAIN', $wic);
-	if (!defined('WHATIF_INSTALL_FOLDER'))
-	    define('WHATIF_INSTALL_FOLDER', $citymin);
 	if (!defined('WHATIF_ORGANIZATION'))
 	    define('WHATIF_ORGANIZATION', $organization);
 	if (!defined('WHATIF_KEYWORDS'))
