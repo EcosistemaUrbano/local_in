@@ -96,6 +96,9 @@ function whatif_theme_setup() {
 	// populate image column in admin categories list
 	add_filter("manage_category_custom_column", 'whatif_fill_category_columns', 10, 3);
 
+	// create theme custom content
+	add_action( 'load-themes.php', 'whatif_create_custom_content' );
+	
 } // END theme setup function
 
 // Set up media options
@@ -328,4 +331,131 @@ function whatif_fill_category_columns($out, $column_name, $cat_id) {
    	}
 	return $out;
 }
+
+// create theme custom content
+function whatif_create_custom_content() {
+	global $pagenow;
+
+	$custom_contents = array(
+		array(
+			'title' => 'Participa',
+			'slug' => 'presentacion-participa',
+			'template' => 'explica.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Envía un mensaje',
+			'slug' => 'entrada-formulario',
+			'template' => 'entrada-formulario.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Positivo',
+			'slug' => 'positivo',
+			'template' => '',
+			'parent_slug' => 'entrada-formulario'
+		),
+		array(
+			'title' => 'Negativo',
+			'slug' => 'negativo',
+			'template' => '',
+			'parent_slug' => 'entrada-formulario'
+		),
+		array(
+			'title' => 'Envía un mensaje',
+			'slug' => 'formulario',
+			'template' => 'formulario.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Consulta los resultados',
+			'slug' => 'presentacion-consulta',
+			'template' => 'explica.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Vistas',
+			'slug' => 'vistas',
+			'template' => 'entrada-vistas.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Mensajes',
+			'slug' => 'mensajes',
+			'template' => 'list.php',
+			'parent_slug' => 'vistas'
+		),
+		array(
+			'title' => 'Localizaciones',
+			'slug' => 'localizaciones',
+			'template' => 'map.php',
+			'parent_slug' => 'vistas'
+		),
+		array(
+			'title' => 'Palabras clave',
+			'slug' => 'palabras-clave',
+			'template' => 'palabras-clave.php',
+			'parent_slug' => 'vistas'
+		),
+		array(
+			'title' => 'Imágenes',
+			'slug' => 'imagenes',
+			'template' => 'img.php',
+			'parent_slug' => 'vistas'
+		),
+		array(
+			'title' => 'Registro',
+			'slug' => 'registro',
+			'template' => 'registro.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Cerrar sesión',
+			'slug' => 'logout',
+			'template' => 'logout.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Abrir sesión',
+			'slug' => 'login',
+			'template' => 'login.php',
+			'parent_slug' => ''
+		),
+		array(
+			'title' => 'Iniciar sesión',
+			'slug' => 'user-sesion',
+			'template' => 'login-form.php',
+			'parent_slug' => ''
+		),
+	);
+
+	if ( 'themes.php' == $pagenow && isset( $_GET['activated'] ) ){ // Test if theme is activate
+		// Theme is activate
+
+		foreach ( $custom_contents as $cc ) {
+			if ($cc['parent_slug'] != '' ) { $parent_slug = trailingslashit($cc['parent_slug']); }
+			else { $parent_slug = ''; }
+			$page_exists = get_page_by_path($parent_slug.$cc['slug'],'ARRAY_N');
+			if ( !is_array($page_exists) ) {
+				$parent = get_page_by_path($cc['parent_slug'],'ARRAY_A');
+				// insert post
+				$page_id = wp_insert_post(array(
+					'post_type' => 'page',
+					'post_status' => 'publish',
+					'post_author' => 1,
+					'post_title' => $cc['title'],
+					'post_name' => $cc['slug'],
+					'post_parent' => $parent['ID'],
+					'page_template' => $cc['template']
+				));
+			}
+		}
+
+	} else {
+		// Theme is deactivate
+
+	}
+} // END create theme custom content
+
+
 ?>
