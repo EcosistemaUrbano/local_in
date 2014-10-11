@@ -67,6 +67,8 @@ if ( is_author() ) { // if author page
 		<h2>" . sprintf(__('Mensajes con la etiqueta %s','whatif'),$term ). "</h2>
 		</div>
 	";
+} elseif ( is_single() ) {
+	$tit_out = "";
 }
 
 echo $tit_out;
