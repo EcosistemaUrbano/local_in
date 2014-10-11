@@ -4,7 +4,6 @@ get_header();
 
 if ( array_key_exists('filtro', $_GET) ) { $filtro= sanitize_text_field($_GET['filtro']); } else { $filtro = ""; }
 if ( array_key_exists('pn', $_GET) ) { $pn = sanitize_text_field( $_GET['pn'] ); } else { $pn = ""; }
-if ( array_key_exists('pn2', $_GET) ) { $pn2 = sanitize_text_field( $_GET['pn2'] ); } else { $pn2 = ""; }
 
 include "vistas-list.php";
 
@@ -26,7 +25,6 @@ if ( have_posts() ) : ?>
 	$coor = get_post_meta($post->ID, "coordenadas", true);
 	$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
     $video = get_post_meta($post->ID, "video", $single = true);
-    $comentario = __('Comentario','whatif') .$post_ID;
     $comentario = __('Permalink','whatif');
     $tituloenviar =  substr($mess_content,0,20); 
     $tituloenviarurl = str_replace(" ","-",$tituloenviar);
@@ -75,19 +73,23 @@ if ( have_posts() ) : ?>
 	else { $mess_edit = ""; }
 
 	// the categories
-	$mess_cats = "<ul class='mess-cats'>";
+	$mess_cats = "<ul class='messSingle-cats'>";
 	foreach ( get_the_category() as $categ ) {
 		$categoryID = $categ->term_id;
 		$categLink = get_category_link($categ->term_id);
-		//$categDesc = category_description($categ->term_id);
-		if ( function_exists('get_cat_icon') ) {
-			$categImg = get_cat_icon("cat=$categoryID&echo=false&link=false&small=true&fit_width=20&fit_height=20");
-		} else { $categImg = ""; }
+		
+		$cat_meta = get_option( "taxonomy_$categoryID" );
+		if ( is_array($cat_meta) ) {
+			if ( array_key_exists('image',$cat_meta) && $cat_meta['image'] != '' ) {
+				$cat_img = $cat_meta['image'];
+			}
+		} else { $cat_img = WHATIF_BLOGTHEME. "/images/default-cat.png"; }
+		$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
 		$mess_cats .= "
-			<li id='$categ->slug' class='mess-cat'>
+			<li id='$categ->slug' class='messSingle-cat'>
 			$categImg
 			<div class='mess-cat-tit'>
-			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID&pn=$pn2'>$categ->name</a>
+			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID'>$categ->name</a>
 			</div>
 			</li>
 		";
@@ -103,13 +105,13 @@ if ( have_posts() ) : ?>
 			$image_link = get_attachment_link($attachment->ID). "?ref=list";
 			$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
 			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
-			$mess_img = "<div class='mess-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
+			$mess_img = "<div class='messSingle-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 			// $mess_img = "<div class='mess-img'>$imagenLink</div>";
 		}
 	} else {
 		$img_url = WHATIF_BLOGTHEME."/images/default.png";
 		$mess_img = "
-		<div class='mess-img'>
+		<div class='messSingle-img'>
 			<img src='$img_url' alt='". __('Sin imagen','whatif') . "' />
 		</div>
 		";
@@ -132,15 +134,28 @@ if ( have_posts() ) : ?>
 
 	echo "
 	<div class='mess'>
-	    $mess_img
-		<div class='mess-aut'><div style='float:left'><a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='$mess_perma?vista=map'>Ver localización</a>  $videomuestra</div>$votacion <div class='socialmedia'> <a target='_blank' name='fb_share' title='facebook' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a><a target='_blank' title='twitter' href='http://twitter.com/home/?status=Estoy leyendo: $mess_content ... En www.whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a><a title='tuenti' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='$mess_perma'>$comentario</a>  $mess_edit</div></div><div class='clearer'></div>
-		
-		<div class='mess-text'>$mess_content</div>
+		$mess_img
+		<div class='messSingle-aut'>
+			<div class='messSingle-meta'>
+				<a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='$mess_perma?vista=map'>Ver localización</a>  $videomuestra
+			</div>
+			$votacion
+			<div class='messSingle-social'>
+				<a target='_blank' name='fb_share' type='button' href='http://www.facebook.com/share.php?u=$mess_perma'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a>
+				<a target='_blank' href='http://twitter.com//?status=Estoy leyendo: $mess_content <a href=\"http://whatifcities.com/" .WHATIF_INSTALL_FOLDER. "/$tituloenviarurl\">$tituloenviar</a>' ><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a>
+				<a target='_blank' href='http://www.tuenti.com/share?url=$mess_perma' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a>
+			</div>
+			<div class='messSingle-extra'>
+				<a href='$mess_perma'>$comentario</a>
+				$mess_edit
+			</div>
+		</div>
+		<div class='messSingle-text'>$mess_content</div>
+		<div class='messSingle-context'>
 		$mess_cats
 		$mess_tags
-
+		</div>
 	</div>
-	<div class='clearer'></div>
 	";
 
 //	include "loopTerm.php";
