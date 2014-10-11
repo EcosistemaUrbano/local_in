@@ -26,7 +26,7 @@
 
 // if map for single
 if ( array_key_exists('vista', $_GET) ) { $view = sanitize_text_field($_GET['vista']); } else { $view = ""; }
-if ( is_single() && $view = "map" ) {
+if ( is_single() && $view == "map" ) {
 	$id = get_the_ID();
 	// the image
 	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $id ); 
