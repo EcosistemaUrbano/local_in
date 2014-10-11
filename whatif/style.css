@@ -1018,7 +1018,7 @@ input.boton-negro {
 }
 .filter-cats img {
 	width: 32px;
-	padding: 0 8px;
+	padding: 8px;
 }
 .filter-cats .active img,
 .filter-cats img:hover {
