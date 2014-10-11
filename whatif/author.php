@@ -1,6 +1,8 @@
 <?php
 get_header();
 
+$ref_url = "user";
+
 // FILTERS
 if ( array_key_exists('tagpn', $_GET) ) { $tagpn = sanitize_text_field( $_GET['tagpn'] ); } else { $tagpn = ""; }
 if ( array_key_exists('tag2', $_GET) ) { $tag2 = sanitize_text_field( $_GET['tag2'] ); } else { $tag2 = ""; }
@@ -36,31 +38,29 @@ $mess_out = "";
 if ( have_posts() ) {
 
 	while ( have_posts() ) : the_post();
-	// list of messages for this author
-$post_ID = get_the_ID();
 
+	$mess_ID = get_the_ID();
+	$user_ID = get_current_user_id();
+	$mess_author_ID = $post->post_author;
 	$mess_author = get_the_author(); // the author
 	$mess_author_link = get_author_posts_url( get_the_author_meta( 'ID' ) );
-
-	$mess_date = get_the_time('j\.n\.Y'); // the date
-	$mess_content = get_the_content(); // the message
-	$mess_content_escurl = urlencode(get_the_content());
-	$mess_perma = get_permalink(); // permanent link
-	$mess_perma_escurl = esc_url(get_permalink());
-	$mess_edit_link = get_edit_post_link(); // access to edit panel for this post
-	$coor = get_post_meta($post->ID, "coordenadas", true);
-	$positivonegativo = get_post_meta($post->ID, "positivonegativo", true);
-    $video = get_post_meta($post->ID, "video", $single = true);
-    $comentario = __('Permalink','whatif');
-	 
-	 $videomuestra=" | <a target='_blank' href='$video'>". __('Ver Video','whatif') . "</a>";
-	 
-	  if($video=="" OR $video=="http://"){
-	        $videomuestra="";
-	  };
+	$mess_date = get_the_date(NULL,$mess_ID); // the date
+	$mess_content = get_the_content($mess_ID); // the message
+	$mess_content_escurl = urlencode($mess_content);
+	$mess_perma = get_permalink($mess_ID); // permanent link
+	$mess_perma_escurl = esc_url($mess_perma);
+	$mess_edit_link = get_edit_post_link($mess_ID); // access to edit panel for this post
+	$coor = get_post_meta($mess_ID, "coordenadas", true);
+	$positivonegativo = get_post_meta($mess_ID, "positivonegativo", true);
+	if ( $positivonegativo == 'positivo') { $bg_class = WHATIF_STYLE_POSITIVE_BG; }
+	elseif ( $positivonegativo == 'negativo') { $bg_class = WHATIF_STYLE_NEGATIVE_BG; }
+	$video = get_post_meta($mess_ID, "video", true);
+	if($video == '' || $video == "http://" ){ $video_out = ""; }
+	else { $video_out = " | <a target='_blank' href='" .$video. "'>". __('Ver Video','whatif') . "</a>"; }
 
 	$votacion = "";
-	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Editar','whatif') . "</a>"; }
+//	if ( is_user_logged_in() ) {
+	if ( current_user_can( 'edit_posts' ) ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Editar','whatif') . "</a>"; }
 	else { $mess_edit = ""; }
 
 	// the categories
@@ -77,23 +77,23 @@ $post_ID = get_the_ID();
 		} else { $cat_img = WHATIF_BLOGTHEME. "/images/default-cat.png"; }
 		$categImg = "<img src='" .$cat_img. "' alt='" .$categ->name. "' />";
 		$mess_cats .= "
-			<li id='$categ->slug' class='messSingle-cat'>
+		<li id='$categ->slug' class='messSingle-cat'>
 			<a class='messSingle-cat-img' href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID'>$categImg</a>
 			<div class='mess-cat-tit'>
-			<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID'>$categ->name</a>
+				<a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=$categoryID'>$categ->name</a>
 			</div>
-			</li>
+		</li>
 		";
 	}
 	$mess_cats .= "</ul><!-- end class mess-cats -->";
 
 	// the image
-	$args = array( 'post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $post->ID ); 
+	$args = array( 'post_type' => 'attachment', 'numberposts' => 1, 'post_status' => null, 'post_parent' => $mess_ID ); 
 	$attachments = get_posts($args);
 	if ( $attachments ) {
 		foreach ( $attachments as $attachment ) {
-			$image_link = get_attachment_link($attachment->ID). "?ref=user";
-			$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
+			$image_link = get_attachment_link($attachment->ID). "?ref=".$ref_url;
+			$alt_attachment = get_post_meta( $mess_ID, '_wp_attachment_image_alt', true );
 			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
 			$mess_img = "<div class='messSingle-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 		}
@@ -105,73 +105,44 @@ $post_ID = get_the_ID();
 		</div>
 		";
 	}
+
 	// the tags
-	$terms_pl = wp_get_post_terms( $post->ID, 'positivo' );
-	$terms_mn = wp_get_post_terms( $post->ID, 'negativo' );
-	
-
-		$mess_tags = "<ul class='messSingle-tags'>";
-	foreach ( $terms_pl as $term_pl ) {
-	
-
-         $term_pl->name = str_replace("á","a",$term_pl->name);
-         $term_pl->name = str_replace("é","e",$term_pl->name);
-         $term_pl->name = str_replace("í","i",$term_pl->name);
-         $term_pl->name = str_replace("ó","o",$term_pl->name);
-         $term_pl->name = str_replace("ú","u",$term_pl->name);		
-      
-        
-
-	
-		$term_link_pl = get_term_link("$term_pl->slug", 'positivo');
-		$mess_tags .= "<li class='bg-p'><a href='" .WHATIF_BLOGURL. "/vistas/mensajes?tagpn=positivo&tag2=$term_pl->name'>$term_pl->name</a></li>"; 
-		                                
+	$terms = wp_get_post_terms( $mess_ID, $positivonegativo );
+	$mess_tags = "<ul class='messSingle-tags'>";
+	foreach ( $terms as $term ) {
+		$mess_tags .= "<li class='" .$bg_class. "'><a href='" .WHATIF_BLOGURL. "/vistas/mensajes?tagpn=" .$positivonegativo. "&tag2=$term->slug'>$term->name</a></li>"; 
 	}
-	foreach ( $terms_mn as $term_mn ) {
-	
-         $term_mn->name = str_replace("á","a",$term_mn->name);
-         $term_mn->name = str_replace("é","e",$term_mn->name);
-         $term_mn->name = str_replace("í","i",$term_mn->name);
-         $term_mn->name = str_replace("ó","o",$term_mn->name);
-         $term_mn->name = str_replace("ú","u",$term_mn->name);	
-	
-
-	    
-		$term_link_mn = get_term_link("$term_mn->slug", 'negativo');
-		$mess_tags .= "<li class='bg-c'><a  href='" .WHATIF_BLOGURL. "/vistas/mensajes?tagpn=negativo&tag2=$term_mn->name'>$term_mn->name</a></li>";
-	}
-		$mess_tags .= "</ul>";
+	$mess_tags .= "</ul>";
 
 
-$mess_out .= "
+	$mess_out .= "
 	<div class='mess'>
-		$mess_img
+		" .$mess_img. "
 		<div class='messSingle-aut'>
-			<div class='messSingle-meta'>
-				<a href='$mess_author_link'>$mess_author</a> | $mess_date | <a href='$mess_perma?vista=map'>Ver localización</a>  $videomuestra
-			</div>
-			$votacion
-			<div class='messSingle-social'>
-				<a target='_blank' name='fb_share' type='button' href='http://facebook.com/sharer.php?u=".$mess_perma_escurl."'><img src='" .WHATIF_BLOGTHEME. "/images/ficon.png' /></a>
-				<a target='_blank' href='http://twitter.com/home?status=".$mess_content_escurl." ".$mess_perma_escurl."'><img src='" .WHATIF_BLOGTHEME. "/images/ticon.png' /></a>
-				<a target='_blank' href='http://www.tuenti.com/share?url=".$mess_perma_escurl."' ><img src='" .WHATIF_BLOGTHEME. "/images/tuentiicon.png' /></a>
-			</div>
-			<div class='messSingle-extra'>
-				<a href='$mess_perma'>$comentario</a>
-				$mess_edit
-			</div>
+			<ul class='messSingle-meta'>
+				<li><a href='" .$mess_author_link. "'>" .$mess_author. "</a></li>
+				<li>" .$mess_date. "</li>
+				<li><a href='" .$mess_perma. "?vista=map'>" .__('Ver localización','whatif'). "</a></li>
+				" .$video_out. "
+				<li><a href='" .$mess_perma. "'>" .__('Permalink','whatif'). "</a></li>
+			</ul>
+			" .$votacion. "
+			<ul class='messSingle-social'>
+				<li><a target='_blank' href='http://facebook.com/sharer.php?u=".$mess_perma_escurl."' title='" .__('Compartir en Facebook','whatif')."'>f</a></li>
+				<li><a target='_blank' href='http://twitter.com/home?status=".$mess_content_escurl." ".$mess_perma_escurl."' title='" .__('Compartir en Twitter','whatif')."'>t</a></li>
+				<li><a target='_blank' href='https://plus.google.com/share?url=".$mess_perma_escurl."' title='" .__('Compartir en Google Plus','whatif')."'>g+</a></li>
+			</ul>
+			" .$mess_edit. "
 		</div>
 		<div class='messSingle-text'>$mess_content</div>
 		<div class='messSingle-context'>
-		$mess_cats
-		$mess_tags
+			$mess_cats
+			$mess_tags
 		</div>
 	</div>
-";
-
+	";
 
 	endwhile;
-
 ?>
 <?php echo $mess_out; ?>
 </div>

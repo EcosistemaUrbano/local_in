@@ -207,7 +207,8 @@ body {
 .navigation a:hover,
 .tercio a:hover,
 .mitad-text a:hover,
-.cat-selector img:hover {
+.cat-selector img:hover,
+.messSingle-social li:hover {
 	opacity: 0.8;
 }
 #epi-home a {
@@ -1141,6 +1142,25 @@ display:none;
 .messSingle-cat-tit {
 	display: inline-block;
 	vertical-align: middle;
+}
+.messSingle-meta li {
+	display: inline-block;
+}
+.messSingle-meta li:after {
+	content: " | ";
+}
+.messSingle-social li {
+	display: inline-block;
+	background-color: #000;
+	text-align: center;
+	width: 18px;
+	height: 18px;
+}
+.messSingle-social a {
+	display: block;
+	font-size: bold;
+	color: #fff;
+	line-height: 18px;
 }
 .messSingle-cat {
 	display: inline-block;
