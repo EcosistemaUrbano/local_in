@@ -8,7 +8,7 @@ function whatif_theme_setup() {
 	if (!defined('WHATIF_BLOGURL'))
 	    define('WHATIF_BLOGURL', get_option('home'));
 	if (!defined('WHATIF_BLOGTHEME'))
-	    define('WHATIF_BLOGTHEME', get_bloginfo('template_url'));
+	    define('WHATIF_BLOGTHEME', trailingslashit(get_bloginfo('template_url')));
 
 	if (!defined('WHATIF_ORGANIZATION'))
 	    define('WHATIF_ORGANIZATION', $organization);
@@ -346,91 +346,106 @@ function whatif_create_custom_content() {
 			'title' => 'Participa',
 			'slug' => 'presentacion-participa',
 			'template' => 'explica.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Envía un mensaje',
 			'slug' => 'entrada-formulario',
 			'template' => 'entrada-formulario.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Positivo',
 			'slug' => 'positivo',
 			'template' => '',
-			'parent_slug' => 'entrada-formulario'
+			'parent_slug' => 'entrada-formulario',
+			'image' => ''
 		),
 		array(
 			'title' => 'Negativo',
 			'slug' => 'negativo',
 			'template' => '',
-			'parent_slug' => 'entrada-formulario'
+			'parent_slug' => 'entrada-formulario',
+			'image' => ''
 		),
 		array(
 			'title' => 'Envía un mensaje',
 			'slug' => 'formulario',
 			'template' => 'formulario.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Consulta los resultados',
 			'slug' => 'presentacion-consulta',
 			'template' => 'explica.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Vistas',
 			'slug' => 'vistas',
 			'template' => 'entrada-vistas.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Mensajes',
 			'slug' => 'mensajes',
-			'template' => 'list.php',
-			'parent_slug' => 'vistas'
+			'template' => 'lista.php',
+			'parent_slug' => 'vistas',
+			'image' => 'vista-mensajes.png'
 		),
 		array(
 			'title' => 'Localizaciones',
 			'slug' => 'localizaciones',
 			'template' => 'map.php',
-			'parent_slug' => 'vistas'
+			'parent_slug' => 'vistas',
+			'image' => 'vista-map.png'
 		),
 		array(
 			'title' => 'Palabras clave',
 			'slug' => 'palabras-clave',
 			'template' => 'palabras-clave.php',
-			'parent_slug' => 'vistas'
+			'parent_slug' => 'vistas',
+			'image' => 'vista-tags.png'
 		),
 		array(
 			'title' => 'Imágenes',
 			'slug' => 'imagenes',
 			'template' => 'img.php',
-			'parent_slug' => 'vistas'
+			'parent_slug' => 'vistas',
+			'image' => 'vista-imagenes.png'
 		),
 		array(
 			'title' => 'Registro',
 			'slug' => 'registro',
 			'template' => 'registro.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Cerrar sesión',
 			'slug' => 'logout',
 			'template' => 'logout.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Abrir sesión',
 			'slug' => 'login',
 			'template' => 'login.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 		array(
 			'title' => 'Iniciar sesión',
 			'slug' => 'user-sesion',
 			'template' => 'login-form.php',
-			'parent_slug' => ''
+			'parent_slug' => '',
+			'image' => ''
 		),
 	);
 
@@ -442,6 +457,7 @@ function whatif_create_custom_content() {
 			else { $parent_slug = ''; }
 			$page_exists = get_page_by_path($parent_slug.$cc['slug'],'ARRAY_N');
 			if ( !is_array($page_exists) ) {
+
 				$parent = get_page_by_path($cc['parent_slug'],'ARRAY_A');
 				// insert post
 				$page_id = wp_insert_post(array(
@@ -453,14 +469,39 @@ function whatif_create_custom_content() {
 					'post_parent' => $parent['ID'],
 					'page_template' => $cc['template']
 				));
-			}
-		}
+				if ( $cc['image'] != '' ) { // if this content has image
+					// do image insert
+					$filename = $cc['image']; // image filename
+					$filename = trim($filename); // removing spaces at the begining and end
+					$filename = str_replace(" ", "-", $filename); // removing spaces inside the name
+					$filename_url = WHATIF_BLOGTHEME."images/".$filename;
+
+					$attachment = wp_upload_bits( $filename, null, file_get_contents($filename_url), date("Y-m") );
+					$uploadfile = $attachment['file'];
+					$filetype = wp_check_filetype( basename( $uploadfile ), null );	
+					$attachment_args = array(
+						'post_mime_type' => $filetype['type'],
+						'post_title' => $cc['title']." image",
+						'post_content' => '',
+						'post_status' => 'inherit'
+					);
+					$attach_id = wp_insert_attachment( $attachment_args, $uploadfile, $page_id );
+					// you must first include the image.php file
+					// for the function wp_generate_attachment_metadata() to work
+					require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+					$attach_data = wp_generate_attachment_metadata( $attach_id, $uploadfile );
+					wp_update_attachment_metadata( $attach_id,  $attach_data );
+					// set this image as featured image
+					set_post_thumbnail( $page_id, $attach_id );
+				} // end if this content has image 
+
+			} // end if this content doesn't exist
+		} // end foreach contents array
 
 	} else {
 		// Theme is deactivate
 
 	}
 } // END create theme custom content
-
 
 ?>
