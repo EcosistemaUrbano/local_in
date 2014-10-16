@@ -9,6 +9,8 @@ function whatif_theme_setup() {
 	    define('WHATIF_BLOGURL', get_option('home'));
 	if (!defined('WHATIF_BLOGTHEME'))
 	    define('WHATIF_BLOGTHEME', trailingslashit(get_bloginfo('template_url')));
+	if (!defined('WHATIF_BLOGDESC'))
+	    define('WHATIF_BLOGDESC', get_bloginfo('description','display'));
 
 	if (!defined('WHATIF_ORGANIZATION'))
 	    define('WHATIF_ORGANIZATION', $organization);
@@ -125,14 +127,14 @@ function whatif_custom_sizes( $sizes ) {
 function whatif_build_taxonomies() {
 	register_taxonomy( 'positivo', 'post', array(
 		'hierarchical' => false,
-		'label' => 'Positivo',
+		'label' => __('Positive','whatif'),
 		'query_var' => true,
 		'show_admin_column' => true,
 		'rewrite' => true ) );
 
 	register_taxonomy( 'negativo', 'post', array(
 		'hierarchical' => false,
-		'label' => 'Negativo',
+		'label' => __('Negative','whatif'),
 		'query_var' => true,
 		'show_admin_column' => true,
 		'rewrite' => true ) );
@@ -150,8 +152,8 @@ function whatif_register_menus() {
 	if ( function_exists( 'register_nav_menus' ) ) {
 	register_nav_menus(
 		array(
-		  'f-home' => 'Pie de la portada',
-		  'f-vistas' => 'Pie de las vistas'
+		  'f-home' => __('Home footer','whatif'),
+		  'f-vistas' => __('Views footer','whatif')
 		)
 	);
 	}
@@ -177,9 +179,9 @@ function whatif_load_scripts() {
 			FALSE
 		);
 		wp_localize_script( 'whatif-form-limit', 'formLimitL10n', array(
-			'infoMax'  => __( 'Ningún caracter libre.', 'whatif' ),
-			'infoOne'  => __( '1 caracter libre.', 'whatif' ),
-			'infoPlus'  => __( 'caracteres libres.', 'whatif' ),
+			'infoMax'  => __( 'No characters left.', 'whatif' ),
+			'infoOne'  => __( '1 character left.', 'whatif' ),
+			'infoPlus'  => __( 'characters left.', 'whatif' ),
 		) );
 		wp_enqueue_script(
 			'whatif-form-uploader',
@@ -189,7 +191,7 @@ function whatif_load_scripts() {
 			FALSE
 		);
 		wp_localize_script( 'whatif-form-uploader', 'formUploaderL10n', array(
-			'mediaFeedback'  => __( 'Elige una imagen.', 'whatif' ),
+			'mediaFeedback'  => __( 'Choose an image.', 'whatif' ),
 		) );
 
 		wp_enqueue_script(
@@ -240,21 +242,21 @@ function whatif_custom_args_for_loops( $query ) {
 $category_new_fields = array(
 	array(
 		'slug' => 'image',
-		'field-tit' => __('Imagen de la categoría','whatif'),
-		'field-desc' => __( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ),
-		'col-tit' => __('Imagen','whatif'),
+		'field-tit' => __('Category image','whatif'),
+		'field-desc' => __( 'Upload the image using the media uploader, and add the complete URL here then.','whatif' ),
+		'col-tit' => __('Image','whatif'),
 	),
 	array(
 		'slug' => 'icon-pos',
-		'field-tit' => __('Icono positivo para mapa','whatif'),
-		'field-desc' => __( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ),
-		'col-tit' => __('Icono +','whatif'),
+		'field-tit' => __('Positive map marker','whatif'),
+		'field-desc' => __( 'Upload the image using the media uploader, and add the complete URL here then.','whatif' ),
+		'col-tit' => __('Icon +','whatif'),
 	),
 	array(
 		'slug' => 'icon-neg',
-		'field-tit' => __('Icono negativo para mapa','whatif'),
-		'field-desc' => __( 'Sube la imagen con el gestor de medios, y escribe después aquí la URL completa.','whatif' ),
-		'col-tit' => __('Icono -','whatif'),
+		'field-tit' => __('Negative map marker','whatif'),
+		'field-desc' => __( 'Upload the image using the media uploader, and add the complete URL here then.','whatif' ),
+		'col-tit' => __('Icon -','whatif'),
 	)
 );
 

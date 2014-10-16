@@ -26,7 +26,8 @@ $mess_out = "";
 		elseif ( $ref == 'user' ) { $ref_text = " | " .__('Volver a la página del usuario','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		else { $ref_out = ""; }
 	$parent_tit = get_the_title($post->post_parent);
-	$tit = sprintf(__('Imagen del mensaje %s','whatif'), $parent_tit);
+	$tit = sprintf(__('Image of the message %s','whatif'), $parent_tit);
+	$tit_back = sprintf( __('View message "%s"','whatif'), get_the_title($post->post_parent) );
 	$alt_attachment = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
 	$imageurl = wp_get_attachment_image_src( $post->ID, 'medium');
 	$imageurlfull = wp_get_attachment_image_src( $post->ID, 'full');
@@ -34,8 +35,8 @@ $mess_out = "";
   	<div class='tit-peq'>
 		<h2>" .$tit. "</h2>
 		<div class='subtit'>
-			<a href='".get_permalink($post->post_parent). "' title='".__('Ver el mensaje','whatif'). " " .get_the_title($post->post_parent)."'>
-			". __("Ver el mensaje","whatif"). "
+			<a href='".get_permalink($post->post_parent). "' title='".$tit_back. "'>
+			".$tit_back. "
 			</a>" . $ref_out. "
 		</div>
 	</div>
@@ -60,20 +61,21 @@ $mess_out = "";
 		$author_name = get_the_author_meta('user_login',$user_ID);
 		echo "
 		<div class='form-published'>
-			" .sprintf(__('Éste es el mensaje que has publicado. Gracias por participar %s.','whatif'),$author_name). "
+			" .sprintf(__('This is the message you have published. Thanks for participage, %s.','whatif'),$author_name). "
 		</div>
 		";
 
 	} elseif ( $view == 'map' ) {
 	// localize this single message in the map
 		$tit = get_the_title();
+		$tit_back = sprintf( __('View message "%s"','whatif'), get_the_title() );
 
 		echo "
 	  	<div class='tit-peq'>
 			<h2>" .$tit. "</h2>
 			<div class='subtit'>
-				<a href='".get_permalink(). "' title='".__('Ver el mensaje','whatif'). " " .get_the_title()."'>
-				". __("Ver el mensaje","whatif"). "
+				<a href='".get_permalink(). "' title='".$tit_back. " " .get_the_title()."'>
+				".$tit_back. "
 				</a>
 			</div>
 		</div>

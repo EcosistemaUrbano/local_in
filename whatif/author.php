@@ -30,7 +30,7 @@ include "vistas-list.php";
 ?>
 
 	<div id='dosificador'>
-<div class="navigation navigation-left alignleft"><?php previous_posts_link(__('Entradas anteriores','whatif'),'') ?></div>
+<div class="navigation navigation-left alignleft"><?php previous_posts_link(__('Previous messages','whatif'),'') ?></div>
 	<div id='deslizante'>
 <?php
 $mess_out = "";
@@ -48,9 +48,9 @@ if ( have_posts() ) {
 
 	echo $mess_out; ?>
 </div>
-<div class="navigation navigation-right alignright"><?php next_posts_link(__('Entradas posteriores','whatif'),'') ?></div>
+<div class="navigation navigation-right alignright"><?php next_posts_link(__('Next messages','whatif'),'') ?></div>
 </div>
 
-<?php } else { echo __('Este usuario no ha publicado nada aún.','whatif'); }
+<?php } else { _e("This user hasn't published any message.",'whatif'); }
 
 get_footer(); ?>

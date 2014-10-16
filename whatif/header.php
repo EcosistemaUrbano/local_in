@@ -12,7 +12,7 @@
 <title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
 
 <meta content="<?php echo WHATIF_ORGANIZATION ?>" name="author" />
-<meta content="<?php _e('Herramienta de participación urbana','whatif'); ?>" name="description" />
+<meta content="<?php echo WHATIF_BLOGDESC ?>" name="description" />
 <meta content="<?php echo WHATIF_KEYWORDS ?>" name="keywords" />
 <meta content="<?php echo WHATIF_ORGANIZATION ?>" name="organization" />
 <meta content="<?php echo WHATIF_LOCATION_CITY. ", " .WHATIF_LOCATION_COUNTRY; ?>" name="Locality" />
@@ -56,11 +56,11 @@ if ( is_single() && $view == "map" ) {
 		$coor = get_post_meta($post_ID, "coordenadas", true);
 		$video = get_post_meta($post_ID, "video", true);
 		$comentario = __('Permalink','whatif');
-		$videomuestra=" | <a target='_blank' href='$video'>". __('Ver Video','whatif') . "</a>";
+		$videomuestra=" | <a target='_blank' href='$video'>". __('View video','whatif') . "</a>";
 	  	if($video=="" OR $video=="http://"){
 	        	$videomuestra="";
 		};
-	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Editar','whatif') . "</a>"; }
+	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Edit','whatif') . "</a>"; }
 	else { $mess_edit = ""; }
 
 		if ( $positivonegativo == 'positivo' ) { $bg_class = 'bg-p'; $map_icon = "icon-pos"; }
@@ -118,8 +118,8 @@ function load() {
 		miicono.iconSize = tamanoIconomiicono; 
 		miicono.shadow = "<?php echo $map_marker_url; ?>";
 		var tamanoSombramiicono = new GSize( 40,40);
-		miicono.shadowSize = tamanoSombramiicono; 
-		miicono.iconAnchor = new GPoint(20, 20);    
+		miicono.shadowSize = tamanoSombramiicono;
+		miicono.iconAnchor = new GPoint(20, 20);
 
 		var map2 = new GMap2(document.getElementById("map"));
 		map2.setCenter(new GLatLng(<?php echo $coor; ?>), <?php echo WHATIF_MAP_ZOOM_SINGLE; ?>);
@@ -177,7 +177,7 @@ foreach ( $valor_terms as $term ) {
 		$positivonegativo = get_post_meta($post_ID, "positivonegativo", true);
 		$video = get_post_meta($post_ID, "video", true);
 		$comentario = __('Permalink','whatif');
-		$videomuestra=" | <a target='_blank' href='$video'>". __('Ver Video','whatif') . "</a>";
+		$videomuestra=" | <a target='_blank' href='$video'>". __('View video','whatif') . "</a>";
 	  	if($video=="" OR $video=="http://"){
 	        	$videomuestra="";
 		};

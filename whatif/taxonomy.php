@@ -12,7 +12,7 @@ $mess_out = "";
 if ( have_posts() ) : ?>
 
 <div id="dosificador">
-	<div class="navigation navigation-left alignleft"><?php previous_posts_link(__('Entradas anteriores','whatif'),'') ?></div>
+	<div class="navigation navigation-left alignleft"><?php previous_posts_link(__('Previous messages','whatif'),'') ?></div>
 	<div id='deslizante'>
 
 	<?php while ( have_posts() ) : the_post();
@@ -24,7 +24,7 @@ if ( have_posts() ) : ?>
 	endwhile;
 	echo $mess_out; ?>
 	</div><!-- #deslizante -->
-	<div class="navigation navigation-right alignright"><?php next_posts_link(__('Entradas posteriores','whatif'),'') ?></div>
+	<div class="navigation navigation-right alignright"><?php next_posts_link(__('Next messages','whatif'),'') ?></div>
 
 <?php else:
 endif;

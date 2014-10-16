@@ -3,12 +3,12 @@
 	$pn_options = array(
 		array(
 			'name' => 'positivo',
-			'title' => __('Mensajes positivos','whatif'),
+			'title' => __('Positive message','whatif'),
 			'img' => 'default-pos.png'
 		),
 		array(
 			'name' => 'negativo',
-			'title' => __('Mensajes negativos','whatif'),
+			'title' => __('Negative message','whatif'),
 			'img' => 'default-neg.png'
 		)
 	);
@@ -19,7 +19,7 @@
 	$perma_reset = substr($perma, 0, -1);
 	$filter_out .= "
 		<li id='tax-reset' class='filter-cat'>
-			<a title='" . __('Restablecer','whatif') . "' href='" .$perma_reset. "'><img src='" .WHATIF_BLOGTHEME. "/images/default-reset.png' alt='" . __('Restablecer','whatif') . "' /></a>
+			<a title='" . __('Restablecer','whatif') . "' href='" .$perma_reset. "'><img src='" .WHATIF_BLOGTHEME. "/images/default-reset.png' alt='" . __('Reset','whatif') . "' /></a>
 		</li>
 	";
 

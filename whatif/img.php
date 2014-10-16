@@ -53,9 +53,9 @@ endwhile;
 
 $mess_out .= "</div><!-- end class unique mosac -->"; ?>
 
-	<div class="navigation navigation-left alignleft"><?php previous_posts_link(__('Entradas anteriores','whatif'),'') ?></div>
+	<div class="navigation navigation-left alignleft"><?php previous_posts_link(__('Previous message','whatif'),'') ?></div>
 	<?php echo $mess_out; ?>
-	<div class="navigation navigation-right alignright"><?php next_posts_link(__('Entradas posteriores','whatif'),'') ?></div>
+	<div class="navigation navigation-right alignright"><?php next_posts_link(__('Next message','whatif'),'') ?></div>
 
 <?php else:
 endif;

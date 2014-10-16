@@ -54,7 +54,7 @@ if ( is_author() ) { // if author page
 	$tit_out = "
 	<div class='tit-peq'>
 		<img alt='User avatar' src='" .WHATIF_BLOGTHEME. "/images/default-user.png' />
-		<h2>" . sprintf(__('Mensajes enviado por %s','whatif'),$cur_aut->user_login ). "</h2>
+		<h2>" . sprintf(__('Messages sent by %s','whatif'),$cur_aut->user_login ). "</h2>
 			" .$aut_datos. "
 		</div>
 	";
@@ -64,7 +64,7 @@ if ( is_author() ) { // if author page
 	$tit_out = "
 	<div class='tit-peq'>
 		<img alt='User avatar' src='" .WHATIF_BLOGTHEME. "/images/default-vista.png' />
-		<h2>" . sprintf(__('Mensajes con la etiqueta %s','whatif'),$term ). "</h2>
+		<h2>" . sprintf(__('Message with the keyword "%s"','whatif'),$term ). "</h2>
 		</div>
 	";
 } elseif ( is_single() ) {

@@ -37,7 +37,7 @@ if ( $user_id ) {
 	wp_redirect($redirect);
 	exit;
 
-$reg_out = __('Tu usuario ha sido creado correctamente.','whatif');
+$reg_out = __('Your username has been added.','whatif');
 }
 
 echo $reg_out;

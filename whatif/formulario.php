@@ -11,7 +11,7 @@ if ( $positivonegativo == 'positivo' ) {
 	$color = WHATIF_STYLE_POSITIVE_COLOR;
 	$clasecolor='"'.WHATIF_STYLE_POSITIVE_COLOR.'"';
 	$chover = WHATIF_STYLE_POSITIVE_HOVER;
-	$tit_1 = __('Describe tu idea','whatif');
+	$tit_1 = __('Describe your idea','whatif');
 	$media_img_bg = "media-img-pl";
 	$media_vid_bg = "media-vid-pl";
 
@@ -20,11 +20,12 @@ if ( $positivonegativo == 'positivo' ) {
 	$color = WHATIF_STYLE_NEGATIVE_COLOR;
 	$clasecolor='"'.WHATIF_STYLE_NEGATIVE_COLOR.'"';
 	$chover = WHATIF_STYLE_NEGATIVE_HOVER;
-	$tit_1 = __('Describe tu problema','whatif');
+	$tit_1 = __('Describe your problem','whatif');
 	$media_img_bg = "media-img-mn";
 	$media_vid_bg = "media-vid-mn";
 	$clasetags = WHATIF_STYLE_NEGATIVE_COLOR;
 }
+$tit_extra = __('(maximum of 140 characters)','whatif');
 
 if ( is_user_logged_in() ) {
 // if user is logged in
@@ -42,13 +43,13 @@ if ( is_user_logged_in() ) {
 				<h2><?php echo $tit_1 ?></h2>
 			</div>
 			<span id="info" class=<?php echo $clasecolor ?>></span>
-			<textarea onkeypress="return limita(event, 140);" onkeyup="actualizaInfo(140)" name="contenido" cols="45" rows="2" class="required caja <?php echo $bg ?> textBox" class="required" id="cajadescripcion" onblur="if(this.value == '') {this.value = '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>';}" onfocus="if(this.value == '<?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?>') {this.value = '';}"><?php _e('Describe tu idea (140 caracteres como máximo)','whatif'); ?></textarea>
+			<textarea onkeypress="return limita(event, 140);" onkeyup="actualizaInfo(140)" name="contenido" cols="45" rows="2" class="required caja <?php echo $bg ?> textBox" class="required" id="cajadescripcion" onblur="if(this.value == '') {this.value = '<?php echo $tit_1. " " .$tit_extra; ?>';}" onfocus="if(this.value == '<?php echo $tit_1. " " .$tit_extra; ?>') {this.value = '';}"><?php echo $tit_1. " " .$tit_extra; ?></textarea>
 		</fieldset>
 
 		<fieldset id="paso-2" class="deslizaForm">
 			<div id="paso36" class="paso">3/6</div>
 			<div class="tit">
-				<h2><?php _e('Elige una categoría','whatif'); ?></h2>
+				<h2><?php _e('Choose a category','whatif'); ?></h2>
 			</div>
 			<?php // categories list with icon
 			$cat_divs = "<div class='cat-selector' name='categoria'>";
@@ -82,8 +83,8 @@ if ( is_user_logged_in() ) {
 	<fieldset id="paso-3" class="deslizaForm">
 		<div id="paso46" class="paso">4/6</div>
 		<div class="tit">
-			<h2><?php _e('Elige palabras clave','whatif'); ?></h2>
-			<span class="subtit"><?php _e('Hasta un máximo de 5','whatif'); ?></span>
+			<h2><?php _e('Choose some tags','whatif'); ?></h2>
+			<span class="subtit"><?php _e('Up to 5 keywords','whatif'); ?></span>
 		</div>
 		<?php
 		$terms = $positivonegativo;
@@ -94,7 +95,7 @@ if ( is_user_logged_in() ) {
 		$term_sel .= "</ul>";
 		echo $term_sel;
 		?>
-		<span><?php _e('También puedes añadir tus propias palabras clave separadas por comas.','whatif'); ?></span>
+		<span><?php _e('You can also add your own keywords, comma separated.','whatif'); ?></span>
 		<input type="text" value="" name="cajaterm" class="required caja-negra caja-term textBox vanadium-valid" id="cajaterm" />
 		<div id="contEtiquetas" name="contEtiquetas"></div>
 	</fieldset>
@@ -102,11 +103,11 @@ if ( is_user_logged_in() ) {
 	<fieldset id="paso-4" class="deslizaForm">
 		<div id="paso56" class="paso">5/6</div>
 		<div class="tit">
-			<h2><?php _e('Elige una localización','whatif'); ?></h2>
+			<h2><?php _e('Choose a location','whatif'); ?></h2>
 		</div>
 		<div id="map" style="width: 800px; height: 320px"></div>
 		<input onfocus="if(this.value == '<?php echo WHATIF_LOCATION_ADDRESS; ?>') {this.value = '';}" onblur="if(this.value == '') {this.value = '<?php echo WHATIF_LOCATION_ADDRESS; ?>';}" class="caja-negra caja-map" type="text" size="60" id="addressTEXT" value="<?php echo WHATIF_LOCATION_ADDRESS; ?>" />
-		<input class="boton-negro" type="button" value="<?php _e('Posicionar','whatif'); ?>" onclick="showAddress()"/>
+		<input class="boton-negro" type="button" value="<?php _e('Reference','whatif'); ?>" onclick="showAddress()"/>
 
 <br clear="all" />
   <input style="display:none" type="text" size="50" id="infoWindowTEXT" value="" onkeyup="updateCode()" onkeypress="updateCode()" />
@@ -116,9 +117,9 @@ if ( is_user_logged_in() ) {
   <input style="display:none" type="text" size="3" id="mapWidthTEXT" value="500" onkeyup="updateCode()" onkeypress="updateCode()" />
   <input style="display:none" type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateCode()" onkeypress="updateCode()" />
   <select style="display:none" id="mapTypeSELECT" onchange="updateCode()">
-   <option value="G_NORMAL_MAP" SELECTED><?php _e('Vista mapa','whatif');?></option>
-   <option value="G_SATELLITE_MAP"><?php _e('Vista satélite','whatif');?></option>
-   <option value="G_HYBRID_MAP"><?php _e('Vista híbrida','whatif');?></option>
+   <option value="G_NORMAL_MAP" SELECTED><?php _e('Map view','whatif');?></option>
+   <option value="G_SATELLITE_MAP"><?php _e('Satellite view','whatif');?></option>
+   <option value="G_HYBRID_MAP"><?php _e('Hybrid view','whatif');?></option>
   </select>
 
 <br clear="all"/>
@@ -187,7 +188,7 @@ if ( is_user_logged_in() ) {
 	<fieldset id="paso-5" class="deslizaForm">
 		<div id="paso66" class="paso">6/6</div>
 		<div class="tit">
-			<h2><?php _e('Añade una foto o un vídeo','whatif'); ?></h2>
+			<h2><?php _e('Add a photo or a video','whatif'); ?></h2>
 		</div>
 		<div class="media-selector">
 			<?php
@@ -197,7 +198,7 @@ if ( is_user_logged_in() ) {
 			<div id='subirimagen' class='media-up $media_img_bg'>
     				<input type='hidden' name='MAX_FILE_SIZE' value='3000000' />
 				<div id='upload'>
-					<span class='media-feedback'>".__('Elige una imagen','whatif')."</span>
+					<span class='media-feedback'>".__('Choose an image','whatif')."</span>
 				</div><span id='media-boton' class='media-icon'>+</span>
 				<input id='blas' class='media' type='file' name='blas' />
 				
@@ -207,7 +208,7 @@ if ( is_user_logged_in() ) {
 			$vid_ins_out = "
 			<div id='subirvideo' class='media-up $media_vid_bg'>
 				<input class='caja-negra media' type='text' name='urlvideo' value='http://'  />
-				<label>" . __('Añadir un vídeo','whatif') . "</label>
+				<label>" . __('Add a video','whatif') . "</label>
 			</div>
 			";
 			echo $img_ins_out;
@@ -220,10 +221,10 @@ if ( is_user_logged_in() ) {
 		<input type="hidden" name="ll" value="" size="40" />
 		<input type="hidden" name="zoom" value="" />
 		<div id="finalform">
-			<p><?php _e('Si quieres modificar algo puedes volver hacia atrás pulsando sobre las fechas.','whatif'); ?></p>
-			<p><?php _e('Para publicar pulsa a continuación:','whatif'); ?></p>
+			<p><?php _e('If you want to modify something, you can go back using the black arrows.','whatif'); ?></p>
+			<p><?php _e('To publish the message, click on the following button:','whatif'); ?></p>
 		</div>
-		<input id="publicar" type="submit" name="publicar" value="<?php _e('Publicar mensaje','whatif'); ?>" />
+		<input id="publicar" type="submit" name="publicar" value="<?php _e('Publish message','whatif'); ?>" />
 		<input id="escondido" type="hidden" name="escondido" value="0" />
 	</fieldset>
 
@@ -247,7 +248,7 @@ if ( is_user_logged_in() ) {
 		// title
 		$author_name = get_the_author_meta('user_login',$user_ID);
 		$time = current_time('mysql');
-		$titulo = sprintf(__('Mensaje enviado por %s1 el %s2','whatif'),$author_name,$time);
+		$titulo = sprintf(__('Message sent by %s1 on %s2','whatif'),$author_name,$time);
 
 		$positivonegativo = sanitize_text_field($_POST['positivonegativo']); // que sera bien "positivo" o "negativo"
 

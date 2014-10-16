@@ -13,7 +13,7 @@
 	elseif ( $positivonegativo == 'negativo') { $bg_class = WHATIF_STYLE_NEGATIVE_BG; }
 	$video = get_post_meta($mess_ID, "video", true);
 	if($video == '' || $video == "http://" ){ $video_out = ""; }
-	else { $video_out = " | <a target='_blank' href='" .$video. "'>". __('Ver Video','whatif') . "</a>"; }
+	else { $video_out = " | <a target='_blank' href='" .$video. "'>". __('View video','whatif') . "</a>"; }
 
 //  Sistema de votaciones
 //global $wpdb;
@@ -50,7 +50,7 @@
 $votacion = "";
 // Fin sistema de votacion
 
-	if ( current_user_can( 'edit_posts' ) ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Editar','whatif') . "</a>"; }
+	if ( current_user_can( 'edit_posts' ) ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Edit','whatif') . "</a>"; }
 	else { $mess_edit = ""; }
 
 	// the categories
@@ -91,7 +91,7 @@ $votacion = "";
 		$img_url = WHATIF_BLOGTHEME. "/images/default.png";
 		$mess_img = "
 		<div class='messSingle-img'>
-			<img src='$img_url' alt='". __('Sin imagen','whatif') . "' />
+			<img src='$img_url' alt='". __('No image','whatif') . "' />
 		</div>
 		";
 	}
@@ -112,15 +112,15 @@ $votacion = "";
 			<ul class='messSingle-meta'>
 				<li><a href='" .$mess_author_link. "'>" .$mess_author. "</a></li>
 				<li>" .$mess_date. "</li>
-				<li><a href='" .$mess_perma. "?vista=map'>" .__('Ver localización','whatif'). "</a></li>
+				<li><a href='" .$mess_perma. "?vista=map'>" .__('View location','whatif'). "</a></li>
 				" .$video_out. "
 				<li><a href='" .$mess_perma. "'>" .__('Permalink','whatif'). "</a></li>
 			</ul>
 			" .$votacion. "
 			<ul class='messSingle-social'>
-				<li><a target='_blank' href='http://facebook.com/sharer.php?u=".$mess_perma_escurl."' title='" .__('Compartir en Facebook','whatif')."'>f</a></li>
-				<li><a target='_blank' href='http://twitter.com/home?status=".$mess_content_escurl." ".$mess_perma_escurl."' title='" .__('Compartir en Twitter','whatif')."'>t</a></li>
-				<li><a target='_blank' href='https://plus.google.com/share?url=".$mess_perma_escurl."' title='" .__('Compartir en Google Plus','whatif')."'>g+</a></li>
+				<li><a target='_blank' href='http://facebook.com/sharer.php?u=".$mess_perma_escurl."' title='" .__('Share on Facebook','whatif')."'>f</a></li>
+				<li><a target='_blank' href='http://twitter.com/home?status=".$mess_content_escurl." ".$mess_perma_escurl."' title='" .__('Share on Twitter','whatif')."'>t</a></li>
+				<li><a target='_blank' href='https://plus.google.com/share?url=".$mess_perma_escurl."' title='" .__('Share on Google Plus','whatif')."'>g+</a></li>
 			</ul>
 			" .$mess_edit. "
 		</div>
