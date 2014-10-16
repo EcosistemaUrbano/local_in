@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: whatif 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 09:39+0100\n"
+"POT-Creation-Date: 2014-10-16 13:03+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: skotperez <skotperez@voragine.net>\n"
-"Language-Team: \n"
+"Language-Team: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,336 +17,382 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../filters.php:13
-#: ../filters-img.php:9
+#: ../filters.php:6
+msgid "Positive message"
+msgstr ""
+
+#: ../filters.php:11
+msgid "Negative message"
+msgstr ""
+
+#: ../filters.php:22
 msgid "Restablecer"
 msgstr ""
 
-#: ../filters.php:20
-#: ../filters-img.php:16
-msgid "Mensajes positivos"
+#: ../filters.php:22
+msgid "Reset"
 msgstr ""
 
-#: ../filters.php:24
-#: ../filters-img.php:20
-msgid "Mensajes negativos"
-msgstr ""
-
-#: ../msgmap.php:11
-#: ../header.php:566
-msgid "Positivo"
-msgstr ""
-
-#: ../msgmap.php:12
-#: ../header.php:567
-msgid "Negativo"
-msgstr ""
-
-#: ../msgmap.php:14
-#: ../header.php:569
-msgid "Arquitectura urbanismo"
-msgstr ""
-
-#: ../msgmap.php:15
-#: ../header.php:570
-msgid "Comunidad ciudadana"
-msgstr ""
-
-#: ../msgmap.php:16
-#: ../header.php:571
-msgid "Espacio público medioambiente"
-msgstr ""
-
-#: ../msgmap.php:17
-#: ../header.php:572
-msgid "Movilidad"
-msgstr ""
-
-#: ../msgmap.php:18
-#: ../header.php:573
-msgid "Otros"
-msgstr ""
-
-#: ../msgmap.php:31
-#: ../single.php:20
-msgid "Localizaciones"
-msgstr ""
-
-#: ../msgmap.php:32
-msgid "Localización"
-msgstr ""
-
-#: ../header.php:15
-msgid "Herramienta de participación urbana"
-msgstr ""
-
-#: ../header.php:687
-msgid "Enviado por:"
-msgstr ""
-
-#: ../single.php:24
-msgid "Palabras clave"
-msgstr ""
-
-#: ../single.php:28
-msgid "Imágenes"
-msgstr ""
-
-#: ../archive.php:7
-msgid "Archivos"
-msgstr ""
-
-#: ../archive.php:20
-msgid "Publicado a las"
-msgstr ""
-
-#: ../footer.php:12
-#: ../index.php:10
-msgid "Inicio"
-msgstr ""
-
-#: ../footer.php:22
-msgid "Mis mensajes"
-msgstr ""
-
-#: ../footer.php:23
-msgid "Mi perfil"
-msgstr ""
-
-#: ../footer.php:24
-msgid "Abandonar sesión"
-msgstr ""
-
-#: ../footer.php:26
-msgid "Iniciar sesión"
-msgstr ""
-
-#: ../index.php:6
-msgid "Participa"
-msgstr ""
-
-#: ../index.php:14
-msgid "Consulta los resultados"
-msgstr ""
-
-#: ../vistas-tit-terms.php:8
-#: ../vistas-tit-terms.php:9
-msgid "Mensajes"
-msgstr ""
-
-#: ../formulario-enviado-gracias.php:185
-msgid "Su mensaje se publicó correctamente"
-msgstr ""
-
-#: ../formulario-enviado-gracias.php:189
-msgid "Su mensaje no pudo ser publicado por algún error entre su conexión y el servidor, o bien ya existe un mensaje igual al que está intentando publicar. Por favor vuelva al formulario para reenviar su mensaje."
-msgstr ""
-
-#: ../formulario.php:16
-msgid "Describe tu idea"
-msgstr ""
-
-#: ../formulario.php:25
-msgid "Describe tu problema"
-msgstr ""
-
-#: ../formulario.php:50
-msgid "Describe tu idea (140 caracteres como máximo)"
-msgstr ""
-
-#: ../formulario.php:56
-msgid "Elige una categoría"
-msgstr ""
-
-#: ../formulario.php:92
-msgid "Elige palabras clave"
-msgstr ""
-
-#: ../formulario.php:93
-msgid "Hasta un máximo de 5"
-msgstr ""
-
-#: ../formulario.php:110
-msgid "También puedes añadir tus propias palabras clave separadas por comas."
-msgstr ""
-
-#: ../formulario.php:119
-msgid "Elige una localización"
-msgstr ""
-
-#: ../formulario.php:124
-msgid "Posicionar"
-msgstr ""
-
-#: ../formulario.php:143
-msgid "Vista mapa"
-msgstr ""
-
-#: ../formulario.php:145
-msgid "Vista satélite"
-msgstr ""
-
-#: ../formulario.php:146
-msgid "Vista híbrida"
-msgstr ""
-
-#: ../formulario.php:229
-msgid "Añade una foto o un vídeo"
-msgstr ""
-
-#: ../formulario.php:242
-msgid "Su imagen ha sido cargada"
-msgstr ""
-
-#: ../formulario.php:253
-msgid "Añadir un vídeo"
-msgstr ""
-
-#: ../formulario.php:269
-msgid "Si quieres modificar algo puedes volver hacia atrás pulsando sobre las fechas."
-msgstr ""
-
-#: ../formulario.php:270
-msgid "Para publicar pulsa a continuación:"
-msgstr ""
-
-#: ../formulario.php:274
-msgid "Publicar mensaje"
-msgstr ""
-
-#: ../formulario.php:293
-msgid "Para publicar un mensaje debes iniciar sesión."
-msgstr ""
-
-#: ../formulario.php:305
-msgid "usuario o contraseña incorrectos"
-msgstr ""
-
-#: ../formulario.php:309
-msgid "usuario"
-msgstr ""
-
-#: ../formulario.php:313
-#: ../formulario.php:339
-msgid "contraseña"
-msgstr ""
-
-#: ../formulario.php:317
-msgid "Recordarme"
-msgstr ""
-
-#: ../formulario.php:327
-msgid "Si aún no estás registrado:"
-msgstr ""
-
-#: ../formulario.php:330
-msgid "el nombre ya existe"
-msgstr ""
-
-#: ../formulario.php:331
-msgid "nombre de usuario"
-msgstr ""
-
-#: ../formulario.php:332
-msgid "sin espacios"
-msgstr ""
-
-#: ../formulario.php:334
-msgid "correo asociado a otro usuario"
-msgstr ""
-
-#: ../formulario.php:335
-msgid "correo electrónico"
-msgstr ""
-
-#: ../formulario.php:342
-msgid "parece que te has equivocado al teclear..."
-msgstr ""
-
-#: ../formulario.php:343
-msgid "confirma tu contraseña"
-msgstr ""
-
-#: ../formulario.php:347
-msgid "Registrarse"
-msgstr ""
-
-#: ../author.php:16
-msgid "Datos:"
-msgstr ""
-
-#: ../author.php:25
-msgid "Mensajes enviado por"
-msgstr ""
-
-#: ../loop.single.php:38
-#: ../loopTerm.php:162
-msgid "Comentario"
-msgstr ""
-
-#: ../loop.single.php:39
-#: ../loopTerm.php:163
+#: ../header.php:58
+#: ../header.php:179
 msgid "Permalink"
 msgstr ""
 
-#: ../loop.single.php:44
-#: ../loopTerm.php:168
-msgid "Ver Video"
+#: ../header.php:59
+#: ../header.php:180
+msgid "View video"
 msgstr ""
 
-#: ../loop.single.php:91
-#: ../loopTerm.php:215
+#: ../header.php:63
+msgid "Edit"
+msgstr ""
+
+#: ../header.php:184
 msgid "Editar"
 msgstr ""
 
-#: ../loop.single.php:143
-#: ../loopTerm.php:267
-msgid "Sin imagen"
+#: ../single.php:23
+msgid "Volver al mosaico"
 msgstr ""
 
-#: ../loop.single.php:207
-msgid "what if...? cities"
+#: ../single.php:24
+msgid "Volver a la lista"
 msgstr ""
 
-#: ../functions.php:160
-msgid "Ningún caracter libre."
+#: ../single.php:25
+msgid "Volver al mapa"
 msgstr ""
 
-#: ../functions.php:161
-msgid "1 caracter libre."
+#: ../single.php:26
+msgid "Volver a la página del usuario"
 msgstr ""
 
-#: ../functions.php:162
-msgid "caracteres libres."
+#: ../single.php:29
+#, php-format
+msgid "Image of the message %s"
 msgstr ""
 
-#: ../registro.php:97
-msgid "Tu usuario ha sido creado correctamente."
+#: ../single.php:30
+#: ../single.php:71
+#, php-format
+msgid "View message \"%s\""
+msgstr ""
+
+#: ../single.php:64
+#, php-format
+msgid "This is the message you have published. Thanks for participage, %s."
+msgstr ""
+
+#: ../footer.php:9
+msgid "Home page"
+msgstr ""
+
+#: ../footer.php:16
+msgid "My message"
+msgstr ""
+
+#: ../footer.php:17
+msgid "My profile"
+msgstr ""
+
+#: ../footer.php:18
+msgid "Log out"
+msgstr ""
+
+#: ../footer.php:20
+msgid "Log in"
+msgstr ""
+
+#: ../index.php:6
+msgid "Participate"
+msgstr ""
+
+#: ../index.php:10
+msgid "Home"
+msgstr ""
+
+#: ../index.php:14
+msgid "View messages"
+msgstr ""
+
+#: ../vistas-list.php:23
+msgid "Active view"
+msgstr ""
+
+#: ../vistas-list.php:49
+msgid "Website"
+msgstr ""
+
+#: ../vistas-list.php:57
+#, php-format
+msgid "Messages sent by %s"
+msgstr ""
+
+#: ../vistas-list.php:67
+#, php-format
+msgid "Message with the keyword \"%s\""
+msgstr ""
+
+#: ../formulario.php:14
+msgid "Describe your idea"
+msgstr ""
+
+#: ../formulario.php:23
+msgid "Describe your problem"
+msgstr ""
+
+#: ../formulario.php:28
+msgid "(maximum of 140 characters)"
+msgstr ""
+
+#: ../formulario.php:52
+msgid "Choose a category"
+msgstr ""
+
+#: ../formulario.php:86
+msgid "Choose some tags"
+msgstr ""
+
+#: ../formulario.php:87
+msgid "Up to 5 keywords"
+msgstr ""
+
+#: ../formulario.php:98
+msgid "You can also add your own keywords, comma separated."
+msgstr ""
+
+#: ../formulario.php:106
+msgid "Choose a location"
+msgstr ""
+
+#: ../formulario.php:110
+msgid "Reference"
+msgstr ""
+
+#: ../formulario.php:120
+msgid "Map view"
+msgstr ""
+
+#: ../formulario.php:121
+msgid "Satellite view"
+msgstr ""
+
+#: ../formulario.php:122
+msgid "Hybrid view"
+msgstr ""
+
+#: ../formulario.php:191
+msgid "Add a photo or a video"
+msgstr ""
+
+#: ../formulario.php:201
+msgid "Choose an image"
+msgstr ""
+
+#: ../formulario.php:211
+msgid "Add a video"
+msgstr ""
+
+#: ../formulario.php:224
+msgid "If you want to modify something, you can go back using the black arrows."
+msgstr ""
+
+#: ../formulario.php:225
+msgid "To publish the message, click on the following button:"
+msgstr ""
+
+#: ../formulario.php:227
+msgid "Publish message"
+msgstr ""
+
+#: ../formulario.php:251
+#, php-format
+msgid "Message sent by %s1 on %s2"
+msgstr ""
+
+#: ../author.php:33
+#: ../taxonomy.php:15
+msgid "Previous messages"
+msgstr ""
+
+#: ../author.php:51
+#: ../taxonomy.php:27
+msgid "Next messages"
+msgstr ""
+
+#: ../author.php:54
+msgid "This user hasn't published any message."
+msgstr ""
+
+#: ../functions.php:122
+msgid "Icon"
+msgstr ""
+
+#: ../functions.php:130
+msgid "Positive"
+msgstr ""
+
+#: ../functions.php:137
+msgid "Negative"
+msgstr ""
+
+#: ../functions.php:155
+msgid "Home footer"
+msgstr ""
+
+#: ../functions.php:156
+msgid "Views footer"
+msgstr ""
+
+#: ../functions.php:182
+msgid "No characters left."
+msgstr ""
+
+#: ../functions.php:183
+msgid "1 character left."
+msgstr ""
+
+#: ../functions.php:184
+msgid "characters left."
+msgstr ""
+
+#: ../functions.php:194
+msgid "Choose an image."
+msgstr ""
+
+#: ../functions.php:245
+msgid "Category image"
+msgstr ""
+
+#: ../functions.php:246
+#: ../functions.php:252
+#: ../functions.php:258
+msgid "Upload the image using the media uploader, and add the complete URL here then."
+msgstr ""
+
+#: ../functions.php:247
+msgid "Image"
+msgstr ""
+
+#: ../functions.php:251
+msgid "Positive map marker"
+msgstr ""
+
+#: ../functions.php:253
+msgid "Icon +"
+msgstr ""
+
+#: ../functions.php:257
+msgid "Negative map marker"
+msgstr ""
+
+#: ../functions.php:259
+msgid "Icon -"
+msgstr ""
+
+#: ../404.php:3
+msgid "Error 404: Page not found"
+msgstr ""
+
+#: ../404.php:7
+msgid "We didn't find the content you have requested. Check the URL or start again at home page."
+msgstr ""
+
+#: ../registro.php:40
+msgid "Your username has been added."
+msgstr ""
+
+#: ../img.php:56
+msgid "Previous message"
+msgstr ""
+
+#: ../img.php:58
+msgid "Next message"
 msgstr ""
 
 #: ../explica.php:15
-msgid "Atrás"
+msgid "Previous"
 msgstr ""
 
 #: ../explica.php:37
-msgid "Adelante"
+msgid "Next"
 msgstr ""
 
-#: ../loopTerm.php:55
-msgid "Paso anterior"
+#: ../login-form.php:18
+msgid "You have already logged in. Go to the home page to publish a message or to see the published message."
 msgstr ""
 
-#: ../loopTerm.php:327
-msgid "Paso siguiente"
+#: ../login-form.php:31
+msgid "Incorrect username or password"
 msgstr ""
 
-#: ../loop.php:391
-#: ../loop.php:401
-msgid "Entradas anteriores"
+#: ../login-form.php:34
+#: ../login-form.php:56
+msgid "Username"
 msgstr ""
 
-#: ../loop.php:392
-#: ../loop.php:402
-msgid "Entradas posteriores"
+#: ../login-form.php:37
+#: ../login-form.php:64
+msgid "Password"
+msgstr ""
+
+#: ../login-form.php:42
+msgid "Remember me"
+msgstr ""
+
+#: ../login-form.php:52
+msgid "If you're not registered yet:"
+msgstr ""
+
+#: ../login-form.php:55
+msgid "That username already exists"
+msgstr ""
+
+#: ../login-form.php:57
+msgid "No spaces"
+msgstr ""
+
+#: ../login-form.php:59
+msgid "This email is already in use by other user"
+msgstr ""
+
+#: ../login-form.php:60
+msgid "e-mail"
+msgstr ""
+
+#: ../login-form.php:67
+msgid "Looks like you made a mistake while typing"
+msgstr ""
+
+#: ../login-form.php:68
+msgid "Confirm your password"
+msgstr ""
+
+#: ../login-form.php:72
+msgid "Sign up"
+msgstr ""
+
+#: ../login-form.php:78
+msgid "You are already registered. Now you can log in using your username and password."
+msgstr ""
+
+#: ../loop.php:94
+msgid "No image"
+msgstr ""
+
+#: ../loop.php:115
+msgid "View location"
+msgstr ""
+
+#: ../loop.php:121
+msgid "Share on Facebook"
+msgstr ""
+
+#: ../loop.php:122
+msgid "Share on Twitter"
+msgstr ""
+
+#: ../loop.php:123
+msgid "Share on Google Plus"
 msgstr ""
 
