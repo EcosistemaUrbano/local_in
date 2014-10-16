@@ -1191,11 +1191,17 @@ display:none;
 	width: 49%;
 }
  
-.bg-n
-{
- background-color:#000;
- color:#fff;
+.bg-n {
+	background-color: #000;
+	color: #fff;
 }
+.bg-error {
+	background-color: #ff0;
+}
+.bg-error p {
+	color: #000 !important;
+}
+
 .tit-peq-page
 {
     margin-top: 20px;
