@@ -6,7 +6,7 @@ $keywords = "urbanismo, participación ciudadana, arquitectura social";
 
 // MAPS
 
-// Calle que aparecerá por defecto como ejemplo en la página de geolocalización
+// This is the address that will appear by default when geolocating an entry
 $examplelocation ="Estanislao Figueras, 6, Madrid";
 // City and Country. This will be use to perform geo-searches
 $location_city = "Madrid";
@@ -16,7 +16,7 @@ $location_country = "España";
 $apigooglemaps ="ABQIAAAAr7Wf1Er982GxOn546lMrQBQ4Fi0gp6JNXlaQxfT8Sk5oY4k-bBTwrX_Xlbv8NWHVg3XxAySgcxwEww";
 
 // Customize the default location of the map.
-// You can obtain the coordinates of any place by right-clicking in Google Maps and selecting 'Drop Lat/Lng marker here'
+// You can obtain the coordinates of any place by right-clicking in Google Maps and selecting 'What's here'
 $coordenadasmapa ="40.4378271,-3.6795367";
 // Zoom levels for the map in the entry form
 $zoomformulario = 12;
