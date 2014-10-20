@@ -15,12 +15,12 @@ foreach ( $children as $child ) {
 	$pag_child_link = get_permalink($child->ID);
 	$pag_child_tit = get_the_title($child->ID);
 	if ( has_post_thumbnail($child->ID) ) { $pag_child_img = get_the_post_thumbnail( $child->ID, "icon"); }
-	else { $pag_child_img = "<img src='" .WHATIF_BLOGTHEME. "/images/default-vista.png' alt='" .$pag_child_tit. "' />"; }
+	else { $pag_child_img = "<img src='" .WHATIF_BLOGTHEME. "/images/default-view.png' alt='" .$pag_child_tit. "' />"; }
 	if ( $child->ID == $post->ID ) {
 		$vistas_out .= "
 		<div class='vista-img-mini'>
 			" .$pag_child_img. "
-			<img class='vista-active' src='" .WHATIF_BLOGTHEME. "/images/vista-active.png' alt='" .__('Active view','whatif'). "' />
+			<img class='vista-active' src='" .WHATIF_BLOGTHEME. "/images/view-active.png' alt='" .__('Active view','whatif'). "' />
 		</div>
 		";
 		$tit_out = "
@@ -63,7 +63,7 @@ if ( is_author() ) { // if author page
 	$term =	$wp_query->queried_object->name;
 	$tit_out = "
 	<div class='tit-peq'>
-		<img alt='User avatar' src='" .WHATIF_BLOGTHEME. "/images/default-vista.png' />
+		<img alt='User avatar' src='" .WHATIF_BLOGTHEME. "/images/default-view.png' />
 		<h2>" . sprintf(__('Message with the keyword "%s"','whatif'),$term ). "</h2>
 		</div>
 	";

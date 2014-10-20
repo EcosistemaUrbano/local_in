@@ -398,28 +398,28 @@ function whatif_create_custom_content() {
 			'slug' => 'mensajes',
 			'template' => 'lista.php',
 			'parent_slug' => 'vistas',
-			'image' => 'vista-mensajes.png'
+			'image' => 'view-messages.png'
 		),
 		array(
 			'title' => 'Locations',
 			'slug' => 'localizaciones',
 			'template' => 'map.php',
 			'parent_slug' => 'vistas',
-			'image' => 'vista-localiza.png'
+			'image' => 'view-locations.png'
 		),
 		array(
 			'title' => 'Keywords',
 			'slug' => 'palabras-clave',
 			'template' => 'palabras-clave.php',
 			'parent_slug' => 'vistas',
-			'image' => 'vista-tags.png'
+			'image' => 'view-tags.png'
 		),
 		array(
 			'title' => 'Images',
 			'slug' => 'imagenes',
 			'template' => 'img.php',
 			'parent_slug' => 'vistas',
-			'image' => 'vista-images.png'
+			'image' => 'view-images.png'
 		),
 		array(
 			'title' => 'Sign up',
