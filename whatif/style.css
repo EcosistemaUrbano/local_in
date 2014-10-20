@@ -165,8 +165,9 @@ body {
 }
 
 .epi-menu {
-    clear: both;
-    margin: 10px auto;
+	clear: both;
+	margin: 10px auto;
+	text-align: center;
 }
 .epi-menu li {
 	display: inline-block;
