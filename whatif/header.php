@@ -56,7 +56,7 @@ if ( is_single() && $view == "map" ) {
 		$coor = get_post_meta($post_ID, "coordenadas", true);
 		$video = get_post_meta($post_ID, "video", true);
 		$comentario = __('Permalink','whatif');
-		$videomuestra=" | <a target='_blank' href='$video'>". __('View video','whatif') . "</a>";
+		$videomuestra="<a target='_blank' href='$video'>". __('View link','whatif') . "</a> | ";
 	  	if($video=="" OR $video=="http://"){
 	        	$videomuestra="";
 		};
@@ -177,7 +177,7 @@ foreach ( $valor_terms as $term ) {
 		$positivonegativo = get_post_meta($post_ID, "positivonegativo", true);
 		$video = get_post_meta($post_ID, "video", true);
 		$comentario = __('Permalink','whatif');
-		$videomuestra=" | <a target='_blank' href='$video'>". __('View video','whatif') . "</a>";
+		$videomuestra=" | <a target='_blank' href='$video'>". __('View link','whatif') . "</a>";
 	  	if($video=="" OR $video=="http://"){
 	        	$videomuestra="";
 		};

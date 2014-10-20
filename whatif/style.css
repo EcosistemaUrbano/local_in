@@ -841,16 +841,16 @@ input.boton-negro {
 	position: relative;
 }
 .media-img-pl {
-	background: transparent url(images/a-media-img.png) no-repeat left top;
-}
-.media-vid-pl {
-	background: transparent url(images/a-media-vid.png) no-repeat left top;
+	background: transparent url(images/form-media-icons.png) no-repeat 0 0;
 }
 .media-img-mn {
-	background: transparent url(images/r-media-img.png) no-repeat left top;
+	background: transparent url(images/form-media-icons.png) no-repeat 0 -170px;
 }
-.media-vid-mn {
-	background: transparent url(images/r-media-vid.png) no-repeat left top;
+.media-link-pl {
+	background: transparent url(images/form-media-icons.png) no-repeat 0 -340px;
+}
+.media-link-mn {
+	background: transparent url(images/form-media-icons.png) no-repeat 0 -510px;
 }
 .media-up label {
 	font-size: 1.8em;

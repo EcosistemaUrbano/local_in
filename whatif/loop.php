@@ -13,7 +13,7 @@
 	elseif ( $positivonegativo == 'negativo') { $bg_class = WHATIF_STYLE_NEGATIVE_BG; }
 	$video = get_post_meta($mess_ID, "video", true);
 	if($video == '' || $video == "http://" ){ $video_out = ""; }
-	else { $video_out = " | <a target='_blank' href='" .$video. "'>". __('View video','whatif') . "</a>"; }
+	else { $video_out = "<a target='_blank' href='" .$video. "'>". __('View link','whatif') . "</a> | "; }
 
 //  Sistema de votaciones
 //global $wpdb;

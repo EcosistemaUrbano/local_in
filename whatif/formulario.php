@@ -13,7 +13,7 @@ if ( $positivonegativo == 'positivo' ) {
 	$chover = WHATIF_STYLE_POSITIVE_HOVER;
 	$tit_1 = __('Describe your idea','whatif');
 	$media_img_bg = "media-img-pl";
-	$media_vid_bg = "media-vid-pl";
+	$media_link_bg = "media-link-pl";
 
 } elseif ( $positivonegativo == 'negativo' ) {
 	$bg = WHATIF_STYLE_NEGATIVE_BG;
@@ -22,7 +22,7 @@ if ( $positivonegativo == 'positivo' ) {
 	$chover = WHATIF_STYLE_NEGATIVE_HOVER;
 	$tit_1 = __('Describe your problem','whatif');
 	$media_img_bg = "media-img-mn";
-	$media_vid_bg = "media-vid-mn";
+	$media_link_bg = "media-link-mn";
 	$clasetags = WHATIF_STYLE_NEGATIVE_COLOR;
 }
 $tit_extra = __('(maximum of 140 characters)','whatif');
@@ -188,7 +188,7 @@ if ( is_user_logged_in() ) {
 	<fieldset id="paso-5" class="deslizaForm">
 		<div id="paso66" class="paso">6/6</div>
 		<div class="tit">
-			<h2><?php _e('Add a photo or a video','whatif'); ?></h2>
+			<h2><?php _e('Add a photo and a link','whatif'); ?></h2>
 		</div>
 		<div class="media-selector">
 			<?php
@@ -206,9 +206,9 @@ if ( is_user_logged_in() ) {
 			</div>
 			";
 			$vid_ins_out = "
-			<div id='subirvideo' class='media-up $media_vid_bg'>
+			<div id='subirvideo' class='media-up $media_link_bg'>
 				<input class='caja-negra media' type='text' name='urlvideo' value='http://'  />
-				<label>" . __('Add a video','whatif') . "</label>
+				<label>" . __('Add a link','whatif') . "</label>
 			</div>
 			";
 			echo $img_ins_out;
