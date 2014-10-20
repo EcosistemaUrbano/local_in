@@ -405,7 +405,7 @@ function whatif_create_custom_content() {
 			'slug' => 'localizaciones',
 			'template' => 'map.php',
 			'parent_slug' => 'vistas',
-			'image' => 'vista-map.png'
+			'image' => 'vista-localiza.png'
 		),
 		array(
 			'title' => 'Keywords',
@@ -419,7 +419,7 @@ function whatif_create_custom_content() {
 			'slug' => 'imagenes',
 			'template' => 'img.php',
 			'parent_slug' => 'vistas',
-			'image' => 'vista-imagenes.png'
+			'image' => 'vista-images.png'
 		),
 		array(
 			'title' => 'Sign up',
