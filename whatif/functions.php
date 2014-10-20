@@ -345,105 +345,105 @@ function whatif_create_custom_content() {
 
 	$custom_contents = array(
 		array(
-			'title' => 'Participa',
+			'title' => 'Participate',
 			'slug' => 'presentacion-participa',
 			'template' => 'explica.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Envía un mensaje',
+			'title' => 'Send a message',
 			'slug' => 'entrada-formulario',
 			'template' => 'entrada-formulario.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Positivo',
+			'title' => 'Positive',
 			'slug' => 'positivo',
 			'template' => '',
 			'parent_slug' => 'entrada-formulario',
 			'image' => ''
 		),
 		array(
-			'title' => 'Negativo',
+			'title' => 'Negative',
 			'slug' => 'negativo',
 			'template' => '',
 			'parent_slug' => 'entrada-formulario',
 			'image' => ''
 		),
 		array(
-			'title' => 'Envía un mensaje',
+			'title' => 'Form to send a message',
 			'slug' => 'formulario',
 			'template' => 'formulario.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Consulta los resultados',
+			'title' => 'View messages',
 			'slug' => 'presentacion-consulta',
 			'template' => 'explica.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Vistas',
+			'title' => 'Views',
 			'slug' => 'vistas',
 			'template' => 'entrada-vistas.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Mensajes',
+			'title' => 'Messages',
 			'slug' => 'mensajes',
 			'template' => 'lista.php',
 			'parent_slug' => 'vistas',
 			'image' => 'vista-mensajes.png'
 		),
 		array(
-			'title' => 'Localizaciones',
+			'title' => 'Locations',
 			'slug' => 'localizaciones',
 			'template' => 'map.php',
 			'parent_slug' => 'vistas',
 			'image' => 'vista-map.png'
 		),
 		array(
-			'title' => 'Palabras clave',
+			'title' => 'Keywords',
 			'slug' => 'palabras-clave',
 			'template' => 'palabras-clave.php',
 			'parent_slug' => 'vistas',
 			'image' => 'vista-tags.png'
 		),
 		array(
-			'title' => 'Imágenes',
+			'title' => 'Images',
 			'slug' => 'imagenes',
 			'template' => 'img.php',
 			'parent_slug' => 'vistas',
 			'image' => 'vista-imagenes.png'
 		),
 		array(
-			'title' => 'Registro',
+			'title' => 'Sign up',
 			'slug' => 'registro',
 			'template' => 'registro.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Cerrar sesión',
+			'title' => 'Log out',
 			'slug' => 'logout',
 			'template' => 'logout.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Abrir sesión',
+			'title' => 'Log in',
 			'slug' => 'login',
 			'template' => 'login.php',
 			'parent_slug' => '',
 			'image' => ''
 		),
 		array(
-			'title' => 'Iniciar sesión',
+			'title' => 'User sesion',
 			'slug' => 'user-sesion',
 			'template' => 'login-form.php',
 			'parent_slug' => '',
