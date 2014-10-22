@@ -19,7 +19,7 @@
 	$perma_reset = substr($perma, 0, -1);
 	$filter_out .= "
 		<li id='tax-reset' class='filter-cat'>
-			<a title='" . __('Restablecer','whatif') . "' href='" .$perma_reset. "'><img src='" .WHATIF_BLOGTHEME. "/images/default-reset.png' alt='" . __('Reset','whatif') . "' /></a>
+			<a title='" . __('Reset','whatif') . "' href='" .$perma_reset. "'><img src='" .WHATIF_BLOGTHEME. "/images/default-reset.png' alt='" . __('Reset','whatif') . "' /></a>
 		</li>
 	";
 

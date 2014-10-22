@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 
@@ -38,7 +33,11 @@ if ( is_single() && $view == "map" ) {
 			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
 			$mess_img = "<div class='messSingle-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 		}
+	} else {
+		$img_url = WHATIF_BLOGTHEME. "/images/default.png";
+		$mess_img = "<div class='messSingle-img'><img src='$img_url' alt='". __('No image','whatif') . "' /></div>";
 	}
+
 	$args = array(
 		'p' => $id
 	);
@@ -67,7 +66,7 @@ if ( is_single() && $view == "map" ) {
 		elseif ( $positivonegativo == 'negativo' ) { $bg_class = 'bg-c'; $map_icon = "icon-neg"; }
 
 	// the categories
-		$cats = wp_get_post_terms( $post_ID, 'category' );
+	$cats = wp_get_post_terms( $post_ID, 'category' );
 	$mess_cats = "<ul class='messSingle-cats'>";
 	$cat_count = 0;
 	foreach ( $cats as $categ ) {
@@ -77,10 +76,8 @@ if ( is_single() && $view == "map" ) {
 		if ( $cat_count == 0 ) {
 		// map marker
 			$cat_meta = get_option("taxonomy_$categoryID");
-			if ( is_array($cat_meta) ) {
-				if ( array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
-					$map_marker_url = $cat_meta[$map_icon];
-				}
+			if ( is_array($cat_meta) && array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
+				$map_marker_url = $cat_meta[$map_icon];
 			} else { $map_marker_url = WHATIF_BLOGTHEME. "/images/default-map-" .$map_icon. ".png"; }
 		}
 		$cat_count++;
@@ -102,7 +99,7 @@ if ( is_single() && $view == "map" ) {
 var point = new GLatLng(".$coor.");
 var marker = new GMarker(point,miicono);
 GEvent.addListener(marker, \"click\", function() {
-var myHtml = \"".$mess_img. "<div class='messSingle-aut'><div class='messSingle-meta'><a href='$mess_author_link'>$mess_author</a> | $mess_date | $videomuestra</div><div class='messSingle-extra'><a href='$mess_perma'>$comentario</a>$mess_edit</div></div><div class='messSingle-text'>$mess_content</div><div class='messSingle-context'>".$mess_cats.$mess_tags."</div></div>\";	
+var myHtml = \"".$mess_img. "<div class='messSingle-aut'><div class='messSingle-meta'><a href='$mess_author_link'>$mess_author</a> | $mess_date | $videomuestra</div> <div class='messSingle-extra'><a href='$mess_perma'>$comentario</a>$mess_edit</div></div><div class='messSingle-text'>$mess_content</div><div class='messSingle-context'>".$mess_cats.$mess_tags."</div></div>\";	
 map2.openInfoWindowHtml(point, myHtml); });
 map2.addOverlay(marker);
 	";
@@ -177,11 +174,11 @@ foreach ( $valor_terms as $term ) {
 		$positivonegativo = get_post_meta($post_ID, "positivonegativo", true);
 		$video = get_post_meta($post_ID, "video", true);
 		$comentario = __('Permalink','whatif');
-		$videomuestra=" | <a target='_blank' href='$video'>". __('View link','whatif') . "</a>";
+		$videomuestra="<a target='_blank' href='$video'>". __('View link','whatif') . "</a> | ";
 	  	if($video=="" OR $video=="http://"){
 	        	$videomuestra="";
 		};
-	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Editar','whatif') . "</a>"; }
+	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Edit','whatif') . "</a>"; }
 	else { $mess_edit = ""; }
 
 		if ( $positivonegativo == 'positivo' ) { $bg_class = 'bg-p'; $map_icon = "icon-pos"; $map_icon_slug = "pos"; }
@@ -198,10 +195,8 @@ foreach ( $valor_terms as $term ) {
 		if ( $cat_count == 0 ) {
 		// map marker
 			$cat_meta = get_option("taxonomy_$categoryID");
-			if ( is_array($cat_meta) ) {
-				if ( array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
-					$map_marker_url = $cat_meta[$map_icon];
-				}
+			if ( is_array($cat_meta) && array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
+				$map_marker_url = $cat_meta[$map_icon];
 			} else { $map_marker_url = WHATIF_BLOGTHEME. "/images/default-map-" .$map_icon. ".png"; }
 		}
 		$cat_count++;
@@ -227,6 +222,9 @@ foreach ( $valor_terms as $term ) {
 			$imageurl = wp_get_attachment_image_src( $attachment->ID, 'thumbnail');
 			$mess_img = "<div class='messSingle-img'><a href='" .$image_link. "'><img src='" .$imageurl[0]. "' alt='" .$alt_attachment. "' ></a></div>";
 		}
+	} else {
+		$img_url = WHATIF_BLOGTHEME. "/images/default.png";
+		$mess_img = "<div class='messSingle-img'><img src='$img_url' alt='". __('No image','whatif') . "' /></div>";
 	}
 
 	if ( $filtro != '' ) { $map_cat_slug = $filtro; }
@@ -235,7 +233,7 @@ foreach ( $valor_terms as $term ) {
 var point".$post_ID." = new GLatLng(".$coor.");
 var marker".$post_ID." = new GMarker(point".$post_ID.", icon".$map_cat_slug.$map_icon_slug.");
 GEvent.addListener(marker".$post_ID.", \"click\", function() {
-var myHtml".$post_ID." = \"".$mess_img."<div class='messSingle-aut'><div class='messSingle-meta'><a href='$mess_author_link'>$mess_author</a> | $mess_date | $videomuestra</div><div class='messSingle-extra'><a href='$mess_perma'>$comentario</a>$mess_edit</div></div><div class='messSingle-text'>$mess_content</div><div class='messSingle-context'>".$mess_cats.$mess_tags."</div></div>\";	
+var myHtml".$post_ID." = \"".$mess_img."<div class='messSingle-aut'><div class='messSingle-meta'><a href='$mess_author_link'>$mess_author</a> | $mess_date | $videomuestra</div> <div class='messSingle-extra'><a href='$mess_perma'>$comentario</a>$mess_edit</div></div><div class='messSingle-text'>$mess_content</div><div class='messSingle-context'>".$mess_cats.$mess_tags."</div></div>\";	
 map2.openInfoWindowHtml(point".$post_ID.", myHtml".$post_ID."); });
 map2.addOverlay(marker".$post_ID.");
         ";
