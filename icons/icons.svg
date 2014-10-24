@@ -32,9 +32,9 @@
      inkscape:window-height="1156"
      id="namedview4"
      showgrid="false"
-     inkscape:zoom="1.4849242"
-     inkscape:cx="204.56947"
-     inkscape:cy="945.20002"
+     inkscape:zoom="2.0999999"
+     inkscape:cx="174.82743"
+     inkscape:cy="1010.6395"
      inkscape:window-x="0"
      inkscape:window-y="22"
      inkscape:window-maximized="1"
@@ -52,7 +52,7 @@
      inkscape:snap-object-midpoints="true" /><metadata
      id="metadata8"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
      id="defs6"><inkscape:perspective
        sodipodi:type="inkscape:persp3d"
        inkscape:vp_x="0 : 180 : 1"
@@ -3416,6 +3416,7 @@
 
 
 
+
 <path
    style="fill:url(#linearGradient4721);stroke:none"
    d="m -39.440228,579.33804 9.237818,5.12415 -9.237818,5.54277"
@@ -3464,6 +3465,7 @@
 
 
 
+
 <text
    transform="scale(1,-1)"
    sodipodi:linespacing="125%"
@@ -3492,6 +3494,7 @@
      y="-618.18719"
      x="-126.29694"
      sodipodi:role="line">both gradient stops to the same new color</tspan></text>
+
 
 
 
@@ -3625,10 +3628,13 @@
    y="-1125.7399"
    transform="scale(1,-1)"
    inkscape:export-filename="./screenshot.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90" /><g
+   inkscape:export-xdpi="198.00005"
+   inkscape:export-ydpi="198.00005" /><g
    id="g3745"
-   transform="matrix(0.45454545,0,0,0.45454545,-317.50217,819.25966)"><g
+   transform="matrix(0.45454545,0,0,0.45454545,-317.50217,819.25966)"
+   inkscape:export-filename="./screenshot.png"
+   inkscape:export-xdpi="198.00005"
+   inkscape:export-ydpi="198.00005"><g
      inkscape:export-ydpi="90"
      inkscape:export-xdpi="90"
      inkscape:export-filename="./default-home.png"
@@ -3910,6 +3916,7 @@
 
 
 
+
 <text
    transform="scale(1,-1)"
    sodipodi:linespacing="125%"
@@ -3930,6 +3937,7 @@
      x="-126.29694"
      sodipodi:role="line"
      id="tspan5501">THE EXPORTED PNG FILES MUST HAVE 100 PIXELS WIDTH.</tspan></text>
+
 
 
 
@@ -3960,6 +3968,7 @@
 
 
 
+
 <text
    transform="scale(1,-1)"
    sodipodi:linespacing="125%"
@@ -3980,6 +3989,7 @@
      x="-126.29694"
      sodipodi:role="line"
      id="tspan5519">THE EXPORTED PNG FILES MUST HAVE 40 PIXELS WIDTH AND HEIGHT.</tspan></text>
+
 
 
 
@@ -4016,6 +4026,7 @@
 
 
 
+
 <text
    transform="matrix(0.70710678,0.70710678,0.70710678,-0.70710678,0,0)"
    sodipodi:linespacing="125%"
@@ -4034,6 +4045,7 @@
      x="172.99915"
      sodipodi:role="line"
      id="tspan5557">FILTERS</tspan></text>
+
 
 
 
@@ -4060,6 +4072,7 @@
 
 
 
+
 <text
    transform="matrix(0.70710678,0.70710678,0.70710678,-0.70710678,0,0)"
    sodipodi:linespacing="125%"
@@ -4078,6 +4091,7 @@
      y="-89.375748"
      x="229.6528"
      sodipodi:role="line">FILTERS</tspan></text>
+
 
 
 
@@ -4104,6 +4118,7 @@
 
 
 
+
 <text
    transform="matrix(0.70710678,0.70710678,0.70710678,-0.70710678,0,0)"
    sodipodi:linespacing="125%"
@@ -4122,6 +4137,7 @@
      y="-32.892376"
      x="286.13626"
      sodipodi:role="line">FOOTER MENU</tspan></text>
+
 
 
 
@@ -4148,6 +4164,7 @@
 
 
 
+
 <text
    transform="matrix(0.70710678,0.70710678,0.70710678,-0.70710678,0,0)"
    sodipodi:linespacing="125%"
@@ -4166,6 +4183,7 @@
      y="23.676123"
      x="342.70483"
      sodipodi:role="line">FOOTER MENU</tspan></text>
+
 
 
 
@@ -4192,6 +4210,7 @@
 
 
 
+
 <text
    transform="scale(1,-1)"
    sodipodi:linespacing="125%"
@@ -4205,6 +4224,7 @@
      y="-426.85135"
      x="-126.29694"
      sodipodi:role="line">ICONS FOR ACTIVE VIEW</tspan></text>
+
 
 
 
@@ -4231,6 +4251,7 @@
 
 
 
+
 <text
    transform="scale(1,-1)"
    sodipodi:linespacing="125%"
@@ -4249,6 +4270,7 @@
      x="-126.29694"
      sodipodi:role="line"
      id="tspan7093">THE EXPORTED PNG FILE MUST HAVE 300 PIXELS WIDTH.</tspan></text>
+
 
 
 
@@ -4280,6 +4302,7 @@
 
 
 
+
 <text
    xml:space="preserve"
    style="font-size:3.08696485px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient7185);fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans"
@@ -4298,6 +4321,7 @@
      x="-126.29694"
      y="-860.10291"
      style="font-weight:normal;fill:url(#linearGradient7185)">THE EXPORTED PNG FILE MUST HAVE 48 PIXELS WIDTH.</tspan></text>
+
 
 
 
@@ -4325,6 +4349,7 @@
 
 
 
+
 <text
    transform="scale(1,-1)"
    sodipodi:linespacing="125%"
@@ -4343,6 +4368,7 @@
      y="-110.07935"
      x="-0.28847727"
      sodipodi:role="line">LICENSE Attribution 4.0 International [http://creativecommons.org/licenses/by/4.0/]</tspan></text>
+
 
 
 <g
@@ -4466,5 +4492,6 @@
      x="297.32208"
      y="-298.48523"
      style="font-weight:normal;text-align:end;text-anchor:end;fill:url(#linearGradient3556)">THE ICONS MUST BE PLACED IN A 185 PIXELS HEIGHT RETICLE.</tspan></text>
+
 
 </g></svg>
