@@ -95,7 +95,13 @@ function whatif_theme_setup() {
 
 	// create theme custom content
 	add_action( 'load-themes.php', 'whatif_create_custom_content' );
-	
+
+	// vote system install
+	add_action( 'load-themes.php', 'whatif_vote_system_install' );
+
+	// vote system vars to jQuery
+	add_action('wp_head', 'whatif_vote_system_js_vars' );
+
 } // END theme setup function
 
 // Set up media options
@@ -162,6 +168,7 @@ function whatif_register_menus() {
 // load js scripts to avoid conflicts
 function whatif_load_scripts() {
 
+	wp_enqueue_style( 'vote-css', get_template_directory_uri() . '/vote.css' );
 	wp_enqueue_script(
 		'whatif-disable-input-enter',
 		get_template_directory_uri() . '/js/whatif.disable.input.enter.js',
@@ -222,6 +229,15 @@ function whatif_load_scripts() {
 		wp_enqueue_script(
 			'whatif-form-loop',
 			get_template_directory_uri() . '/js/whatif.form.loop.js',
+			array('jquery'),
+			'0.1',
+			FALSE
+		);
+	}
+	if ( is_author() || is_page_template("lista.php") || is_single() ) {
+		wp_enqueue_script(
+			'whatif-vote-system',
+			get_template_directory_uri() . '/js/whatif.vote.system.js',
 			array('jquery'),
 			'0.1',
 			FALSE
@@ -506,4 +522,95 @@ function whatif_create_custom_content() {
 	}
 } // END create theme custom content
 
+/////////////
+// BEGIN messages vote system
+/*
+Some parts of this Message Vote System are a modification of the
+I Like This plugin by Benoit Burgener
+Plugin URI: http://www.my-tapestry.com/i-like-this/
+Author: Benoit "LeBen" Burgener
+Author URI: http://benoitburgener.com
+*/
+
+// vote system install
+function whatif_vote_system_install() {
+	global $pagenow;
+	if ( 'themes.php' == $pagenow && isset( $_GET['activated'] ) ){ // Test if theme is activate
+//	$ilt_dbVersion = "1.0";
+
+		global $wpdb;
+//		global $ilt_dbVersion;
+	
+		$table_name = $wpdb->prefix . "ilikethis_votes";
+		if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+			$sql = "CREATE TABLE " . $table_name . " (
+				id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
+				time TIMESTAMP NOT NULL,
+				post_id BIGINT(20) NOT NULL,
+				ip VARCHAR(15) NOT NULL,
+				UNIQUE KEY id (id)
+			);";
+
+//			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+//			dbDelta($sql);
+
+//			add_option("ilt_dbVersion", $ilt_dbVersion);
+		}
+	
+//		add_option('ilt_jquery', '1', '', 'yes');
+//		add_option('ilt_onPage', '1', '', 'yes');
+//		add_option('ilt_textOrImage', 'image', '', 'yes');
+//		add_option('ilt_text', 'I like This', '', 'yes');
+	}   else {
+		// TODO: code to be run when theme is deactivated
+		global $wpdb;
+		$wpdb->query("DROP TABLE IF EXISTS ".$wpdb->prefix."ilikethis_votes");
+
+//		delete_option('ilt_jquery');
+//		delete_option('ilt_onPage');
+//		delete_option('ilt_textOrImage');
+//		delete_option('ilt_text');
+//		delete_option('most_liked_posts');
+//		delete_option('ilt_dbVersion');
+
+	} // end if theme activated
+}// END vote system install
+
+// display votes in a message
+function whatif_vote_system_display_votes() {
+	global $wpdb;
+	$post_ID = get_the_ID();
+	$ip = $_SERVER['REMOTE_ADDR'];
+	
+	$liked = get_post_meta($post_ID, '_liked', true) != '' ? get_post_meta($post_ID, '_liked', true) : '0';
+	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
+		
+	if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
+	    	if (get_option('ilt_textOrImage') == 'image') {
+	    		$counter = '<a onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
+	    	} else {
+	 		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
+	    	}
+	} else {
+		$counter = $liked;
+	}
+
+	$votacion = '<div id="iLikeThis-'.$post_ID.'" class="iLikeThis">';
+    	$votacion .= '<span class="counter">'.$counter.'</span>';
+	$votacion .= '</div>';
+
+//	if ($arg == 'put') {
+		return $votacion;
+//	} else {
+//		echo $votacion;
+//	}
+} // END display votes
+
+// Pass vars to jQuery
+function whatif_vote_system_js_vars() {
+	echo '<script type="text/javascript">var voteFunctionUrl = \''.WHATIF_BLOGTHEME.'vote.php\'</script>'."\n";
+}
+
+// END MESSAGE VOTE SYSTEM
+//////////
 ?>

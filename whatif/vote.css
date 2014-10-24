@@ -1,0 +1,20 @@
+.iLikeThis { 
+	display: inline-block;
+}
+.iLikeThis .counter { 
+	background: url("images/vote.png") no-repeat scroll left center transparent;
+	display: block;
+	font-weight: bold;
+	height: 18px;
+	margin: 0 5px;
+	line-height:18px;
+	padding: 0 0 0 20px;
+
+}
+.iLikeThis .counter a { cursor:pointer; }
+.iLikeThis .counter a.image { 
+	background: url("images/add.png") no-repeat scroll right center transparent;
+	display: block;
+	line-height: 18px;
+	padding: 0 20px 0 0;
+}

@@ -47,7 +47,8 @@
 //    	
 //    	$votacion=$iLikeThis;
 //	 }
-$votacion = "";
+$votacion = whatif_vote_system_display_votes();
+//$votacion = "";
 // Fin sistema de votacion
 
 	if ( current_user_can( 'edit_posts' ) ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Edit','whatif') . "</a>"; }
