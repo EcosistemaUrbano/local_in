@@ -551,8 +551,8 @@ function whatif_vote_system_install() {
 				UNIQUE KEY id (id)
 			);";
 
-//			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-//			dbDelta($sql);
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			dbDelta($sql);
 
 //			add_option("ilt_dbVersion", $ilt_dbVersion);
 		}
@@ -563,8 +563,8 @@ function whatif_vote_system_install() {
 //		add_option('ilt_text', 'I like This', '', 'yes');
 	}   else {
 		// TODO: code to be run when theme is deactivated
-		global $wpdb;
-		$wpdb->query("DROP TABLE IF EXISTS ".$wpdb->prefix."ilikethis_votes");
+//		global $wpdb;
+//		$wpdb->query("DROP TABLE IF EXISTS ".$wpdb->prefix."ilikethis_votes");
 
 //		delete_option('ilt_jquery');
 //		delete_option('ilt_onPage');
