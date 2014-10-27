@@ -586,11 +586,11 @@ function whatif_vote_system_display_votes() {
 	$voteStatusByIp = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."ilikethis_votes WHERE post_id = '$post_ID' AND ip = '$ip'");
 		
 	if (!isset($_COOKIE['liked-'.$post_ID]) && $voteStatusByIp == 0) {
-	    	if (get_option('ilt_textOrImage') == 'image') {
+//	    	if (get_option('ilt_textOrImage') == 'image') {
 	    		$counter = '<a onclick="likeThis('.$post_ID.');" class="image">'.$liked.'</a>';
-	    	} else {
-	 		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
-	    	}
+//	    	} else {
+//	 		$counter = $liked.' <a onclick="likeThis('.$post_ID.');">'.get_option('ilt_text').'</a>';
+//	    	}
 	} else {
 		$counter = $liked;
 	}
