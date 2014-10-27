@@ -15,13 +15,15 @@ $location_country = "España";
 // Put here the Google Maps API key, specific for your domain
 $apigooglemaps ="ABQIAAAAr7Wf1Er982GxOn546lMrQBQ4Fi0gp6JNXlaQxfT8Sk5oY4k-bBTwrX_Xlbv8NWHVg3XxAySgcxwEww";
 
-// Customize the default location of the map.
+// Customize the default location of the map
 // You can obtain the coordinates of any place by right-clicking in Google Maps and selecting 'What's here'
 $coordenadasmapa ="40.4378271,-3.6795367";
-// Zoom levels for the map in the entry form
-$zoomformulario = 12;
-// Zoom levels for the map in the results view
+
+// Zoom levels: the bigger the number, the closer it zooms in
+// Zoom level for the map in the entry form
+$zoomformulario = 15;
+// Zoom level for the map in the results view
 $zoomtodas = 12;
-// Zoom levels for the map of a single entry
+// Zoom level for the map of a single entry
 $zoomindividual = 12;
 ?>
