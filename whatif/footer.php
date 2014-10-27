@@ -13,7 +13,7 @@
 	if ( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();
 		$user_name = $current_user->user_login;
-		$rt_out .= "<li id='epi-user-mess'><a href='" .WHATIF_BLOGURL. "/author/$user_name'>" . __('My message','whatif') . "</a></li>";
+		$rt_out .= "<li id='epi-user-mess'><a href='" .WHATIF_BLOGURL. "/author/$user_name'>" . __('My messages','whatif') . "</a></li>";
 		$rt_out .= "<li id='epi-user-perfil'><a href='" .WHATIF_BLOGURL. "/wp-admin/profile.php'>" . __('My profile','whatif') . "</a></li>";
 		$rt_out .= "<li id='epi-logout'><a href='" .WHATIF_BLOGURL. "/logout?ref=" .WHATIF_BLOGURL. "'>" . __('Log out','whatif') . "</a></li>";
 	} else {
