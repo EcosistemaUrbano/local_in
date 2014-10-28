@@ -165,7 +165,7 @@ msgstr "Elige una ubicación"
 
 #: ../formulario.php:110
 msgid "Reference"
-msgstr "Referencia"
+msgstr "Situar"
 
 #: ../formulario.php:120
 msgid "Map view"
