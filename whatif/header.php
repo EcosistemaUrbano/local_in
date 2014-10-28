@@ -62,8 +62,8 @@ if ( is_single() && $view == "map" ) {
 	if ( is_user_logged_in() ) { $mess_edit = " | <a href='$mess_edit_link'>". __('Edit','whatif') . "</a>"; }
 	else { $mess_edit = ""; }
 
-		if ( $positivonegativo == 'positivo' ) { $bg_class = 'bg-p'; $map_icon = "icon-pos"; }
-		elseif ( $positivonegativo == 'negativo' ) { $bg_class = 'bg-c'; $map_icon = "icon-neg"; }
+		if ( $positivonegativo == 'positivo' ) { $bg_class = 'bg-p'; $icon = "pos"; }
+		elseif ( $positivonegativo == 'negativo' ) { $bg_class = 'bg-c'; $icon = "neg"; }
 
 	// the categories
 	$cats = wp_get_post_terms( $post_ID, 'category' );
@@ -74,11 +74,10 @@ if ( is_single() && $view == "map" ) {
 		$categLink = get_term_link($categ);
 		$mess_cats .= "<li id='" .$categ->slug. "' class='messSingle-cat'><div class='mess-cat-tit'><a href='" .WHATIF_BLOGURL. "/vistas/mensajes?filtro=" .$categoryID. "'>" .$categ->name. "</a></div></li>";
 		if ( $cat_count == 0 ) {
-		// map marker
+			// map marker
 			$cat_meta = get_option("taxonomy_$categoryID");
-			if ( is_array($cat_meta) && array_key_exists($map_icon,$cat_meta) && $cat_meta[$map_icon] != '' ) {
-				$map_marker_url = $cat_meta[$map_icon];
-			} else { $map_marker_url = WHATIF_BLOGTHEME. "/images/default-map-" .$map_icon. ".png"; }
+			if ( $cat_meta['icon-'.$icon] != '' ) { $map_marker_icon = $cat_meta['icon-'.$icon]; }
+			else { $map_marker_icon = WHATIF_BLOGTHEME. "images/default-map-icon-" .$icon. ".png"; }
 		}
 		$cat_count++;
 	}
@@ -110,10 +109,10 @@ map2.addOverlay(marker);
 function load() {
 	if (GBrowserIsCompatible()) {
 		var miicono = new GIcon(G_DEFAULT_ICON);
-		miicono.image = "<?php echo $map_marker_url ?>";
+		miicono.image = "<?php echo $map_marker_icon ?>";
 		var tamanoIconomiicono = new GSize(40,40);
 		miicono.iconSize = tamanoIconomiicono; 
-		miicono.shadow = "<?php echo $map_marker_url; ?>";
+		miicono.shadow = "<?php echo $map_marker_icon; ?>";
 		var tamanoSombramiicono = new GSize( 40,40);
 		miicono.shadowSize = tamanoSombramiicono;
 		miicono.iconAnchor = new GPoint(20, 20);
@@ -248,20 +247,18 @@ map2.addOverlay(marker".$post_ID.");
 	foreach ( $all_cats as $cat ) {
 		$cat_meta = get_option("taxonomy_$cat");
 		foreach ( array('pos','neg') as $icon ) {
-			if ( is_array($cat_meta) ) {
-				if ( array_key_exists('icon-'.$icon,$cat_meta) && $cat_meta['icon-'.$icon] != '' ) {
-					$map_marker_{$icon} = $cat_meta['icon-'.$icon];
-				}
-			} else { $map_marker_{$icon} = WHATIF_BLOGTHEME. "/images/default-map-" .$icon. ".png"; }
+			if ( $cat_meta['icon-'.$icon] != '' ) { $map_marker_icon = $cat_meta['icon-'.$icon]; }
+			else { $map_marker_icon = WHATIF_BLOGTHEME. "images/default-map-icon-" .$icon. ".png"; }
 
 			$losmarkers .= "
 			var icon".$cat.$icon." = new GIcon(G_DEFAULT_ICON);
-			icon".$cat.$icon.".image = '".$map_marker_{$icon}."';
+			icon".$cat.$icon.".image = '".$map_marker_icon."';
 			var tamanoicon".$cat.$icon." = new GSize(40,40);
 			icon".$cat.$icon.".iconSize = tamanoicon".$cat.$icon."; 
 			icon".$cat.$icon.".iconAnchor = new GPoint(20,20);
 			icon".$cat.$icon.".imageMap = [0,0, 39,0, 39,39, 0,39];
 			";
+			unset($map_marker_icon);
 		}
 	}
 ?> 
