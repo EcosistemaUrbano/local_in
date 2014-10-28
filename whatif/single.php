@@ -20,10 +20,10 @@ $mess_out = "";
 
 	// if is image single page
 	if ( is_attachment() ) {
-		if ( $ref == 'mosaic' ) { $ref_text = " | " .__('Volver al mosaico','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
-		elseif ( $ref == 'list' ) { $ref_text = " | " .__('Volver a la lista','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
-		elseif ( $ref == 'map' ) { $ref_text = " | " .__('Volver al mapa','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
-		elseif ( $ref == 'user' ) { $ref_text = " | " .__('Volver a la página del usuario','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
+		if ( $ref == 'mosaic' ) { $ref_text = " | " .__('Go back to the images mosaic','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
+		elseif ( $ref == 'list' ) { $ref_text = " | " .__('Go back to the messages list','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
+		elseif ( $ref == 'map' ) { $ref_text = " | " .__('Go back to the map','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
+		elseif ( $ref == 'user' ) { $ref_text = " | " .__('Go back to user\'s messages','whatif'); $ref_out = "<a href='javascript:history.back()'>" .$ref_text. "</a>"; }
 		else { $ref_out = ""; }
 	$parent_tit = get_the_title($post->post_parent);
 	$tit = sprintf(__('Image of the message %s','whatif'), $parent_tit);

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: whatif 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-16 13:03+0100\n"
+"POT-Creation-Date: 2014-10-28 10:30+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: skotperez <skotperez@voragine.net>\n"
 "Language-Team: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
@@ -26,45 +26,43 @@ msgid "Negative message"
 msgstr ""
 
 #: ../filters.php:22
-msgid "Restablecer"
-msgstr ""
-
-#: ../filters.php:22
 msgid "Reset"
 msgstr ""
 
-#: ../header.php:58
-#: ../header.php:179
+#: ../header.php:38
+#: ../header.php:227
+msgid "No image"
+msgstr ""
+
+#: ../header.php:57
+#: ../header.php:176
 msgid "Permalink"
 msgstr ""
 
-#: ../header.php:59
-#: ../header.php:180
-msgid "View video"
+#: ../header.php:58
+#: ../header.php:177
+msgid "View link"
 msgstr ""
 
-#: ../header.php:63
+#: ../header.php:62
+#: ../header.php:181
 msgid "Edit"
 msgstr ""
 
-#: ../header.php:184
-msgid "Editar"
-msgstr ""
-
 #: ../single.php:23
-msgid "Volver al mosaico"
+msgid "Go back to the images mosaic"
 msgstr ""
 
 #: ../single.php:24
-msgid "Volver a la lista"
+msgid "Go back to the messages list"
 msgstr ""
 
 #: ../single.php:25
-msgid "Volver al mapa"
+msgid "Go back to the map"
 msgstr ""
 
 #: ../single.php:26
-msgid "Volver a la página del usuario"
+msgid "Go back to user's messages"
 msgstr ""
 
 #: ../single.php:29
@@ -88,7 +86,7 @@ msgid "Home page"
 msgstr ""
 
 #: ../footer.php:16
-msgid "My message"
+msgid "My messages"
 msgstr ""
 
 #: ../footer.php:17
@@ -182,7 +180,7 @@ msgid "Hybrid view"
 msgstr ""
 
 #: ../formulario.php:191
-msgid "Add a photo or a video"
+msgid "Add a photo and a link"
 msgstr ""
 
 #: ../formulario.php:201
@@ -190,7 +188,7 @@ msgid "Choose an image"
 msgstr ""
 
 #: ../formulario.php:211
-msgid "Add a video"
+msgid "Add a link"
 msgstr ""
 
 #: ../formulario.php:224
@@ -224,69 +222,69 @@ msgstr ""
 msgid "This user hasn't published any message."
 msgstr ""
 
-#: ../functions.php:122
+#: ../functions.php:128
 msgid "Icon"
 msgstr ""
 
-#: ../functions.php:130
+#: ../functions.php:136
 msgid "Positive"
 msgstr ""
 
-#: ../functions.php:137
+#: ../functions.php:143
 msgid "Negative"
 msgstr ""
 
-#: ../functions.php:155
+#: ../functions.php:161
 msgid "Home footer"
 msgstr ""
 
-#: ../functions.php:156
+#: ../functions.php:162
 msgid "Views footer"
 msgstr ""
 
-#: ../functions.php:182
+#: ../functions.php:189
 msgid "No characters left."
 msgstr ""
 
-#: ../functions.php:183
+#: ../functions.php:190
 msgid "1 character left."
 msgstr ""
 
-#: ../functions.php:184
+#: ../functions.php:191
 msgid "characters left."
 msgstr ""
 
-#: ../functions.php:194
+#: ../functions.php:201
 msgid "Choose an image."
 msgstr ""
 
-#: ../functions.php:245
+#: ../functions.php:261
 msgid "Category image"
 msgstr ""
 
-#: ../functions.php:246
-#: ../functions.php:252
-#: ../functions.php:258
+#: ../functions.php:262
+#: ../functions.php:268
+#: ../functions.php:274
 msgid "Upload the image using the media uploader, and add the complete URL here then."
 msgstr ""
 
-#: ../functions.php:247
+#: ../functions.php:263
 msgid "Image"
 msgstr ""
 
-#: ../functions.php:251
+#: ../functions.php:267
 msgid "Positive map marker"
 msgstr ""
 
-#: ../functions.php:253
+#: ../functions.php:269
 msgid "Icon +"
 msgstr ""
 
-#: ../functions.php:257
+#: ../functions.php:273
 msgid "Negative map marker"
 msgstr ""
 
-#: ../functions.php:259
+#: ../functions.php:275
 msgid "Icon -"
 msgstr ""
 
@@ -376,23 +374,19 @@ msgstr ""
 msgid "You are already registered. Now you can log in using your username and password."
 msgstr ""
 
-#: ../loop.php:94
-msgid "No image"
-msgstr ""
-
-#: ../loop.php:115
+#: ../loop.php:116
 msgid "View location"
 msgstr ""
 
-#: ../loop.php:121
+#: ../loop.php:122
 msgid "Share on Facebook"
 msgstr ""
 
-#: ../loop.php:122
+#: ../loop.php:123
 msgid "Share on Twitter"
 msgstr ""
 
-#: ../loop.php:123
+#: ../loop.php:124
 msgid "Share on Google Plus"
 msgstr ""
 
