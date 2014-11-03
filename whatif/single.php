@@ -61,7 +61,7 @@ $mess_out = "";
 		$author_name = get_the_author_meta('user_login',$user_ID);
 		echo "
 		<div class='form-published'>
-			" .sprintf(__('This is the message you have published. Thanks for participage, %s.','whatif'),$author_name). "
+			" .sprintf(__('This is the message you have published. Thanks for participate, %s.','whatif'),$author_name). "
 		</div>
 		";
 
