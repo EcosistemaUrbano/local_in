@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-28 10:30+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: skotperez <skotperez@voragine.net>\n"
+"Last-Translator: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
 "Language-Team: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,374 +19,374 @@ msgstr ""
 
 #: ../filters.php:6
 msgid "Positive message"
-msgstr ""
+msgstr "Mensaje positivo"
 
 #: ../filters.php:11
 msgid "Negative message"
-msgstr ""
+msgstr "Mensaje negativo"
 
 #: ../filters.php:22
 msgid "Reset"
-msgstr ""
+msgstr "Reiniciar"
 
 #: ../header.php:38
 #: ../header.php:227
 msgid "No image"
-msgstr ""
+msgstr "Sin imagen"
 
 #: ../header.php:57
 #: ../header.php:176
 msgid "Permalink"
-msgstr ""
+msgstr "Enlace "
 
 #: ../header.php:58
 #: ../header.php:177
 msgid "View link"
-msgstr ""
+msgstr "Ver enlace"
 
 #: ../header.php:62
 #: ../header.php:181
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: ../single.php:23
 msgid "Go back to the images mosaic"
-msgstr ""
+msgstr "Volver al mosaico de imágenes"
 
 #: ../single.php:24
 msgid "Go back to the messages list"
-msgstr ""
+msgstr "Volver a la lista de mensajes"
 
 #: ../single.php:25
 msgid "Go back to the map"
-msgstr ""
+msgstr "Volver al mapa"
 
 #: ../single.php:26
 msgid "Go back to user's messages"
-msgstr ""
+msgstr "Volver a los mensajes del usuario"
 
 #: ../single.php:29
 #, php-format
 msgid "Image of the message %s"
-msgstr ""
+msgstr "Imagen del mensaje %s"
 
 #: ../single.php:30
 #: ../single.php:71
 #, php-format
 msgid "View message \"%s\""
-msgstr ""
+msgstr "Ver mensaje \"%s\""
 
 #: ../single.php:64
 #, php-format
 msgid "This is the message you have published. Thanks for participage, %s."
-msgstr ""
+msgstr "Este es el mensaje que has publicado. Gracias por participar, %s."
 
 #: ../footer.php:9
 msgid "Home page"
-msgstr ""
+msgstr "Inicio"
 
 #: ../footer.php:16
 msgid "My messages"
-msgstr ""
+msgstr "Mis mensajes"
 
 #: ../footer.php:17
 msgid "My profile"
-msgstr ""
+msgstr "Mi perfil"
 
 #: ../footer.php:18
 msgid "Log out"
-msgstr ""
+msgstr "Cerrar sesión"
 
 #: ../footer.php:20
 msgid "Log in"
-msgstr ""
+msgstr "Iniciar sesión"
 
 #: ../index.php:6
 msgid "Participate"
-msgstr ""
+msgstr "Participar"
 
 #: ../index.php:10
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: ../index.php:14
 msgid "View messages"
-msgstr ""
+msgstr "Ver mensajes"
 
 #: ../vistas-list.php:23
 msgid "Active view"
-msgstr ""
+msgstr "Vista activa"
 
 #: ../vistas-list.php:49
 msgid "Website"
-msgstr ""
+msgstr "Página web"
 
 #: ../vistas-list.php:57
 #, php-format
 msgid "Messages sent by %s"
-msgstr ""
+msgstr "Mensaje enviado por %s"
 
 #: ../vistas-list.php:67
 #, php-format
 msgid "Message with the keyword \"%s\""
-msgstr ""
+msgstr "Mensajes con la etiqueta \"%s\""
 
 #: ../formulario.php:14
 msgid "Describe your idea"
-msgstr ""
+msgstr "Escribe tu mensaje"
 
 #: ../formulario.php:23
 msgid "Describe your problem"
-msgstr ""
+msgstr "Escribe tu mensaje"
 
 #: ../formulario.php:28
 msgid "(maximum of 140 characters)"
-msgstr ""
+msgstr "(máximo 140 caracteres)"
 
 #: ../formulario.php:52
 msgid "Choose a category"
-msgstr ""
+msgstr "Elige una categoría"
 
 #: ../formulario.php:86
 msgid "Choose some tags"
-msgstr ""
+msgstr "Elige algunas etiquetas"
 
 #: ../formulario.php:87
 msgid "Up to 5 keywords"
-msgstr ""
+msgstr "Hasta 5 etiquetas"
 
 #: ../formulario.php:98
 msgid "You can also add your own keywords, comma separated."
-msgstr ""
+msgstr "Puedes añadir tus propias etiquetas, separadas por comas."
 
 #: ../formulario.php:106
 msgid "Choose a location"
-msgstr ""
+msgstr "Elige una ubicación"
 
 #: ../formulario.php:110
 msgid "Reference"
-msgstr ""
+msgstr "Situar"
 
 #: ../formulario.php:120
 msgid "Map view"
-msgstr ""
+msgstr "Vista de mapa"
 
 #: ../formulario.php:121
 msgid "Satellite view"
-msgstr ""
+msgstr "Vista satélite"
 
 #: ../formulario.php:122
 msgid "Hybrid view"
-msgstr ""
+msgstr "Vista híbrida"
 
 #: ../formulario.php:191
 msgid "Add a photo and a link"
-msgstr ""
+msgstr "Añade una imagen y un enlace"
 
 #: ../formulario.php:201
 msgid "Choose an image"
-msgstr ""
+msgstr "Elige una imagen"
 
 #: ../formulario.php:211
 msgid "Add a link"
-msgstr ""
+msgstr "Añade un enlace"
 
 #: ../formulario.php:224
 msgid "If you want to modify something, you can go back using the black arrows."
-msgstr ""
+msgstr "Si quieres modificar algo, puedes volver atrás usando las flechas."
 
 #: ../formulario.php:225
 msgid "To publish the message, click on the following button:"
-msgstr ""
+msgstr "Para publicar el mensaje, haz clic en el siguiente botón:"
 
 #: ../formulario.php:227
 msgid "Publish message"
-msgstr ""
+msgstr "Publicar mensaje"
 
 #: ../formulario.php:251
 #, php-format
 msgid "Message sent by %s1 on %s2"
-msgstr ""
+msgstr "Mensaje enviado por %s1 el %s2"
 
 #: ../author.php:33
 #: ../taxonomy.php:15
 msgid "Previous messages"
-msgstr ""
+msgstr "Mensajes anteriores"
 
 #: ../author.php:51
 #: ../taxonomy.php:27
 msgid "Next messages"
-msgstr ""
+msgstr "Mensajes siguientes"
 
 #: ../author.php:54
 msgid "This user hasn't published any message."
-msgstr ""
+msgstr "Este usuario no ha publicado ningún mensaje."
 
 #: ../functions.php:128
 msgid "Icon"
-msgstr ""
+msgstr "Icono"
 
 #: ../functions.php:136
 msgid "Positive"
-msgstr ""
+msgstr "Positivo"
 
 #: ../functions.php:143
 msgid "Negative"
-msgstr ""
+msgstr "Negativo"
 
 #: ../functions.php:161
 msgid "Home footer"
-msgstr ""
+msgstr "Pie de la página de inicio"
 
 #: ../functions.php:162
 msgid "Views footer"
-msgstr ""
+msgstr "Pie de la página de vistas"
 
 #: ../functions.php:189
 msgid "No characters left."
-msgstr ""
+msgstr "No caben más caracteres."
 
 #: ../functions.php:190
 msgid "1 character left."
-msgstr ""
+msgstr "1 carácter restante."
 
 #: ../functions.php:191
 msgid "characters left."
-msgstr ""
+msgstr "caracteres restantes."
 
 #: ../functions.php:201
 msgid "Choose an image."
-msgstr ""
+msgstr "Elige una imagen"
 
 #: ../functions.php:261
 msgid "Category image"
-msgstr ""
+msgstr "Imagen de categoría"
 
 #: ../functions.php:262
 #: ../functions.php:268
 #: ../functions.php:274
 msgid "Upload the image using the media uploader, and add the complete URL here then."
-msgstr ""
+msgstr "Sube la imagen usando la galería de medios, y luego añade aquí la URL completa."
 
 #: ../functions.php:263
 msgid "Image"
-msgstr ""
+msgstr "Imagen"
 
 #: ../functions.php:267
 msgid "Positive map marker"
-msgstr ""
+msgstr "Marcador positivo de mapa"
 
 #: ../functions.php:269
 msgid "Icon +"
-msgstr ""
+msgstr "Icono +"
 
 #: ../functions.php:273
 msgid "Negative map marker"
-msgstr ""
+msgstr "Marcador negativo de mapa"
 
 #: ../functions.php:275
 msgid "Icon -"
-msgstr ""
+msgstr "Icono -"
 
 #: ../404.php:3
 msgid "Error 404: Page not found"
-msgstr ""
+msgstr "Error 404: página no encontrada"
 
 #: ../404.php:7
 msgid "We didn't find the content you have requested. Check the URL or start again at home page."
-msgstr ""
+msgstr "No hemos encontrado el contenido solicitado. Comprueba la URL o prueba desde la página de inicio."
 
 #: ../registro.php:40
 msgid "Your username has been added."
-msgstr ""
+msgstr "Tu usuario se ha añadido."
 
 #: ../img.php:56
 msgid "Previous message"
-msgstr ""
+msgstr "Mensaje anterior"
 
 #: ../img.php:58
 msgid "Next message"
-msgstr ""
+msgstr "Mensaje siguiente"
 
 #: ../explica.php:15
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: ../explica.php:37
 msgid "Next"
-msgstr ""
+msgstr "Siguiente"
 
 #: ../login-form.php:18
 msgid "You have already logged in. Go to the home page to publish a message or to see the published message."
-msgstr ""
+msgstr "Ya has iniciado sesión. Ve a la página de inicio para publicar un mensaje o ver las demás publicaciones."
 
 #: ../login-form.php:31
 msgid "Incorrect username or password"
-msgstr ""
+msgstr "Usuario o contraseña incorrectos"
 
 #: ../login-form.php:34
 #: ../login-form.php:56
 msgid "Username"
-msgstr ""
+msgstr "Usuario"
 
 #: ../login-form.php:37
 #: ../login-form.php:64
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: ../login-form.php:42
 msgid "Remember me"
-msgstr ""
+msgstr "Recuérdame"
 
 #: ../login-form.php:52
 msgid "If you're not registered yet:"
-msgstr ""
+msgstr "Si todavía no estás registrado:"
 
 #: ../login-form.php:55
 msgid "That username already exists"
-msgstr ""
+msgstr "Ese usuario ya existe"
 
 #: ../login-form.php:57
 msgid "No spaces"
-msgstr ""
+msgstr "Sin espacios"
 
 #: ../login-form.php:59
 msgid "This email is already in use by other user"
-msgstr ""
+msgstr "Este email ya está en uso por otro usuario"
 
 #: ../login-form.php:60
 msgid "e-mail"
-msgstr ""
+msgstr "e-mail"
 
 #: ../login-form.php:67
 msgid "Looks like you made a mistake while typing"
-msgstr ""
+msgstr "Parece que te has equivocado al teclear"
 
 #: ../login-form.php:68
 msgid "Confirm your password"
-msgstr ""
+msgstr "Confirma tu contraseña"
 
 #: ../login-form.php:72
 msgid "Sign up"
-msgstr ""
+msgstr "Registrarme"
 
 #: ../login-form.php:78
 msgid "You are already registered. Now you can log in using your username and password."
-msgstr ""
+msgstr "Ya estás registrado. Ahora puedes iniciar sesión usando tu usuario y tu contraseña"
 
 #: ../loop.php:116
 msgid "View location"
-msgstr ""
+msgstr "Ver ubicación"
 
 #: ../loop.php:122
 msgid "Share on Facebook"
-msgstr ""
+msgstr "Compartir en Facebook"
 
 #: ../loop.php:123
 msgid "Share on Twitter"
-msgstr ""
+msgstr "Compartir en Twitter"
 
 #: ../loop.php:124
 msgid "Share on Google Plus"
-msgstr ""
+msgstr "Compartir en Google Plus"
 
