@@ -43,7 +43,7 @@ if ( is_user_logged_in() ) {
 				<h2><?php echo $tit_1 ?></h2>
 			</div>
 			<span id="info" class=<?php echo $clasecolor ?>></span>
-			<textarea onkeypress="return limita(event, 140);" onkeyup="actualizaInfo(140)" name="contenido" cols="45" rows="2" class="required caja <?php echo $bg ?> textBox" class="required" id="cajadescripcion" onblur="if(this.value == '') {this.value = '<?php echo $tit_1. " " .$tit_extra; ?>';}" onfocus="if(this.value == '<?php echo $tit_1. " " .$tit_extra; ?>') {this.value = '';}"><?php echo $tit_1. " " .$tit_extra; ?></textarea>
+			<textarea maxlength="140" name="contenido" cols="45" rows="2" class="required caja <?php echo $bg ?> textBox" id="cajadescripcion" onblur="if(this.value == '') {this.value = '<?php echo $tit_1. " " .$tit_extra; ?>';}" onfocus="if(this.value == '<?php echo $tit_1. " " .$tit_extra; ?>') {this.value = '';}"><?php echo $tit_1. " " .$tit_extra; ?></textarea>
 		</fieldset>
 
 		<fieldset id="paso-2" class="deslizaForm">

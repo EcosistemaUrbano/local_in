@@ -1,35 +1,17 @@
-function limita(elEvento, maximoCaracteres) {
-  var elemento = document.getElementById("cajadescripcion");
-
-  // Obtener la tecla pulsada 
-  var evento = elEvento || window.event;
-  var codigoCaracter = evento.charCode || evento.keyCode;
-  // Permitir utilizar las teclas con flecha horizontal
-  if(codigoCaracter == 37 || codigoCaracter == 39) {
-    return true;
-  }
-
-  // Permitir borrar con la tecla Backspace y con la tecla Supr.
-  if(codigoCaracter == 8 || codigoCaracter == 46) {
-    return true;
-  }
-  else if(elemento.value.length >= maximoCaracteres ) {
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-
-function actualizaInfo(maximoCaracteres) {
-  var elemento = document.getElementById("cajadescripcion");
-  var info = document.getElementById("info");
-
-	if(elemento.value.length >= maximoCaracteres )
-		info.innerHTML = formLimitL10n.infoMax;
-	else if(maximoCaracteres-elemento.value.length == 1 )
-		info.innerHTML = formLimitL10n.infoOne;
+CharacterCount = function(TextArea,FieldToCount){
+	var myField = document.getElementById(TextArea);
+	var myLabel = document.getElementById(FieldToCount); 
+	if(!myField || !myLabel){return false}; // catches errors
+	var MaxChars =  myField.maxLengh;
+	if(!MaxChars){MaxChars = myField.getAttribute('maxlength'); };
+	if(!MaxChars){return false};
+	var remainingChars =  MaxChars - myField.value.length
+	if(remainingChars == 1 )
+	myLabel.innerHTML = formLimitL10n.infoOne
+	else if(remainingChars >= 2 )
+	myLabel.innerHTML = remainingChars+ " " +formLimitL10n.infoPlus
 	else
-		info.innerHTML = (maximoCaracteres-elemento.value.length)+" "+formLimitL10n.infoPlus;
-	
+	myLabel.innerHTML = formLimitL10n.infoMax
 }
+//SETUP!!
+setInterval(function(){CharacterCount('cajadescripcion','info')},55);
