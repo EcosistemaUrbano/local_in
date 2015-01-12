@@ -1,8 +1,8 @@
-whatif-w
+local in
 ========
-Version 2.1.4 Unreleased
+Version 2.2
 
-Whatif, the theme that turns your WordPress into a participatory mapping tool.
+local in, the theme that turns your WordPress into a participatory mapping tool.
 
 ## Instalation
 + Download or clone this repo
