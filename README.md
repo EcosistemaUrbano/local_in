@@ -6,8 +6,8 @@ local in, the theme that turns your WordPress into a participatory mapping tool.
 
 ## Instalation
 + Download or clone this repo
-+ Edit the file whatif/general-vars.php following the comments inside the file
-+ Copy the whatif folder to the themes folder in your WordPress instalation.
++ Edit the file localin/general-vars.php following the comments inside the file
++ Copy the localin folder to the themes folder in your WordPress instalation.
 + Activate the theme
 + The theme will create the needed content: some pages that you can edit after that.
 
