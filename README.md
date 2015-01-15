@@ -2,17 +2,17 @@ local in
 ========
 Version 2.2
 
-local in, the theme that turns your WordPress into a participatory mapping tool.
+**local in**, the theme that turns your WordPress into a participatory mapping tool.
 
 ## Instalation
 + Download or clone this repo
-+ Edit the file localin/general-vars.php following the comments inside the file
-+ Copy the localin folder to the themes folder in your WordPress instalation.
++ Edit the file `localin/general-vars.php` following the comments inside the file
++ Copy the `localin` folder to the `themes` folder in your WordPress instalation.
 + Activate the theme
 + The theme will create the needed content: some pages that you can edit after that.
 
 ## Design and logos
-In the file icons.svg you can find all of the icons used in the theme.
+In the file `icons.svg` you can find all of the icons used in the theme.
 
 Feel free to use them, modify them and share them because they are licensed under [Creative Commons Attribution-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).
 
