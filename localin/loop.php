@@ -113,9 +113,9 @@ $votacion = whatif_vote_system_display_votes();
 			<ul class='messSingle-meta'>
 				<li><a href='" .$mess_author_link. "'>" .$mess_author. "</a></li>
 				<li>" .$mess_date. "</li>
-				<li><a href='" .$mess_perma. "?vista=map'>" .__('View location','whatif'). "</a></li>
+				<li class='location'><a href='" .$mess_perma. "?vista=map'>" .__('View location','whatif'). "</a></li>
 				" .$video_out. "
-				<li><a href='" .$mess_perma. "'>" .__('Permalink','whatif'). "</a></li>
+				<li class='link'><a href='" .$mess_perma. "'>" .__('Permalink','whatif'). "</a></li>
 			</ul>
 			" .$votacion. "
 			<ul class='messSingle-social'>
