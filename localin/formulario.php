@@ -89,7 +89,7 @@ if ( is_user_logged_in() ) {
 		<?php
 		$terms = $positivonegativo;
 		$term_sel = "<ul class='term-selector $terms'>";
-		foreach ( get_terms( "$terms", "number=20" , "hide_empty=0" ) as $term ) {
+		foreach ( get_terms( array("$terms"), array("number" => "50" , "hide_empty" => "0" , "orderby" => "count" , "order" => "DESC") ) as $term ) {
 			$term_sel .= "<li><a  onclick='llenarterm(\"{$term->name}\", document.getElementById(\"participaform\").cajaterm.value, $clasecolor, $term->term_id)' id='$term->term_id' class='term-tit $chover' value='{$term->name}' >{$term->name}</a></li>";
 		}
 		$term_sel .= "</ul>";

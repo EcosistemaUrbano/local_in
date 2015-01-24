@@ -403,15 +403,9 @@ display:none;
 
 /* colors and bg */
 
-.nodisplay, .nodisplay a
-{
- display:none;
-}
+.nodisplay, .nodisplay a { display:none; }
 
-.term-selector li .color-p
-{
-color: #0cf;
-}
+.term-selector li .color-p { color: #0cf; }
 .color-p {
 	color: #0cf;
 }
@@ -704,12 +698,6 @@ input.boton-negro {
 .vista-selector {
 	padding-top: 100px;
 }
-.term-selector
-{
-    float: left;
-    width: 800px;
-
-}
 
 .vista-selector-mini {
 	position: absolute;
@@ -722,6 +710,8 @@ input.boton-negro {
 	height: 236px;
 	margin-bottom: 10px;
 	float:none !important;
+	width: 800px;
+	overflow: hidden;
 }
 .cat-img {
 	vertical-align: top;
@@ -768,11 +758,11 @@ input.boton-negro {
 }
 .term-selector li {
 	float: left;
-	margin-right: 10px;
+	margin: 5px 5px 0 0;
 }
 .term-selector li a {
 	color: #000;
-	font-size: 3.4em;
+	font-size: 2em;
 	line-height: 1.1em;
 	font-weight: bold;
 	cursor:pointer !important;
