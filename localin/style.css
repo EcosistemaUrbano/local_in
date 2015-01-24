@@ -1022,12 +1022,16 @@ input.boton-negro {
 /* Images template */
 .mosac {
 	height: 450px;
-	width: 810px;
-	margin: 0 25px;
+	width: 770px;
+	margin: 15px 45px;
+	overflow: hidden;
 }
 .mosac-img {
 	float: left;
-	margin: 0 5px 10px;
+	margin: 5px;
+}
+.mosac-img a:hover img {
+	opacity: 0.8;
 }
 /* Map template */
 .map {

@@ -31,7 +31,7 @@ else { $valor_query .= ",$term->slug"; }
 }
 
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-query_posts( "posts_per_page=45&paged=$paged&$valor=$valor_query&cat=$filtro&key=_wp_attached_file" );
+query_posts( "posts_per_page=28&paged=$paged&$valor=$valor_query&cat=$filtro&key=_wp_attached_file" );
 
 if ( have_posts() ) :
 $mess_out = "<div class='unique mosac'>";
