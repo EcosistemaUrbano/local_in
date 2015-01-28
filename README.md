@@ -4,12 +4,15 @@ Version 2.2
 
 **local_in**, the theme that turns your WordPress into a participatory mapping tool.
 
-## Instalation
+## Installation
 + Download or clone this repo
 + Edit the file `local_in/general-vars.php` following the comments inside the file
 + Copy the `local_in` folder to the `themes` folder in your WordPress instalation.
 + Activate the theme
 + The theme will create the needed content: some pages that you can edit after that.
++ Go to Settings/Permalinks and set Common Settings to 'Post name'.
++ If you want users to be able to edit their own messages, you can go to General Settings and change the New User Default Role to 'Author'. Otherwise, leave it set as 'Subscriber'.
++ You're done!
 
 ## Design and logos
 In the file `icons.svg` you can find all of the icons used in the theme.
