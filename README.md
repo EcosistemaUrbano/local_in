@@ -10,9 +10,11 @@ Version 2.2
 + Copy the `local_in` folder to the `themes` folder in your WordPress instalation.
 + Activate the theme
 + The theme will create the needed content: some pages that you can edit after that.
+
+## Configuration
 + Go to Settings/Permalinks and set Common Settings to 'Post name'.
 + If you want users to be able to edit their own messages, you can go to General Settings and change the New User Default Role to 'Author'. Otherwise, leave it set as 'Subscriber'.
-+ You're done!
++ You can then go to Posts/Categories, create the categories you want, and assign icons to them.
 
 ## Design and logos
 In the file `icons.svg` you can find all of the icons used in the theme.
