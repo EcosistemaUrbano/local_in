@@ -1149,13 +1149,27 @@ display:none;
 	background: transparent url('images/location.png') no-repeat;
 	padding-left: 13px;
 }
+
+.messSingle-meta li.link {
+	background: #000 url('images/link.png') no-repeat 3px center;
+	padding: 1px 0 2px 21px;
+}
+
 .messSingle-meta li.link a {
 	color: #fff;
+	margin-top: 1px;
 }
-.messSingle-meta li.link {
-	background: #000 url('images/link.png') no-repeat 2px center;
-	padding: 2px 0 2px 20px;
+
+.messSingle-meta li.link:empty {
+   display: none;
 }
+
+.messSingle-meta li.link:after {
+	content: "| ";
+	background-color: #FFF;
+	padding: 3px 0px 2px 3px;
+}
+
 .messSingle-social li {
 	display: inline-block;
 	background-color: #000;
