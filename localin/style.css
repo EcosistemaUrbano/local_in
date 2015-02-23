@@ -1193,6 +1193,8 @@ display:none;
 .messSingle-text {
 	font-size: 2em;
 	line-height: 1.3em;
+	max-height: 78px;
+	overflow: hidden;
 }
 .map .messSingle-text {
 	font-size: 1.7em;
