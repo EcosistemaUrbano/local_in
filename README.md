@@ -22,7 +22,7 @@ In the file `icons.svg` you can find all of the icons used in the theme.
 Feel free to use them, modify them and share them because they are licensed under [Creative Commons Attribution-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Contact
-For more information, please visit the official website: [http://ecosistemaurbano.com/portfolio/local_in](http://ecosistemaurbano.com/portfolio/local_in).
+For more information, please visit the official website: [http://ecosistemaurbano.com/portfolio/localin](http://ecosistemaurbano.com/portfolio/localin).
 
 The application is delivered 'as is', we can not offer free support for everyone. However, we do offer professional support in case you don't have the knowledge or the resources to install it and fix possible bugs by yourself. 
 
