@@ -1,6 +1,6 @@
 local_in
 ========
-Version 2.2
+Version 3.0
 
 **local_in**, the theme that turns your WordPress into a participatory mapping tool.
 
