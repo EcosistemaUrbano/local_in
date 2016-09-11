@@ -253,7 +253,7 @@ if ( is_user_logged_in() ) {
 		$positivonegativo = sanitize_text_field($_POST['positivonegativo']); // que sera bien "positivo" o "negativo"
 
 		$tags = sanitize_text_field($_POST['cajaterm']);
-		$tags = ereg_replace(" ","", $tags);
+		$tags = str_replace(" ","", $tags);
 		//Separo por comas o veo como vienen los tags para dividir en 5 variables que es el maximo permitido de tags
 		$elementos =explode(",", $tags);
 		 $var1 = $elementos[0]; // trozo1
@@ -296,7 +296,7 @@ if ( is_user_logged_in() ) {
 			$upload_dir = $upload_dir_var['path']; // absolute path to uploads folder
 			$filename = basename($_FILES['blas']['name']); // to get file name from form
 			$filename = trim($filename); // removing spaces at the begining and end
-			$filename = ereg_replace(" ", "-", $filename); // removing spaces inside the name
+			$filename = str_replace(" ", "-", $filename); // removing spaces inside the name
 
 			$typefile = $_FILES['blas']['type']; // file type
 			$uploaddir = realpath($upload_dir);
