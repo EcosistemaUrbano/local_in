@@ -6,15 +6,14 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
 "Language-Team: Ecosistema Urbano <info@ecosistemaurbano.com>\n"
-"Language: \n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../filters.php:6
@@ -29,23 +28,19 @@ msgstr "Mensaje negativo"
 msgid "Reset"
 msgstr "Reiniciar"
 
-#: ../header.php:38
-#: ../header.php:227
+#: ../header.php:38 ../header.php:227
 msgid "No image"
 msgstr "Sin imagen"
 
-#: ../header.php:57
-#: ../header.php:176
+#: ../header.php:57 ../header.php:176
 msgid "Permalink"
-msgstr "Enlace "
+msgstr "Enlace"
 
-#: ../header.php:58
-#: ../header.php:177
+#: ../header.php:58 ../header.php:177
 msgid "View link"
 msgstr "Ver enlace"
 
-#: ../header.php:62
-#: ../header.php:181
+#: ../header.php:62 ../header.php:181
 msgid "Edit"
 msgstr "Editar"
 
@@ -70,15 +65,14 @@ msgstr "Volver a los mensajes del usuario"
 msgid "Image of the message %s"
 msgstr "Imagen del mensaje %s"
 
-#: ../single.php:30
-#: ../single.php:71
+#: ../single.php:30 ../single.php:71
 #, php-format
 msgid "View message \"%s\""
 msgstr "Ver mensaje \"%s\""
 
 #: ../single.php:64
 #, php-format
-msgid "This is the message you have published. Thanks for participage, %s."
+msgid "This is the message you have published. Thanks for participating, %s."
 msgstr "Este es el mensaje que has publicado. Gracias por participar, %s."
 
 #: ../footer.php:9
@@ -208,13 +202,11 @@ msgstr "Publicar mensaje"
 msgid "Message sent by %s1 on %s2"
 msgstr "Mensaje enviado por %s1 el %s2"
 
-#: ../author.php:33
-#: ../taxonomy.php:15
+#: ../author.php:33 ../taxonomy.php:15
 msgid "Previous messages"
 msgstr "Mensajes anteriores"
 
-#: ../author.php:51
-#: ../taxonomy.php:27
+#: ../author.php:51 ../taxonomy.php:27
 msgid "Next messages"
 msgstr "Mensajes siguientes"
 
@@ -256,15 +248,13 @@ msgstr "caracteres restantes."
 
 #: ../functions.php:201
 msgid "Choose an image."
-msgstr "Elige una imagen"
+msgstr "Elige una imagen."
 
 #: ../functions.php:261
 msgid "Category image"
 msgstr "Imagen de categoría"
 
-#: ../functions.php:262
-#: ../functions.php:268
-#: ../functions.php:274
+#: ../functions.php:262 ../functions.php:268 ../functions.php:274
 msgid "Upload the image using the media uploader, and add the complete URL here then."
 msgstr "Sube la imagen usando la galería de medios, y luego añade aquí la URL completa."
 
@@ -324,13 +314,11 @@ msgstr "Ya has iniciado sesión. Ve a la página de inicio para publicar un mens
 msgid "Incorrect username or password"
 msgstr "Usuario o contraseña incorrectos"
 
-#: ../login-form.php:34
-#: ../login-form.php:56
+#: ../login-form.php:34 ../login-form.php:56
 msgid "Username"
 msgstr "Usuario"
 
-#: ../login-form.php:37
-#: ../login-form.php:64
+#: ../login-form.php:37 ../login-form.php:64
 msgid "Password"
 msgstr "Contraseña"
 
@@ -372,7 +360,7 @@ msgstr "Registrarme"
 
 #: ../login-form.php:78
 msgid "You are already registered. Now you can log in using your username and password."
-msgstr "Ya estás registrado. Ahora puedes iniciar sesión usando tu usuario y tu contraseña"
+msgstr "Ya estás registrado. Ahora puedes iniciar sesión usando tu usuario y tu contraseña."
 
 #: ../loop.php:116
 msgid "View location"
@@ -389,4 +377,3 @@ msgstr "Compartir en Twitter"
 #: ../loop.php:124
 msgid "Share on Google Plus"
 msgstr "Compartir en Google Plus"
-
